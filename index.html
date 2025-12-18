@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOLO Person Detection Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="title">🎯 Person Detection</h1>
+                <p class="subtitle">Real-time YOLO Object Detection</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="video-section">
+                <div class="video-container">
+                    <img id="videoStream" src="/video_feed" alt="Video Stream" class="video-stream">
+                    <div class="video-overlay">
+                        <div id="statusBadge" class="status-badge status-idle">Idle</div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <span id="fpsCounter" class="info-item">FPS: --</span>
+                    <span id="resolutionDisplay" class="info-item">Resolution: --</span>
+                </div>
+            </div>
+
+            <aside class="sidebar">
+                <section class="control-panel">
+                    <h2 class="panel-title">⚙️ Controls</h2>
+                    
+                    <div class="control-group">
+                        <label for="cameraSelect" class="control-label">📷 Camera Source</label>
+                        <select id="cameraSelect" class="control-input">
+                            <option value="0">Default Camera (0)</option>
+                            <option value="1">Camera 1</option>
+                            <option value="2">Camera 2</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="confidenceSlider" class="control-label">🎚️ Confidence</label>
+                        <input type="range" id="confidenceSlider" min="0.1" max="1.0" step="0.05" value="0.5" class="slider">
+                        <span id="confidenceValue" class="slider-value">0.50</span>
+                    </div>
+
+                    <div class="control-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="showCoords" checked>
+                            <span>Show Coordinates</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="showFPS" checked>
+                            <span>Show FPS</span>
+                        </label>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="boxColor" class="control-label">🎨 Box Color</label>
+                        <div class="color-picker-wrapper">
+                            <input type="color" id="boxColor" value="#00FF88" class="color-picker">
+                            <span id="colorValue" class="color-value">#00FF88</span>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="startBtn" class="btn btn-start">▶️ Start</button>
+                        <button id="stopBtn" class="btn btn-stop">⏹️ Stop</button>
+                    </div>
+                </section>
+
+                <section class="stats-panel">
+                    <h2 class="panel-title">📊 Statistics</h2>
+                    
+                    <div class="stat-item">
+                        <div class="stat-value" id="personCount">0</div>
+                        <div class="stat-label">Persons Detected</div>
+                    </div>
+
+                    <div class="stat-item">
+                        <div class="stat-value" id="avgConfidence">0%</div>
+                        <div class="stat-label">Avg Confidence</div>
+                    </div>
+
+                    <div class="stat-item">
+                        <div class="stat-value" id="uptime">00:00</div>
+                        <div class="stat-label">Session Time</div>
+                    </div>
+                </section>
+
+                <section class="detections-panel">
+                    <h2 class="panel-title">📍 Detections</h2>
+                    <div id="detectionsList" class="detections-list">
+                        <div class="detection-empty">No detections</div>
+                    </div>
+                </section>
+            </aside>
+        </main>
+    </div>
+
+    <script src="/static/main.js"></script>
+</body>
+</html>

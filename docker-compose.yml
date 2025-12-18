@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  yolo-stream:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./live_data.json:/app/live_data.json
+      - ./yolo11n.pt:/app/yolo11n.pt:ro
+      - ./logs:/app/logs
+    environment:
+      - MODEL_PATH=yolo11n.pt
+      - LIVE_DATA_FILE=live_data.json
+      - LOG_LEVEL=info
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 512M
+    networks:
+      - yolo-network
+
+  # Optional: Add a monitoring service
+  monitor:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    depends_on:
+      - yolo-stream
+    networks:
+      - yolo-network
+    profiles:
+      - monitoring
+
+networks:
+  yolo-network:
+    driver: bridge
