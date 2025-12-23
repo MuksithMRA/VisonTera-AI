@@ -26,6 +26,7 @@ def _patched_torch_load(*args, **kwargs):
 torch.load = _patched_torch_load
 
 from ultralytics import YOLO
+from train_pipeline import TrainingPipeline
 
 # --- Production Configuration ---
 class AppConfig:
@@ -517,6 +518,23 @@ class DetectionEngine:
             logger.error(f"Error in broadcast_stats: {e}")
 
 engine = DetectionEngine()
+pipeline = TrainingPipeline()
+
+async def run_training_task():
+    """Background task to run training pipeline and reload model"""
+    try:
+        logger.info("Starting background training task...")
+        loop = asyncio.get_running_loop()
+        best_model_path = await loop.run_in_executor(None, pipeline.run_pipeline)
+        
+        if best_model_path:
+            logger.info(f"Training complete. New model at {best_model_path}. Reloading engine...")
+            engine.load_model()
+            logger.info("Engine reloaded with new model.")
+        else:
+            logger.error("Training completed but no model path returned.")
+    except Exception as e:
+        logger.error(f"Training task failed: {e}")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -596,7 +614,28 @@ async def stop_detection():
         engine.cap = None
     
     await asyncio.sleep(0.2)
+    await asyncio.sleep(0.2)
     return {"status": "stopped"}
+
+@app.post("/api/retrain")
+async def retrain_model(background_tasks: BackgroundTasks):
+    """Trigger the self-training pipeline"""
+    if pipeline.is_training:
+        return {"status": "error", "message": "Training is already in progress"}
+    
+    background_tasks.add_task(run_training_task)
+    return {
+        "status": "started", 
+        "message": "Training pipeline started in background. Monitor logs or /api/training_status for progress."
+    }
+
+@app.get("/api/training_status")
+async def get_training_status():
+    """Get current status of the training pipeline"""
+    return {
+        "is_training": pipeline.is_training,
+        "status": pipeline.status
+    }
 
 @app.get("/video_feed")
 async def video_feed():
