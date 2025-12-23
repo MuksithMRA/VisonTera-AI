@@ -5,7 +5,38 @@ from datetime import datetime
 import logging
 from pathlib import Path
 from ultralytics import YOLO
-from prepare_data import split_dataset
+import random
+
+
+def split_dataset(source_dir, dest_dir, split_ratio=0.8):
+    source_path = Path(source_dir)
+    dest_path = Path(dest_dir)
+    
+    if not source_path.exists():
+        logging.error(f"Source data directory {source_path} does not exist!")
+        return
+
+    classes = [d.name for d in source_path.iterdir() if d.is_dir()]
+    logging.info(f"Found classes: {classes}")
+    
+    for class_name in classes:
+        (dest_path / 'train' / class_name).mkdir(parents=True, exist_ok=True)
+        (dest_path / 'val' / class_name).mkdir(parents=True, exist_ok=True)
+        
+        files = list((source_path / class_name).glob('*.*'))
+        random.shuffle(files)
+        
+        split_idx = int(len(files) * split_ratio)
+        train_files = files[:split_idx]
+        val_files = files[split_idx:]
+        
+        logging.info(f"Processing {class_name}: {len(train_files)} training, {len(val_files)} validation")
+        
+        for f in train_files:
+            shutil.copy2(f, dest_path / 'train' / class_name / f.name)
+            
+        for f in val_files:
+            shutil.copy2(f, dest_path / 'val' / class_name / f.name)
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] TRIAN_PIPELINE: %(message)s")
 logger = logging.getLogger("TrainPipeline")
