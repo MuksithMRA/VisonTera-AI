@@ -1,2 +1,6 @@
 .env
 venv/
+data/
+gender_dataset_split/
+runs/
+__pycache__

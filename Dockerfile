@@ -6,15 +6,12 @@ WORKDIR /app
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
-    libgl1-mesa-glx \
     libglib2.0-0 \
     libsm6 \
     libxext6 \
     libxrender-dev \
     libgomp1 \
-    libglib2.0-0 \
     libgtk-3-0 \
-    libwebkitgtk-3.0-0 \
     libgstreamer-plugins-base1.0-dev \
     libgstreamer1.0-dev \
     libavcodec-dev \
@@ -26,7 +23,6 @@ RUN apt-get update && apt-get install -y \
     libjpeg-dev \
     libpng-dev \
     libtiff-dev \
-    libatlas-base-dev \
     gfortran \
     wget \
     unzip \
@@ -57,4 +53,4 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:8000/status || exit 1
 
 # Default command
-CMD ["python", "main.py"]
+CMD ["python", "web_app.py"]

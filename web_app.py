@@ -1,6 +1,7 @@
+import torch
 import cv2
 import numpy as np
-import torch
+import urllib.request
 from datetime import datetime
 from fastapi import FastAPI, WebSocket, Query, BackgroundTasks
 from fastapi.responses import StreamingResponse, FileResponse
@@ -11,6 +12,12 @@ from pathlib import Path
 import logging
 from contextlib import asynccontextmanager
 
+import os
+import sys
+from logging.handlers import RotatingFileHandler
+
+import concurrent.futures
+
 _original_torch_load = torch.load
 def _patched_torch_load(*args, **kwargs):
     if 'weights_only' not in kwargs:
@@ -20,62 +27,239 @@ torch.load = _patched_torch_load
 
 from ultralytics import YOLO
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+# --- Production Configuration ---
+class AppConfig:
+    # Camera
+    CAMERA_INDEX = 0
+    FRAME_WIDTH = 640
+    FRAME_HEIGHT = 480
+    TARGET_FPS = 60.0
+    
+    # AI / Detection
+    CONFIDENCE_THRESHOLD = 0.5
+    FACE_CONFIDENCE_THRESHOLD = 0.3
+    FACE_CHECK_INTERVAL = 4
+    
+    # Resilience
+    MAX_FAILED_READS = 10
+    RETRY_DELAY_SECONDS = 5
+    
+    # Paths
+    BASE_DIR = Path(__file__).parent
+    LOG_FILE = BASE_DIR / "app.log"
+    MODEL_PATH = "yolo11n.pt"
+    GENDER_MODEL_PATH = "runs/classify/train/weights/best.pt"
+
+# --- Logging Setup ---
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+    handlers=[
+        RotatingFileHandler(AppConfig.LOG_FILE, maxBytes=10*1024*1024, backupCount=5, encoding='utf-8'),
+        logging.StreamHandler(sys.stdout)
+    ]
+)
+logger = logging.getLogger("VisionTera")
 
 class DetectionEngine:
     def __init__(self):
         self.model = None
+        self.gender_net = None
+        self.face_net = None
+        self.gender_list = ['Male', 'Female']
+        self.track_history = {}  # {id: {'gender': None, 'male_votes': 0, 'female_votes': 0, 'last_check': 0}}
         self.is_running = False
-        self.camera_index = 0
-        self.confidence = 0.5
+        
+        # Load defaults from Config
+        self.camera_index = AppConfig.CAMERA_INDEX
+        self.frame_count = 0
+        self.face_check_interval = AppConfig.FACE_CHECK_INTERVAL
+        self.confidence = AppConfig.CONFIDENCE_THRESHOLD
+        
         self.show_coords = True
         self.show_fps = True
         self.box_color = (0, 255, 136)
-        self.frame_queue = asyncio.Queue(maxsize=1)
+        self.frame_queue = asyncio.Queue(maxsize=5)
+        self.executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
         self.stats_queue = asyncio.Queue(maxsize=1)
+        self.frame_width = AppConfig.FRAME_WIDTH
+        self.frame_height = AppConfig.FRAME_HEIGHT
         self.cap = None
         self.current_frame = None
         self.last_detections = []
         self.capture_task = None
         self.stats_task = None
 
-    def load_model(self, model_path: str = "yolo11n.pt"):
+    def load_model(self, model_path: str = None):
+        if model_path is None: model_path = AppConfig.MODEL_PATH
         try:
             self.model = YOLO(model_path)
-            logger.info("Model loaded successfully")
+            
+            # Load custom trained gender classifier
+            gender_model_path = AppConfig.GENDER_MODEL_PATH
+            if not Path(gender_model_path).exists():
+                logger.warning(f"Custom gender model not found at {gender_model_path}. Please train it first.")
+                self.gender_net = None
+            else:
+                self.gender_net = YOLO(gender_model_path)
+            
+            # Face Model URLs (ResNet SSD) - Keep face detector
+            face_proto = "https://raw.githubusercontent.com/opencv/opencv/master/samples/dnn/face_detector/deploy.prototxt"
+            face_model = "https://raw.githubusercontent.com/opencv/opencv_3rdparty/dnn_samples_face_detector_20170830/res10_300x300_ssd_iter_140000.caffemodel"
+
+            # Paths
+            fp_path = Path("face_deploy.prototxt")
+            fm_path = Path("face_net.caffemodel")
+            
+            if not fp_path.exists(): urllib.request.urlretrieve(face_proto, fp_path)
+            if not fm_path.exists(): urllib.request.urlretrieve(face_model, fm_path)
+                
+            self.face_net = cv2.dnn.readNet(str(fp_path), str(fm_path))
+            
+            device = 'cuda' if torch.cuda.is_available() else 'cpu'
+            self.model.to(device)
+            if self.gender_net:
+                self.gender_net.to(device)
+
+            logger.info(f"YOLO using device: {device}")
+
+            if device == 'cuda':
+                try:
+                    self.face_net.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
+                    self.face_net.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA)
+                    logger.info("OpenCV using CUDA backend")
+                except Exception as e:
+                    logger.warning(f"Could not set OpenCV to CUDA (using CPU): {e}")
+
+            logger.info("All models loaded successfully")
         except Exception as e:
-            logger.error(f"Failed to load model: {e}")
+            logger.error(f"Failed to load models: {e}")
             raise
 
-    def detect_persons(self, frame):
-        if self.model is None:
-            return []
+    def _predict_gender(self, frame, person_box, track_id):
+        x1, y1, x2, y2 = [int(v) for v in person_box]
+        h, w = frame.shape[:2]
+        
+        # Ensure box is within frame
+        x1, y1 = max(0, x1), max(0, y1)
+        x2, y2 = min(w, x2), min(h, y2)
+        
+        if x2 <= x1 or y2 <= y1: return "Unknown"
+        
+        person_img = frame[y1:y2, x1:x2]
+        
+        # 1. Detect Face in Person ROI
+        blob = cv2.dnn.blobFromImage(person_img, 1.0, (300, 300), (104.0, 177.0, 123.0))
+        self.face_net.setInput(blob)
+        faces = self.face_net.forward()
+        
+        best_face = None
+        max_conf = 0.0
+        
+        # Find best face
+        for i in range(faces.shape[2]):
+            confidence = faces[0, 0, i, 2]
+            if confidence > 0.3:  # Lowered confidence threshold
+                fx1 = int(faces[0, 0, i, 3] * person_img.shape[1])
+                fy1 = int(faces[0, 0, i, 4] * person_img.shape[0])
+                fx2 = int(faces[0, 0, i, 5] * person_img.shape[1])
+                fy2 = int(faces[0, 0, i, 6] * person_img.shape[0])
+                
+                if confidence > max_conf:
+                    max_conf = confidence
+                    best_face = (fx1, fy1, fx2, fy2)
 
-        results = self.model(frame, classes=[0], conf=self.confidence, verbose=False)
+        # 2. If Face Found -> Predict Gender with YOLO Classifier
+        detected_gender = None
+        if best_face and self.gender_net:
+            fx1, fy1, fx2, fy2 = best_face
+            # Add padding for gender model context
+            pad_w = int((fx2 - fx1) * 0.1)
+            pad_h = int((fy2 - fy1) * 0.1)
+            fx1, fx2 = max(0, fx1 - pad_w), min(person_img.shape[1], fx2 + pad_w)
+            fy1, fy2 = max(0, fy1 - pad_h), min(person_img.shape[0], fy2 + pad_h)
+            
+            if fx2 > fx1 and fy2 > fy1:
+                face_img = person_img[fy1:fy2, fx1:fx2]
+                
+                # Use YOLO Classifier
+                results = self.gender_net.predict(face_img, verbose=False)
+                if results and results[0].probs:
+                    top1_index = results[0].probs.top1
+                    detected_gender = results[0].names[top1_index].capitalize()
+        
+        return detected_gender
+
+    def detect_persons(self, frame):
+        if self.model is None: return []
+
+        # Tracking enabled
+        results = self.model.track(frame, classes=[0], conf=self.confidence, persist=True, verbose=False, tracker="bytetrack.yaml")
         detections = []
 
-        for result in results:
-            boxes = result.boxes
-            if boxes is not None:
-                for box in boxes:
-                    x1, y1, x2, y2 = box.xyxy[0].cpu().numpy()
-                    conf = float(box.conf[0].cpu().numpy())
-
-                    bottom_center_x = (x1 + x2) / 2
-                    bottom_center_y = y2
-
-                    detections.append({
-                        'x': float(bottom_center_x),
-                        'y': float(bottom_center_y),
-                        'confidence': conf,
-                        'bbox': {
-                            'x1': float(x1),
-                            'y1': float(y1),
-                            'x2': float(x2),
-                            'y2': float(y2)
+        if results and results[0].boxes:
+            boxes = results[0].boxes
+            ids = boxes.id.cpu().numpy().astype(int) if boxes.id is not None else None
+            
+            for i, box in enumerate(boxes):
+                x1, y1, x2, y2 = box.xyxy[0].cpu().numpy()
+                conf = float(box.conf[0].cpu().numpy())
+                track_id = int(ids[i]) if ids is not None else -1
+                
+                # History / Tracking Logic
+                if track_id != -1:
+                    if track_id not in self.track_history:
+                        self.track_history[track_id] = {
+                            'gender': None, 
+                            'male_votes': 0, 
+                            'female_votes': 0, 
+                            'last_check': 0
                         }
-                    })
+                    
+                    hist = self.track_history[track_id]
+                    
+                    # Check if we should re-run face detection (every N frames OR if gender is unknown)
+                    should_check = (self.frame_count - hist['last_check']) > self.face_check_interval
+                    if hist['gender'] is None:
+                         should_check = True # Always check if unknown, but maybe throttle slightly if desired? 
+                         # Actually checking every frame for unknown is good if we want fast initial detection.
+                         # But let's throttle slightly to 2 frames to save CPU? No, keep it greedy for start.
+                    
+                    gender_label = hist['gender'] if hist['gender'] else "Person"
+
+                    if should_check and self.face_net and self.gender_net:
+                        try:
+                            # Run prediction
+                            pred = self._predict_gender(frame, (x1, y1, x2, y2), track_id)
+                            hist['last_check'] = self.frame_count
+                            
+                            if pred:
+                                if pred == 'Male': hist['male_votes'] += 1
+                                elif pred == 'Female': hist['female_votes'] += 1
+                                
+                                # Update rigid decision
+                                if hist['male_votes'] > hist['female_votes']:
+                                    hist['gender'] = 'Male'
+                                elif hist['female_votes'] > hist['male_votes']:
+                                    hist['gender'] = 'Female'
+                                    
+                                gender_label = hist['gender']
+                        except Exception as e:
+                            # logger.error(f"Error predicting gender: {e}")
+                            pass
+                else:
+                    gender_label = "Person"
+
+                detections.append({
+                    'x': float((x1 + x2) / 2),
+                    'y': float(y2),
+                    'confidence': conf,
+                    'gender': gender_label,
+                    'id': track_id,
+                    'bbox': {
+                        'x1': float(x1), 'y1': float(y1), 'x2': float(x2), 'y2': float(y2)
+                    }
+                })
 
         return detections
 
@@ -87,6 +271,7 @@ class DetectionEngine:
             x1, y1, x2, y2 = int(bbox['x1']), int(bbox['y1']), int(bbox['x2']), int(bbox['y2'])
             conf = det['confidence']
             bottom_x, bottom_y = int(det['x']), int(det['y'])
+            gender = det.get('gender', 'Person')
 
             cv2.rectangle(annotated, (x1, y1), (x2, y2), self.box_color, 2)
             cv2.rectangle(annotated, (x1-1, y1-1), (x2+1, y2+1), (0, 100, 50), 1)
@@ -94,7 +279,7 @@ class DetectionEngine:
             cv2.circle(annotated, (bottom_x, bottom_y), 8, (0, 212, 255), -1)
             cv2.circle(annotated, (bottom_x, bottom_y), 10, (255, 255, 255), 2)
 
-            label = f"Person {conf:.0%}"
+            label = f"{gender} {conf:.0%}"
             (label_w, label_h), baseline = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.6, 2)
             cv2.rectangle(annotated, (x1, y1 - label_h - 10), (x1 + label_w + 10, y1), self.box_color, -1)
             cv2.putText(annotated, label, (x1 + 5, y1 - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 0), 2)
@@ -112,7 +297,7 @@ class DetectionEngine:
         prev_time = datetime.now()
         fps = 0
         demo_count = 0
-        logger.info("🎬 Demo mode started - generating synthetic frames")
+        logger.info("[DEMO] Demo mode started - generating synthetic frames")
 
         while self.is_running:
             # Generate a dark background with some animated elements
@@ -175,44 +360,60 @@ class DetectionEngine:
 
     async def capture_frames(self):
         try:
-            self.cap = cv2.VideoCapture(self.camera_index, cv2.CAP_DSHOW)  # Use DirectShow on Windows
+            # Run camera initialization in executor
+            loop = asyncio.get_running_loop()
+            await loop.run_in_executor(self.executor, self._init_camera)
 
-            if not self.cap.isOpened():
+            if not self.cap or not self.cap.isOpened():
                 logger.error(f"Failed to open camera {self.camera_index}")
                 logger.info("Running in demo mode with generated frames")
                 # Demo mode: generate test frames instead
                 await self.demo_mode()
                 return
             
-            # Set camera properties for better compatibility
-            self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
-            self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
-            self.cap.set(cv2.CAP_PROP_FPS, 30)
-            
             # Give camera time to warm up
             await asyncio.sleep(0.5)
 
-            prev_time = datetime.now()
-            fps = 0
-            frame_width = int(self.cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-            frame_height = int(self.cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-            logger.info(f"📹 Camera {self.camera_index} opened successfully - {frame_width}x{frame_height}")
+            # Get properties safely
+            if self.cap and self.cap.isOpened():
+                self.frame_width = int(self.cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+                self.frame_height = int(self.cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+            else:
+                self.frame_width = AppConfig.FRAME_WIDTH
+                self.frame_height = AppConfig.FRAME_HEIGHT
+                
+            logger.info(f"[CAMERA] Camera {self.camera_index} opened successfully - {self.frame_width}x{self.frame_height}")
+            frame_width, frame_height = self.frame_width, self.frame_height
             
             failed_reads = 0
-            max_failed_reads = 10
-
+            max_failed_reads = AppConfig.MAX_FAILED_READS
             frame_count = 0
-            while self.is_running:
-                ret, frame = self.cap.read()
+            
+            # Target FPS from config
+            target_fps = AppConfig.TARGET_FPS
+            frame_interval = 1.0 / target_fps
+            fps = 0
 
-                if not ret:
+            while self.is_running:
+                loop_start = datetime.now()
+                
+                # Run the blocking capture and processing in a separate thread
+                result = await loop.run_in_executor(self.executor, self._process_one_frame)
+
+                if result is None:
                     failed_reads += 1
                     logger.warning(f"Failed to read frame (attempt {failed_reads}/{max_failed_reads})")
                     
                     if failed_reads >= max_failed_reads:
-                        logger.error(f"Too many failed reads, switching to demo mode")
-                        await self.demo_mode()
-                        return
+                        # Production Behavior: Retry indefinitely instead of giving up
+                        logger.error(f"[ERROR] Camera connection lost. Retrying in {AppConfig.RETRY_DELAY_SECONDS}s...")
+                        if self.cap: self.cap.release()
+                        await asyncio.sleep(AppConfig.RETRY_DELAY_SECONDS)
+                        
+                        # Re-init in thread
+                        await loop.run_in_executor(self.executor, self._init_camera)
+                        failed_reads = 0 # Reset counter to give new connection a chance
+                        continue
                     
                     await asyncio.sleep(0.1)
                     continue
@@ -220,63 +421,83 @@ class DetectionEngine:
                 # Reset failed read counter on successful read
                 failed_reads = 0
                 frame_count += 1
+                self.frame_count += 1
                 
-                if frame_count % 30 == 0:
-                    logger.info(f"✅ Captured {frame_count} frames, queue size: {self.frame_queue.qsize()}")
+                # Unpack result
+                frame_bytes, detections, current_fps = result
+                fps = current_fps
 
-                current_time = datetime.now()
-                time_diff = (current_time - prev_time).total_seconds()
-                if time_diff > 0:
-                    fps = 1 / time_diff
-                prev_time = current_time
+                if frame_count % 60 == 0:
+                    logger.info(f"[SUCCESS] Captured {frame_count} frames, queue size: {self.frame_queue.qsize()}, FPS: {fps:.1f}")
 
-                detections = self.detect_persons(frame)
-                self.last_detections = detections
-                annotated_frame = self.draw_detections(frame, detections)
-                
                 if frame_count % 30 == 0 and detections:
-                    logger.info(f"🎯 Detected {len(detections)} person(s)")
-
-                if self.show_fps:
-                    cv2.putText(annotated_frame, f"FPS: {fps:.1f}", (10, 30),
-                               cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 136), 2)
-
-                _, buffer = cv2.imencode('.jpg', annotated_frame, [cv2.IMWRITE_JPEG_QUALITY, 85])
-                frame_bytes = buffer.tobytes()
+                    logger.info(f"[DETECT] Detected {len(detections)} person(s)")
 
                 try:
+                    if self.frame_queue.full():
+                        self.frame_queue.get_nowait()
                     self.frame_queue.put_nowait((frame_bytes, fps, frame_width, frame_height, detections))
-                except asyncio.QueueFull:
+                except Exception:
                     pass
 
-                await asyncio.sleep(0.01)
+                # FPS Control
+                process_time = (datetime.now() - loop_start).total_seconds()
+                sleep_time = max(0, frame_interval - process_time)
+                await asyncio.sleep(sleep_time)
 
         except asyncio.CancelledError:
-            logger.info("✋ Capture frames task cancelled")
+            logger.info("[STOP] Capture frames task cancelled")
         except Exception as e:
             logger.error(f"Error in capture_frames: {e}")
+            import traceback
+            traceback.print_exc()
         finally:
             if self.cap:
                 self.cap.release()
-                logger.info("📷 Camera released")
+                logger.info("[CAMERA] Camera released")
+
+    def _init_camera(self):
+        backend = cv2.CAP_DSHOW if (os.name == 'nt') else cv2.CAP_ANY
+        self.cap = cv2.VideoCapture(self.camera_index, backend)
+        
+        if self.cap.isOpened():
+            self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, AppConfig.FRAME_WIDTH)
+            self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, AppConfig.FRAME_HEIGHT)
+            self.cap.set(cv2.CAP_PROP_FPS, 30)
+
+    def _process_one_frame(self):
+        if not self.cap: return None
+        
+        # Calculate FPS inside the thread
+        current_time = datetime.now()
+        time_diff = (current_time - getattr(self, '_last_frame_time', current_time)).total_seconds()
+        self._last_frame_time = current_time
+        fps = 1.0 / time_diff if time_diff > 0 else 0
+
+        ret, frame = self.cap.read()
+        if not ret: return None
+
+        detections = self.detect_persons(frame)
+        self.last_detections = detections
+        annotated_frame = self.draw_detections(frame, detections)
+        
+        if self.show_fps:
+            cv2.putText(annotated_frame, f"FPS: {fps:.1f}", (10, 30),
+                       cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 136), 2)
+
+        _, buffer = cv2.imencode('.jpg', annotated_frame, [cv2.IMWRITE_JPEG_QUALITY, 85])
+        return buffer.tobytes(), detections, fps
 
     async def broadcast_stats(self):
-        logger.info("📊 Stats broadcast task started")
+        logger.info("[STATS] Stats broadcast task started")
         try:
             while self.is_running:
                 if self.last_detections is not None:
-                    # Get frame dimensions
-                    if self.cap:
-                        width = int(self.cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-                        height = int(self.cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-                    else:
-                        width, height = 640, 480
-                    
                     stats = {
                         'type': 'stats',
                         'fps': 30.0,  # Will be updated by client from video
-                        'width': width,
-                        'height': height,
+                        'width': self.frame_width,
+                        'height': self.frame_height,
                         'detections': self.last_detections
                     }
                     try:
@@ -291,7 +512,7 @@ class DetectionEngine:
 
                 await asyncio.sleep(0.1)
         except asyncio.CancelledError:
-            logger.info("✋ Stats broadcast task cancelled")
+            logger.info("[STOP] Stats broadcast task cancelled")
         except Exception as e:
             logger.error(f"Error in broadcast_stats: {e}")
 
@@ -312,6 +533,15 @@ app.mount("/static", StaticFiles(directory=BASE_DIR / "static"), name="static")
 @app.get("/")
 async def get_dashboard():
     return FileResponse(BASE_DIR / "index.html", media_type="text/html")
+
+@app.get("/status")
+async def get_status():
+    return {
+        "status": "ok", 
+        "running": engine.is_running,
+        "frames_processed": engine.frame_count,
+        "camera_index": engine.camera_index
+    }
 
 @app.post("/api/start")
 async def start_detection(

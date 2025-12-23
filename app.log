@@ -1,0 +1,30 @@
+2025-12-23 17:29:45,328 [INFO] VisionTera: YOLO using device: cuda
+2025-12-23 17:29:45,330 [INFO] VisionTera: OpenCV using CUDA backend
+2025-12-23 17:29:45,330 [INFO] VisionTera: All models loaded successfully
+2025-12-23 17:29:45,330 [INFO] VisionTera: Application started
+2025-12-23 17:29:45,331 [INFO] VisionTera: Application shutdown
+2025-12-23 17:30:12,902 [INFO] VisionTera: YOLO using device: cuda
+2025-12-23 17:30:12,902 [INFO] VisionTera: OpenCV using CUDA backend
+2025-12-23 17:30:12,903 [INFO] VisionTera: All models loaded successfully
+2025-12-23 17:30:12,903 [INFO] VisionTera: Application started
+2025-12-23 17:30:12,904 [INFO] VisionTera: Application shutdown
+2025-12-23 17:30:47,990 [INFO] VisionTera: YOLO using device: cuda
+2025-12-23 17:30:47,994 [INFO] VisionTera: OpenCV using CUDA backend
+2025-12-23 17:30:47,994 [INFO] VisionTera: All models loaded successfully
+2025-12-23 17:30:47,994 [INFO] VisionTera: Application started
+2025-12-23 17:31:08,074 [INFO] VisionTera: Started detection with camera 0
+2025-12-23 17:31:43,689 [ERROR] VisionTera: WebSocket error: sent 1012 (service restart); no close frame received
+2025-12-23 17:37:49,192 [INFO] VisionTera: YOLO using device: cuda
+2025-12-23 17:37:49,226 [INFO] VisionTera: OpenCV using CUDA backend
+2025-12-23 17:37:49,226 [INFO] VisionTera: All models loaded successfully
+2025-12-23 17:37:49,226 [INFO] VisionTera: Application started
+2025-12-23 17:37:49,231 [INFO] VisionTera: Application shutdown
+2025-12-23 17:40:05,832 [INFO] VisionTera: YOLO using device: cuda
+2025-12-23 17:40:05,837 [INFO] VisionTera: OpenCV using CUDA backend
+2025-12-23 17:40:05,838 [INFO] VisionTera: All models loaded successfully
+2025-12-23 17:40:05,838 [INFO] VisionTera: Application started
+2025-12-23 17:41:50,591 [INFO] VisionTera: Application shutdown
+2025-12-23 17:43:52,442 [INFO] VisionTera: YOLO using device: cuda
+2025-12-23 17:43:52,443 [INFO] VisionTera: OpenCV using CUDA backend
+2025-12-23 17:43:52,443 [INFO] VisionTera: All models loaded successfully
+2025-12-23 17:43:52,444 [INFO] VisionTera: Application started
