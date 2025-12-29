@@ -1,58 +1,147 @@
-2025-12-23 17:29:45,328 [INFO] VisionTera: YOLO using device: cuda
-2025-12-23 17:29:45,330 [INFO] VisionTera: OpenCV using CUDA backend
-2025-12-23 17:29:45,330 [INFO] VisionTera: All models loaded successfully
-2025-12-23 17:29:45,330 [INFO] VisionTera: Application started
-2025-12-23 17:29:45,331 [INFO] VisionTera: Application shutdown
-2025-12-23 17:30:12,902 [INFO] VisionTera: YOLO using device: cuda
-2025-12-23 17:30:12,902 [INFO] VisionTera: OpenCV using CUDA backend
-2025-12-23 17:30:12,903 [INFO] VisionTera: All models loaded successfully
-2025-12-23 17:30:12,903 [INFO] VisionTera: Application started
-2025-12-23 17:30:12,904 [INFO] VisionTera: Application shutdown
-2025-12-23 17:30:47,990 [INFO] VisionTera: YOLO using device: cuda
-2025-12-23 17:30:47,994 [INFO] VisionTera: OpenCV using CUDA backend
-2025-12-23 17:30:47,994 [INFO] VisionTera: All models loaded successfully
-2025-12-23 17:30:47,994 [INFO] VisionTera: Application started
-2025-12-23 17:31:08,074 [INFO] VisionTera: Started detection with camera 0
-2025-12-23 17:31:43,689 [ERROR] VisionTera: WebSocket error: sent 1012 (service restart); no close frame received
-2025-12-23 17:37:49,192 [INFO] VisionTera: YOLO using device: cuda
-2025-12-23 17:37:49,226 [INFO] VisionTera: OpenCV using CUDA backend
-2025-12-23 17:37:49,226 [INFO] VisionTera: All models loaded successfully
-2025-12-23 17:37:49,226 [INFO] VisionTera: Application started
-2025-12-23 17:37:49,231 [INFO] VisionTera: Application shutdown
-2025-12-23 17:40:05,832 [INFO] VisionTera: YOLO using device: cuda
-2025-12-23 17:40:05,837 [INFO] VisionTera: OpenCV using CUDA backend
-2025-12-23 17:40:05,838 [INFO] VisionTera: All models loaded successfully
-2025-12-23 17:40:05,838 [INFO] VisionTera: Application started
-2025-12-23 17:41:50,591 [INFO] VisionTera: Application shutdown
-2025-12-23 17:43:52,442 [INFO] VisionTera: YOLO using device: cuda
-2025-12-23 17:43:52,443 [INFO] VisionTera: OpenCV using CUDA backend
-2025-12-23 17:43:52,443 [INFO] VisionTera: All models loaded successfully
-2025-12-23 17:43:52,444 [INFO] VisionTera: Application started
-2025-12-29 11:42:24,910 [INFO] VisionTera: YOLO detections using device: cuda
-2025-12-29 11:42:24,915 [INFO] VisionTera: All models loaded successfully (Full CUDA pipeline)
-2025-12-29 11:42:24,915 [INFO] VisionTera: Application started
-2025-12-29 11:44:00,787 [INFO] VisionTera: YOLO detections using device: cuda
-2025-12-29 11:44:00,788 [INFO] VisionTera: All models loaded successfully (Full CUDA pipeline)
-2025-12-29 11:44:00,788 [INFO] VisionTera: Application started
-2025-12-29 12:48:36,638 [INFO] VisionTera: YOLO detections using device: cuda
-2025-12-29 12:48:36,638 [INFO] VisionTera: All models loaded successfully (Full CUDA pipeline)
-2025-12-29 12:48:36,639 [INFO] VisionTera: Application started
-2025-12-29 12:48:40,463 [INFO] VisionTera: Started detection with camera 0
-2025-12-29 12:48:40,468 [INFO] VisionTera: [STATS] Stats broadcast task started
-2025-12-29 12:48:45,630 [INFO] VisionTera: [CAMERA] Camera 0 opened successfully - 640x480
-2025-12-29 12:48:54,920 [INFO] VisionTera: [DETECT] Detected 1 person(s)
-2025-12-29 12:48:56,775 [INFO] VisionTera: [SUCCESS] Captured 60 frames, queue size: 0, FPS: 21.2
-2025-12-29 12:48:56,775 [INFO] VisionTera: [DETECT] Detected 1 person(s)
-2025-12-29 12:49:00,493 [INFO] VisionTera: [DETECT] Detected 1 person(s)
-2025-12-29 12:49:04,879 [INFO] VisionTera: [SUCCESS] Captured 120 frames, queue size: 0, FPS: 9.8
-2025-12-29 12:49:04,883 [INFO] VisionTera: [DETECT] Detected 1 person(s)
-2025-12-29 12:49:06,997 [INFO] VisionTera: [DETECT] Detected 1 person(s)
-2025-12-29 12:49:08,899 [INFO] VisionTera: [SUCCESS] Captured 180 frames, queue size: 0, FPS: 30.0
-2025-12-29 12:49:08,900 [INFO] VisionTera: [DETECT] Detected 1 person(s)
-2025-12-29 12:49:10,452 [INFO] VisionTera: [DETECT] Detected 1 person(s)
-2025-12-29 12:49:11,871 [INFO] VisionTera: [SUCCESS] Captured 240 frames, queue size: 0, FPS: 27.5
-2025-12-29 12:49:11,871 [INFO] VisionTera: [DETECT] Detected 1 person(s)
-2025-12-29 12:49:13,325 [INFO] VisionTera: [DETECT] Detected 1 person(s)
-2025-12-29 12:49:14,811 [INFO] VisionTera: [SUCCESS] Captured 300 frames, queue size: 0, FPS: 23.5
-2025-12-29 12:49:14,812 [INFO] VisionTera: [DETECT] Detected 1 person(s)
-2025-12-29 12:49:15,325 [INFO] VisionTera: [STOP] Capture frames task cancelled
+2025-12-29 14:49:52,283 [INFO] VisionTera: YOLO detections using device: cuda
+2025-12-29 14:49:52,284 [INFO] VisionTera: All models loaded successfully (Full CUDA pipeline)
+2025-12-29 14:49:52,284 [INFO] VisionTera: Application started
+2025-12-29 14:50:07,426 [INFO] VisionTera: Started detection with camera 1
+2025-12-29 14:50:07,431 [INFO] VisionTera: [STATS] Stats broadcast task started
+2025-12-29 14:50:09,312 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2025-12-29 14:50:09,313 [WARNING] VisionTera: [API] Push failed with status 500: 23503: insert or update on table "core_counts" violates foreign key constraint "core_counts_camera_id_merchant_i_2781507b_fk_core_came"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-29 14:50:10,219 [INFO] VisionTera: [CAMERA] Camera 1 opened successfully - 640x480
+2025-12-29 14:50:10,527 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2025-12-29 14:50:10,529 [WARNING] VisionTera: [API] Push failed with status 500: 23503: insert or update on table "core_counts" violates foreign key constraint "core_counts_camera_id_merchant_i_2781507b_fk_core_came"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-29 14:50:10,922 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2025-12-29 14:50:10,923 [WARNING] VisionTera: [API] Push failed with status 500: 23503: insert or update on table "core_counts" violates foreign key constraint "core_counts_camera_id_merchant_i_2781507b_fk_core_came"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-29 14:50:12,748 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2025-12-29 14:50:12,749 [WARNING] VisionTera: [API] Push failed with status 500: 23503: insert or update on table "core_counts" violates foreign key constraint "core_counts_camera_id_merchant_i_2781507b_fk_core_came"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-29 14:50:12,935 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2025-12-29 14:50:12,937 [WARNING] VisionTera: [API] Push failed with status 500: 23503: insert or update on table "core_counts" violates foreign key constraint "core_counts_camera_id_merchant_i_2781507b_fk_core_came"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-29 14:50:14,907 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2025-12-29 14:50:14,909 [WARNING] VisionTera: [API] Push failed with status 500: 23503: insert or update on table "core_boxes" violates foreign key constraint "core_boxes_camera_id_merchant_i_f9acb2cd_fk_core_came"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-29 14:50:15,137 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2025-12-29 14:50:15,138 [WARNING] VisionTera: [API] Push failed with status 500: 23503: insert or update on table "core_counts" violates foreign key constraint "core_counts_camera_id_merchant_i_2781507b_fk_core_came"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-29 14:50:15,783 [INFO] VisionTera: [DETECT] Detected 3 person(s)
+2025-12-29 14:50:16,233 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2025-12-29 14:50:16,235 [WARNING] VisionTera: [API] Push failed with status 500: 23503: insert or update on table "core_boxes" violates foreign key constraint "core_boxes_camera_id_merchant_i_f9acb2cd_fk_core_came"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-29 14:50:18,081 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2025-12-29 14:50:18,082 [WARNING] VisionTera: [API] Push failed with status 500: 23503: insert or update on table "core_boxes" violates foreign key constraint "core_boxes_camera_id_merchant_i_f9acb2cd_fk_core_came"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-29 14:50:18,436 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2025-12-29 14:50:18,437 [WARNING] VisionTera: [API] Push failed with status 500: 23503: insert or update on table "core_boxes" violates foreign key constraint "core_boxes_camera_id_merchant_i_f9acb2cd_fk_core_came"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-29 14:50:18,783 [INFO] VisionTera: [SUCCESS] Captured 60 frames, queue size: 0, FPS: 35.9
+2025-12-29 14:50:18,783 [INFO] VisionTera: [DETECT] Detected 2 person(s)
+2025-12-29 14:50:19,185 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2025-12-29 14:50:19,187 [WARNING] VisionTera: [API] Push failed with status 500: 23503: insert or update on table "core_boxes" violates foreign key constraint "core_boxes_camera_id_merchant_i_f9acb2cd_fk_core_came"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-29 14:50:19,789 [INFO] VisionTera: [DETECT] Detected 3 person(s)
+2025-12-29 14:50:20,560 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2025-12-29 14:50:20,560 [WARNING] VisionTera: [API] Push failed with status 500: 23503: insert or update on table "core_boxes" violates foreign key constraint "core_boxes_camera_id_merchant_i_f9acb2cd_fk_core_came"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-29 14:50:20,786 [INFO] VisionTera: [SUCCESS] Captured 120 frames, queue size: 0, FPS: 29.1
+2025-12-29 14:50:20,787 [INFO] VisionTera: [DETECT] Detected 2 person(s)
+2025-12-29 14:50:21,888 [INFO] VisionTera: [DETECT] Detected 2 person(s)
+2025-12-29 14:50:22,319 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2025-12-29 14:50:22,320 [WARNING] VisionTera: [API] Push failed with status 500: 23503: insert or update on table "core_boxes" violates foreign key constraint "core_boxes_camera_id_merchant_i_f9acb2cd_fk_core_came"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-29 14:50:23,045 [INFO] VisionTera: [SUCCESS] Captured 180 frames, queue size: 0, FPS: 14.8
+2025-12-29 14:50:23,045 [INFO] VisionTera: [DETECT] Detected 3 person(s)
+2025-12-29 14:50:24,332 [INFO] VisionTera: [DETECT] Detected 5 person(s)
+2025-12-29 14:50:24,831 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2025-12-29 14:50:24,831 [WARNING] VisionTera: [API] Push failed with status 500: 23503: insert or update on table "core_boxes" violates foreign key constraint "core_boxes_camera_id_merchant_i_f9acb2cd_fk_core_came"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-29 14:50:24,981 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2025-12-29 14:50:24,982 [WARNING] VisionTera: [API] Push failed with status 500: 23503: insert or update on table "core_boxes" violates foreign key constraint "core_boxes_camera_id_merchant_i_f9acb2cd_fk_core_came"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-29 14:50:25,724 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2025-12-29 14:50:25,725 [WARNING] VisionTera: [API] Push failed with status 500: 23503: insert or update on table "core_boxes" violates foreign key constraint "core_boxes_camera_id_merchant_i_f9acb2cd_fk_core_came"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-29 14:50:26,002 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2025-12-29 14:50:26,003 [WARNING] VisionTera: [API] Push failed with status 500: 23503: insert or update on table "core_boxes" violates foreign key constraint "core_boxes_camera_id_merchant_i_f9acb2cd_fk_core_came"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-29 14:50:26,100 [INFO] VisionTera: [SUCCESS] Captured 240 frames, queue size: 0, FPS: 17.3
+2025-12-29 14:50:26,101 [INFO] VisionTera: [DETECT] Detected 7 person(s)
+2025-12-29 14:50:27,029 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2025-12-29 14:50:27,030 [WARNING] VisionTera: [API] Push failed with status 500: 23503: insert or update on table "core_boxes" violates foreign key constraint "core_boxes_camera_id_merchant_i_f9acb2cd_fk_core_came"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-29 14:50:27,164 [INFO] VisionTera: [DETECT] Detected 2 person(s)
+2025-12-29 14:50:28,048 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2025-12-29 14:50:28,049 [WARNING] VisionTera: [API] Push failed with status 500: 23503: insert or update on table "core_boxes" violates foreign key constraint "core_boxes_camera_id_merchant_i_f9acb2cd_fk_core_came"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-29 14:50:28,165 [INFO] VisionTera: [SUCCESS] Captured 300 frames, queue size: 0, FPS: 29.5
+2025-12-29 14:50:28,165 [INFO] VisionTera: [DETECT] Detected 2 person(s)
+2025-12-29 14:50:29,233 [INFO] VisionTera: [DETECT] Detected 3 person(s)
+2025-12-29 14:50:29,292 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2025-12-29 14:50:29,293 [WARNING] VisionTera: [API] Push failed with status 500: 23503: insert or update on table "core_boxes" violates foreign key constraint "core_boxes_camera_id_merchant_i_f9acb2cd_fk_core_came"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-29 14:50:30,323 [INFO] VisionTera: [SUCCESS] Captured 360 frames, queue size: 0, FPS: 47.4
+2025-12-29 14:50:30,324 [INFO] VisionTera: [DETECT] Detected 2 person(s)
+2025-12-29 14:50:31,331 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2025-12-29 14:50:31,332 [WARNING] VisionTera: [API] Push failed with status 500: 23503: insert or update on table "core_boxes" violates foreign key constraint "core_boxes_camera_id_merchant_i_f9acb2cd_fk_core_came"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-29 14:50:31,615 [INFO] VisionTera: [DETECT] Detected 4 person(s)
+2025-12-29 14:50:31,905 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2025-12-29 14:50:31,906 [WARNING] VisionTera: [API] Push failed with status 500: 23503: insert or update on table "core_boxes" violates foreign key constraint "core_boxes_camera_id_merchant_i_f9acb2cd_fk_core_came"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-29 14:50:33,066 [INFO] VisionTera: [SUCCESS] Captured 420 frames, queue size: 0, FPS: 20.4
+2025-12-29 14:50:33,066 [INFO] VisionTera: [DETECT] Detected 5 person(s)
+2025-12-29 14:50:33,601 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2025-12-29 14:50:33,602 [WARNING] VisionTera: [API] Push failed with status 500: 23503: insert or update on table "core_boxes" violates foreign key constraint "core_boxes_camera_id_merchant_i_f9acb2cd_fk_core_came"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-29 14:50:34,024 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2025-12-29 14:50:34,026 [WARNING] VisionTera: [API] Push failed with status 500: 23503: insert or update on table "core_boxes" violates foreign key constraint "core_boxes_camera_id_merchant_i_f9acb2cd_fk_core_came"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-29 14:50:34,671 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2025-12-29 14:50:34,672 [WARNING] VisionTera: [API] Push failed with status 500: 23503: insert or update on table "core_boxes" violates foreign key constraint "core_boxes_camera_id_merchant_i_f9acb2cd_fk_core_came"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-29 14:50:34,740 [INFO] VisionTera: [DETECT] Detected 3 person(s)
+2025-12-29 14:50:35,307 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2025-12-29 14:50:35,308 [WARNING] VisionTera: [API] Push failed with status 500: 23503: insert or update on table "core_boxes" violates foreign key constraint "core_boxes_camera_id_merchant_i_f9acb2cd_fk_core_came"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-29 14:50:35,755 [INFO] VisionTera: [SUCCESS] Captured 480 frames, queue size: 0, FPS: 39.6
+2025-12-29 14:50:35,756 [INFO] VisionTera: [DETECT] Detected 2 person(s)
+2025-12-29 14:50:35,926 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2025-12-29 14:50:35,932 [WARNING] VisionTera: [API] Push failed with status 500: 23503: insert or update on table "core_boxes" violates foreign key constraint "core_boxes_camera_id_merchant_i_f9acb2cd_fk_core_came"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-29 14:50:36,766 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2025-12-29 14:50:36,767 [WARNING] VisionTera: [API] Push failed with status 500: 23503: insert or update on table "core_boxes" violates foreign key constraint "core_boxes_camera_id_merchant_i_f9acb2cd_fk_core_came"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-29 14:50:36,768 [INFO] VisionTera: [DETECT] Detected 2 person(s)
+2025-12-29 14:50:36,793 [ERROR] VisionTera: WebSocket error: sent 1012 (service restart); no close frame received
+2025-12-29 14:50:36,995 [INFO] VisionTera: [STOP] Stats broadcast task cancelled
+2025-12-29 14:50:36,995 [INFO] VisionTera: [STOP] Capture frames task cancelled
+2025-12-29 14:50:37,002 [INFO] VisionTera: [CAMERA] Camera released

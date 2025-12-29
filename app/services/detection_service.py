@@ -181,52 +181,63 @@ class DetectionEngine:
 
     async def _push_to_api(self, detections):
         if not self.api_url or not self.api_token:
+            logger.warning("[API] API URL or token not configured, skipping push")
             return
+        url = f"{self.api_url}/agent/stats"
+        now = datetime.now()
+        now_iso = now.isoformat()
+        boxes = []
+        male_count = 0
+        female_count = 0
+        for d in detections:
+            g = d.get('gender', 'Person')
+            if g == 'Male':
+                g_code = 'M'
+                male_count += 1
+            elif g == 'Female':
+                g_code = 'F'
+                female_count += 1
+            else:
+                continue
+            boxes.append({
+                "camera_id": self.camera_index + 1,
+                "date": now_iso,
+                "bbox_id": d.get('id', -1),
+                "bbox_left": int(d['bbox']['x1']),
+                "bbox_top": int(d['bbox']['y1']),
+                "bbox_w": int(d['bbox']['x2'] - d['bbox']['x1']),
+                "bbox_h": int(d['bbox']['y2'] - d['bbox']['y1']),
+                "gender": g_code
+            })
+        payload = {
+            "boxes": boxes,
+            "counts": {
+                "camera_id": self.camera_index + 1,
+                "date": now_iso,
+                "counter": len(detections),
+                "male_counter": male_count,
+                "female_counter": female_count
+            }
+        }
+        headers = {
+            "Authorization": f"Bearer {self.api_token}",
+            "Content-Type": "application/json"
+        }
         try:
-            url = f"{self.api_url}/agent/stats"
-            now = datetime.now()
-            now_iso = now.isoformat()
-            boxes = []
-            male_count = 0
-            female_count = 0
-            for d in detections:
-                g = d.get('gender', 'Person')
-                if g == 'Male':
-                    g_code = 'M'
-                    male_count += 1
-                elif g == 'Female':
-                    g_code = 'F'
-                    female_count += 1
-                else:
-                    g_code = 'X'
-                boxes.append({
-                    "camera_id": self.camera_index + 1,
-                    "date": now_iso,
-                    "bbox_id": d.get('id', -1),
-                    "bbox_left": int(d['bbox']['x1']),
-                    "bbox_top": int(d['bbox']['y1']),
-                    "bbox_w": int(d['bbox']['x2'] - d['bbox']['x1']),
-                    "bbox_h": int(d['bbox']['y2'] - d['bbox']['y1']),
-                    "gender": g_code
-                })
-            payload = {
-                "boxes": boxes,
-                "counts": {
-                    "camera_id": self.camera_index + 1,
-                    "date": now_iso,
-                    "counter": len(detections),
-                    "male_counter": male_count,
-                    "female_counter": female_count
-                }
-            }
-            headers = {
-                "Authorization": f"Bearer {self.api_token}",
-                "Content-Type": "application/json"
-            }
             async with httpx.AsyncClient() as client:
-                await client.post(url, json=payload, headers=headers, timeout=2.0)
-        except Exception:
-            pass
+                response = await client.post(url, json=payload, headers=headers, timeout=5.0)
+                if response.status_code == 200 or response.status_code == 201:
+                    logger.debug(f"[API] Push successful: {len(detections)} detections, M:{male_count} F:{female_count}")
+                else:
+                    logger.warning(f"[API] Push failed with status {response.status_code}: {response.text}")
+        except httpx.ConnectError as e:
+            logger.error(f"[API] Connection error: {e}")
+        except httpx.TimeoutException:
+            logger.warning("[API] Request timeout after 5s")
+        except httpx.HTTPStatusError as e:
+            logger.error(f"[API] HTTP error {e.response.status_code}: {e.response.text}")
+        except Exception as e:
+            logger.error(f"[API] Unexpected error: {type(e).__name__}: {e}")
 
     async def demo_mode(self):
         frame_width, frame_height = 640, 480

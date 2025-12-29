@@ -8,13 +8,33 @@ from app.models.schemas import StartResponse, StopResponse
 
 router = APIRouter()
 
-@router.post("/api/start", response_model=StartResponse)
+@router.post(
+    "/api/start",
+    response_model=StartResponse,
+    tags=["Detection"],
+    summary="Start Detection",
+    description="""
+Starts the person detection process with the specified parameters.
+
+**Parameters:**
+- **camera**: Camera index to use (default: 0)
+- **confidence**: Detection confidence threshold between 0.1 and 1.0 (default: 0.5)
+- **show_coords**: Show coordinates on detected persons ("1" for yes, "0" for no)
+- **show_fps**: Show FPS counter on video feed ("1" for yes, "0" for no)
+- **box_color**: Bounding box color in hex format (BGR, default: "00FF88" for green)
+
+**Returns:**
+- `started`: Detection started successfully
+- `already_running`: Detection is already in progress
+- `error`: Failed to start detection
+"""
+)
 async def start_detection(
-    camera: int = Query(0),
-    confidence: float = Query(0.5),
-    show_coords: str = Query("1"),
-    show_fps: str = Query("1"),
-    box_color: str = Query("00FF88"),
+    camera: int = Query(0, description="Camera index to use for detection"),
+    confidence: float = Query(0.5, ge=0.1, le=1.0, description="Detection confidence threshold"),
+    show_coords: str = Query("1", description="Show coordinates on detected persons (1=yes, 0=no)"),
+    show_fps: str = Query("1", description="Show FPS counter on video feed (1=yes, 0=no)"),
+    box_color: str = Query("00FF88", description="Bounding box color in hex format (BGR)"),
     background_tasks: BackgroundTasks = None
 ):
     if engine.is_running:
@@ -43,7 +63,13 @@ async def start_detection(
 
     return {"status": "started"}
 
-@router.post("/api/stop", response_model=StopResponse)
+@router.post(
+    "/api/stop",
+    response_model=StopResponse,
+    tags=["Detection"],
+    summary="Stop Detection",
+    description="Stops the currently running person detection process and releases the camera."
+)
 async def stop_detection():
     engine.is_running = False
     await asyncio.sleep(0.1)
@@ -60,7 +86,26 @@ async def stop_detection():
     await asyncio.sleep(0.2)
     return {"status": "stopped"}
 
-@router.get("/video_feed")
+@router.get(
+    "/video_feed",
+    tags=["Detection"],
+    summary="Video Feed Stream",
+    description="""
+Returns a MJPEG video stream with real-time person detection overlays.
+
+**Usage:** 
+- Embed in an `<img>` tag: `<img src="/video_feed">`
+- Open directly in browser to view the stream
+
+**Note:** Detection must be started via `/api/start` before the feed will contain frames.
+""",
+    responses={
+        200: {
+            "content": {"multipart/x-mixed-replace": {}},
+            "description": "MJPEG video stream"
+        }
+    }
+)
 async def video_feed():
     async def frame_generator():
         while engine.is_running:

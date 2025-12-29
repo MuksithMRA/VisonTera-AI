@@ -22,8 +22,8 @@ class AppConfig:
     MODEL_PATH = "infrastructure/models/yolo11n.pt"
     GENDER_MODEL_PATH = "runs/classify/train/weights/best.pt"
     FACE_MODEL_PATH = "infrastructure/models/yolov8n-face.pt"
-    API_URL = os.getenv("base_url_dev", "http://localhost:8080")
-    API_TOKEN = os.getenv("access_VT", "")
+    API_URL = os.getenv("base_url_dev", "https://visiontera-backend-697124318129.europe-west4.run.app")
+    API_TOKEN = os.getenv("access_VT", "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoiMTIvMjkvMjAyNSAwOTowMTo1NCIsImp0aSI6IjAwNzYzYzA5LTc4ZWItNGU4NC1iOGUyLTY1ODEyNmU1NzJiNSIsInVzZXJfaWQiOiIzMiIsIm1lcmNoYW50X2lkIjoiMCIsImlzX3N0YWZmIjoiRmFsc2UiLCJpc19zdXBlcnVzZXIiOiJGYWxzZSIsImV4cCI6MTc2NzAwMDcxNH0.RfM-73xQ5o2WOZs07zLoB9NvQWDkzSFdDSl9JZefP_owskIsIJNpg0sMv2QVco-hCyuW0OU08A4I7JDYwmIYCw")
 
 logging.basicConfig(
     level=logging.INFO,
