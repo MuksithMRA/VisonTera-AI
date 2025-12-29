@@ -28,3 +28,31 @@
 2025-12-23 17:43:52,443 [INFO] VisionTera: OpenCV using CUDA backend
 2025-12-23 17:43:52,443 [INFO] VisionTera: All models loaded successfully
 2025-12-23 17:43:52,444 [INFO] VisionTera: Application started
+2025-12-29 11:42:24,910 [INFO] VisionTera: YOLO detections using device: cuda
+2025-12-29 11:42:24,915 [INFO] VisionTera: All models loaded successfully (Full CUDA pipeline)
+2025-12-29 11:42:24,915 [INFO] VisionTera: Application started
+2025-12-29 11:44:00,787 [INFO] VisionTera: YOLO detections using device: cuda
+2025-12-29 11:44:00,788 [INFO] VisionTera: All models loaded successfully (Full CUDA pipeline)
+2025-12-29 11:44:00,788 [INFO] VisionTera: Application started
+2025-12-29 12:48:36,638 [INFO] VisionTera: YOLO detections using device: cuda
+2025-12-29 12:48:36,638 [INFO] VisionTera: All models loaded successfully (Full CUDA pipeline)
+2025-12-29 12:48:36,639 [INFO] VisionTera: Application started
+2025-12-29 12:48:40,463 [INFO] VisionTera: Started detection with camera 0
+2025-12-29 12:48:40,468 [INFO] VisionTera: [STATS] Stats broadcast task started
+2025-12-29 12:48:45,630 [INFO] VisionTera: [CAMERA] Camera 0 opened successfully - 640x480
+2025-12-29 12:48:54,920 [INFO] VisionTera: [DETECT] Detected 1 person(s)
+2025-12-29 12:48:56,775 [INFO] VisionTera: [SUCCESS] Captured 60 frames, queue size: 0, FPS: 21.2
+2025-12-29 12:48:56,775 [INFO] VisionTera: [DETECT] Detected 1 person(s)
+2025-12-29 12:49:00,493 [INFO] VisionTera: [DETECT] Detected 1 person(s)
+2025-12-29 12:49:04,879 [INFO] VisionTera: [SUCCESS] Captured 120 frames, queue size: 0, FPS: 9.8
+2025-12-29 12:49:04,883 [INFO] VisionTera: [DETECT] Detected 1 person(s)
+2025-12-29 12:49:06,997 [INFO] VisionTera: [DETECT] Detected 1 person(s)
+2025-12-29 12:49:08,899 [INFO] VisionTera: [SUCCESS] Captured 180 frames, queue size: 0, FPS: 30.0
+2025-12-29 12:49:08,900 [INFO] VisionTera: [DETECT] Detected 1 person(s)
+2025-12-29 12:49:10,452 [INFO] VisionTera: [DETECT] Detected 1 person(s)
+2025-12-29 12:49:11,871 [INFO] VisionTera: [SUCCESS] Captured 240 frames, queue size: 0, FPS: 27.5
+2025-12-29 12:49:11,871 [INFO] VisionTera: [DETECT] Detected 1 person(s)
+2025-12-29 12:49:13,325 [INFO] VisionTera: [DETECT] Detected 1 person(s)
+2025-12-29 12:49:14,811 [INFO] VisionTera: [SUCCESS] Captured 300 frames, queue size: 0, FPS: 23.5
+2025-12-29 12:49:14,812 [INFO] VisionTera: [DETECT] Detected 1 person(s)
+2025-12-29 12:49:15,325 [INFO] VisionTera: [STOP] Capture frames task cancelled

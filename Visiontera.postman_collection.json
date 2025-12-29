@@ -1,0 +1,2166 @@
+{
+	"info": {
+		"_postman_id": "9d6a46ff-6c0a-44cb-97c1-110a5238c989",
+		"name": "Visiontera",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28840600"
+	},
+	"item": [
+		{
+			"name": "Agent",
+			"item": [
+				{
+					"name": "Get Current Database Date",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url_dev}}/agent/date",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"agent",
+								"date"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Agent Stats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"boxes\": [\n        {\n            \"camera_id\": 1,\n            \"date\": \"2023-09-16T15:47:25.366498\",\n            \"bbox_id\": 6,\n            \"bbox_left\": 693,\n            \"bbox_top\": 730,\n            \"bbox_w\": 36,\n            \"bbox_h\": 95,\n            \"gender\": \"M\"\n        },\n        {\n            \"camera_id\": 1,\n            \"date\": \"2023-09-16T15:47:25.466655\",\n            \"bbox_id\": 7,\n            \"bbox_left\": 997,\n            \"bbox_top\": 842,\n            \"bbox_w\": 38,\n            \"bbox_h\": 92,\n            \"gender\": \"M\"\n        },\n        {\n            \"camera_id\": 1,\n            \"date\": \"2023-09-16T15:47:25.574672\",\n            \"bbox_id\": 8,\n            \"bbox_left\": 147,\n            \"bbox_top\": 657,\n            \"bbox_w\": 22,\n            \"bbox_h\": 63,\n            \"gender\": \"F\"\n        },\n        {\n            \"camera_id\": 1,\n            \"date\": \"2023-09-16T15:47:26.564692\",\n            \"bbox_id\": 1,\n            \"bbox_left\": 153,\n            \"bbox_top\": 793,\n            \"bbox_w\": 53,\n            \"bbox_h\": 142,\n            \"gender\": \"F\"\n        },\n        {\n            \"camera_id\": 1,\n            \"date\": \"2023-09-16T15:47:26.672160\",\n            \"bbox_id\": 2,\n            \"bbox_left\": 83,\n            \"bbox_top\": 778,\n            \"bbox_w\": 50,\n            \"bbox_h\": 145,\n            \"gender\": \"F\"\n        },\n        {\n            \"camera_id\": 1,\n            \"date\": \"2023-09-16T15:47:26.793942\",\n            \"bbox_id\": 3,\n            \"bbox_left\": 1379,\n            \"bbox_top\": 763,\n            \"bbox_w\": 60,\n            \"bbox_h\": 124,\n            \"gender\": \"F\"\n        },\n        {\n            \"camera_id\": 1,\n            \"date\": \"2023-09-16T15:47:26.933012\",\n            \"bbox_id\": 4,\n            \"bbox_left\": 1352,\n            \"bbox_top\": 764,\n            \"bbox_w\": 38,\n            \"bbox_h\": 124,\n            \"gender\": \"F\"\n        },\n        {\n            \"camera_id\": 1,\n            \"date\": \"2023-09-16T15:47:27.053924\",\n            \"bbox_id\": 5,\n            \"bbox_left\": 0,\n            \"bbox_top\": 760,\n            \"bbox_w\": 27,\n            \"bbox_h\": 143,\n            \"gender\": \"M\"\n        },\n        {\n            \"camera_id\": 1,\n            \"date\": \"2023-09-16T15:47:27.171710\",\n            \"bbox_id\": 6,\n            \"bbox_left\": 693,\n            \"bbox_top\": 730,\n            \"bbox_w\": 36,\n            \"bbox_h\": 95,\n            \"gender\": \"M\"\n        },\n        {\n            \"camera_id\": 1,\n            \"date\": \"2023-09-16T15:47:27.301635\",\n            \"bbox_id\": 7,\n            \"bbox_left\": 997,\n            \"bbox_top\": 842,\n            \"bbox_w\": 38,\n            \"bbox_h\": 92,\n            \"gender\": \"M\"\n        },\n        {\n            \"camera_id\": 1,\n            \"date\": \"2023-09-16T15:47:27.414653\",\n            \"bbox_id\": 8,\n            \"bbox_left\": 147,\n            \"bbox_top\": 657,\n            \"bbox_w\": 22,\n            \"bbox_h\": 63,\n            \"gender\": \"X\"\n        }\n    ],\n    \"counts\": {\n        \"camera_id\": 1,\n        \"date\": \"2023-09-16T15:47:28.347257\",\n        \"counter\": 8,\n        \"male_counter\": 3,\n        \"female_counter\": 5\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_dev}}/agent/stats",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"agent",
+								"stats"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Camera",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url_dev}}/api/cameras",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"api",
+								"cameras"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Copy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url_dev}}/api/cameras",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"api",
+								"cameras"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Camera Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"My Camera\",\r\n    \"site_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_dev}}/api/cameras",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"api",
+								"cameras"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Camera Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"5\",\r\n    \"name\": \"Nifal Nizar\",\r\n    \"site_id\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_dev}}/api/cameras",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"api",
+								"cameras"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Camera Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_dev}}/api/cameras/id",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"api",
+								"cameras",
+								"id"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Dashboard",
+			"item": [
+				{
+					"name": "Statistics",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url_dev}}/dashboard/statistics?start_date=2023-09-13&end_date=2023-09-14",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"dashboard",
+								"statistics"
+							],
+							"query": [
+								{
+									"key": "start_date",
+									"value": "2023-09-13"
+								},
+								{
+									"key": "end_date",
+									"value": "2023-09-14"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Live",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url_dev}}/dashboard/live?site_id=1",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"dashboard",
+								"live"
+							],
+							"query": [
+								{
+									"key": "site_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sites Lookup",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url_dev}}/dashboard/sites/lookup",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"dashboard",
+								"sites",
+								"lookup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Heatmap",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{base_url_dev}}/dashboard/sites/heatmap/?site_id=2&start_date=2023-06-01&end_date=2023-06-10",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"dashboard",
+								"sites",
+								"heatmap",
+								""
+							],
+							"query": [
+								{
+									"key": "site_id",
+									"value": "2"
+								},
+								{
+									"key": "start_date",
+									"value": "2023-06-01"
+								},
+								{
+									"key": "end_date",
+									"value": "2023-06-10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Forgot Password",
+			"item": [
+				{
+					"name": "Forgot Password - 1 (Email)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if ( pm.response.code == 200 )",
+									"{",
+									"    var responseJson = pm.response.json()",
+									"",
+									"    postman.setEnvironmentVariable(\"forgot_pass_token\",responseJson.token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer  {{access_VT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"nifal.nizar@hotmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7292/account/user/forgotPassword/init",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7292",
+							"path": [
+								"account",
+								"user",
+								"forgotPassword",
+								"init"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password - 2 (OTP)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if ( pm.response.code == 200 )",
+									"{",
+									"    var responseJson = pm.response.json()",
+									"",
+									"    postman.setEnvironmentVariable(\"forgot_pass_token\",responseJson.token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer  {{access_VT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"otp\": \"tesT44\",\n    \"token\": \"{{forgot_pass_token}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_dev}}/account/user/forgotPassword/otp",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"account",
+								"user",
+								"forgotPassword",
+								"otp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password - 3 (Set New Pass)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer  {{access_VT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"new_password\": \"test@6\",\n    \"token\": \"{{forgot_pass_token}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7292/account/user/forgotPassword/set",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7292",
+							"path": [
+								"account",
+								"user",
+								"forgotPassword",
+								"set"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notification - Settings",
+			"item": [
+				{
+					"name": "Get All Notification Rules",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://157.241.0.137:8080/dashboard/notifications/rules",
+							"protocol": "http",
+							"host": [
+								"157",
+								"241",
+								"0",
+								"137"
+							],
+							"port": "8080",
+							"path": [
+								"dashboard",
+								"notifications",
+								"rules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Notification Rule",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url_dev}}/dashboard/notifications/rules?rule_id=2",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"dashboard",
+								"notifications",
+								"rules"
+							],
+							"query": [
+								{
+									"key": "rule_id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Notification Rule",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rule_id\": 1,\n    \"rule_type\": \"traffic\",\n    \"current_num_of_exceeds\": 50,\n    \"from_hour\": \"10:00\",\n    \"to_hour\": \"23:00\",\n    \"include_picture\": true,\n    \"assigned_sites\": [\n        {\"site_id\": 1, \"selected\": true},\n        {\"site_id\": 2, \"selected\": false},\n        {\"site_id\": 3, \"selected\": false},\n        {\"site_id\": 4, \"selected\": false}\n        ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_dev}}/dashboard/notifications/rules",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"dashboard",
+								"notifications",
+								"rules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD Notification Rule",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rule_type\": \"connectivity_change\",\n    \"from_hour\": \"10:30\",\n    \"to_hour\": \"23:30\",\n    \"assigned_sites\": [1, 2, 3]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7292/dashboard/notifications/rules",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7292",
+							"path": [
+								"dashboard",
+								"notifications",
+								"rules"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Packages",
+			"item": [
+				{
+					"name": "Packages - All",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url_dev}}/api/packages",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"api",
+								"packages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Packages Features - All By Package Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url_dev}}/api/packages/1/features",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"api",
+								"packages",
+								"1",
+								"features"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Packages - CREATE",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name_ar\": \"Gold AR\",\r\n    \"name_en\": \"Gold\",\r\n    \"is_active\":true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_dev}}/api/packages",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"api",
+								"packages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Packages - UPDATE",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":1,\r\n    \"name_ar\": \"Silver AR\",\r\n    \"name_en\": \"Silver\",\r\n    \"is_active\":true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_dev}}/api/packages",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"api",
+								"packages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Packages - UPDATE Features",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"id\": 0,\r\n        \"description_ar\": \"Access AR\",\r\n        \"description_en\": \"Access\",\r\n        \"value_ar\": \"1 Year\",\r\n        \"value_en\":\"1 Year X\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_dev}}/api/packages/1/features",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"api",
+								"packages",
+								"1",
+								"features"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Packages - DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_dev}}/api/packages/1",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"api",
+								"packages",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Subscription",
+			"item": [
+				{
+					"name": "Subscripitions - Get All By User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url_dev}}/api/Subscriptions/User/1",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"api",
+								"Subscriptions",
+								"User",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Subscripitions - CREATE",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\": 0,\r\n    \"package_id\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_dev}}/api/Subscriptions",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"api",
+								"Subscriptions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sites - Page",
+			"item": [
+				{
+					"name": "Get All Sites With Props",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url_dev}}/dashboard/sites/all",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"dashboard",
+								"sites",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Site",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"name\": \"القمة العالمية للذكاء الاصطناعي\",\n    \"default_start_time\": \"11:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_dev}}/dashboard/sites/updateSite/",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"dashboard",
+								"sites",
+								"updateSite",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Site - Get All - Phase II",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_dev}}/api/sites",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"api",
+								"sites"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Site - Get All By User - Phase II",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_dev}}/api/sites/user/67",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"api",
+								"sites",
+								"user",
+								"67"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Site - Create  - Phase II Copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"test\",\n    \"description\":\"description\",\n    \"ar_name\": \"القمة العالمية للذكاء الاصطناعي\",\n    \"default_start_time\": \"11:00\",\n    \"region_id\": 1,\n    \"city_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_dev}}/api/sites",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"api",
+								"sites"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Site Delete  - Phase II",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_dev}}/api/sites/{id}",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"api",
+								"sites",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Site Permissions",
+			"item": [
+				{
+					"name": "Site Permissions - All",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url_dev}}/api/SitePermissions",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"api",
+								"SitePermissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Site Permissions - All By Site",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url_dev}}/api/SitePermissions/site/2",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"api",
+								"SitePermissions",
+								"site",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Site Permissions - Create - Phase II",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"role\":\"test\",\n    \"site_id\": 4,\n    \"user_id\": 67\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_dev}}/api/SitePermissions",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"api",
+								"SitePermissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Site Permissions - Update - Phase II",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":15,\n    \"role\":\"admin\",\n    \"site_id\": 4,\n    \"user_id\": 67,\n    \"status\":\"PENDING\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_dev}}/api/SitePermissions",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"api",
+								"SitePermissions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Support",
+			"item": [
+				{
+					"name": "Send Message To Support",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"site_id\": null,\n    \"message\": \"This is a long message\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_dev}}/dashboard/support",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"dashboard",
+								"support"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Profile",
+			"item": [
+				{
+					"name": "User Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer  {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url_dev}}/account/user",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"account",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Info",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer  {{access_VT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"Mohammed\",\n    \"last_name\": \"Saud\",\n    \"phone_number\": \"05044444411\",\n    \"email\": \"mohammedibrahim99@outlook.sa\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_dev}}/account/user",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"account",
+								"user"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer  {{access_VT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"old_password\": \"test@5\",\n    \"new_password\": \"test@6\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_dev}}/account/user/changePassword",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"account",
+								"user",
+								"changePassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register - Phase II",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer  {{access_VT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"Nifal\",\n    \"last_name\": \"Nizar\",\n    \"email\":\"nifal.nizar@gmail.com\",\n    \"phone_number\":\"+94772628737\",\n    \"password\":\"test@5\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_dev}}/account/register",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"account",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register with Email - Phase II",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer  {{access_VT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"Nifal\",\n    \"last_name\": \"Nizar\",\n    \"email\":\"nifal.nizar@gmail.com\",\n    \"phone_number\":\"+94772628737\",\n    \"password\":\"test@5\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_dev}}/account/RegisterWithEmail",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"account",
+								"RegisterWithEmail"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Users - Get All",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer  {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url_dev}}/api/Users",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"api",
+								"Users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users - Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer  {{access_VT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\":5,\n    \"first_name\": \"Mohammed\",\n    \"last_name\": \"Saud\",\n    \"phone_number\": \"05044444411\",\n    \"email\": \"mohammedibrahim99@outlook.sa\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_dev}}/api/users",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users - Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_dev}}/api/Users/1545",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"api",
+								"Users",
+								"1545"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users&Permissions",
+			"item": [
+				{
+					"name": "Received Invites",
+					"item": [
+						{
+							"name": "Get All Invites",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_VT}}",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url_dev}}/dashboard/invitations/all",
+									"host": [
+										"{{base_url_dev}}"
+									],
+									"path": [
+										"dashboard",
+										"invitations",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Accept Invite",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_VT}}",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url_dev}}/dashboard/invitations/accept/?id=1",
+									"host": [
+										"{{base_url_dev}}"
+									],
+									"path": [
+										"dashboard",
+										"invitations",
+										"accept",
+										""
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Reject Invite",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_VT}}",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url_dev}}/dashboard/invitations/reject/?id=1",
+									"host": [
+										"{{base_url_dev}}"
+									],
+									"path": [
+										"dashboard",
+										"invitations",
+										"reject",
+										""
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Site Permissions",
+					"item": [
+						{
+							"name": "Invite New User",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_VT}}",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"site_id\": 1,\n    \"receiver_email\": \"nifal.nizar3@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_dev}}/dashboard/invitations/send/",
+									"host": [
+										"{{base_url_dev}}"
+									],
+									"path": [
+										"dashboard",
+										"invitations",
+										"send",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Site Permissions",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_VT}}",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url_dev}}/dashboard/sitePermissions/all/",
+									"host": [
+										"{{base_url_dev}}"
+									],
+									"path": [
+										"dashboard",
+										"sitePermissions",
+										"all",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove Site Permission",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_VT}}",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url_dev}}/dashboard/sitePermissions/remove/?id=2",
+									"host": [
+										"{{base_url_dev}}"
+									],
+									"path": [
+										"dashboard",
+										"sitePermissions",
+										"remove",
+										""
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2"
+										},
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User Notifications",
+			"item": [
+				{
+					"name": "Get All User Notifications",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7292/dashboard/notifications/user",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7292",
+							"path": [
+								"dashboard",
+								"notifications",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clear All User Notifications",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_VT}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url_dev}}/dashboard/notifications/user",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"dashboard",
+								"notifications",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"if ( pm.response.code == 200 )",
+							"{",
+							"    var responseJson = pm.response.json()",
+							"",
+							"    postman.setEnvironmentVariable(\"access_VT\",responseJson.access);",
+							"    postman.setEnvironmentVariable(\"refresh_VT\",responseJson.refresh);",
+							"    // postman.setEnvironmentVariable(\"base_url_dev\",\"http://157.241.0.137:5000\");",
+							"    postman.setEnvironmentVariable(\"base_url_dev\",\"localhost:5000\");",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"nifal.nizar@gmail.com\",\n    \"password\": \"test@5\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/account/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"account",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Refresh Token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"refresh\": {{refresh_VT}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url_dev}}/account/token/refresh",
+					"host": [
+						"{{base_url_dev}}"
+					],
+					"path": [
+						"account",
+						"token",
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TEST",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://hrmapi.advoques.com/api/cities",
+					"protocol": "http",
+					"host": [
+						"hrmapi",
+						"advoques",
+						"com"
+					],
+					"path": [
+						"api",
+						"cities"
+					],
+					"query": [
+						{
+							"key": "localurl",
+							"value": "http://localhost:5000",
+							"disabled": true
+						},
+						{
+							"key": "hostedurl",
+							"value": "http://hrmapi.advoques.com",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url_dev",
+			"value": "https://localhost:5000"
+		},
+		{
+			"key": "base_url_int",
+			"value": "https://localhost:5000"
+		}
+	]
+}
