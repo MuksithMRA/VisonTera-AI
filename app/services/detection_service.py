@@ -200,7 +200,7 @@ class DetectionEngine:
             else:
                 continue
             boxes.append({
-                "camera_id": self.camera_index + 1,
+                "camera_id": self.camera_index,
                 "date": now_iso,
                 "bbox_id": d.get('id', -1),
                 "bbox_left": int(d['bbox']['x1']),
@@ -212,7 +212,7 @@ class DetectionEngine:
         payload = {
             "boxes": boxes,
             "counts": {
-                "camera_id": self.camera_index + 1,
+                "camera_id": self.camera_index,
                 "date": now_iso,
                 "counter": len(detections),
                 "male_counter": male_count,
