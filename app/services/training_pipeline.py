@@ -10,6 +10,7 @@ from torch.cuda.amp import GradScaler, autocast
 from torchvision import transforms, models
 from PIL import Image
 import pandas as pd
+import time
 
 from app.config import AppConfig
 
@@ -121,9 +122,9 @@ class TrainingPipeline:
         self.status = "idle"
         self.progress = 0.0
         self.data_dir = "datasets"
-        self.output_dir = "infrastructure/models"
+        self.base_output_dir = "infrastructure/models"
     
-    def run_pipeline(self, epochs=30, batch_size=64):
+    def run_pipeline(self, epochs=30, batch_size=64, run_id=None):
         if self.is_training:
             logger.warning("Training already in progress")
             return None
@@ -131,7 +132,18 @@ class TrainingPipeline:
         self.is_training = True
         self.status = "initializing"
         
+        if run_id is None:
+            run_id = f"v_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+            
+        output_dir = Path(self.base_output_dir) / run_id
+        output_dir.mkdir(parents=True, exist_ok=True)
+        
+        file_handler = logging.FileHandler(output_dir / "training.log")
+        file_handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+        logger.addHandler(file_handler)
+        
         try:
+            logger.info(f"Starting Training Run: {run_id}")
             logger.info("Starting PA-100K Gender Classification Training (ResNet50)")
             
             if torch.cuda.is_available():
@@ -217,7 +229,6 @@ class TrainingPipeline:
             use_amp = torch.cuda.is_available()
             
             best_acc = 0.0
-            Path(self.output_dir).mkdir(parents=True, exist_ok=True)
             
             for epoch in range(epochs):
                 model.train()
@@ -298,20 +309,25 @@ class TrainingPipeline:
                 
                 if val_acc > best_acc:
                     best_acc = val_acc
-                    target_path = Path(self.output_dir) / "resnet50-gender.pt"
+                    target_path = output_dir / "best_model.pt"
                     torch.save(model.state_dict(), target_path)
                     logger.info(f"Saved best model to {target_path} (Acc: {val_acc:.4f})")
+            
+            final_path = output_dir / "final_model.pt"
+            torch.save(model.state_dict(), final_path)
 
             self.status = "completed"
             self.progress = 100.0
             logger.info(f"Training completed! Best accuracy: {best_acc:.4f}")
-            return str(Path(self.output_dir) / "resnet50-gender.pt")
+            logger.removeHandler(file_handler)
+            return str(output_dir)
 
         except Exception as e:
             self.status = "failed"
             logger.error(f"Training pipeline failed: {e}")
             import traceback
             logger.error(traceback.format_exc())
+            logger.removeHandler(file_handler)
             return None
         finally:
             self.is_training = False
@@ -325,10 +341,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--epochs", type=int, default=30)
     parser.add_argument("--batch_size", type=int, default=64)
+    parser.add_argument("--run_id", type=str, default=None)
     args = parser.parse_args()
     
-    result = pipeline.run_pipeline(epochs=args.epochs, batch_size=args.batch_size)
+    result = pipeline.run_pipeline(epochs=args.epochs, batch_size=args.batch_size, run_id=args.run_id)
     if result:
-        print(f"Training completed. Model saved to: {result}")
+        print(f"Training completed. Results saved to: {result}")
     else:
         print("Training failed.")

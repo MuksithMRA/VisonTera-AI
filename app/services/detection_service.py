@@ -58,15 +58,45 @@ class DetectionEngine:
         self.capture_task = None
         self.stats_task = None
 
+    def _get_latest_model_path(self):
+        """Finds the latest versioned model in infrastructure/models."""
+        try:
+            models_dir = Path("infrastructure/models")
+            if not models_dir.exists():
+                return None
+            
+            version_dirs = [d for d in models_dir.iterdir() if d.is_dir() and d.name.startswith("v_")]
+            
+            version_dirs.sort(key=lambda x: x.name, reverse=True)
+            
+            for v_dir in version_dirs:
+                model_path = v_dir / "best_model.pt"
+                if model_path.exists():
+                    logger.info(f"Found latest model version: {v_dir.name}")
+                    return str(model_path)
+            
+            return None
+        except Exception as e:
+            logger.error(f"Error searching for latest model: {e}")
+            return None
+
     def load_model(self, model_path: str = None):
         if model_path is None: model_path = AppConfig.MODEL_PATH
         try:
             self.model = YOLO(model_path)
             
-            gender_model_path = "infrastructure/models/resnet50-gender.pt"
+            gender_model_path = self._get_latest_model_path()
+            
+            if not gender_model_path:
+                default_path = "infrastructure/models/resnet50-gender.pt"
+                if Path(default_path).exists():
+                    gender_model_path = default_path
+                    logger.info("Using default non-versioned ResNet50 model")
+            
             old_gender_path = AppConfig.GENDER_MODEL_PATH
             
-            if Path(gender_model_path).exists():
+            if gender_model_path and Path(gender_model_path).exists():
+                logger.info(f"Loading Gender Model from: {gender_model_path}")
                 try:
                     self.gender_net = ResNet50GenderClassifier(num_classes=2)
                     state_dict = torch.load(gender_model_path)
