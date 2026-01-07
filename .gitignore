@@ -4,3 +4,5 @@ data/
 gender_dataset_split/
 runs/
 __pycache__
+PETA/
+datasets/

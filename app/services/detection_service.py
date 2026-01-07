@@ -1,28 +1,45 @@
 import torch
+import torch.nn as nn
 import cv2
 import numpy as np
-import urllib.request
 from datetime import datetime
 import asyncio
-import json
 from pathlib import Path
 import concurrent.futures
 import httpx
 import os
 from ultralytics import YOLO
+from torchvision import models
 from app.config import AppConfig, logger
+
+
+class ResNet50GenderClassifier(nn.Module):
+    def __init__(self, num_classes=2):
+        super().__init__()
+        self.backbone = models.resnet50(weights=None)
+        in_features = self.backbone.fc.in_features
+        self.backbone.fc = nn.Sequential(
+            nn.Dropout(0.3),
+            nn.Linear(in_features, 512),
+            nn.ReLU(inplace=True),
+            nn.Dropout(0.2),
+            nn.Linear(512, num_classes)
+        )
+    
+    def forward(self, x):
+        return self.backbone(x)
+
 
 class DetectionEngine:
     def __init__(self):
         self.model = None
         self.gender_net = None
-        self.face_net = None
-        self.gender_list = ['Male', 'Female']
+        self.gender_classes = ['Female', 'Male']
         self.track_history = {}
         self.is_running = False
         self.camera_index = AppConfig.CAMERA_INDEX
         self.frame_count = 0
-        self.face_check_interval = AppConfig.FACE_CHECK_INTERVAL
+        self.gender_check_interval = AppConfig.PETA_CHECK_INTERVAL
         self.confidence = AppConfig.CONFIDENCE_THRESHOLD
         self.api_url = AppConfig.API_URL
         self.api_token = AppConfig.API_TOKEN
@@ -45,65 +62,95 @@ class DetectionEngine:
         if model_path is None: model_path = AppConfig.MODEL_PATH
         try:
             self.model = YOLO(model_path)
-            gender_model_path = AppConfig.GENDER_MODEL_PATH
-            if not Path(gender_model_path).exists():
-                logger.warning(f"Custom gender model not found at {gender_model_path}. Please train it first.")
-                self.gender_net = None
-            else:
-                self.gender_net = YOLO(gender_model_path)
-            face_display_name = "yolov8n-face.pt"
-            face_model_path = AppConfig.FACE_MODEL_PATH
-            face_model_url = "https://github.com/lindevs/yolov8-face/releases/download/v1.0.0/yolov8n-face.pt"
-            if not Path(face_model_path).exists():
-                logger.info(f"Downloading YOLOv8-Face model to {face_model_path}...")
+            
+            gender_model_path = "infrastructure/models/resnet50-gender.pt"
+            old_gender_path = AppConfig.GENDER_MODEL_PATH
+            
+            if Path(gender_model_path).exists():
                 try:
-                    urllib.request.urlretrieve(face_model_url, face_model_path)
+                    self.gender_net = ResNet50GenderClassifier(num_classes=2)
+                    state_dict = torch.load(gender_model_path)
+                    self.gender_net.load_state_dict(state_dict)
+                    logger.info("ResNet50 gender classification model loaded successfully.")
                 except Exception as e:
-                    logger.error(f"Failed to download YOLOv8-Face: {e}")
-            self.face_net = YOLO(face_model_path)
+                    logger.error(f"Error loading ResNet50 gender model: {e}")
+                    self.gender_net = None
+            elif Path(old_gender_path).exists():
+                try:
+                    from ultralytics import YOLO as YOLO_CLS
+                    base_model_path = 'infrastructure/models/yolo11m-cls.pt'
+                    if not Path(base_model_path).exists():
+                        base_model_path = 'yolo11m-cls.pt'
+                    
+                    base_cls_model = YOLO_CLS(base_model_path)
+                    self.gender_net = base_cls_model.model
+                    
+                    if hasattr(self.gender_net, 'model') and isinstance(self.gender_net.model[-1], nn.Linear):
+                        in_features = self.gender_net.model[-1].in_features
+                        self.gender_net.model[-1] = nn.Linear(in_features, 2)
+                    elif hasattr(self.gender_net.model[-1], 'linear'):
+                        in_features = self.gender_net.model[-1].linear.in_features
+                        self.gender_net.model[-1].linear = nn.Linear(in_features, 2)
+                    
+                    state_dict = torch.load(old_gender_path)
+                    self.gender_net.load_state_dict(state_dict)
+                    logger.info("YOLO gender classification model loaded (fallback).")
+                except Exception as e:
+                    logger.error(f"Error loading fallback gender model: {e}")
+                    self.gender_net = None
+            else:
+                logger.warning(f"Gender model not found. Gender detection disabled.")
+                self.gender_net = None
+
             device = 'cuda' if torch.cuda.is_available() else 'cpu'
             self.model.to(device)
             if self.gender_net:
                 self.gender_net.to(device)
-            if self.face_net:
-                self.face_net.to(device)
+                self.gender_net.eval()
+                
             logger.info(f"YOLO detections using device: {device}")
-            logger.info("All models loaded successfully (Full CUDA pipeline)")
+            logger.info("All models loaded successfully")
         except Exception as e:
             logger.error(f"Failed to load models: {e}")
             raise
 
-    def _predict_gender(self, frame, person_box, track_id):
+    def _predict_gender(self, frame, person_box):
         x1, y1, x2, y2 = [int(v) for v in person_box]
         h, w = frame.shape[:2]
         x1, y1 = max(0, x1), max(0, y1)
         x2, y2 = min(w, x2), min(h, y2)
-        if x2 <= x1 or y2 <= y1: return "Unknown"
+        if x2 <= x1 or y2 <= y1: return None, 0.0
+        
         person_img = frame[y1:y2, x1:x2]
-        results = self.face_net(person_img, conf=0.3, verbose=False)
-        best_face = None
-        max_conf = 0.0
-        if results and results[0].boxes:
-            for box in results[0].boxes:
-                fx1, fy1, fx2, fy2 = box.xyxy[0].cpu().numpy()
-                confidence = float(box.conf[0].cpu().numpy())
-                if confidence > max_conf:
-                    max_conf = confidence
-                    best_face = (int(fx1), int(fy1), int(fx2), int(fy2))
-        detected_gender = None
-        if best_face and self.gender_net:
-            fx1, fy1, fx2, fy2 = best_face
-            pad_w = int((fx2 - fx1) * 0.1)
-            pad_h = int((fy2 - fy1) * 0.1)
-            fx1, fx2 = max(0, fx1 - pad_w), min(person_img.shape[1], fx2 + pad_w)
-            fy1, fy2 = max(0, fy1 - pad_h), min(person_img.shape[0], fy2 + pad_h)
-            if fx2 > fx1 and fy2 > fy1:
-                face_img = person_img[fy1:fy2, fx1:fx2]
-                results = self.gender_net.predict(face_img, verbose=False)
-                if results and results[0].probs:
-                    top1_index = results[0].probs.top1
-                    detected_gender = results[0].names[top1_index].capitalize()
-        return detected_gender
+        
+        if self.gender_net:
+            try:
+                img = cv2.resize(person_img, (224, 224))
+                img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+                img = img.transpose((2, 0, 1))
+                img = np.ascontiguousarray(img, dtype=np.float32)
+                img /= 255.0
+                img = (img - np.array([0.485, 0.456, 0.406]).reshape(3,1,1)) / np.array([0.229, 0.224, 0.225]).reshape(3,1,1)
+                
+                img_tensor = torch.from_numpy(img).unsqueeze(0)
+                device = next(self.gender_net.parameters()).device
+                img_tensor = img_tensor.to(device).float()
+                
+                with torch.no_grad():
+                    outputs = self.gender_net(img_tensor)
+                    if isinstance(outputs, (list, tuple)): outputs = outputs[0]
+                    probs = torch.softmax(outputs, dim=1).squeeze()
+                
+                confidence, predicted = torch.max(probs, 0)
+                gender = self.gender_classes[predicted.item()]
+                
+                if confidence.item() < 0.6:
+                    return None, confidence.item()
+                
+                return gender, confidence.item()
+            except Exception as e:
+                logger.error(f"Gender prediction error: {e}")
+        return None, 0.0
 
     def detect_persons(self, frame):
         if self.model is None: return []
@@ -120,31 +167,34 @@ class DetectionEngine:
                     if track_id not in self.track_history:
                         self.track_history[track_id] = {
                             'gender': None, 
+                            'gender_confidence': 0.0,
                             'male_votes': 0, 
                             'female_votes': 0, 
                             'last_check': 0
                         }
                     hist = self.track_history[track_id]
-                    should_check = (self.frame_count - hist['last_check']) > self.face_check_interval
-                    if hist['gender'] is None:
-                         should_check = True 
+                    
+                    should_check = (self.frame_count - hist.get('last_check', 0)) > self.gender_check_interval
+                    if hist['gender'] is None: should_check = True
+                    
+                    if should_check and self.gender_net:
+                        gender, gender_conf = self._predict_gender(frame, (x1, y1, x2, y2))
+                        hist['last_check'] = self.frame_count
+                        
+                        if gender:
+                            if gender == 'Male':
+                                hist['male_votes'] += 1
+                            else:
+                                hist['female_votes'] += 1
+                            
+                            if hist['male_votes'] >= 3 or hist['female_votes'] >= 3:
+                                hist['gender'] = 'Male' if hist['male_votes'] > hist['female_votes'] else 'Female'
+                                hist['gender_confidence'] = gender_conf
+
                     gender_label = hist['gender'] if hist['gender'] else "Person"
-                    if should_check and self.face_net and self.gender_net:
-                        try:
-                            pred = self._predict_gender(frame, (x1, y1, x2, y2), track_id)
-                            hist['last_check'] = self.frame_count
-                            if pred:
-                                if pred == 'Male': hist['male_votes'] += 1
-                                elif pred == 'Female': hist['female_votes'] += 1
-                                if hist['male_votes'] > hist['female_votes']:
-                                    hist['gender'] = 'Male'
-                                elif hist['female_votes'] > hist['male_votes']:
-                                    hist['gender'] = 'Female'
-                                gender_label = hist['gender']
-                        except Exception as e:
-                            pass
                 else:
                     gender_label = "Person"
+                
                 detections.append({
                     'x': float((x1 + x2) / 2),
                     'y': float(y2),
@@ -165,13 +215,23 @@ class DetectionEngine:
             conf = det['confidence']
             bottom_x, bottom_y = int(det['x']), int(det['y'])
             gender = det.get('gender', 'Person')
-            cv2.rectangle(annotated, (x1, y1), (x2, y2), self.box_color, 2)
+            
+            if gender == 'Male':
+                box_color = (255, 150, 50)
+            elif gender == 'Female':
+                box_color = (180, 105, 255)
+            else:
+                box_color = self.box_color
+            
+            cv2.rectangle(annotated, (x1, y1), (x2, y2), box_color, 2)
             cv2.rectangle(annotated, (x1-1, y1-1), (x2+1, y2+1), (0, 100, 50), 1)
             cv2.circle(annotated, (bottom_x, bottom_y), 8, (0, 212, 255), -1)
             cv2.circle(annotated, (bottom_x, bottom_y), 10, (255, 255, 255), 2)
+            
             label = f"{gender} {conf:.0%}"
+                
             (label_w, label_h), baseline = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.6, 2)
-            cv2.rectangle(annotated, (x1, y1 - label_h - 10), (x1 + label_w + 10, y1), self.box_color, -1)
+            cv2.rectangle(annotated, (x1, y1 - label_h - 10), (x1 + label_w + 10, y1), box_color, -1)
             cv2.putText(annotated, label, (x1 + 5, y1 - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 0), 2)
             if self.show_coords:
                 coord_text = f"({bottom_x}, {bottom_y})"
@@ -181,7 +241,6 @@ class DetectionEngine:
 
     async def _push_to_api(self, detections):
         if not self.api_url or not self.api_token:
-            logger.warning("[API] API URL or token not configured, skipping push")
             return
         url = f"{self.api_url}/agent/stats"
         now = datetime.now()
@@ -226,25 +285,17 @@ class DetectionEngine:
         try:
             async with httpx.AsyncClient() as client:
                 response = await client.post(url, json=payload, headers=headers, timeout=5.0)
-                if response.status_code == 200 or response.status_code == 201:
-                    logger.debug(f"[API] Push successful: {len(detections)} detections, M:{male_count} F:{female_count}")
-                else:
-                    logger.warning(f"[API] Push failed with status {response.status_code}: {response.text}")
-        except httpx.ConnectError as e:
-            logger.error(f"[API] Connection error: {e}")
-        except httpx.TimeoutException:
-            logger.warning("[API] Request timeout after 5s")
-        except httpx.HTTPStatusError as e:
-            logger.error(f"[API] HTTP error {e.response.status_code}: {e.response.text}")
+                if response.status_code not in [200, 201]:
+                    logger.warning(f"[API] Push failed with status {response.status_code}")
         except Exception as e:
-            logger.error(f"[API] Unexpected error: {type(e).__name__}: {e}")
+            logger.debug(f"[API] Error: {e}")
 
     async def demo_mode(self):
         frame_width, frame_height = 640, 480
         prev_time = datetime.now()
         fps = 0
         demo_count = 0
-        logger.info("[DEMO] Demo mode started - generating synthetic frames")
+        logger.info("[DEMO] Demo mode started")
         while self.is_running:
             frame = np.zeros((frame_height, frame_width, 3), dtype=np.uint8)
             for y in range(frame_height):
@@ -259,6 +310,7 @@ class DetectionEngine:
                     'x': float(x_offset + 50),
                     'y': float(y_offset + 150),
                     'confidence': 0.85 + (i * 0.05),
+                    'gender': 'Male' if i % 2 == 0 else 'Female',
                     'bbox': {
                         'x1': float(x_offset),
                         'y1': float(y_offset),
@@ -273,10 +325,8 @@ class DetectionEngine:
                 fps = 1 / time_diff
             prev_time = current_time
             if self.show_fps:
-                cv2.putText(annotated_frame, f"FPS: {fps:.1f} (DEMO MODE)", (10, 30),
+                cv2.putText(annotated_frame, f"FPS: {fps:.1f} (DEMO)", (10, 30),
                            cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 136), 2)
-            cv2.putText(annotated_frame, "NO CAMERA - DEMO MODE", (10, frame_height - 20),
-                       cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 165, 255), 2)
             _, buffer = cv2.imencode('.jpg', annotated_frame, [cv2.IMWRITE_JPEG_QUALITY, 85])
             frame_bytes = buffer.tobytes()
             try:
@@ -292,7 +342,6 @@ class DetectionEngine:
             await loop.run_in_executor(self.executor, self._init_camera)
             if not self.cap or not self.cap.isOpened():
                 logger.error(f"Failed to open camera {self.camera_index}")
-                logger.info("Running in demo mode with generated frames")
                 await self.demo_mode()
                 return
             await asyncio.sleep(0.5)
@@ -302,7 +351,7 @@ class DetectionEngine:
             else:
                 self.frame_width = AppConfig.FRAME_WIDTH
                 self.frame_height = AppConfig.FRAME_HEIGHT
-            logger.info(f"[CAMERA] Camera {self.camera_index} opened successfully - {self.frame_width}x{self.frame_height}")
+            logger.info(f"[CAMERA] Camera {self.camera_index} opened - {self.frame_width}x{self.frame_height}")
             frame_width, frame_height = self.frame_width, self.frame_height
             failed_reads = 0
             max_failed_reads = AppConfig.MAX_FAILED_READS
@@ -315,9 +364,7 @@ class DetectionEngine:
                 result = await loop.run_in_executor(self.executor, self._process_one_frame)
                 if result is None:
                     failed_reads += 1
-                    logger.warning(f"Failed to read frame (attempt {failed_reads}/{max_failed_reads})")
                     if failed_reads >= max_failed_reads:
-                        logger.error(f"[ERROR] Camera connection lost. Retrying in {AppConfig.RETRY_DELAY_SECONDS}s...")
                         if self.cap: self.cap.release()
                         await asyncio.sleep(AppConfig.RETRY_DELAY_SECONDS)
                         await loop.run_in_executor(self.executor, self._init_camera)
@@ -330,10 +377,6 @@ class DetectionEngine:
                 self.frame_count += 1
                 frame_bytes, detections, current_fps = result
                 fps = current_fps
-                if frame_count % 60 == 0:
-                    logger.info(f"[SUCCESS] Captured {frame_count} frames, queue size: {self.frame_queue.qsize()}, FPS: {fps:.1f}")
-                if frame_count % 30 == 0 and detections:
-                    logger.info(f"[DETECT] Detected {len(detections)} person(s)")
                 try:
                     if self.frame_queue.full():
                         self.frame_queue.get_nowait()
@@ -347,8 +390,6 @@ class DetectionEngine:
             logger.info("[STOP] Capture frames task cancelled")
         except Exception as e:
             logger.error(f"Error in capture_frames: {e}")
-            import traceback
-            traceback.print_exc()
         finally:
             if self.cap:
                 self.cap.release()
