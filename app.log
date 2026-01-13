@@ -4542,3 +4542,1400 @@ DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error
 2026-01-07 13:37:17,645 [INFO] VisionTera.Training: Epoch 1 [900/1261] Loss: 0.3047
 2026-01-07 13:37:47,929 [INFO] VisionTera.Training: Epoch 1 [1000/1261] Loss: 0.2397
 2026-01-07 13:38:14,276 [INFO] VisionTera.Training: Epoch 1 [1100/1261] Loss: 0.3333
+2026-01-07 13:45:36,509 [INFO] VisionTera: Found latest model version: v_20260107_102312
+2026-01-07 13:45:36,510 [INFO] VisionTera: Loading Gender Model from: infrastructure\models\v_20260107_102312\best_model.pt
+2026-01-07 13:45:37,622 [INFO] VisionTera: ResNet50 gender classification model loaded successfully.
+2026-01-07 13:45:37,774 [INFO] VisionTera: YOLO detections using device: cuda
+2026-01-07 13:45:37,775 [INFO] VisionTera: All models loaded successfully
+2026-01-07 13:45:37,776 [INFO] VisionTera: Application started
+2026-01-07 13:46:45,920 [INFO] VisionTera: Started detection with camera 1
+2026-01-07 13:46:45,925 [INFO] VisionTera: [STATS] Stats broadcast task started
+2026-01-07 13:46:48,290 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:46:48,291 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:46:48,293 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:46:48,294 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:46:49,163 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:46:49,165 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:46:49,538 [INFO] VisionTera: [CAMERA] Camera 1 opened - 640x480
+2026-01-07 13:46:49,938 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:46:49,940 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:46:50,950 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:46:50,952 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:46:52,131 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:46:52,133 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:46:53,128 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:46:53,130 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:46:54,136 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:46:54,139 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:46:55,183 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:46:55,188 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:46:56,461 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:46:56,464 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:46:57,506 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:46:57,507 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:46:58,320 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:46:58,322 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:46:59,433 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:46:59,434 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:00,773 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:00,775 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:01,499 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:01,500 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:02,801 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:02,803 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:03,514 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:03,516 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:04,590 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:04,591 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:06,038 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:06,039 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:06,703 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:06,704 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:07,768 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:07,770 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:08,869 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:08,871 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:10,030 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:10,031 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:10,981 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:10,983 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:12,029 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:12,031 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:12,963 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:12,964 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:14,015 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:14,018 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:15,409 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:15,412 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:16,118 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:16,120 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:17,409 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:17,411 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:18,281 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:18,282 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:19,300 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:19,301 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:20,755 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:20,758 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:21,420 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:21,424 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:22,539 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:22,541 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:23,539 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:23,540 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:24,506 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:24,507 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:25,594 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:25,597 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:26,412 [INFO] VisionTera: [CAMERA] Camera released
+2026-01-07 13:47:26,899 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:26,900 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:39,616 [INFO] VisionTera: Started detection with camera 1
+2026-01-07 13:47:39,617 [INFO] VisionTera: [STATS] Stats broadcast task started
+2026-01-07 13:47:40,455 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:40,456 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:41,502 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:41,504 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:42,267 [INFO] VisionTera: [CAMERA] Camera 1 opened - 640x480
+2026-01-07 13:47:42,724 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:42,726 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:43,591 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:43,593 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:44,782 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:44,784 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:46,106 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:46,107 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:46,862 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:46,863 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:47,934 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:47,934 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:48,956 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:48,959 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:49,989 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:49,991 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:51,043 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:51,045 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:52,085 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:52,087 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:53,418 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:53,420 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:54,175 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:54,177 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:55,212 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:55,214 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:56,279 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:56,280 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:57,292 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:57,294 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:58,434 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:58,436 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:47:59,861 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:47:59,864 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:00,574 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:00,577 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:01,649 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:01,652 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:02,788 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:02,790 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:03,768 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:03,769 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:04,806 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:04,807 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:05,872 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:05,873 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:07,106 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:07,108 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:08,037 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:08,039 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:08,982 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:08,983 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:10,080 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:10,081 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:11,057 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:11,059 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:12,180 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:12,183 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:12,948 [INFO] VisionTera: [CAMERA] Camera released
+2026-01-07 13:48:13,353 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:13,354 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:25,827 [INFO] VisionTera: Started detection with camera 1
+2026-01-07 13:48:25,829 [INFO] VisionTera: [STATS] Stats broadcast task started
+2026-01-07 13:48:27,016 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:27,018 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:28,072 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:28,073 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:28,208 [INFO] VisionTera: [CAMERA] Camera 1 opened - 640x480
+2026-01-07 13:48:28,811 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:28,813 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:30,101 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:30,102 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:31,182 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:31,184 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:31,968 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:31,969 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:33,106 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:33,108 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:34,101 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:34,103 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:35,483 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:35,485 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:36,553 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:36,555 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:37,341 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:37,343 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:38,667 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:38,669 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:39,565 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:39,567 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:40,538 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:40,539 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:41,866 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:41,867 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:42,658 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:42,660 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:43,667 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:43,668 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:44,822 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:44,824 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:45,837 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:45,838 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:46,807 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:46,809 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:47,910 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:47,911 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:48,946 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:48,947 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:49,939 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:49,940 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:50,932 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:50,933 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:52,004 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:52,005 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:53,157 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:53,160 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:54,191 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:54,193 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:55,223 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:55,225 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:56,343 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:56,344 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:57,461 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:57,463 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 13:48:57,902 [INFO] VisionTera: [CAMERA] Camera released
+2026-01-07 13:48:58,426 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 13:48:58,427 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:48:56,754 [INFO] VisionTera: Found latest model version: v_20260107_102312
+2026-01-07 22:48:56,755 [INFO] VisionTera: Loading Gender Model from: infrastructure\models\v_20260107_102312\best_model.pt
+2026-01-07 22:48:57,734 [INFO] VisionTera: ResNet50 gender classification model loaded successfully.
+2026-01-07 22:48:57,846 [INFO] VisionTera: YOLO detections using device: cuda
+2026-01-07 22:48:57,847 [INFO] VisionTera: All models loaded successfully
+2026-01-07 22:48:57,848 [INFO] VisionTera: Application started
+2026-01-07 22:49:24,015 [INFO] VisionTera: Started detection with camera 1
+2026-01-07 22:49:24,024 [INFO] VisionTera: [STATS] Stats broadcast task started
+2026-01-07 22:49:27,724 [INFO] VisionTera: [CAMERA] Camera 1 opened - 640x480
+2026-01-07 22:49:30,649 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:49:30,650 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:49:31,609 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:49:31,611 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:49:31,612 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:49:31,612 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:49:32,357 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:49:32,358 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:49:32,756 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:49:32,758 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:49:33,600 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:49:33,601 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:49:34,758 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:49:34,760 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:49:35,632 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:49:35,634 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:49:35,935 [INFO] VisionTera: [CAMERA] Camera released
+2026-01-07 22:49:36,873 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:49:36,873 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:22,862 [INFO] VisionTera: Started detection with camera 1
+2026-01-07 22:51:22,864 [INFO] VisionTera: [STATS] Stats broadcast task started
+2026-01-07 22:51:25,306 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:25,307 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:25,659 [INFO] VisionTera: [CAMERA] Camera 1 opened - 640x480
+2026-01-07 22:51:25,845 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:25,847 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:27,015 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:27,016 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:31,414 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:31,416 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:31,673 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:31,676 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:31,963 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:31,965 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:31,966 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:31,968 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:32,586 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:32,588 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:32,590 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:32,592 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:33,491 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:33,493 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:36,775 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:36,776 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:38,241 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:38,243 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:38,243 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:38,245 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:39,359 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:39,362 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:40,103 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:40,104 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:41,904 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:41,905 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:41,906 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:41,909 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:44,532 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:44,538 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:44,539 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:44,540 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:45,884 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:45,887 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:45,903 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:45,905 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:47,056 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:47,057 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:48,555 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:48,556 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:48,558 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:48,560 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:49,617 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:49,618 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:50,868 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:50,870 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:51,162 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:51,164 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:52,532 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:52,534 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:53,496 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:53,498 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:55,313 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:55,315 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:55,801 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:55,803 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:57,867 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:57,868 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:57,876 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:57,879 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:51:59,205 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:51:59,206 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:00,371 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:00,373 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:01,443 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:01,444 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:01,846 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:01,847 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:02,987 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:02,989 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:03,805 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:03,806 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:04,815 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:04,817 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:05,829 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:05,830 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:06,869 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:06,872 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:08,147 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:08,149 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:09,528 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:09,530 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:10,822 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:10,825 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:11,765 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:11,767 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:12,653 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:12,656 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:13,469 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:13,471 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:15,069 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:15,070 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:16,306 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:16,307 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:16,849 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:16,851 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:17,759 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:17,761 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:19,315 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:19,317 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:20,579 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:20,580 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:21,622 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:21,624 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:22,701 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:22,706 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:23,958 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:23,959 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:23,961 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:23,963 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:24,834 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:24,836 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:25,872 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:25,873 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:27,209 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:27,211 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:29,014 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:29,016 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:29,369 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:29,371 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:30,224 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:30,226 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:30,888 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:30,890 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:32,310 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:32,312 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:33,080 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:33,081 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:34,091 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:34,093 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:35,235 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:35,237 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:36,134 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:36,137 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:37,239 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:37,241 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:38,270 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:38,271 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:39,516 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:39,518 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:40,690 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:40,692 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:41,457 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:41,459 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:42,940 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:42,942 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:43,741 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:43,744 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:44,596 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:44,598 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:46,102 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:46,104 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:47,019 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:47,022 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:49,130 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:49,132 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:51,180 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:51,181 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:51,222 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:51,224 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:51,454 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:51,456 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:51,776 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:51,782 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:53,162 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:53,164 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:53,867 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:53,868 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:55,176 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:55,182 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:55,926 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:55,928 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:56,975 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:56,976 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:57,954 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:57,956 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:52:59,093 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:52:59,095 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:00,212 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:00,213 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:01,434 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:01,436 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:02,098 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:02,099 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:03,253 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:03,254 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:04,548 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:04,550 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:05,332 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:05,335 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:06,454 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:06,457 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:07,587 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:07,589 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:08,592 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:08,593 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:09,607 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:09,609 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:10,597 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:10,599 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:11,734 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:11,735 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:12,726 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:12,729 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:13,812 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:13,814 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:14,898 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:14,900 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:16,058 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:16,062 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:17,029 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:17,030 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:18,147 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:18,148 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:19,340 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:19,345 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:20,028 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:20,031 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:21,072 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:21,073 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:22,487 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:22,488 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:23,209 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:23,210 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:24,257 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:24,259 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:25,519 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:25,521 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:28,466 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:28,468 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:29,804 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:29,805 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:30,376 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:30,376 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:30,400 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:30,402 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:30,705 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:30,706 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:31,623 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:31,625 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:32,713 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:32,714 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:33,643 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:33,646 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:34,680 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:34,682 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:36,322 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:36,323 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:38,422 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:38,424 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:38,454 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:38,456 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:39,061 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:39,063 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:39,941 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:39,943 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:41,165 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:41,167 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:41,953 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:41,954 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:43,096 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:43,099 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:44,426 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:44,428 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:45,186 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:45,188 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:46,206 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:46,208 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:47,249 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:47,250 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:48,381 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:48,385 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:49,661 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:49,665 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:50,628 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:50,630 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:51,588 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:51,590 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:52,536 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:52,538 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:53,489 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:53,492 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:54,485 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:54,486 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:55,576 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:55,578 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:56,837 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:56,838 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:57,666 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:57,669 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:53:58,789 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:53:58,792 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:00,129 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:00,130 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:01,222 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:01,223 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:01,890 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:01,891 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:02,888 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:02,890 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:03,893 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:03,895 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:04,929 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:04,931 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:06,142 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:06,145 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:06,992 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:06,994 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:08,241 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:08,243 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:09,509 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:09,511 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:10,174 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:10,175 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:11,187 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:11,188 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:12,832 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:12,834 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:13,357 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:13,360 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:15,110 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:15,111 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:15,407 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:15,409 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:16,564 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:16,566 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:17,538 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:17,540 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:18,572 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:18,575 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:19,653 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:19,655 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:19,748 [INFO] VisionTera: [CAMERA] Camera released
+2026-01-07 22:54:46,611 [INFO] VisionTera: Started detection with camera 1
+2026-01-07 22:54:46,612 [INFO] VisionTera: [STATS] Stats broadcast task started
+2026-01-07 22:54:47,837 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:47,838 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:49,053 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:49,054 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:49,376 [INFO] VisionTera: [CAMERA] Camera 1 opened - 640x480
+2026-01-07 22:54:50,692 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:50,695 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:52,488 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:52,491 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:52,868 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:52,869 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:53,908 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:53,910 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:54,514 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:54,515 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:54,959 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:54,961 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:56,338 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:56,339 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:57,134 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:57,136 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:58,093 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:58,095 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:54:59,727 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:54:59,729 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:00,230 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:00,233 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:01,279 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:01,280 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:02,329 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:02,330 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:03,356 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:03,357 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:04,838 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:04,840 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:05,553 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:05,555 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:06,534 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:06,536 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:07,998 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:08,002 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:08,962 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:08,964 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:09,821 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:09,822 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:11,054 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:11,056 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:11,847 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:11,849 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:12,798 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:12,803 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:13,853 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:13,854 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:14,911 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:14,913 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:16,947 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:16,949 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:18,064 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:18,066 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:18,067 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:18,069 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:19,153 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:19,155 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:20,748 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:20,749 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:21,443 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:21,445 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:22,195 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:22,197 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:23,297 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:23,299 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:24,780 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:24,781 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:25,276 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:25,277 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:26,547 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:26,548 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:27,368 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:27,370 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:28,679 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:28,680 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:29,498 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:29,500 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:30,745 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:30,746 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:31,476 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:31,477 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:32,866 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:32,868 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:33,853 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:33,854 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:34,580 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:34,582 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:35,998 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:35,998 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:36,794 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:36,796 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:37,929 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:37,931 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:38,861 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:38,863 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:40,028 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:40,030 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:41,002 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:41,004 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:41,998 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:42,000 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:43,003 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:43,004 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:44,137 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:44,140 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:45,130 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:45,130 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:46,318 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:46,319 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:47,284 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:47,287 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:48,336 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:48,338 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:49,652 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:49,653 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:50,967 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:50,969 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:51,868 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:51,869 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:52,472 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:52,474 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:53,479 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:53,480 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:54,818 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:54,820 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:55,592 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:55,593 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:55:58,621 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:55:58,622 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:56:01,635 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:56:01,637 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:56:02,114 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:56:02,116 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:56:02,133 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:56:02,137 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:56:02,291 [INFO] VisionTera: [STOP] Capture frames task cancelled
+2026-01-07 22:56:02,404 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:56:02,405 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:56:02,406 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:56:02,407 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 22:56:03,498 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 22:56:03,499 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:04:38,741 [INFO] VisionTera: Started detection with camera 1
+2026-01-07 23:04:38,743 [INFO] VisionTera: [STATS] Stats broadcast task started
+2026-01-07 23:04:38,770 [ERROR] VisionTera: WebSocket error: received 1001 (going away); then sent 1001 (going away)
+2026-01-07 23:04:39,924 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:04:39,926 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:04:40,669 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:04:40,670 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:04:41,718 [INFO] VisionTera: [CAMERA] Camera 1 opened - 640x480
+2026-01-07 23:04:41,811 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:04:41,814 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:04:42,947 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:04:42,949 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:04:44,272 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:04:44,274 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:04:45,318 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:04:45,320 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:04:46,167 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:04:46,169 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:04:47,120 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:04:47,122 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:04:48,572 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:04:48,572 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:04:49,354 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:04:49,356 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:04:50,423 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:04:50,425 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:04:51,359 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:04:51,361 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:04:52,519 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:04:52,521 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:04:53,645 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:04:53,647 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:04:54,499 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:04:54,500 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:04:55,637 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:04:55,638 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:04:56,957 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:04:56,958 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:04:58,156 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:04:58,157 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:04:58,952 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:04:58,954 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:00,019 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:00,021 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:01,103 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:01,104 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:02,115 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:02,117 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:03,041 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:03,042 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:04,084 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:04,086 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:05,471 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:05,472 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:06,153 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:06,155 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:07,273 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:07,275 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:08,625 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:08,627 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:09,363 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:09,365 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:10,485 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:10,492 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:11,468 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:11,469 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:12,571 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:12,572 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:13,571 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:13,573 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:14,705 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:14,706 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:15,627 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:15,630 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:16,961 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:16,962 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:18,031 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:18,032 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:19,011 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:19,012 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:20,175 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:20,177 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:21,096 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:21,098 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:21,862 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:21,865 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:22,945 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:22,946 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:24,074 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:24,075 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:25,106 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:25,106 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:26,316 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:26,319 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:27,273 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:27,275 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:28,487 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:28,489 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:29,252 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:29,254 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:30,280 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:30,282 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:31,437 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:31,438 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:32,472 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:32,474 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:33,569 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:33,571 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:34,841 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:34,842 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:35,586 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:35,588 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:37,020 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:37,022 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:37,656 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:37,658 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:38,795 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:38,798 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:40,134 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:40,138 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:40,856 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:40,859 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:42,224 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:42,226 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:42,955 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:42,956 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:44,093 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:44,093 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:44,951 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:44,954 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:46,157 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:46,160 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:47,143 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:47,146 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:48,173 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:48,176 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:49,281 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:49,282 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:50,322 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:50,323 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:51,354 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:51,356 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:52,426 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:52,428 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:53,504 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:53,506 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:54,753 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:54,754 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:55,493 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:55,495 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:56,868 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:56,870 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:57,562 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:57,562 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:58,668 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:58,670 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:05:59,652 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:05:59,655 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:00,738 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:00,740 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:02,098 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:02,099 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:02,933 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:02,935 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:03,915 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:03,916 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:05,035 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:05,037 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:05,954 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:05,956 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:07,030 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:07,030 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:08,351 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:08,352 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:09,376 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:09,377 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:10,153 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:10,155 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:11,278 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:11,280 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:12,262 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:12,262 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:13,269 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:13,271 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:14,345 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:14,347 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:15,523 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:15,524 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:16,724 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:16,724 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:17,806 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:17,807 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:18,821 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:18,826 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:19,867 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:19,868 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:20,712 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:20,714 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:21,741 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:21,742 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:22,801 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:22,801 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:24,119 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:24,121 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:24,926 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:24,927 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:26,242 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:26,245 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:27,273 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:27,274 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:28,249 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:28,254 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:29,230 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:29,232 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:30,322 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:30,324 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:31,582 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:31,583 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:32,395 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:32,398 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:33,514 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:33,516 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:34,500 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:34,503 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:35,981 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:35,982 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:36,491 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:36,493 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:37,579 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:37,581 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:38,579 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:38,580 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:39,756 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:39,757 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:40,699 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:40,701 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:41,835 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:41,837 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:42,850 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:42,852 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:44,073 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:44,074 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:45,311 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:45,313 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:46,266 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:46,267 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:47,120 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:47,122 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:48,084 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:48,086 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:49,167 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:49,168 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:50,236 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:50,238 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:51,434 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:51,436 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:52,399 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:52,401 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:53,595 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:53,596 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:54,338 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:54,341 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:55,626 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:55,629 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:56,470 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:56,471 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:57,514 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:57,516 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:58,647 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:58,650 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:06:59,593 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:06:59,593 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:00,884 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:00,885 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:01,859 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:01,862 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:02,793 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:02,796 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:03,915 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:03,917 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:04,874 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:04,875 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:05,865 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:05,867 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:06,955 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:06,956 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:08,109 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:08,110 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:09,204 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:09,206 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:10,330 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:10,332 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:11,197 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:11,198 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:12,605 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:12,606 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:13,289 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:13,291 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:14,687 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:14,688 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:15,490 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:15,492 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:16,619 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:16,621 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:17,691 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:17,693 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:18,636 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:18,637 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:19,762 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:19,764 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:20,787 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:20,789 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:22,150 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:22,151 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:23,108 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:23,110 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:24,131 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:24,132 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:25,360 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:25,361 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:26,155 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:26,157 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:27,445 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:27,447 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:28,440 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:28,442 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:29,238 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:29,240 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:30,592 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:30,593 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:31,441 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:31,443 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:32,359 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:32,361 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:33,142 [ERROR] VisionTera: WebSocket error: received 1001 (going away); then sent 1001 (going away)
+2026-01-07 23:07:33,454 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:33,456 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:34,497 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:34,499 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:35,596 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:35,600 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:36,965 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:36,967 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:37,529 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:37,530 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:38,697 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:38,698 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:39,799 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:39,800 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:41,048 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:41,050 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:43,563 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:43,564 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:45,559 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:45,560 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:45,900 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:45,902 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:46,896 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:46,897 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:46,899 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:46,901 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-07 23:07:48,106 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-07 23:07:48,108 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:00:24,376 [INFO] VisionTera: Found latest model version: v_20260107_102312
+2026-01-08 12:00:24,378 [INFO] VisionTera: Loading Gender Model from: infrastructure\models\v_20260107_102312\best_model.pt
+2026-01-08 12:00:25,737 [INFO] VisionTera: ResNet50 gender classification model loaded successfully.
+2026-01-08 12:00:25,909 [INFO] VisionTera: YOLO detections using device: cuda
+2026-01-08 12:00:25,911 [INFO] VisionTera: All models loaded successfully
+2026-01-08 12:00:25,912 [INFO] VisionTera: Application started
+2026-01-08 12:04:54,364 [INFO] VisionTera: Application shutdown
+2026-01-08 12:05:30,556 [INFO] VisionTera: Found latest model version: v_20260107_102312
+2026-01-08 12:05:30,563 [INFO] VisionTera: Loading Gender Model from: infrastructure\models\v_20260107_102312\best_model.pt
+2026-01-08 12:05:32,500 [INFO] VisionTera: ResNet50 gender classification model loaded successfully.
+2026-01-08 12:05:32,696 [INFO] VisionTera: YOLO detections using device: cuda
+2026-01-08 12:05:32,701 [INFO] VisionTera: All models loaded successfully
+2026-01-08 12:05:32,709 [INFO] VisionTera: Application started
+2026-01-08 12:07:40,359 [INFO] VisionTera: Application shutdown
+2026-01-08 12:07:57,260 [INFO] VisionTera: Found latest model version: v_20260107_102312
+2026-01-08 12:07:57,261 [INFO] VisionTera: Loading Gender Model from: infrastructure\models\v_20260107_102312\best_model.pt
+2026-01-08 12:07:58,311 [INFO] VisionTera: ResNet50 gender classification model loaded successfully.
+2026-01-08 12:07:58,469 [INFO] VisionTera: YOLO detections using device: cuda
+2026-01-08 12:07:58,469 [INFO] VisionTera: All models loaded successfully
+2026-01-08 12:07:58,471 [INFO] VisionTera: Application started
+2026-01-08 12:20:29,628 [INFO] VisionTera: Started detection with camera 1
+2026-01-08 12:20:29,647 [INFO] VisionTera: [STATS] Stats broadcast task started
+2026-01-08 12:20:33,891 [INFO] VisionTera: [CAMERA] Camera 1 opened - 640x480
+2026-01-08 12:20:35,148 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:20:35,152 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:20:35,608 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:20:35,611 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:20:35,613 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:20:35,615 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:20:35,617 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:20:35,618 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:20:35,809 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:20:35,811 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:20:36,245 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:20:36,246 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:20:37,044 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:20:37,045 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:20:38,069 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:20:38,071 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:20:39,320 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:20:39,322 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:20:40,394 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:20:40,395 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:20:41,501 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:20:41,503 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:20:42,172 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:20:42,174 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:20:43,302 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:20:43,310 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:20:44,638 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:20:44,640 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:20:45,525 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:20:45,527 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:20:46,501 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:20:46,502 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:20:47,688 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:20:47,691 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:20:48,621 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:20:48,623 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:20:50,001 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:20:50,004 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:20:50,757 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:20:50,759 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:20:51,783 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:20:51,786 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:20:52,937 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:20:52,938 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:20:53,880 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:20:53,882 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:20:54,856 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:20:54,859 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:20:56,249 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:20:56,251 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:20:57,098 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:20:57,099 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:20:58,093 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:20:58,096 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:20:59,176 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:20:59,178 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:00,291 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:00,294 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:01,184 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:01,186 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:02,244 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:02,246 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:03,305 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:03,308 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:04,422 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:04,424 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:05,402 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:05,404 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:06,401 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:06,403 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:07,485 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:07,487 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:08,825 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:08,826 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:09,882 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:09,884 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:10,983 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:10,985 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:12,012 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:12,014 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:12,745 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:12,747 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:14,181 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:14,184 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:15,013 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:15,016 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:16,281 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:16,283 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:17,094 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:17,096 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:18,351 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:18,354 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:19,174 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:19,175 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:20,136 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:20,139 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:21,258 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:21,260 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:22,228 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:22,229 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:23,496 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:23,498 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:24,333 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:24,336 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:25,414 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:25,417 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:26,449 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:26,451 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:27,808 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:27,811 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:28,614 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:28,615 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:29,573 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:29,575 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:30,694 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:30,695 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:31,734 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:31,737 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:33,040 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:33,041 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:34,088 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:34,090 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:34,850 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:34,852 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:35,884 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:35,886 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:36,949 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:36,952 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:37,995 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:37,997 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:38,995 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:38,997 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:40,116 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:40,123 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:41,196 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:41,197 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:42,570 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:42,572 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:43,334 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:43,336 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:44,299 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:44,301 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:45,416 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:45,417 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:46,384 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:46,387 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:47,509 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:47,511 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:48,539 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:48,541 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:49,510 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:49,512 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:50,537 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:50,543 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:51,668 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:51,671 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:52,687 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:52,690 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:53,991 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:53,993 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:54,854 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:54,856 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:56,107 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:56,110 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:56,846 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:56,849 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:57,895 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:57,897 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:21:59,015 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:21:59,019 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:00,286 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:00,287 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:01,411 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:01,412 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:02,125 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:02,127 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:03,175 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:03,177 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:04,228 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:04,229 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:05,512 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:05,514 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:06,202 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:06,204 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:07,256 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:07,258 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:08,295 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:08,297 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:09,396 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:09,397 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:10,666 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:10,667 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:11,529 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:11,530 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:12,619 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:12,621 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:13,522 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:13,524 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:14,536 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:14,537 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:15,634 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:15,637 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:17,000 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:17,001 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:17,668 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:17,670 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:18,858 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:18,860 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:20,027 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:20,029 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:20,784 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:20,786 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:21,858 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:21,858 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:22,787 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:22,788 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:24,156 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:24,157 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:25,050 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:25,051 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:26,298 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:26,299 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:27,133 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:27,135 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:28,397 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:28,399 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:29,455 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:29,457 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:30,180 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:30,182 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:31,294 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:31,295 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:32,253 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:32,257 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:33,635 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:33,637 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:34,491 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:34,493 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:35,611 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:35,613 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:36,496 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:36,498 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:37,470 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:37,472 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:38,918 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:38,921 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:39,773 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:39,774 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:40,859 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:40,860 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:41,752 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:41,754 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:43,073 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:43,075 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:43,877 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:43,879 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:44,906 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:44,907 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:46,014 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:46,015 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:47,016 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:47,017 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:48,126 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:48,128 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:49,444 [INFO] VisionTera: [CAMERA] Camera released
+2026-01-08 12:22:49,455 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:49,457 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-08 12:22:50,605 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
+2026-01-08 12:22:50,606 [WARNING] VisionTera: [API] Push failed with status 500
