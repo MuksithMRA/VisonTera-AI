@@ -19,10 +19,10 @@ class ResNet50GenderClassifier(nn.Module):
         self.backbone = models.resnet50(weights=None)
         in_features = self.backbone.fc.in_features
         self.backbone.fc = nn.Sequential(
-            nn.Dropout(0.3),
+            nn.Dropout(0.5),
             nn.Linear(in_features, 512),
             nn.ReLU(inplace=True),
-            nn.Dropout(0.2),
+            nn.Dropout(0.5),
             nn.Linear(512, num_classes)
         )
     
@@ -465,7 +465,8 @@ class DetectionEngine:
                     now = datetime.now()
                     if (now - self.last_api_push).total_seconds() >= 1.0:
                         self.last_api_push = now
-                        asyncio.create_task(self._push_to_api(self.last_detections))
+                        #commented for  future reference
+                      #  asyncio.create_task(self._push_to_api(self.last_detections))
                     try:
                         self.stats_queue.put_nowait(stats)
                     except asyncio.QueueFull:

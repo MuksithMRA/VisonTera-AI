@@ -208,6 +208,14 @@ def evaluate(model_path, data_dir, output_dir):
         plt.savefig(os.path.join(output_dir, 'worst_predictions.png'))
         plt.close()
 
+        # Debug: Print top failures paths and save to file
+        print("\nTop High-Confidence Failures:")
+        with open(os.path.join(output_dir, 'failures.txt'), 'w', encoding='utf-8') as f:
+            for fail in top_failures:
+                line = f"File: {fail['path']}, Truth: {fail['true']}, Pred: {fail['pred']}, Conf: {fail['conf']:.4f}"
+                print(line)
+                f.write(line + "\n")
+
     # E. Print Report
     report = classification_report(all_labels, all_preds, target_names=['Female', 'Male'])
     print("\nClassification Report:")

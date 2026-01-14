@@ -105,10 +105,10 @@ class ResNet50GenderClassifier(nn.Module):
         self.backbone = models.resnet50(weights=models.ResNet50_Weights.IMAGENET1K_V2 if pretrained else None)
         in_features = self.backbone.fc.in_features
         self.backbone.fc = nn.Sequential(
-            nn.Dropout(0.3),
+            nn.Dropout(0.5),
             nn.Linear(in_features, 512),
             nn.ReLU(inplace=True),
-            nn.Dropout(0.2),
+            nn.Dropout(0.5),
             nn.Linear(512, num_classes)
         )
     
@@ -161,7 +161,7 @@ class TrainingPipeline:
                 transforms.ColorJitter(brightness=0.3, contrast=0.3, saturation=0.2, hue=0.1),
                 transforms.ToTensor(),
                 transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-                transforms.RandomErasing(p=0.2)
+                transforms.RandomErasing(p=0.5, scale=(0.02, 0.33), ratio=(0.3, 3.3)) # Added Cutout/RandomErasing
             ])
             
             transform_val = transforms.Compose([
@@ -177,11 +177,29 @@ class TrainingPipeline:
             if len(train_dataset) == 0:
                 raise FileNotFoundError("No images loaded from PA-100K train set")
             
+            # Weighted Sampling with KSA Upweighting
             class_counts = [0, 0]
             for label in train_dataset.labels:
                 class_counts[label] += 1
-            class_weights = [1.0 / max(count, 1) for count in class_counts]
-            sample_weights = [class_weights[label] for label in train_dataset.labels]
+            
+            # Base class weights (balance classes)
+            base_class_weights = [1.0 / max(count, 1) for count in class_counts]
+            
+            # Sample weights: Class Weight * (KSA Factor if applicable)
+            sample_weights = []
+            ksa_bonus = 20.0
+            
+            for i, label in enumerate(train_dataset.labels):
+                img_name = Path(train_dataset.samples[i]).name
+                # Heuristic: PA-100K are 6-digit filenames (e.g. 000001.jpg). Anything else is likely KSA/Custom.
+                is_ksa = not (len(img_name) == 10 and img_name[:6].isdigit()) # 10 chars: 6 digits + .jpg
+                
+                weight = base_class_weights[label]
+                if is_ksa:
+                    weight *= ksa_bonus
+                
+                sample_weights.append(weight)
+
             sampler = WeightedRandomSampler(sample_weights, len(sample_weights), replacement=True)
             
             num_workers = 4
@@ -216,20 +234,77 @@ class TrainingPipeline:
             logger.info("Using ResNet50 pretrained on ImageNet")
             
             self.status = "training"
-            criterion = nn.CrossEntropyLoss()
-            optimizer = optim.AdamW(model.parameters(), lr=0.0001, weight_decay=0.01)
-            scheduler = optim.lr_scheduler.OneCycleLR(
-                optimizer, 
-                max_lr=0.001, 
-                epochs=epochs, 
-                steps_per_epoch=len(train_loader)
-            )
+            # Label Smoothing
+            criterion = nn.CrossEntropyLoss(label_smoothing=0.1)
+            
+            # --- Phase 1: Freeze Backbone (Warmup Head) ---
+            logger.info("Phase 1: Warming up head (Backbone Frozen) for 5 epochs...")
+            for param in model.backbone.parameters():
+                param.requires_grad = False
+            for param in model.backbone.fc.parameters():
+                param.requires_grad = True
+                
+            optimizer = optim.AdamW(model.backbone.fc.parameters(), lr=0.001, weight_decay=0.01)
+            # No OneCycleLR for warmup, just constant or simple
             
             scaler = GradScaler()
             use_amp = torch.cuda.is_available()
             
             best_acc = 0.0
             
+            # Warmup Loop
+            for epoch in range(5):
+                model.train()
+                train_loss = 0.0
+                train_correct = 0
+                train_total = 0
+                
+                for i, (images, labels) in enumerate(train_loader):
+                    images, labels = images.to(device, non_blocking=True), labels.to(device, non_blocking=True)
+                    
+                    optimizer.zero_grad(set_to_none=True)
+                    
+                    if use_amp:
+                        with autocast():
+                            outputs = model(images)
+                            loss = criterion(outputs, labels)
+                        scaler.scale(loss).backward()
+                        scaler.step(optimizer)
+                        scaler.update()
+                    else:
+                        outputs = model(images)
+                        loss = criterion(outputs, labels)
+                        loss.backward()
+                        optimizer.step()
+                        
+                    train_loss += loss.item() * images.size(0)
+                    _, predicted = torch.max(outputs, 1)
+                    train_correct += (predicted == labels).sum().item()
+                    train_total += labels.size(0)
+                    
+                    if i % 100 == 0:
+                         logger.info(f"Warmup Epoch {epoch+1} [{i}/{len(train_loader)}] Loss: {loss.item():.4f}")
+
+                # Validation (Optional during warmup, but good to see)
+                # ... (Simplified validation or just log)
+                train_acc = train_correct / train_total
+                logger.info(f"Warmup Epoch {epoch+1}/5 | Loss: {train_loss/train_total:.4f} | Train Acc: {train_acc:.4f}")
+
+            # --- Phase 2: Unfreeze Backbone (Full Training) ---
+            logger.info("Phase 2: Unfreezing Backbone (Full Training)...")
+            for param in model.backbone.parameters():
+                param.requires_grad = True
+            
+            # Re-init optimizer for all params
+            optimizer = optim.AdamW(model.parameters(), lr=0.0001, weight_decay=0.01)
+            scheduler = optim.lr_scheduler.OneCycleLR(
+                optimizer, 
+                max_lr=0.001, 
+                epochs=epochs, # Total epochs
+                steps_per_epoch=len(train_loader)
+            )
+            
+            # Main Loop
             for epoch in range(epochs):
                 model.train()
                 train_loss = 0.0

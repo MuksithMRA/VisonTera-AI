@@ -1,0 +1,16 @@
+File: d:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\datasets\data\084573.jpg, Truth: 0, Pred: 1, Conf: 0.8987
+File: d:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\datasets\data\081134.jpg, Truth: 1, Pred: 0, Conf: 0.8979
+File: d:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\datasets\data\083759.jpg, Truth: 0, Pred: 1, Conf: 0.8975
+File: d:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\datasets\data\082969.jpg, Truth: 1, Pred: 0, Conf: 0.8975
+File: d:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\datasets\data\086566.jpg, Truth: 0, Pred: 1, Conf: 0.8957
+File: d:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\datasets\data\082450.jpg, Truth: 1, Pred: 0, Conf: 0.8957
+File: d:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\datasets\data\082652.jpg, Truth: 1, Pred: 0, Conf: 0.8950
+File: d:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\datasets\data\083403.jpg, Truth: 1, Pred: 0, Conf: 0.8942
+File: d:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\datasets\data\088263.jpg, Truth: 1, Pred: 0, Conf: 0.8936
+File: d:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\datasets\data\084659.jpg, Truth: 1, Pred: 0, Conf: 0.8934
+File: d:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\datasets\data\088597.jpg, Truth: 0, Pred: 1, Conf: 0.8931
+File: d:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\datasets\data\087880.jpg, Truth: 0, Pred: 1, Conf: 0.8930
+File: d:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\datasets\data\087988.jpg, Truth: 0, Pred: 1, Conf: 0.8927
+File: d:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\datasets\data\086812.jpg, Truth: 1, Pred: 0, Conf: 0.8926
+File: d:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\datasets\data\085562.jpg, Truth: 1, Pred: 0, Conf: 0.8920
+File: d:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\datasets\data\083609.jpg, Truth: 1, Pred: 0, Conf: 0.8916

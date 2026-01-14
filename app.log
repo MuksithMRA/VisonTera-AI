@@ -5939,3 +5939,577 @@ DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error
 2026-01-08 12:22:49,457 [WARNING] VisionTera: [API] Push failed with status 500
 2026-01-08 12:22:50,605 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 500 Internal Server Error"
 2026-01-08 12:22:50,606 [WARNING] VisionTera: [API] Push failed with status 500
+2026-01-14 12:09:15,445 [INFO] VisionTera.Training: Starting Training Run: v_20260114_120915
+2026-01-14 12:09:15,452 [INFO] VisionTera.Training: Starting PA-100K Gender Classification Training (ResNet50)
+2026-01-14 12:09:15,614 [INFO] VisionTera.Training: GPU: NVIDIA GeForce RTX 4060 Laptop GPU
+2026-01-14 12:09:15,614 [INFO] VisionTera.Training: VRAM: 8.0 GB
+2026-01-14 12:09:45,899 [INFO] VisionTera.Training: [train] Loaded 80685 images. Male: 44034, Female: 36651
+2026-01-14 12:09:49,728 [INFO] VisionTera.Training: [val] Loaded 10086 images. Male: 5072, Female: 5014
+2026-01-14 12:09:50,215 [INFO] VisionTera.Training: Train: 80685, Val: 10086
+2026-01-14 12:09:50,216 [INFO] VisionTera.Training: Batch size: 64, Workers: 4
+2026-01-14 12:09:50,221 [INFO] VisionTera.Training: Class distribution - Female: 36651, Male: 44034
+2026-01-14 12:09:51,095 [INFO] VisionTera.Training: Training on device: cuda
+2026-01-14 12:09:51,095 [INFO] VisionTera.Training: Using ResNet50 pretrained on ImageNet
+2026-01-14 12:09:51,095 [INFO] VisionTera.Training: Phase 1: Warming up head (Backbone Frozen) for 5 epochs...
+2026-01-14 12:10:25,833 [INFO] VisionTera.Training: Warmup Epoch 1 [0/1261] Loss: 0.7055
+2026-01-14 12:10:56,773 [INFO] VisionTera.Training: Warmup Epoch 1 [100/1261] Loss: 0.6593
+2026-01-14 12:11:28,301 [INFO] VisionTera.Training: Warmup Epoch 1 [200/1261] Loss: 0.6623
+2026-01-14 12:12:03,369 [INFO] VisionTera.Training: Warmup Epoch 1 [300/1261] Loss: 0.6209
+2026-01-14 12:12:34,047 [INFO] VisionTera.Training: Warmup Epoch 1 [400/1261] Loss: 0.6453
+2026-01-14 12:13:02,624 [INFO] VisionTera.Training: Warmup Epoch 1 [500/1261] Loss: 0.6000
+2026-01-14 12:13:30,581 [INFO] VisionTera.Training: Warmup Epoch 1 [600/1261] Loss: 0.6043
+2026-01-14 12:13:57,491 [INFO] VisionTera.Training: Warmup Epoch 1 [700/1261] Loss: 0.6226
+2026-01-14 12:14:24,311 [INFO] VisionTera.Training: Warmup Epoch 1 [800/1261] Loss: 0.5803
+2026-01-14 12:14:50,026 [INFO] VisionTera.Training: Warmup Epoch 1 [900/1261] Loss: 0.5797
+2026-01-14 12:15:16,963 [INFO] VisionTera.Training: Warmup Epoch 1 [1000/1261] Loss: 0.5974
+2026-01-14 12:15:44,747 [INFO] VisionTera.Training: Warmup Epoch 1 [1100/1261] Loss: 0.6789
+2026-01-14 12:16:09,002 [INFO] VisionTera.Training: Warmup Epoch 1 [1200/1261] Loss: 0.5466
+2026-01-14 12:16:24,328 [INFO] VisionTera.Training: Warmup Epoch 1/5 | Loss: 0.6252 | Train Acc: 0.6554
+2026-01-14 12:16:25,456 [INFO] VisionTera.Training: Warmup Epoch 2 [0/1261] Loss: 0.6509
+2026-01-14 12:16:49,240 [INFO] VisionTera.Training: Warmup Epoch 2 [100/1261] Loss: 0.5949
+2026-01-14 12:17:11,899 [INFO] VisionTera.Training: Warmup Epoch 2 [200/1261] Loss: 0.6484
+2026-01-14 12:17:34,645 [INFO] VisionTera.Training: Warmup Epoch 2 [300/1261] Loss: 0.6286
+2026-01-14 12:18:00,504 [INFO] VisionTera.Training: Warmup Epoch 2 [400/1261] Loss: 0.6210
+2026-01-14 12:18:28,286 [INFO] VisionTera.Training: Warmup Epoch 2 [500/1261] Loss: 0.5833
+2026-01-14 12:18:55,587 [INFO] VisionTera.Training: Warmup Epoch 2 [600/1261] Loss: 0.6492
+2026-01-14 12:19:21,990 [INFO] VisionTera.Training: Warmup Epoch 2 [700/1261] Loss: 0.6287
+2026-01-14 12:19:47,654 [INFO] VisionTera.Training: Warmup Epoch 2 [800/1261] Loss: 0.5796
+2026-01-14 12:20:13,036 [INFO] VisionTera.Training: Warmup Epoch 2 [900/1261] Loss: 0.6103
+2026-01-14 12:20:37,620 [INFO] VisionTera.Training: Warmup Epoch 2 [1000/1261] Loss: 0.5620
+2026-01-14 12:21:02,667 [INFO] VisionTera.Training: Warmup Epoch 2 [1100/1261] Loss: 0.5921
+2026-01-14 12:21:29,431 [INFO] VisionTera.Training: Warmup Epoch 2 [1200/1261] Loss: 0.6004
+2026-01-14 12:21:44,342 [INFO] VisionTera.Training: Warmup Epoch 2/5 | Loss: 0.6003 | Train Acc: 0.6859
+2026-01-14 12:21:45,480 [INFO] VisionTera.Training: Warmup Epoch 3 [0/1261] Loss: 0.5798
+2026-01-14 12:22:08,514 [INFO] VisionTera.Training: Warmup Epoch 3 [100/1261] Loss: 0.5833
+2026-01-14 12:22:32,150 [INFO] VisionTera.Training: Warmup Epoch 3 [200/1261] Loss: 0.5740
+2026-01-14 12:22:54,237 [INFO] VisionTera.Training: Warmup Epoch 3 [300/1261] Loss: 0.6690
+2026-01-14 12:23:16,219 [INFO] VisionTera.Training: Warmup Epoch 3 [400/1261] Loss: 0.5746
+2026-01-14 12:23:38,031 [INFO] VisionTera.Training: Warmup Epoch 3 [500/1261] Loss: 0.6244
+2026-01-14 12:23:58,927 [INFO] VisionTera.Training: Warmup Epoch 3 [600/1261] Loss: 0.5463
+2026-01-14 12:24:19,205 [INFO] VisionTera.Training: Warmup Epoch 3 [700/1261] Loss: 0.5752
+2026-01-14 12:24:39,750 [INFO] VisionTera.Training: Warmup Epoch 3 [800/1261] Loss: 0.4977
+2026-01-14 12:24:59,495 [INFO] VisionTera.Training: Warmup Epoch 3 [900/1261] Loss: 0.6079
+2026-01-14 12:25:19,550 [INFO] VisionTera.Training: Warmup Epoch 3 [1000/1261] Loss: 0.5817
+2026-01-14 12:25:38,910 [INFO] VisionTera.Training: Warmup Epoch 3 [1100/1261] Loss: 0.5420
+2026-01-14 12:25:58,423 [INFO] VisionTera.Training: Warmup Epoch 3 [1200/1261] Loss: 0.7144
+2026-01-14 12:26:09,702 [INFO] VisionTera.Training: Warmup Epoch 3/5 | Loss: 0.5924 | Train Acc: 0.6935
+2026-01-14 12:26:10,634 [INFO] VisionTera.Training: Warmup Epoch 4 [0/1261] Loss: 0.5936
+2026-01-14 12:26:29,350 [INFO] VisionTera.Training: Warmup Epoch 4 [100/1261] Loss: 0.5934
+2026-01-14 12:26:48,292 [INFO] VisionTera.Training: Warmup Epoch 4 [200/1261] Loss: 0.4850
+2026-01-14 12:27:06,700 [INFO] VisionTera.Training: Warmup Epoch 4 [300/1261] Loss: 0.5385
+2026-01-14 12:27:25,121 [INFO] VisionTera.Training: Warmup Epoch 4 [400/1261] Loss: 0.6075
+2026-01-14 12:27:43,049 [INFO] VisionTera.Training: Warmup Epoch 4 [500/1261] Loss: 0.4914
+2026-01-14 12:28:01,089 [INFO] VisionTera.Training: Warmup Epoch 4 [600/1261] Loss: 0.5441
+2026-01-14 12:28:19,115 [INFO] VisionTera.Training: Warmup Epoch 4 [700/1261] Loss: 0.5587
+2026-01-14 12:28:36,805 [INFO] VisionTera.Training: Warmup Epoch 4 [800/1261] Loss: 0.5826
+2026-01-14 12:28:54,882 [INFO] VisionTera.Training: Warmup Epoch 4 [900/1261] Loss: 0.5514
+2026-01-14 12:29:12,430 [INFO] VisionTera.Training: Warmup Epoch 4 [1000/1261] Loss: 0.6314
+2026-01-14 12:29:30,157 [INFO] VisionTera.Training: Warmup Epoch 4 [1100/1261] Loss: 0.5531
+2026-01-14 12:29:49,567 [INFO] VisionTera.Training: Warmup Epoch 4 [1200/1261] Loss: 0.5718
+2026-01-14 12:30:04,337 [INFO] VisionTera.Training: Warmup Epoch 4/5 | Loss: 0.5880 | Train Acc: 0.6998
+2026-01-14 12:30:05,786 [INFO] VisionTera.Training: Warmup Epoch 5 [0/1261] Loss: 0.6155
+2026-01-14 12:30:41,765 [INFO] VisionTera.Training: Warmup Epoch 5 [100/1261] Loss: 0.5689
+2026-01-14 12:31:16,267 [INFO] VisionTera.Training: Warmup Epoch 5 [200/1261] Loss: 0.5154
+2026-01-14 12:31:42,123 [INFO] VisionTera.Training: Warmup Epoch 5 [300/1261] Loss: 0.6751
+2026-01-14 12:32:07,730 [INFO] VisionTera.Training: Warmup Epoch 5 [400/1261] Loss: 0.5940
+2026-01-14 12:32:32,663 [INFO] VisionTera.Training: Warmup Epoch 5 [500/1261] Loss: 0.6040
+2026-01-14 12:32:56,605 [INFO] VisionTera.Training: Warmup Epoch 5 [600/1261] Loss: 0.5751
+2026-01-14 12:33:20,165 [INFO] VisionTera.Training: Warmup Epoch 5 [700/1261] Loss: 0.5598
+2026-01-14 12:33:49,721 [INFO] VisionTera.Training: Warmup Epoch 5 [800/1261] Loss: 0.5940
+2026-01-14 12:34:20,512 [INFO] VisionTera.Training: Warmup Epoch 5 [900/1261] Loss: 0.6284
+2026-01-14 12:34:52,227 [INFO] VisionTera.Training: Warmup Epoch 5 [1000/1261] Loss: 0.5362
+2026-01-14 12:35:21,430 [INFO] VisionTera.Training: Warmup Epoch 5 [1100/1261] Loss: 0.5862
+2026-01-14 12:35:48,014 [INFO] VisionTera.Training: Warmup Epoch 5 [1200/1261] Loss: 0.5382
+2026-01-14 12:36:00,307 [INFO] VisionTera.Training: Warmup Epoch 5/5 | Loss: 0.5850 | Train Acc: 0.7030
+2026-01-14 12:36:00,308 [INFO] VisionTera.Training: Phase 2: Unfreezing Backbone (Full Training)...
+2026-01-14 12:36:03,916 [INFO] VisionTera.Training: Epoch 1 [0/1261] Loss: 0.6218
+2026-01-14 12:36:24,605 [INFO] VisionTera.Training: Epoch 1 [100/1261] Loss: 0.5896
+2026-01-14 12:36:45,661 [INFO] VisionTera.Training: Epoch 1 [200/1261] Loss: 0.5407
+2026-01-14 12:37:11,404 [INFO] VisionTera.Training: Epoch 1 [300/1261] Loss: 0.5759
+2026-01-14 12:37:39,490 [INFO] VisionTera.Training: Epoch 1 [400/1261] Loss: 0.5611
+2026-01-14 12:38:06,899 [INFO] VisionTera.Training: Epoch 1 [500/1261] Loss: 0.4896
+2026-01-14 12:38:38,217 [INFO] VisionTera.Training: Epoch 1 [600/1261] Loss: 0.4768
+2026-01-14 12:39:12,813 [INFO] VisionTera.Training: Epoch 1 [700/1261] Loss: 0.5684
+2026-01-14 12:39:46,436 [INFO] VisionTera.Training: Epoch 1 [800/1261] Loss: 0.5281
+2026-01-14 12:40:18,891 [INFO] VisionTera.Training: Epoch 1 [900/1261] Loss: 0.4134
+2026-01-14 12:40:51,724 [INFO] VisionTera.Training: Epoch 1 [1000/1261] Loss: 0.4998
+2026-01-14 12:41:24,257 [INFO] VisionTera.Training: Epoch 1 [1100/1261] Loss: 0.4439
+2026-01-14 12:41:55,212 [INFO] VisionTera.Training: Epoch 1 [1200/1261] Loss: 0.4521
+2026-01-14 12:43:38,823 [INFO] VisionTera.Training: Epoch 1/30 | Loss: 0.4847 | Train Acc: 0.8070 | Val Acc: 0.8372
+2026-01-14 12:43:38,824 [INFO] VisionTera.Training:   Male Acc: 0.8464 | Female Acc: 0.8279
+2026-01-14 12:43:39,160 [INFO] VisionTera.Training: Saved best model to infrastructure\models\v_20260114_120915\best_model.pt (Acc: 0.8372)
+2026-01-14 12:43:41,261 [INFO] VisionTera.Training: Epoch 2 [0/1261] Loss: 0.4310
+2026-01-14 12:44:17,929 [INFO] VisionTera.Training: Epoch 2 [100/1261] Loss: 0.4154
+2026-01-14 12:44:53,632 [INFO] VisionTera.Training: Epoch 2 [200/1261] Loss: 0.4445
+2026-01-14 12:45:28,912 [INFO] VisionTera.Training: Epoch 2 [300/1261] Loss: 0.4005
+2026-01-14 12:45:58,962 [INFO] VisionTera.Training: Epoch 2 [400/1261] Loss: 0.3916
+2026-01-14 12:46:32,241 [INFO] VisionTera.Training: Epoch 2 [500/1261] Loss: 0.4545
+2026-01-14 12:47:04,613 [INFO] VisionTera.Training: Epoch 2 [600/1261] Loss: 0.4426
+2026-01-14 12:47:37,499 [INFO] VisionTera.Training: Epoch 2 [700/1261] Loss: 0.3817
+2026-01-14 12:48:09,230 [INFO] VisionTera.Training: Epoch 2 [800/1261] Loss: 0.3136
+2026-01-14 12:48:40,513 [INFO] VisionTera.Training: Epoch 2 [900/1261] Loss: 0.3786
+2026-01-14 12:49:11,632 [INFO] VisionTera.Training: Epoch 2 [1000/1261] Loss: 0.4563
+2026-01-14 12:49:41,428 [INFO] VisionTera.Training: Epoch 2 [1100/1261] Loss: 0.4294
+2026-01-14 12:50:11,568 [INFO] VisionTera.Training: Epoch 2 [1200/1261] Loss: 0.3324
+2026-01-14 12:50:43,145 [INFO] VisionTera.Training: Epoch 2/30 | Loss: 0.3865 | Train Acc: 0.8860 | Val Acc: 0.8706
+2026-01-14 12:50:43,145 [INFO] VisionTera.Training:   Male Acc: 0.8675 | Female Acc: 0.8738
+2026-01-14 12:50:43,386 [INFO] VisionTera.Training: Saved best model to infrastructure\models\v_20260114_120915\best_model.pt (Acc: 0.8706)
+2026-01-14 12:50:44,822 [INFO] VisionTera.Training: Epoch 3 [0/1261] Loss: 0.3478
+2026-01-14 12:51:13,537 [INFO] VisionTera.Training: Epoch 3 [100/1261] Loss: 0.3073
+2026-01-14 12:51:41,888 [INFO] VisionTera.Training: Epoch 3 [200/1261] Loss: 0.3804
+2026-01-14 12:52:10,829 [INFO] VisionTera.Training: Epoch 3 [300/1261] Loss: 0.3664
+2026-01-14 12:52:38,338 [INFO] VisionTera.Training: Epoch 3 [400/1261] Loss: 0.3606
+2026-01-14 12:53:05,406 [INFO] VisionTera.Training: Epoch 3 [500/1261] Loss: 0.3516
+2026-01-14 12:53:29,780 [INFO] VisionTera.Training: Epoch 3 [600/1261] Loss: 0.3640
+2026-01-14 12:53:53,148 [INFO] VisionTera.Training: Epoch 3 [700/1261] Loss: 0.3227
+2026-01-14 12:54:15,880 [INFO] VisionTera.Training: Epoch 3 [800/1261] Loss: 0.4171
+2026-01-14 12:54:38,268 [INFO] VisionTera.Training: Epoch 3 [900/1261] Loss: 0.3393
+2026-01-14 12:55:00,419 [INFO] VisionTera.Training: Epoch 3 [1000/1261] Loss: 0.2858
+2026-01-14 12:55:22,456 [INFO] VisionTera.Training: Epoch 3 [1100/1261] Loss: 0.3319
+2026-01-14 12:55:44,430 [INFO] VisionTera.Training: Epoch 3 [1200/1261] Loss: 0.3434
+2026-01-14 12:56:12,110 [INFO] VisionTera.Training: Epoch 3/30 | Loss: 0.3586 | Train Acc: 0.9048 | Val Acc: 0.8801
+2026-01-14 12:56:12,110 [INFO] VisionTera.Training:   Male Acc: 0.8740 | Female Acc: 0.8863
+2026-01-14 12:56:12,369 [INFO] VisionTera.Training: Saved best model to infrastructure\models\v_20260114_120915\best_model.pt (Acc: 0.8801)
+2026-01-14 12:56:13,575 [INFO] VisionTera.Training: Epoch 4 [0/1261] Loss: 0.3475
+2026-01-14 12:56:39,354 [INFO] VisionTera.Training: Epoch 4 [100/1261] Loss: 0.5213
+2026-01-14 12:57:04,719 [INFO] VisionTera.Training: Epoch 4 [200/1261] Loss: 0.3255
+2026-01-14 12:57:29,856 [INFO] VisionTera.Training: Epoch 4 [300/1261] Loss: 0.3524
+2026-01-14 12:57:54,863 [INFO] VisionTera.Training: Epoch 4 [400/1261] Loss: 0.3446
+2026-01-14 12:58:20,582 [INFO] VisionTera.Training: Epoch 4 [500/1261] Loss: 0.2693
+2026-01-14 12:58:48,580 [INFO] VisionTera.Training: Epoch 4 [600/1261] Loss: 0.3007
+2026-01-14 12:59:16,986 [INFO] VisionTera.Training: Epoch 4 [700/1261] Loss: 0.3911
+2026-01-14 12:59:45,691 [INFO] VisionTera.Training: Epoch 4 [800/1261] Loss: 0.3126
+2026-01-14 13:00:08,856 [INFO] VisionTera.Training: Epoch 4 [900/1261] Loss: 0.3344
+2026-01-14 13:00:36,780 [INFO] VisionTera.Training: Epoch 4 [1000/1261] Loss: 0.3027
+2026-01-14 13:01:04,126 [INFO] VisionTera.Training: Epoch 4 [1100/1261] Loss: 0.3357
+2026-01-14 13:01:31,448 [INFO] VisionTera.Training: Epoch 4 [1200/1261] Loss: 0.3890
+2026-01-14 13:02:00,482 [INFO] VisionTera.Training: Epoch 4/30 | Loss: 0.3567 | Train Acc: 0.9058 | Val Acc: 0.8534
+2026-01-14 13:02:00,484 [INFO] VisionTera.Training:   Male Acc: 0.8038 | Female Acc: 0.9035
+2026-01-14 13:02:01,787 [INFO] VisionTera.Training: Epoch 5 [0/1261] Loss: 0.3771
+2026-01-14 13:02:28,778 [INFO] VisionTera.Training: Epoch 5 [100/1261] Loss: 0.3440
+2026-01-14 13:02:55,521 [INFO] VisionTera.Training: Epoch 5 [200/1261] Loss: 0.3796
+2026-01-14 13:03:21,898 [INFO] VisionTera.Training: Epoch 5 [300/1261] Loss: 0.4020
+2026-01-14 13:03:47,859 [INFO] VisionTera.Training: Epoch 5 [400/1261] Loss: 0.3406
+2026-01-14 13:04:13,699 [INFO] VisionTera.Training: Epoch 5 [500/1261] Loss: 0.3688
+2026-01-14 13:04:39,542 [INFO] VisionTera.Training: Epoch 5 [600/1261] Loss: 0.3647
+2026-01-14 13:05:04,890 [INFO] VisionTera.Training: Epoch 5 [700/1261] Loss: 0.3057
+2026-01-14 13:05:26,971 [INFO] VisionTera.Training: Epoch 5 [800/1261] Loss: 0.3602
+2026-01-14 13:05:48,826 [INFO] VisionTera.Training: Epoch 5 [900/1261] Loss: 0.2868
+2026-01-14 13:06:10,571 [INFO] VisionTera.Training: Epoch 5 [1000/1261] Loss: 0.3963
+2026-01-14 13:06:32,308 [INFO] VisionTera.Training: Epoch 5 [1100/1261] Loss: 0.4002
+2026-01-14 13:06:54,059 [INFO] VisionTera.Training: Epoch 5 [1200/1261] Loss: 0.3684
+2026-01-14 13:07:19,340 [INFO] VisionTera.Training: Epoch 5/30 | Loss: 0.3673 | Train Acc: 0.8998 | Val Acc: 0.8691
+2026-01-14 13:07:19,340 [INFO] VisionTera.Training:   Male Acc: 0.9036 | Female Acc: 0.8343
+2026-01-14 13:07:20,257 [INFO] VisionTera.Training: Epoch 6 [0/1261] Loss: 0.3833
+2026-01-14 13:07:41,893 [INFO] VisionTera.Training: Epoch 6 [100/1261] Loss: 0.3055
+2026-01-14 13:08:03,523 [INFO] VisionTera.Training: Epoch 6 [200/1261] Loss: 0.4178
+2026-01-14 13:08:25,202 [INFO] VisionTera.Training: Epoch 6 [300/1261] Loss: 0.3387
+2026-01-14 13:08:46,909 [INFO] VisionTera.Training: Epoch 6 [400/1261] Loss: 0.3474
+2026-01-14 13:09:08,569 [INFO] VisionTera.Training: Epoch 6 [500/1261] Loss: 0.4347
+2026-01-14 13:09:30,261 [INFO] VisionTera.Training: Epoch 6 [600/1261] Loss: 0.4252
+2026-01-14 13:09:51,953 [INFO] VisionTera.Training: Epoch 6 [700/1261] Loss: 0.3007
+2026-01-14 13:10:13,639 [INFO] VisionTera.Training: Epoch 6 [800/1261] Loss: 0.3683
+2026-01-14 13:10:35,247 [INFO] VisionTera.Training: Epoch 6 [900/1261] Loss: 0.3475
+2026-01-14 13:10:56,938 [INFO] VisionTera.Training: Epoch 6 [1000/1261] Loss: 0.3205
+2026-01-14 13:11:18,603 [INFO] VisionTera.Training: Epoch 6 [1100/1261] Loss: 0.3445
+2026-01-14 13:11:40,277 [INFO] VisionTera.Training: Epoch 6 [1200/1261] Loss: 0.3682
+2026-01-14 13:12:05,671 [INFO] VisionTera.Training: Epoch 6/30 | Loss: 0.3726 | Train Acc: 0.8942 | Val Acc: 0.8466
+2026-01-14 13:12:05,676 [INFO] VisionTera.Training:   Male Acc: 0.7967 | Female Acc: 0.8971
+2026-01-14 13:12:06,562 [INFO] VisionTera.Training: Epoch 7 [0/1261] Loss: 0.3820
+2026-01-14 13:12:28,217 [INFO] VisionTera.Training: Epoch 7 [100/1261] Loss: 0.4130
+2026-01-14 13:12:49,860 [INFO] VisionTera.Training: Epoch 7 [200/1261] Loss: 0.3663
+2026-01-14 13:13:11,465 [INFO] VisionTera.Training: Epoch 7 [300/1261] Loss: 0.3555
+2026-01-14 13:13:33,085 [INFO] VisionTera.Training: Epoch 7 [400/1261] Loss: 0.3983
+2026-01-14 13:13:54,700 [INFO] VisionTera.Training: Epoch 7 [500/1261] Loss: 0.4094
+2026-01-14 13:14:16,357 [INFO] VisionTera.Training: Epoch 7 [600/1261] Loss: 0.3109
+2026-01-14 13:14:37,948 [INFO] VisionTera.Training: Epoch 7 [700/1261] Loss: 0.3776
+2026-01-14 13:14:59,634 [INFO] VisionTera.Training: Epoch 7 [800/1261] Loss: 0.3400
+2026-01-14 13:15:21,290 [INFO] VisionTera.Training: Epoch 7 [900/1261] Loss: 0.3218
+2026-01-14 13:15:42,883 [INFO] VisionTera.Training: Epoch 7 [1000/1261] Loss: 0.4088
+2026-01-14 13:16:04,545 [INFO] VisionTera.Training: Epoch 7 [1100/1261] Loss: 0.4354
+2026-01-14 13:16:26,701 [INFO] VisionTera.Training: Epoch 7 [1200/1261] Loss: 0.3941
+2026-01-14 13:17:24,795 [INFO] VisionTera.Training: Epoch 7/30 | Loss: 0.3766 | Train Acc: 0.8925 | Val Acc: 0.8393
+2026-01-14 13:17:24,797 [INFO] VisionTera.Training:   Male Acc: 0.7537 | Female Acc: 0.9258
+2026-01-14 13:17:26,329 [INFO] VisionTera.Training: Epoch 8 [0/1261] Loss: 0.4289
+2026-01-14 13:17:54,312 [INFO] VisionTera.Training: Epoch 8 [100/1261] Loss: 0.3051
+2026-01-14 13:18:21,204 [INFO] VisionTera.Training: Epoch 8 [200/1261] Loss: 0.3919
+2026-01-14 13:18:47,877 [INFO] VisionTera.Training: Epoch 8 [300/1261] Loss: 0.3852
+2026-01-14 13:19:13,630 [INFO] VisionTera.Training: Epoch 8 [400/1261] Loss: 0.4341
+2026-01-14 13:19:38,937 [INFO] VisionTera.Training: Epoch 8 [500/1261] Loss: 0.3916
+2026-01-14 13:20:02,875 [INFO] VisionTera.Training: Epoch 8 [600/1261] Loss: 0.4341
+2026-01-14 13:20:26,210 [INFO] VisionTera.Training: Epoch 8 [700/1261] Loss: 0.3300
+2026-01-14 13:20:49,637 [INFO] VisionTera.Training: Epoch 8 [800/1261] Loss: 0.4025
+2026-01-14 13:21:13,014 [INFO] VisionTera.Training: Epoch 8 [900/1261] Loss: 0.3558
+2026-01-14 13:21:36,297 [INFO] VisionTera.Training: Epoch 8 [1000/1261] Loss: 0.3579
+2026-01-14 13:22:01,545 [INFO] VisionTera.Training: Epoch 8 [1100/1261] Loss: 0.4044
+2026-01-14 13:22:25,191 [INFO] VisionTera.Training: Epoch 8 [1200/1261] Loss: 0.3323
+2026-01-14 13:22:50,503 [INFO] VisionTera.Training: Epoch 8/30 | Loss: 0.3752 | Train Acc: 0.8942 | Val Acc: 0.8549
+2026-01-14 13:22:50,503 [INFO] VisionTera.Training:   Male Acc: 0.8521 | Female Acc: 0.8578
+2026-01-14 13:22:51,542 [INFO] VisionTera.Training: Epoch 9 [0/1261] Loss: 0.3781
+2026-01-14 13:23:13,205 [INFO] VisionTera.Training: Epoch 9 [100/1261] Loss: 0.3171
+2026-01-14 13:23:34,993 [INFO] VisionTera.Training: Epoch 9 [200/1261] Loss: 0.3785
+2026-01-14 13:23:56,666 [INFO] VisionTera.Training: Epoch 9 [300/1261] Loss: 0.3061
+2026-01-14 13:24:18,424 [INFO] VisionTera.Training: Epoch 9 [400/1261] Loss: 0.4371
+2026-01-14 13:24:40,170 [INFO] VisionTera.Training: Epoch 9 [500/1261] Loss: 0.3790
+2026-01-14 13:25:01,900 [INFO] VisionTera.Training: Epoch 9 [600/1261] Loss: 0.2980
+2026-01-14 13:25:24,334 [INFO] VisionTera.Training: Epoch 9 [700/1261] Loss: 0.3853
+2026-01-14 13:25:46,795 [INFO] VisionTera.Training: Epoch 9 [800/1261] Loss: 0.4539
+2026-01-14 13:26:09,390 [INFO] VisionTera.Training: Epoch 9 [900/1261] Loss: 0.3595
+2026-01-14 13:26:32,353 [INFO] VisionTera.Training: Epoch 9 [1000/1261] Loss: 0.3362
+2026-01-14 13:26:55,240 [INFO] VisionTera.Training: Epoch 9 [1100/1261] Loss: 0.3921
+2026-01-14 13:27:18,114 [INFO] VisionTera.Training: Epoch 9 [1200/1261] Loss: 0.3860
+2026-01-14 13:27:44,455 [INFO] VisionTera.Training: Epoch 9/30 | Loss: 0.3692 | Train Acc: 0.8975 | Val Acc: 0.8260
+2026-01-14 13:27:44,455 [INFO] VisionTera.Training:   Male Acc: 0.9308 | Female Acc: 0.7200
+2026-01-14 13:27:45,328 [INFO] VisionTera.Training: Epoch 10 [0/1261] Loss: 0.3196
+2026-01-14 13:28:08,177 [INFO] VisionTera.Training: Epoch 10 [100/1261] Loss: 0.4635
+2026-01-14 13:28:31,082 [INFO] VisionTera.Training: Epoch 10 [200/1261] Loss: 0.3208
+2026-01-14 13:28:54,112 [INFO] VisionTera.Training: Epoch 10 [300/1261] Loss: 0.3128
+2026-01-14 13:29:17,117 [INFO] VisionTera.Training: Epoch 10 [400/1261] Loss: 0.5137
+2026-01-14 13:29:41,297 [INFO] VisionTera.Training: Epoch 10 [500/1261] Loss: 0.3981
+2026-01-14 13:30:06,625 [INFO] VisionTera.Training: Epoch 10 [600/1261] Loss: 0.4156
+2026-01-14 13:30:34,545 [INFO] VisionTera.Training: Epoch 10 [700/1261] Loss: 0.3092
+2026-01-14 13:31:02,937 [INFO] VisionTera.Training: Epoch 10 [800/1261] Loss: 0.3454
+2026-01-14 13:31:31,799 [INFO] VisionTera.Training: Epoch 10 [900/1261] Loss: 0.3343
+2026-01-14 13:32:01,084 [INFO] VisionTera.Training: Epoch 10 [1000/1261] Loss: 0.4781
+2026-01-14 13:32:30,699 [INFO] VisionTera.Training: Epoch 10 [1100/1261] Loss: 0.2642
+2026-01-14 13:33:00,874 [INFO] VisionTera.Training: Epoch 10 [1200/1261] Loss: 0.3559
+2026-01-14 13:33:36,128 [INFO] VisionTera.Training: Epoch 10/30 | Loss: 0.3620 | Train Acc: 0.9023 | Val Acc: 0.8593
+2026-01-14 13:33:36,145 [INFO] VisionTera.Training:   Male Acc: 0.7904 | Female Acc: 0.9290
+2026-01-14 13:33:37,045 [INFO] VisionTera.Training: Epoch 11 [0/1261] Loss: 0.3032
+2026-01-14 13:34:07,590 [INFO] VisionTera.Training: Epoch 11 [100/1261] Loss: 0.3355
+2026-01-14 13:34:38,277 [INFO] VisionTera.Training: Epoch 11 [200/1261] Loss: 0.3549
+2026-01-14 13:35:08,990 [INFO] VisionTera.Training: Epoch 11 [300/1261] Loss: 0.3504
+2026-01-14 13:35:39,923 [INFO] VisionTera.Training: Epoch 11 [400/1261] Loss: 0.4199
+2026-01-14 13:36:10,878 [INFO] VisionTera.Training: Epoch 11 [500/1261] Loss: 0.2835
+2026-01-14 13:36:42,328 [INFO] VisionTera.Training: Epoch 11 [600/1261] Loss: 0.3932
+2026-01-14 13:37:13,774 [INFO] VisionTera.Training: Epoch 11 [700/1261] Loss: 0.3390
+2026-01-14 13:37:46,807 [INFO] VisionTera.Training: Epoch 11 [800/1261] Loss: 0.3144
+2026-01-14 13:38:20,862 [INFO] VisionTera.Training: Epoch 11 [900/1261] Loss: 0.3651
+2026-01-14 13:38:55,267 [INFO] VisionTera.Training: Epoch 11 [1000/1261] Loss: 0.3889
+2026-01-14 13:39:29,180 [INFO] VisionTera.Training: Epoch 11 [1100/1261] Loss: 0.3330
+2026-01-14 13:40:02,855 [INFO] VisionTera.Training: Epoch 11 [1200/1261] Loss: 0.4028
+2026-01-14 13:40:54,111 [INFO] VisionTera.Training: Epoch 11/30 | Loss: 0.3529 | Train Acc: 0.9088 | Val Acc: 0.8673
+2026-01-14 13:40:54,111 [INFO] VisionTera.Training:   Male Acc: 0.9209 | Female Acc: 0.8131
+2026-01-14 13:40:55,147 [INFO] VisionTera.Training: Epoch 12 [0/1261] Loss: 0.3769
+2026-01-14 13:41:29,106 [INFO] VisionTera.Training: Epoch 12 [100/1261] Loss: 0.3197
+2026-01-14 13:42:03,184 [INFO] VisionTera.Training: Epoch 12 [200/1261] Loss: 0.3199
+2026-01-14 13:42:38,057 [INFO] VisionTera.Training: Epoch 12 [300/1261] Loss: 0.2695
+2026-01-14 13:43:12,499 [INFO] VisionTera.Training: Epoch 12 [400/1261] Loss: 0.2919
+2026-01-14 13:43:46,505 [INFO] VisionTera.Training: Epoch 12 [500/1261] Loss: 0.3686
+2026-01-14 13:44:20,142 [INFO] VisionTera.Training: Epoch 12 [600/1261] Loss: 0.3700
+2026-01-14 13:44:54,460 [INFO] VisionTera.Training: Epoch 12 [700/1261] Loss: 0.2719
+2026-01-14 13:45:28,940 [INFO] VisionTera.Training: Epoch 12 [800/1261] Loss: 0.3691
+2026-01-14 13:46:02,801 [INFO] VisionTera.Training: Epoch 12 [900/1261] Loss: 0.3850
+2026-01-14 13:46:36,442 [INFO] VisionTera.Training: Epoch 12 [1000/1261] Loss: 0.3563
+2026-01-14 13:47:10,788 [INFO] VisionTera.Training: Epoch 12 [1100/1261] Loss: 0.3016
+2026-01-14 13:47:44,364 [INFO] VisionTera.Training: Epoch 12 [1200/1261] Loss: 0.3268
+2026-01-14 13:48:24,279 [INFO] VisionTera.Training: Epoch 12/30 | Loss: 0.3423 | Train Acc: 0.9158 | Val Acc: 0.8711
+2026-01-14 13:48:24,279 [INFO] VisionTera.Training:   Male Acc: 0.8484 | Female Acc: 0.8941
+2026-01-14 13:48:25,307 [INFO] VisionTera.Training: Epoch 13 [0/1261] Loss: 0.3100
+2026-01-14 13:48:59,452 [INFO] VisionTera.Training: Epoch 13 [100/1261] Loss: 0.3355
+2026-01-14 13:49:33,570 [INFO] VisionTera.Training: Epoch 13 [200/1261] Loss: 0.3337
+2026-01-14 13:50:08,102 [INFO] VisionTera.Training: Epoch 13 [300/1261] Loss: 0.2931
+2026-01-14 13:50:42,280 [INFO] VisionTera.Training: Epoch 13 [400/1261] Loss: 0.3623
+2026-01-14 13:51:16,383 [INFO] VisionTera.Training: Epoch 13 [500/1261] Loss: 0.3863
+2026-01-14 13:51:50,620 [INFO] VisionTera.Training: Epoch 13 [600/1261] Loss: 0.3181
+2026-01-14 13:52:24,116 [INFO] VisionTera.Training: Epoch 13 [700/1261] Loss: 0.3122
+2026-01-14 13:52:58,345 [INFO] VisionTera.Training: Epoch 13 [800/1261] Loss: 0.2852
+2026-01-14 13:53:35,049 [INFO] VisionTera.Training: Epoch 13 [900/1261] Loss: 0.2947
+2026-01-14 13:54:16,641 [INFO] VisionTera.Training: Epoch 13 [1000/1261] Loss: 0.3154
+2026-01-14 13:54:57,413 [INFO] VisionTera.Training: Epoch 13 [1100/1261] Loss: 0.3572
+2026-01-14 13:55:37,326 [INFO] VisionTera.Training: Epoch 13 [1200/1261] Loss: 0.2685
+2026-01-14 13:56:35,376 [INFO] VisionTera.Training: Epoch 13/30 | Loss: 0.3335 | Train Acc: 0.9207 | Val Acc: 0.8701
+2026-01-14 13:56:35,377 [INFO] VisionTera.Training:   Male Acc: 0.9241 | Female Acc: 0.8155
+2026-01-14 13:56:36,560 [INFO] VisionTera.Training: Epoch 14 [0/1261] Loss: 0.2767
+2026-01-14 13:57:14,961 [INFO] VisionTera.Training: Epoch 14 [100/1261] Loss: 0.3806
+2026-01-14 13:57:55,559 [INFO] VisionTera.Training: Epoch 14 [200/1261] Loss: 0.2984
+2026-01-14 13:58:36,736 [INFO] VisionTera.Training: Epoch 14 [300/1261] Loss: 0.3333
+2026-01-14 13:59:18,988 [INFO] VisionTera.Training: Epoch 14 [400/1261] Loss: 0.3191
+2026-01-14 14:00:01,860 [INFO] VisionTera.Training: Epoch 14 [500/1261] Loss: 0.3381
+2026-01-14 14:00:42,622 [INFO] VisionTera.Training: Epoch 14 [600/1261] Loss: 0.2618
+2026-01-14 14:01:20,063 [INFO] VisionTera.Training: Epoch 14 [700/1261] Loss: 0.4536
+2026-01-14 14:01:55,872 [INFO] VisionTera.Training: Epoch 14 [800/1261] Loss: 0.2644
+2026-01-14 14:02:31,475 [INFO] VisionTera.Training: Epoch 14 [900/1261] Loss: 0.3072
+2026-01-14 14:03:06,865 [INFO] VisionTera.Training: Epoch 14 [1000/1261] Loss: 0.3425
+2026-01-14 14:03:42,533 [INFO] VisionTera.Training: Epoch 14 [1100/1261] Loss: 0.2848
+2026-01-14 14:04:18,277 [INFO] VisionTera.Training: Epoch 14 [1200/1261] Loss: 0.2794
+2026-01-14 14:04:58,699 [INFO] VisionTera.Training: Epoch 14/30 | Loss: 0.3242 | Train Acc: 0.9273 | Val Acc: 0.8795
+2026-01-14 14:04:58,700 [INFO] VisionTera.Training:   Male Acc: 0.9320 | Female Acc: 0.8265
+2026-01-14 14:04:59,786 [INFO] VisionTera.Training: Epoch 15 [0/1261] Loss: 0.2939
+2026-01-14 14:05:34,645 [INFO] VisionTera.Training: Epoch 15 [100/1261] Loss: 0.2780
+2026-01-14 14:06:11,873 [INFO] VisionTera.Training: Epoch 15 [200/1261] Loss: 0.3374
+2026-01-14 14:06:48,152 [INFO] VisionTera.Training: Epoch 15 [300/1261] Loss: 0.2774
+2026-01-14 14:07:23,709 [INFO] VisionTera.Training: Epoch 15 [400/1261] Loss: 0.3737
+2026-01-14 14:07:58,802 [INFO] VisionTera.Training: Epoch 15 [500/1261] Loss: 0.3113
+2026-01-14 14:08:33,314 [INFO] VisionTera.Training: Epoch 15 [600/1261] Loss: 0.3334
+2026-01-14 14:09:08,349 [INFO] VisionTera.Training: Epoch 15 [700/1261] Loss: 0.3288
+2026-01-14 14:09:43,103 [INFO] VisionTera.Training: Epoch 15 [800/1261] Loss: 0.3316
+2026-01-14 14:10:17,665 [INFO] VisionTera.Training: Epoch 15 [900/1261] Loss: 0.3643
+2026-01-14 14:10:51,757 [INFO] VisionTera.Training: Epoch 15 [1000/1261] Loss: 0.3799
+2026-01-14 14:11:25,897 [INFO] VisionTera.Training: Epoch 15 [1100/1261] Loss: 0.2508
+2026-01-14 14:12:00,037 [INFO] VisionTera.Training: Epoch 15 [1200/1261] Loss: 0.3343
+2026-01-14 14:12:39,687 [INFO] VisionTera.Training: Epoch 15/30 | Loss: 0.3153 | Train Acc: 0.9331 | Val Acc: 0.8869
+2026-01-14 14:12:39,688 [INFO] VisionTera.Training:   Male Acc: 0.9150 | Female Acc: 0.8584
+2026-01-14 14:12:39,895 [INFO] VisionTera.Training: Saved best model to infrastructure\models\v_20260114_120915\best_model.pt (Acc: 0.8869)
+2026-01-14 14:12:40,880 [INFO] VisionTera.Training: Epoch 16 [0/1261] Loss: 0.3347
+2026-01-14 14:13:15,210 [INFO] VisionTera.Training: Epoch 16 [100/1261] Loss: 0.2876
+2026-01-14 14:13:49,766 [INFO] VisionTera.Training: Epoch 16 [200/1261] Loss: 0.2752
+2026-01-14 14:14:23,886 [INFO] VisionTera.Training: Epoch 16 [300/1261] Loss: 0.3316
+2026-01-14 14:14:58,595 [INFO] VisionTera.Training: Epoch 16 [400/1261] Loss: 0.3019
+2026-01-14 14:15:32,815 [INFO] VisionTera.Training: Epoch 16 [500/1261] Loss: 0.3074
+2026-01-14 14:16:07,231 [INFO] VisionTera.Training: Epoch 16 [600/1261] Loss: 0.3142
+2026-01-14 14:16:41,897 [INFO] VisionTera.Training: Epoch 16 [700/1261] Loss: 0.2697
+2026-01-14 14:17:14,906 [INFO] VisionTera.Training: Epoch 16 [800/1261] Loss: 0.2507
+2026-01-14 14:17:49,903 [INFO] VisionTera.Training: Epoch 16 [900/1261] Loss: 0.3328
+2026-01-14 14:18:24,501 [INFO] VisionTera.Training: Epoch 16 [1000/1261] Loss: 0.3357
+2026-01-14 14:18:58,639 [INFO] VisionTera.Training: Epoch 16 [1100/1261] Loss: 0.3344
+2026-01-14 14:19:33,047 [INFO] VisionTera.Training: Epoch 16 [1200/1261] Loss: 0.2856
+2026-01-14 14:20:11,765 [INFO] VisionTera.Training: Epoch 16/30 | Loss: 0.3071 | Train Acc: 0.9380 | Val Acc: 0.8936
+2026-01-14 14:20:11,767 [INFO] VisionTera.Training:   Male Acc: 0.9089 | Female Acc: 0.8781
+2026-01-14 14:20:11,924 [INFO] VisionTera.Training: Saved best model to infrastructure\models\v_20260114_120915\best_model.pt (Acc: 0.8936)
+2026-01-14 14:20:12,799 [INFO] VisionTera.Training: Epoch 17 [0/1261] Loss: 0.3275
+2026-01-14 14:20:48,015 [INFO] VisionTera.Training: Epoch 17 [100/1261] Loss: 0.2605
+2026-01-14 14:21:22,430 [INFO] VisionTera.Training: Epoch 17 [200/1261] Loss: 0.3145
+2026-01-14 14:21:59,773 [INFO] VisionTera.Training: Epoch 17 [300/1261] Loss: 0.3314
+2026-01-14 14:22:36,990 [INFO] VisionTera.Training: Epoch 17 [400/1261] Loss: 0.2641
+2026-01-14 14:23:13,154 [INFO] VisionTera.Training: Epoch 17 [500/1261] Loss: 0.2575
+2026-01-14 14:23:51,125 [INFO] VisionTera.Training: Epoch 17 [600/1261] Loss: 0.2930
+2026-01-14 14:24:29,821 [INFO] VisionTera.Training: Epoch 17 [700/1261] Loss: 0.3176
+2026-01-14 14:25:06,678 [INFO] VisionTera.Training: Epoch 17 [800/1261] Loss: 0.3014
+2026-01-14 14:25:43,575 [INFO] VisionTera.Training: Epoch 17 [900/1261] Loss: 0.2603
+2026-01-14 14:26:20,062 [INFO] VisionTera.Training: Epoch 17 [1000/1261] Loss: 0.2812
+2026-01-14 14:26:56,109 [INFO] VisionTera.Training: Epoch 17 [1100/1261] Loss: 0.3088
+2026-01-14 14:27:32,719 [INFO] VisionTera.Training: Epoch 17 [1200/1261] Loss: 0.2773
+2026-01-14 14:28:26,189 [INFO] VisionTera.Training: Epoch 17/30 | Loss: 0.3006 | Train Acc: 0.9424 | Val Acc: 0.8786
+2026-01-14 14:28:26,189 [INFO] VisionTera.Training:   Male Acc: 0.8088 | Female Acc: 0.9493
+2026-01-14 14:28:27,217 [INFO] VisionTera.Training: Epoch 18 [0/1261] Loss: 0.3354
+2026-01-14 14:29:05,952 [INFO] VisionTera.Training: Epoch 18 [100/1261] Loss: 0.3352
+2026-01-14 14:29:37,252 [INFO] VisionTera.Training: Epoch 18 [200/1261] Loss: 0.3305
+2026-01-14 14:30:04,129 [INFO] VisionTera.Training: Epoch 18 [300/1261] Loss: 0.3153
+2026-01-14 14:30:29,207 [INFO] VisionTera.Training: Epoch 18 [400/1261] Loss: 0.2733
+2026-01-14 14:30:53,749 [INFO] VisionTera.Training: Epoch 18 [500/1261] Loss: 0.3071
+2026-01-14 14:31:18,293 [INFO] VisionTera.Training: Epoch 18 [600/1261] Loss: 0.2287
+2026-01-14 14:31:42,794 [INFO] VisionTera.Training: Epoch 18 [700/1261] Loss: 0.2992
+2026-01-14 14:32:07,311 [INFO] VisionTera.Training: Epoch 18 [800/1261] Loss: 0.2330
+2026-01-14 14:32:31,825 [INFO] VisionTera.Training: Epoch 18 [900/1261] Loss: 0.3301
+2026-01-14 14:32:56,396 [INFO] VisionTera.Training: Epoch 18 [1000/1261] Loss: 0.3113
+2026-01-14 14:33:20,923 [INFO] VisionTera.Training: Epoch 18 [1100/1261] Loss: 0.3660
+2026-01-14 14:33:45,653 [INFO] VisionTera.Training: Epoch 18 [1200/1261] Loss: 0.2715
+2026-01-14 14:34:14,579 [INFO] VisionTera.Training: Epoch 18/30 | Loss: 0.2940 | Train Acc: 0.9454 | Val Acc: 0.8957
+2026-01-14 14:34:14,579 [INFO] VisionTera.Training:   Male Acc: 0.8551 | Female Acc: 0.9368
+2026-01-14 14:34:14,761 [INFO] VisionTera.Training: Saved best model to infrastructure\models\v_20260114_120915\best_model.pt (Acc: 0.8957)
+2026-01-14 14:34:15,960 [INFO] VisionTera.Training: Epoch 19 [0/1261] Loss: 0.3097
+2026-01-14 14:34:41,268 [INFO] VisionTera.Training: Epoch 19 [100/1261] Loss: 0.2348
+2026-01-14 14:35:06,047 [INFO] VisionTera.Training: Epoch 19 [200/1261] Loss: 0.3535
+2026-01-14 14:35:30,908 [INFO] VisionTera.Training: Epoch 19 [300/1261] Loss: 0.3004
+2026-01-14 14:35:56,122 [INFO] VisionTera.Training: Epoch 19 [400/1261] Loss: 0.2473
+2026-01-14 14:36:21,511 [INFO] VisionTera.Training: Epoch 19 [500/1261] Loss: 0.2288
+2026-01-14 14:36:46,560 [INFO] VisionTera.Training: Epoch 19 [600/1261] Loss: 0.2725
+2026-01-14 14:37:11,186 [INFO] VisionTera.Training: Epoch 19 [700/1261] Loss: 0.2823
+2026-01-14 14:37:36,168 [INFO] VisionTera.Training: Epoch 19 [800/1261] Loss: 0.2308
+2026-01-14 14:38:00,849 [INFO] VisionTera.Training: Epoch 19 [900/1261] Loss: 0.2627
+2026-01-14 14:38:25,393 [INFO] VisionTera.Training: Epoch 19 [1000/1261] Loss: 0.2797
+2026-01-14 14:38:49,934 [INFO] VisionTera.Training: Epoch 19 [1100/1261] Loss: 0.2832
+2026-01-14 14:39:14,459 [INFO] VisionTera.Training: Epoch 19 [1200/1261] Loss: 0.2810
+2026-01-14 14:40:00,053 [INFO] VisionTera.Training: Epoch 19/30 | Loss: 0.2843 | Train Acc: 0.9524 | Val Acc: 0.9049
+2026-01-14 14:40:00,053 [INFO] VisionTera.Training:   Male Acc: 0.8987 | Female Acc: 0.9112
+2026-01-14 14:40:00,220 [INFO] VisionTera.Training: Saved best model to infrastructure\models\v_20260114_120915\best_model.pt (Acc: 0.9049)
+2026-01-14 14:40:01,433 [INFO] VisionTera.Training: Epoch 20 [0/1261] Loss: 0.3227
+2026-01-14 14:40:25,486 [INFO] VisionTera.Training: Epoch 20 [100/1261] Loss: 0.2915
+2026-01-14 14:40:49,890 [INFO] VisionTera.Training: Epoch 20 [200/1261] Loss: 0.3358
+2026-01-14 14:41:14,533 [INFO] VisionTera.Training: Epoch 20 [300/1261] Loss: 0.2349
+2026-01-14 14:41:39,417 [INFO] VisionTera.Training: Epoch 20 [400/1261] Loss: 0.2629
+2026-01-14 14:42:04,177 [INFO] VisionTera.Training: Epoch 20 [500/1261] Loss: 0.2594
+2026-01-14 14:42:28,633 [INFO] VisionTera.Training: Epoch 20 [600/1261] Loss: 0.3051
+2026-01-14 14:42:53,890 [INFO] VisionTera.Training: Epoch 20 [700/1261] Loss: 0.2451
+2026-01-14 14:43:18,474 [INFO] VisionTera.Training: Epoch 20 [800/1261] Loss: 0.2731
+2026-01-14 14:43:42,945 [INFO] VisionTera.Training: Epoch 20 [900/1261] Loss: 0.2475
+2026-01-14 14:44:07,423 [INFO] VisionTera.Training: Epoch 20 [1000/1261] Loss: 0.2539
+2026-01-14 14:44:32,093 [INFO] VisionTera.Training: Epoch 20 [1100/1261] Loss: 0.2501
+2026-01-14 14:44:56,655 [INFO] VisionTera.Training: Epoch 20 [1200/1261] Loss: 0.3021
+2026-01-14 14:45:25,782 [INFO] VisionTera.Training: Epoch 20/30 | Loss: 0.2767 | Train Acc: 0.9571 | Val Acc: 0.9023
+2026-01-14 14:45:25,782 [INFO] VisionTera.Training:   Male Acc: 0.9292 | Female Acc: 0.8751
+2026-01-14 14:45:26,852 [INFO] VisionTera.Training: Epoch 21 [0/1261] Loss: 0.2522
+2026-01-14 14:45:51,090 [INFO] VisionTera.Training: Epoch 21 [100/1261] Loss: 0.2604
+2026-01-14 14:46:15,292 [INFO] VisionTera.Training: Epoch 21 [200/1261] Loss: 0.3128
+2026-01-14 14:46:39,368 [INFO] VisionTera.Training: Epoch 21 [300/1261] Loss: 0.2797
+2026-01-14 14:47:03,417 [INFO] VisionTera.Training: Epoch 21 [400/1261] Loss: 0.2338
+2026-01-14 14:47:27,480 [INFO] VisionTera.Training: Epoch 21 [500/1261] Loss: 0.2150
+2026-01-14 14:47:51,470 [INFO] VisionTera.Training: Epoch 21 [600/1261] Loss: 0.2762
+2026-01-14 14:48:15,450 [INFO] VisionTera.Training: Epoch 21 [700/1261] Loss: 0.2206
+2026-01-14 14:48:39,383 [INFO] VisionTera.Training: Epoch 21 [800/1261] Loss: 0.2784
+2026-01-14 14:49:03,344 [INFO] VisionTera.Training: Epoch 21 [900/1261] Loss: 0.2412
+2026-01-14 14:49:27,348 [INFO] VisionTera.Training: Epoch 21 [1000/1261] Loss: 0.2613
+2026-01-14 14:49:51,659 [INFO] VisionTera.Training: Epoch 21 [1100/1261] Loss: 0.3093
+2026-01-14 14:50:15,757 [INFO] VisionTera.Training: Epoch 21 [1200/1261] Loss: 0.2348
+2026-01-14 14:50:43,505 [INFO] VisionTera.Training: Epoch 21/30 | Loss: 0.2704 | Train Acc: 0.9605 | Val Acc: 0.9118
+2026-01-14 14:50:43,505 [INFO] VisionTera.Training:   Male Acc: 0.9200 | Female Acc: 0.9035
+2026-01-14 14:50:43,659 [INFO] VisionTera.Training: Saved best model to infrastructure\models\v_20260114_120915\best_model.pt (Acc: 0.9118)
+2026-01-14 14:50:44,555 [INFO] VisionTera.Training: Epoch 22 [0/1261] Loss: 0.2347
+2026-01-14 14:51:09,027 [INFO] VisionTera.Training: Epoch 22 [100/1261] Loss: 0.2492
+2026-01-14 14:51:33,474 [INFO] VisionTera.Training: Epoch 22 [200/1261] Loss: 0.2743
+2026-01-14 14:51:58,260 [INFO] VisionTera.Training: Epoch 22 [300/1261] Loss: 0.2795
+2026-01-14 14:52:23,070 [INFO] VisionTera.Training: Epoch 22 [400/1261] Loss: 0.2802
+2026-01-14 14:52:47,565 [INFO] VisionTera.Training: Epoch 22 [500/1261] Loss: 0.3216
+2026-01-14 14:53:12,268 [INFO] VisionTera.Training: Epoch 22 [600/1261] Loss: 0.2227
+2026-01-14 14:53:36,855 [INFO] VisionTera.Training: Epoch 22 [700/1261] Loss: 0.2485
+2026-01-14 14:54:01,493 [INFO] VisionTera.Training: Epoch 22 [800/1261] Loss: 0.3101
+2026-01-14 14:54:26,244 [INFO] VisionTera.Training: Epoch 22 [900/1261] Loss: 0.2788
+2026-01-14 14:54:50,821 [INFO] VisionTera.Training: Epoch 22 [1000/1261] Loss: 0.3248
+2026-01-14 14:55:15,473 [INFO] VisionTera.Training: Epoch 22 [1100/1261] Loss: 0.2424
+2026-01-14 14:55:40,018 [INFO] VisionTera.Training: Epoch 22 [1200/1261] Loss: 0.2227
+2026-01-14 14:56:23,430 [INFO] VisionTera.Training: Epoch 22/30 | Loss: 0.2632 | Train Acc: 0.9651 | Val Acc: 0.9081
+2026-01-14 14:56:23,430 [INFO] VisionTera.Training:   Male Acc: 0.9103 | Female Acc: 0.9059
+2026-01-14 14:56:24,330 [INFO] VisionTera.Training: Epoch 23 [0/1261] Loss: 0.2599
+2026-01-14 14:56:48,647 [INFO] VisionTera.Training: Epoch 23 [100/1261] Loss: 0.2520
+2026-01-14 14:57:13,086 [INFO] VisionTera.Training: Epoch 23 [200/1261] Loss: 0.2473
+2026-01-14 14:57:37,623 [INFO] VisionTera.Training: Epoch 23 [300/1261] Loss: 0.2559
+2026-01-14 14:58:02,375 [INFO] VisionTera.Training: Epoch 23 [400/1261] Loss: 0.2337
+2026-01-14 14:58:27,149 [INFO] VisionTera.Training: Epoch 23 [500/1261] Loss: 0.2900
+2026-01-14 14:59:25,490 [INFO] VisionTera.Training: Epoch 23 [600/1261] Loss: 0.2554
+2026-01-14 14:59:57,468 [INFO] VisionTera.Training: Epoch 23 [700/1261] Loss: 0.2393
+2026-01-14 15:00:27,687 [INFO] VisionTera.Training: Epoch 23 [800/1261] Loss: 0.2421
+2026-01-14 15:00:56,641 [INFO] VisionTera.Training: Epoch 23 [900/1261] Loss: 0.3258
+2026-01-14 15:01:25,400 [INFO] VisionTera.Training: Epoch 23 [1000/1261] Loss: 0.2537
+2026-01-14 15:01:54,862 [INFO] VisionTera.Training: Epoch 23 [1100/1261] Loss: 0.2180
+2026-01-14 15:02:23,907 [INFO] VisionTera.Training: Epoch 23 [1200/1261] Loss: 0.2481
+2026-01-14 15:02:59,449 [INFO] VisionTera.Training: Epoch 23/30 | Loss: 0.2565 | Train Acc: 0.9692 | Val Acc: 0.9113
+2026-01-14 15:02:59,449 [INFO] VisionTera.Training:   Male Acc: 0.9138 | Female Acc: 0.9087
+2026-01-14 15:03:00,927 [INFO] VisionTera.Training: Epoch 24 [0/1261] Loss: 0.2143
+2026-01-14 15:03:29,436 [INFO] VisionTera.Training: Epoch 24 [100/1261] Loss: 0.2457
+2026-01-14 15:03:57,390 [INFO] VisionTera.Training: Epoch 24 [200/1261] Loss: 0.2640
+2026-01-14 15:04:25,771 [INFO] VisionTera.Training: Epoch 24 [300/1261] Loss: 0.2279
+2026-01-14 15:04:53,650 [INFO] VisionTera.Training: Epoch 24 [400/1261] Loss: 0.2226
+2026-01-14 15:05:22,087 [INFO] VisionTera.Training: Epoch 24 [500/1261] Loss: 0.3240
+2026-01-14 15:05:50,794 [INFO] VisionTera.Training: Epoch 24 [600/1261] Loss: 0.2983
+2026-01-14 15:06:18,595 [INFO] VisionTera.Training: Epoch 24 [700/1261] Loss: 0.2197
+2026-01-14 15:06:46,375 [INFO] VisionTera.Training: Epoch 24 [800/1261] Loss: 0.2642
+2026-01-14 15:07:14,259 [INFO] VisionTera.Training: Epoch 24 [900/1261] Loss: 0.2960
+2026-01-14 15:07:42,088 [INFO] VisionTera.Training: Epoch 24 [1000/1261] Loss: 0.3024
+2026-01-14 15:08:09,724 [INFO] VisionTera.Training: Epoch 24 [1100/1261] Loss: 0.2647
+2026-01-14 15:08:37,565 [INFO] VisionTera.Training: Epoch 24 [1200/1261] Loss: 0.2299
+2026-01-14 15:09:15,645 [INFO] VisionTera.Training: Epoch 24/30 | Loss: 0.2507 | Train Acc: 0.9724 | Val Acc: 0.9155
+2026-01-14 15:09:15,645 [INFO] VisionTera.Training:   Male Acc: 0.9203 | Female Acc: 0.9107
+2026-01-14 15:09:15,829 [INFO] VisionTera.Training: Saved best model to infrastructure\models\v_20260114_120915\best_model.pt (Acc: 0.9155)
+2026-01-14 15:09:16,809 [INFO] VisionTera.Training: Epoch 25 [0/1261] Loss: 0.2705
+2026-01-14 15:09:44,392 [INFO] VisionTera.Training: Epoch 25 [100/1261] Loss: 0.2431
+2026-01-14 15:10:11,880 [INFO] VisionTera.Training: Epoch 25 [200/1261] Loss: 0.2629
+2026-01-14 15:10:39,361 [INFO] VisionTera.Training: Epoch 25 [300/1261] Loss: 0.2408
+2026-01-14 15:11:06,815 [INFO] VisionTera.Training: Epoch 25 [400/1261] Loss: 0.2800
+2026-01-14 15:11:34,276 [INFO] VisionTera.Training: Epoch 25 [500/1261] Loss: 0.2530
+2026-01-14 15:12:01,734 [INFO] VisionTera.Training: Epoch 25 [600/1261] Loss: 0.2984
+2026-01-14 15:12:29,172 [INFO] VisionTera.Training: Epoch 25 [700/1261] Loss: 0.2688
+2026-01-14 15:12:56,629 [INFO] VisionTera.Training: Epoch 25 [800/1261] Loss: 0.2254
+2026-01-14 15:13:24,044 [INFO] VisionTera.Training: Epoch 25 [900/1261] Loss: 0.2385
+2026-01-14 15:13:51,453 [INFO] VisionTera.Training: Epoch 25 [1000/1261] Loss: 0.2472
+2026-01-14 15:14:18,862 [INFO] VisionTera.Training: Epoch 25 [1100/1261] Loss: 0.2221
+2026-01-14 15:14:46,281 [INFO] VisionTera.Training: Epoch 25 [1200/1261] Loss: 0.2392
+2026-01-14 15:15:18,207 [INFO] VisionTera.Training: Epoch 25/30 | Loss: 0.2462 | Train Acc: 0.9749 | Val Acc: 0.9155
+2026-01-14 15:15:18,208 [INFO] VisionTera.Training:   Male Acc: 0.9117 | Female Acc: 0.9194
+2026-01-14 15:15:19,263 [INFO] VisionTera.Training: Epoch 26 [0/1261] Loss: 0.2197
+2026-01-14 15:15:46,883 [INFO] VisionTera.Training: Epoch 26 [100/1261] Loss: 0.2182
+2026-01-14 15:16:14,468 [INFO] VisionTera.Training: Epoch 26 [200/1261] Loss: 0.2100
+2026-01-14 15:16:41,877 [INFO] VisionTera.Training: Epoch 26 [300/1261] Loss: 0.2396
+2026-01-14 15:17:09,279 [INFO] VisionTera.Training: Epoch 26 [400/1261] Loss: 0.2143
+2026-01-14 15:17:36,673 [INFO] VisionTera.Training: Epoch 26 [500/1261] Loss: 0.2829
+2026-01-14 15:18:04,075 [INFO] VisionTera.Training: Epoch 26 [600/1261] Loss: 0.2525
+2026-01-14 15:18:31,456 [INFO] VisionTera.Training: Epoch 26 [700/1261] Loss: 0.3892
+2026-01-14 15:18:58,807 [INFO] VisionTera.Training: Epoch 26 [800/1261] Loss: 0.2244
+2026-01-14 15:19:26,214 [INFO] VisionTera.Training: Epoch 26 [900/1261] Loss: 0.2255
+2026-01-14 15:19:53,622 [INFO] VisionTera.Training: Epoch 26 [1000/1261] Loss: 0.2559
+2026-01-14 15:20:20,978 [INFO] VisionTera.Training: Epoch 26 [1100/1261] Loss: 0.2069
+2026-01-14 15:20:48,334 [INFO] VisionTera.Training: Epoch 26 [1200/1261] Loss: 0.2278
+2026-01-14 15:21:40,188 [INFO] VisionTera.Training: Epoch 26/30 | Loss: 0.2410 | Train Acc: 0.9782 | Val Acc: 0.9161
+2026-01-14 15:21:40,188 [INFO] VisionTera.Training:   Male Acc: 0.9136 | Female Acc: 0.9186
+2026-01-14 15:21:40,400 [INFO] VisionTera.Training: Saved best model to infrastructure\models\v_20260114_120915\best_model.pt (Acc: 0.9161)
+2026-01-14 15:21:41,763 [INFO] VisionTera.Training: Epoch 27 [0/1261] Loss: 0.2841
+2026-01-14 15:22:09,361 [INFO] VisionTera.Training: Epoch 27 [100/1261] Loss: 0.2441
+2026-01-14 15:22:36,943 [INFO] VisionTera.Training: Epoch 27 [200/1261] Loss: 0.2432
+2026-01-14 15:23:00,771 [INFO] VisionTera.Training: Epoch 27 [300/1261] Loss: 0.2550
+2026-01-14 15:23:20,989 [INFO] VisionTera.Training: Epoch 27 [400/1261] Loss: 0.2248
+2026-01-14 15:23:41,299 [INFO] VisionTera.Training: Epoch 27 [500/1261] Loss: 0.2852
+2026-01-14 15:24:01,623 [INFO] VisionTera.Training: Epoch 27 [600/1261] Loss: 0.2044
+2026-01-14 15:24:22,069 [INFO] VisionTera.Training: Epoch 27 [700/1261] Loss: 0.2418
+2026-01-14 15:24:43,119 [INFO] VisionTera.Training: Epoch 27 [800/1261] Loss: 0.2249
+2026-01-14 15:25:04,545 [INFO] VisionTera.Training: Epoch 27 [900/1261] Loss: 0.2142
+2026-01-14 15:25:26,755 [INFO] VisionTera.Training: Epoch 27 [1000/1261] Loss: 0.2664
+2026-01-14 15:25:49,331 [INFO] VisionTera.Training: Epoch 27 [1100/1261] Loss: 0.2051
+2026-01-14 15:26:12,062 [INFO] VisionTera.Training: Epoch 27 [1200/1261] Loss: 0.2485
+2026-01-14 15:26:51,482 [INFO] VisionTera.Training: Epoch 27/30 | Loss: 0.2382 | Train Acc: 0.9796 | Val Acc: 0.9169
+2026-01-14 15:26:51,482 [INFO] VisionTera.Training:   Male Acc: 0.9209 | Female Acc: 0.9128
+2026-01-14 15:26:51,607 [INFO] VisionTera.Training: Saved best model to infrastructure\models\v_20260114_120915\best_model.pt (Acc: 0.9169)
+2026-01-14 15:26:52,472 [INFO] VisionTera.Training: Epoch 28 [0/1261] Loss: 0.2541
+2026-01-14 15:27:15,259 [INFO] VisionTera.Training: Epoch 28 [100/1261] Loss: 0.2383
+2026-01-14 15:27:38,365 [INFO] VisionTera.Training: Epoch 28 [200/1261] Loss: 0.2055
+2026-01-14 15:28:01,654 [INFO] VisionTera.Training: Epoch 28 [300/1261] Loss: 0.2659
+2026-01-14 15:28:25,148 [INFO] VisionTera.Training: Epoch 28 [400/1261] Loss: 0.2187
+2026-01-14 15:28:48,690 [INFO] VisionTera.Training: Epoch 28 [500/1261] Loss: 0.2328
+2026-01-14 15:29:12,211 [INFO] VisionTera.Training: Epoch 28 [600/1261] Loss: 0.2686
+2026-01-14 15:29:35,874 [INFO] VisionTera.Training: Epoch 28 [700/1261] Loss: 0.2175
+2026-01-14 15:29:59,572 [INFO] VisionTera.Training: Epoch 28 [800/1261] Loss: 0.2453
+2026-01-14 15:30:23,357 [INFO] VisionTera.Training: Epoch 28 [900/1261] Loss: 0.2190
+2026-01-14 15:30:47,128 [INFO] VisionTera.Training: Epoch 28 [1000/1261] Loss: 0.2092
+2026-01-14 15:31:11,026 [INFO] VisionTera.Training: Epoch 28 [1100/1261] Loss: 0.2360
+2026-01-14 15:31:34,817 [INFO] VisionTera.Training: Epoch 28 [1200/1261] Loss: 0.2307
+2026-01-14 15:32:02,121 [INFO] VisionTera.Training: Epoch 28/30 | Loss: 0.2354 | Train Acc: 0.9816 | Val Acc: 0.9168
+2026-01-14 15:32:02,139 [INFO] VisionTera.Training:   Male Acc: 0.9166 | Female Acc: 0.9170
+2026-01-14 15:32:03,091 [INFO] VisionTera.Training: Epoch 29 [0/1261] Loss: 0.2236
+2026-01-14 15:32:26,855 [INFO] VisionTera.Training: Epoch 29 [100/1261] Loss: 0.2552
+2026-01-14 15:32:50,678 [INFO] VisionTera.Training: Epoch 29 [200/1261] Loss: 0.2464
+2026-01-14 15:33:14,523 [INFO] VisionTera.Training: Epoch 29 [300/1261] Loss: 0.2131
+2026-01-14 15:33:38,386 [INFO] VisionTera.Training: Epoch 29 [400/1261] Loss: 0.2564
+2026-01-14 15:34:02,262 [INFO] VisionTera.Training: Epoch 29 [500/1261] Loss: 0.2523
+2026-01-14 15:34:26,249 [INFO] VisionTera.Training: Epoch 29 [600/1261] Loss: 0.2734
+2026-01-14 15:34:50,325 [INFO] VisionTera.Training: Epoch 29 [700/1261] Loss: 0.2103
+2026-01-14 15:35:14,232 [INFO] VisionTera.Training: Epoch 29 [800/1261] Loss: 0.2484
+2026-01-14 15:35:38,141 [INFO] VisionTera.Training: Epoch 29 [900/1261] Loss: 0.2082
+2026-01-14 15:36:01,948 [INFO] VisionTera.Training: Epoch 29 [1000/1261] Loss: 0.2343
+2026-01-14 15:36:25,876 [INFO] VisionTera.Training: Epoch 29 [1100/1261] Loss: 0.2684
+2026-01-14 15:36:49,748 [INFO] VisionTera.Training: Epoch 29 [1200/1261] Loss: 0.2476
+2026-01-14 15:37:21,055 [INFO] VisionTera.Training: Epoch 29/30 | Loss: 0.2349 | Train Acc: 0.9816 | Val Acc: 0.9183
+2026-01-14 15:37:21,056 [INFO] VisionTera.Training:   Male Acc: 0.9201 | Female Acc: 0.9164
+2026-01-14 15:37:21,204 [INFO] VisionTera.Training: Saved best model to infrastructure\models\v_20260114_120915\best_model.pt (Acc: 0.9183)
+2026-01-14 15:37:22,345 [INFO] VisionTera.Training: Epoch 30 [0/1261] Loss: 0.2353
+2026-01-14 15:37:46,676 [INFO] VisionTera.Training: Epoch 30 [100/1261] Loss: 0.2888
+2026-01-14 15:38:11,112 [INFO] VisionTera.Training: Epoch 30 [200/1261] Loss: 0.2301
+2026-01-14 15:38:35,699 [INFO] VisionTera.Training: Epoch 30 [300/1261] Loss: 0.2327
+2026-01-14 15:39:00,334 [INFO] VisionTera.Training: Epoch 30 [400/1261] Loss: 0.2108
+2026-01-14 15:39:25,134 [INFO] VisionTera.Training: Epoch 30 [500/1261] Loss: 0.2127
+2026-01-14 15:39:49,831 [INFO] VisionTera.Training: Epoch 30 [600/1261] Loss: 0.2193
+2026-01-14 15:40:14,213 [INFO] VisionTera.Training: Epoch 30 [700/1261] Loss: 0.2215
+2026-01-14 15:40:38,545 [INFO] VisionTera.Training: Epoch 30 [800/1261] Loss: 0.2345
+2026-01-14 15:41:02,793 [INFO] VisionTera.Training: Epoch 30 [900/1261] Loss: 0.2133
+2026-01-14 15:41:26,959 [INFO] VisionTera.Training: Epoch 30 [1000/1261] Loss: 0.2252
+2026-01-14 15:41:51,145 [INFO] VisionTera.Training: Epoch 30 [1100/1261] Loss: 0.2409
+2026-01-14 15:42:15,303 [INFO] VisionTera.Training: Epoch 30 [1200/1261] Loss: 0.3104
+2026-01-14 15:42:44,331 [INFO] VisionTera.Training: Epoch 30/30 | Loss: 0.2347 | Train Acc: 0.9823 | Val Acc: 0.9188
+2026-01-14 15:42:44,331 [INFO] VisionTera.Training:   Male Acc: 0.9172 | Female Acc: 0.9204
+2026-01-14 15:42:44,496 [INFO] VisionTera.Training: Saved best model to infrastructure\models\v_20260114_120915\best_model.pt (Acc: 0.9188)
+2026-01-14 15:42:44,636 [INFO] VisionTera.Training: Training completed! Best accuracy: 0.9188
+2026-01-14 16:30:12,940 [INFO] VisionTera: Found latest model version: v_20260114_120915
+2026-01-14 16:30:12,941 [INFO] VisionTera: Loading Gender Model from: infrastructure\models\v_20260114_120915\best_model.pt
+2026-01-14 16:30:13,619 [INFO] VisionTera: ResNet50 gender classification model loaded successfully.
+2026-01-14 16:30:13,687 [INFO] VisionTera: YOLO detections using device: cuda
+2026-01-14 16:30:13,687 [INFO] VisionTera: All models loaded successfully
+2026-01-14 16:30:13,688 [INFO] VisionTera: Application started
+2026-01-14 16:30:54,400 [INFO] VisionTera: Started detection with camera 0
+2026-01-14 16:30:54,404 [INFO] VisionTera: [STATS] Stats broadcast task started
+2026-01-14 16:30:58,137 [INFO] VisionTera: [CAMERA] Camera 0 opened - 640x480
+2026-01-14 16:31:21,991 [INFO] VisionTera: [CAMERA] Camera released
+2026-01-14 16:34:49,212 [INFO] VisionTera: Started detection with camera 1
+2026-01-14 16:34:49,213 [INFO] VisionTera: [STATS] Stats broadcast task started
+2026-01-14 16:34:51,397 [INFO] VisionTera: [CAMERA] Camera 1 opened - 640x480
+2026-01-14 16:35:22,809 [INFO] VisionTera: [CAMERA] Camera released
+2026-01-14 16:35:30,640 [INFO] VisionTera: Started detection with camera 1
+2026-01-14 16:35:30,640 [INFO] VisionTera: [STATS] Stats broadcast task started
+2026-01-14 16:35:31,913 [INFO] VisionTera: [CAMERA] Camera 1 opened - 640x480
+2026-01-14 16:35:53,867 [INFO] VisionTera: [CAMERA] Camera released
+2026-01-14 16:36:35,705 [INFO] VisionTera: Started detection with camera 1
+2026-01-14 16:36:35,707 [INFO] VisionTera: [STATS] Stats broadcast task started
+2026-01-14 16:36:37,097 [INFO] VisionTera: [CAMERA] Camera 1 opened - 640x480
+2026-01-14 16:37:15,795 [INFO] VisionTera: [CAMERA] Camera released
+2026-01-14 16:37:56,345 [INFO] VisionTera: Started detection with camera 1
+2026-01-14 16:37:56,346 [INFO] VisionTera: [STATS] Stats broadcast task started
+2026-01-14 16:37:57,751 [INFO] VisionTera: [CAMERA] Camera 1 opened - 640x480
+2026-01-14 16:38:22,599 [INFO] VisionTera: [CAMERA] Camera released
+2026-01-14 16:46:23,157 [INFO] VisionTera: Application shutdown
