@@ -6513,3 +6513,76 @@ DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error
 2026-01-14 16:37:57,751 [INFO] VisionTera: [CAMERA] Camera 1 opened - 640x480
 2026-01-14 16:38:22,599 [INFO] VisionTera: [CAMERA] Camera released
 2026-01-14 16:46:23,157 [INFO] VisionTera: Application shutdown
+2026-01-17 15:48:38,464 [INFO] VisionTera: Found latest model version: v_20260114_120915
+2026-01-17 15:48:38,465 [INFO] VisionTera: Loading Gender Model from: infrastructure\models\v_20260114_120915\best_model.pt
+2026-01-17 15:48:39,591 [INFO] VisionTera: ResNet50 gender classification model loaded successfully.
+2026-01-17 15:48:39,726 [INFO] VisionTera: YOLO detections using device: cuda
+2026-01-17 15:48:39,726 [INFO] VisionTera: All models loaded successfully
+2026-01-17 15:48:39,727 [INFO] VisionTera: Application started
+2026-01-17 15:51:10,726 [INFO] VisionTera: Started detection with camera 1
+2026-01-17 15:51:10,734 [INFO] VisionTera: [STATS] Stats broadcast task started
+2026-01-17 15:51:16,351 [INFO] VisionTera: [CAMERA] Camera 1 opened - 640x480
+2026-01-17 15:53:13,377 [INFO] VisionTera: [CAMERA] Camera released
+2026-01-17 15:53:27,562 [INFO] VisionTera: Started detection with camera 1
+2026-01-17 15:53:27,563 [INFO] VisionTera: [STATS] Stats broadcast task started
+2026-01-17 15:53:29,454 [INFO] VisionTera: [CAMERA] Camera 1 opened - 640x480
+2026-01-17 15:54:02,159 [INFO] VisionTera: [CAMERA] Camera released
+2026-01-17 15:58:21,847 [INFO] VisionTera: Started detection with camera 1
+2026-01-17 15:58:21,848 [INFO] VisionTera: [STATS] Stats broadcast task started
+2026-01-17 15:58:23,821 [INFO] VisionTera: [CAMERA] Camera 1 opened - 640x480
+2026-01-17 15:59:01,124 [INFO] VisionTera: [CAMERA] Camera released
+2026-01-17 15:59:59,929 [INFO] VisionTera: Started detection with camera 1
+2026-01-17 15:59:59,930 [INFO] VisionTera: [STATS] Stats broadcast task started
+2026-01-17 16:00:01,778 [INFO] VisionTera: [CAMERA] Camera 1 opened - 640x480
+2026-01-17 16:01:35,630 [INFO] VisionTera: [CAMERA] Camera released
+2026-01-17 16:01:51,925 [INFO] VisionTera: Started detection with camera 1
+2026-01-17 16:01:51,928 [INFO] VisionTera: [STATS] Stats broadcast task started
+2026-01-17 16:01:53,843 [INFO] VisionTera: [CAMERA] Camera 1 opened - 640x480
+2026-01-17 16:02:49,369 [INFO] VisionTera: [CAMERA] Camera released
+2026-01-17 16:03:04,114 [INFO] VisionTera: Started detection with camera 1
+2026-01-17 16:03:04,115 [INFO] VisionTera: [STATS] Stats broadcast task started
+2026-01-17 16:03:06,010 [INFO] VisionTera: [CAMERA] Camera 1 opened - 640x480
+2026-01-17 16:08:21,749 [INFO] VisionTera: [CAMERA] Camera released
+2026-01-17 16:08:22,580 [INFO] VisionTera: Started detection with camera 1
+2026-01-17 16:08:22,581 [INFO] VisionTera: [STATS] Stats broadcast task started
+2026-01-17 16:08:24,393 [INFO] VisionTera: [CAMERA] Camera 1 opened - 640x480
+2026-01-17 16:08:41,828 [INFO] VisionTera: [CAMERA] Camera released
+2026-01-17 16:09:31,435 [INFO] VisionTera: Started detection with camera 1
+2026-01-17 16:09:31,437 [INFO] VisionTera: [STATS] Stats broadcast task started
+2026-01-17 16:09:33,247 [INFO] VisionTera: [CAMERA] Camera 1 opened - 640x480
+2026-01-17 16:09:43,297 [INFO] VisionTera: [CAMERA] Camera released
+2026-01-17 16:11:56,831 [INFO] VisionTera: Started detection with camera 1
+2026-01-17 16:11:56,832 [INFO] VisionTera: [STATS] Stats broadcast task started
+2026-01-17 16:11:58,775 [INFO] VisionTera: [CAMERA] Camera 1 opened - 640x480
+2026-01-17 16:12:10,507 [INFO] VisionTera: [CAMERA] Camera released
+2026-01-17 16:14:06,173 [INFO] VisionTera: Application shutdown
+2026-01-17 16:44:26,551 [INFO] VisionTera: Found latest model version: v_20260114_120915
+2026-01-17 16:44:26,553 [INFO] VisionTera: Loading Gender Model from: infrastructure\models\v_20260114_120915\best_model.pt
+2026-01-17 16:44:27,187 [INFO] VisionTera: ResNet50 gender classification model loaded successfully.
+2026-01-17 16:44:27,267 [INFO] VisionTera: YOLO detections using device: cuda
+2026-01-17 16:44:27,267 [INFO] VisionTera: All models loaded successfully
+2026-01-17 16:44:27,268 [INFO] VisionTera: Application started
+2026-01-17 16:46:37,760 [INFO] VisionTera: Application shutdown
+2026-01-17 16:46:46,634 [INFO] VisionTera: Found latest model version: v_20260114_120915
+2026-01-17 16:46:46,634 [INFO] VisionTera: Loading Gender Model from: infrastructure\models\v_20260114_120915\best_model.pt
+2026-01-17 16:46:47,090 [INFO] VisionTera: ResNet50 gender classification model loaded successfully.
+2026-01-17 16:46:47,170 [INFO] VisionTera: YOLO detections using device: cuda
+2026-01-17 16:46:47,170 [INFO] VisionTera: All models loaded successfully
+2026-01-17 16:46:47,171 [INFO] VisionTera: Application started
+2026-01-17 16:46:59,728 [INFO] VisionTera: Started detection with camera 1
+2026-01-17 16:46:59,732 [INFO] VisionTera: [STATS] Stats broadcast task started
+2026-01-17 16:47:02,001 [INFO] VisionTera: [CAMERA] Camera 1 opened - 640x480
+2026-01-17 16:49:26,253 [INFO] VisionTera: [CAMERA] Camera released
+2026-01-17 16:49:27,471 [INFO] VisionTera: Started detection with camera 1
+2026-01-17 16:49:27,472 [INFO] VisionTera: [STATS] Stats broadcast task started
+2026-01-17 16:49:29,304 [INFO] VisionTera: [CAMERA] Camera 1 opened - 640x480
+2026-01-17 16:49:36,761 [INFO] VisionTera: [CAMERA] Camera released
+2026-01-17 16:49:45,808 [INFO] VisionTera: Started detection with camera 1
+2026-01-17 16:49:45,809 [INFO] VisionTera: [STATS] Stats broadcast task started
+2026-01-17 16:49:47,517 [INFO] VisionTera: [CAMERA] Camera 1 opened - 640x480
+2026-01-17 16:50:06,542 [INFO] VisionTera: [CAMERA] Camera released
+2026-01-17 16:50:12,452 [INFO] VisionTera: Started detection with camera 1
+2026-01-17 16:50:12,453 [INFO] VisionTera: [STATS] Stats broadcast task started
+2026-01-17 16:50:14,149 [INFO] VisionTera: [CAMERA] Camera 1 opened - 640x480
+2026-01-17 16:50:23,588 [INFO] VisionTera: [CAMERA] Camera released
+2026-01-17 16:55:29,428 [INFO] VisionTera: Application shutdown

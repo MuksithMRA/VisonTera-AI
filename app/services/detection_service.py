@@ -40,6 +40,8 @@ class DetectionEngine:
         self.camera_index = AppConfig.CAMERA_INDEX
         self.frame_count = 0
         self.gender_check_interval = AppConfig.PETA_CHECK_INTERVAL
+        self.gender_voting_enabled = AppConfig.GENDER_VOTING_ENABLED
+        self.gender_vote_threshold = AppConfig.GENDER_VOTE_THRESHOLD
         self.confidence = AppConfig.CONFIDENCE_THRESHOLD
         self.api_url = AppConfig.API_URL
         self.api_token = AppConfig.API_TOKEN
@@ -212,13 +214,17 @@ class DetectionEngine:
                         hist['last_check'] = self.frame_count
                         
                         if gender:
-                            if gender == 'Male':
-                                hist['male_votes'] += 1
+                            if self.gender_voting_enabled:
+                                if gender == 'Male':
+                                    hist['male_votes'] += 1
+                                else:
+                                    hist['female_votes'] += 1
+                                
+                                if hist['male_votes'] >= self.gender_vote_threshold or hist['female_votes'] >= self.gender_vote_threshold:
+                                    hist['gender'] = 'Male' if hist['male_votes'] > hist['female_votes'] else 'Female'
+                                    hist['gender_confidence'] = gender_conf
                             else:
-                                hist['female_votes'] += 1
-                            
-                            if hist['male_votes'] >= 3 or hist['female_votes'] >= 3:
-                                hist['gender'] = 'Male' if hist['male_votes'] > hist['female_votes'] else 'Female'
+                                hist['gender'] = gender
                                 hist['gender_confidence'] = gender_conf
 
                     gender_label = hist['gender'] if hist['gender'] else "Person"

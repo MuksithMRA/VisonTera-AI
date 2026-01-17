@@ -20,9 +20,10 @@ class AppConfig:
     BASE_DIR = Path(__file__).parent.parent
     LOG_FILE = BASE_DIR / "app.log"
     MODEL_PATH = "infrastructure/models/yolo11m.pt"
-    PETA_MODEL_PATH = "infrastructure/models/yolo11m-peta.pt"
     GENDER_MODEL_PATH = "infrastructure/models/yolo11m-gender.pt"
     PETA_CHECK_INTERVAL = 30  # Check attributes every 30 frames
+    GENDER_VOTING_ENABLED = True  # Enable/disable gender voting system for stability
+    GENDER_VOTE_THRESHOLD = 3  # Number of consistent votes needed to lock gender
     API_URL = os.getenv("base_url_dev", "https://visiontera-backend-697124318129.europe-west4.run.app")
     API_TOKEN = os.getenv("access_VT", "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoiMTIvMjkvMjAyNSAwOTowMTo1NCIsImp0aSI6IjAwNzYzYzA5LTc4ZWItNGU4NC1iOGUyLTY1ODEyNmU1NzJiNSIsInVzZXJfaWQiOiIzMiIsIm1lcmNoYW50X2lkIjoiMCIsImlzX3N0YWZmIjoiRmFsc2UiLCJpc19zdXBlcnVzZXIiOiJGYWxzZSIsImV4cCI6MTc2NzAwMDcxNH0.RfM-73xQ5o2WOZs07zLoB9NvQWDkzSFdDSl9JZefP_owskIsIJNpg0sMv2QVco-hCyuW0OU08A4I7JDYwmIYCw")
 
