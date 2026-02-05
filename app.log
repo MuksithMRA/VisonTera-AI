@@ -6921,3 +6921,1253 @@ DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error
 2026-02-05 12:57:08,373 [INFO] VisionTera: YOLO detections using device: cuda
 2026-02-05 12:57:08,374 [INFO] VisionTera: All models loaded successfully
 2026-02-05 12:57:08,374 [INFO] VisionTera: Application started
+2026-02-05 14:33:27,351 [INFO] VisionTera: Detection model loaded on device: cuda
+2026-02-05 14:33:27,355 [INFO] VisionTera: Found latest model version: v_20260127_100116
+2026-02-05 14:33:27,462 [INFO] VisionTera: YOLO-cls gender classification model loaded.
+2026-02-05 14:33:27,462 [INFO] VisionTera: Application started - Multi-camera detection ready
+2026-02-05 14:37:35,224 [ERROR] VisionTera: Failed to open camera: rtsp://admin:OSPRJU@192.168.8.100:554/h264_stream
+2026-02-05 14:42:52,933 [INFO] VisionTera: Detection model loaded on device: cuda
+2026-02-05 14:42:52,934 [INFO] VisionTera: Found latest model version: v_20260127_100116
+2026-02-05 14:42:53,031 [INFO] VisionTera: YOLO-cls gender classification model loaded.
+2026-02-05 14:42:53,033 [INFO] VisionTera: Application started - Multi-camera detection ready
+2026-02-05 14:44:42,443 [INFO] VisionTera: Camera opened: 0
+2026-02-05 14:44:42,443 [INFO] VisionTera: Camera cam_1770282879067_1 started: 640x480
+2026-02-05 14:44:42,443 [INFO] VisionTera: Camera cam_1770282879067_1 started successfully
+2026-02-05 14:44:58,199 [INFO] VisionTera: Camera opened: 1
+2026-02-05 14:44:58,200 [INFO] VisionTera: Camera cam_1770282897094_2 started: 640x480
+2026-02-05 14:44:58,201 [INFO] VisionTera: Camera cam_1770282897094_2 started successfully
+2026-02-05 14:45:24,181 [INFO] VisionTera: Camera cam_1770282879067_1 capture loop cancelled
+2026-02-05 14:45:24,181 [INFO] VisionTera: Camera cam_1770282897094_2 capture loop cancelled
+2026-02-05 14:45:24,668 [INFO] VisionTera: Camera released: 0
+2026-02-05 14:45:24,668 [INFO] VisionTera: Camera cam_1770282879067_1 stopped
+2026-02-05 14:45:24,668 [INFO] VisionTera: Camera cam_1770282879067_1 stopped
+2026-02-05 14:45:24,677 [INFO] VisionTera: Camera released: 1
+2026-02-05 14:45:24,678 [INFO] VisionTera: Camera cam_1770282897094_2 stopped
+2026-02-05 14:45:24,678 [INFO] VisionTera: Camera cam_1770282897094_2 stopped
+2026-02-05 14:57:45,763 [INFO] VisionTera: Application shutdown - All cameras stopped
+2026-02-05 15:22:10,981 [INFO] VisionTera: Detection model loaded on device: cuda
+2026-02-05 15:22:10,989 [INFO] VisionTera: Found latest model version: v_20260127_100116
+2026-02-05 15:22:11,059 [INFO] VisionTera: YOLO-cls gender classification model loaded.
+2026-02-05 15:22:11,059 [INFO] VisionTera: Application started - Multi-camera detection ready
+2026-02-05 15:29:13,915 [INFO] VisionTera.PipelineManager: Started task: Data Collection (collect_cctv_images.py)
+2026-02-05 15:29:18,910 [INFO] VisionTera.PipelineManager: [Data Collection] Traceback (most recent call last):
+2026-02-05 15:29:18,911 [INFO] VisionTera.PipelineManager: [Data Collection] File "D:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\infrastructure\collect_cctv_images.py", line 203, in <module>
+2026-02-05 15:29:18,911 [INFO] VisionTera.PipelineManager: [Data Collection] main()
+2026-02-05 15:29:18,911 [INFO] VisionTera.PipelineManager: [Data Collection] File "D:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\infrastructure\collect_cctv_images.py", line 198, in main
+2026-02-05 15:29:18,911 [INFO] VisionTera.PipelineManager: [Data Collection] interval_seconds=args.interval,
+2026-02-05 15:29:18,912 [INFO] VisionTera.PipelineManager: [Data Collection] AttributeError: 'Namespace' object has no attribute 'interval'
+2026-02-05 15:30:12,913 [INFO] VisionTera: Application shutdown - All cameras stopped
+2026-02-05 15:30:20,247 [INFO] VisionTera: Detection model loaded on device: cuda
+2026-02-05 15:30:20,249 [INFO] VisionTera: Found latest model version: v_20260127_100116
+2026-02-05 15:30:20,354 [INFO] VisionTera: YOLO-cls gender classification model loaded.
+2026-02-05 15:30:20,356 [INFO] VisionTera: Application started - Multi-camera detection ready
+2026-02-05 15:30:34,993 [INFO] VisionTera.PipelineManager: Started task: Data Collection (collect_cctv_images.py)
+2026-02-05 15:30:38,780 [INFO] VisionTera.PipelineManager: [Data Collection] Loading YOLO model from: infrastructure/models/yolo11m.pt
+2026-02-05 15:30:38,928 [INFO] VisionTera.PipelineManager: [Data Collection] Opening camera: 1
+2026-02-05 15:30:40,230 [INFO] VisionTera.PipelineManager: [Data Collection] Camera opened: 640x480
+2026-02-05 15:30:40,232 [INFO] VisionTera.PipelineManager: [Data Collection] ==================================================
+2026-02-05 15:30:40,232 [INFO] VisionTera.PipelineManager: [Data Collection] CCTV Person Crop Collector
+2026-02-05 15:30:40,232 [INFO] VisionTera.PipelineManager: [Data Collection] ==================================================
+2026-02-05 15:30:40,232 [INFO] VisionTera.PipelineManager: [Data Collection] Duration: 60 seconds
+2026-02-05 15:30:40,233 [INFO] VisionTera.PipelineManager: [Data Collection] Capture interval: 2 seconds
+2026-02-05 15:30:40,233 [INFO] VisionTera.PipelineManager: [Data Collection] Duplicate detection: TRACKING (each person captured once)
+2026-02-05 15:30:40,233 [INFO] VisionTera.PipelineManager: [Data Collection] Output: D:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\datasets\to_label
+2026-02-05 15:30:40,233 [INFO] VisionTera.PipelineManager: [Data Collection] Press 'q' to stop early
+2026-02-05 15:30:40,233 [INFO] VisionTera.PipelineManager: [Data Collection] ==================================================
+2026-02-05 15:30:45,133 [INFO] VisionTera.PipelineManager: [Data Collection] [1] Captured: person_20260205_153045_127384_id1.jpg (71x181)
+2026-02-05 15:30:45,139 [INFO] VisionTera.PipelineManager: [Data Collection] [2] Captured: person_20260205_153045_133947_id2.jpg (60x140)
+2026-02-05 15:30:45,140 [INFO] VisionTera.PipelineManager: [Data Collection] [3] Captured: person_20260205_153045_139137_id3.jpg (154x267)
+2026-02-05 15:30:45,142 [INFO] VisionTera.PipelineManager: [Data Collection] [4] Captured: person_20260205_153045_140880_id4.jpg (57x163)
+2026-02-05 15:30:45,148 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 59s
+2026-02-05 15:30:45,185 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 55s
+2026-02-05 15:30:45,185 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 55s
+2026-02-05 15:30:45,209 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 55s
+2026-02-05 15:30:45,242 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 54s
+2026-02-05 15:30:45,275 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 54s
+2026-02-05 15:30:45,309 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 54s
+2026-02-05 15:30:45,343 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 54s
+2026-02-05 15:30:45,374 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 54s
+2026-02-05 15:30:45,410 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 54s
+2026-02-05 15:30:45,443 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 54s
+2026-02-05 15:30:45,476 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 54s
+2026-02-05 15:30:45,510 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 54s
+2026-02-05 15:30:45,541 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 54s
+2026-02-05 15:30:45,576 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 54s
+2026-02-05 15:30:45,608 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 54s
+2026-02-05 15:30:45,641 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 54s
+2026-02-05 15:30:45,675 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 54s
+2026-02-05 15:30:45,709 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 54s
+2026-02-05 15:30:45,740 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 54s
+2026-02-05 15:30:45,775 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 54s
+2026-02-05 15:30:45,808 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 54s
+2026-02-05 15:30:45,842 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 54s
+2026-02-05 15:30:45,876 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 54s
+2026-02-05 15:30:45,908 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 54s
+2026-02-05 15:30:45,941 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 54s
+2026-02-05 15:30:45,975 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 54s
+2026-02-05 15:30:50,010 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 50s
+2026-02-05 15:30:50,042 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 50s
+2026-02-05 15:30:50,075 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 50s
+2026-02-05 15:30:50,110 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 50s
+2026-02-05 15:30:50,142 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 50s
+2026-02-05 15:30:50,176 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 50s
+2026-02-05 15:30:50,208 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 50s
+2026-02-05 15:30:50,243 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 49s
+2026-02-05 15:30:50,275 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 49s
+2026-02-05 15:30:50,309 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 49s
+2026-02-05 15:30:50,340 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 49s
+2026-02-05 15:30:50,375 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 49s
+2026-02-05 15:30:50,409 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 49s
+2026-02-05 15:30:50,441 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 49s
+2026-02-05 15:30:50,475 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 49s
+2026-02-05 15:30:50,510 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 49s
+2026-02-05 15:30:50,542 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 49s
+2026-02-05 15:30:50,574 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 49s
+2026-02-05 15:30:50,608 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 49s
+2026-02-05 15:30:50,642 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 49s
+2026-02-05 15:30:50,675 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 49s
+2026-02-05 15:30:50,709 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 49s
+2026-02-05 15:30:50,740 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 49s
+2026-02-05 15:30:50,775 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 49s
+2026-02-05 15:30:50,809 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 49s
+2026-02-05 15:30:50,842 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 49s
+2026-02-05 15:30:50,875 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 49s
+2026-02-05 15:30:50,909 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 49s
+2026-02-05 15:30:50,942 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 49s
+2026-02-05 15:30:50,975 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 49s
+2026-02-05 15:30:55,008 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 45s
+2026-02-05 15:30:55,043 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 45s
+2026-02-05 15:30:55,075 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 45s
+2026-02-05 15:30:55,108 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 45s
+2026-02-05 15:30:55,142 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 45s
+2026-02-05 15:30:55,175 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 45s
+2026-02-05 15:30:55,209 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 45s
+2026-02-05 15:30:55,278 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 44s
+2026-02-05 15:30:55,278 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 44s
+2026-02-05 15:30:55,309 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 44s
+2026-02-05 15:30:55,342 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 44s
+2026-02-05 15:30:55,375 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 44s
+2026-02-05 15:30:55,409 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 44s
+2026-02-05 15:30:55,443 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 44s
+2026-02-05 15:30:55,475 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 44s
+2026-02-05 15:30:55,508 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 44s
+2026-02-05 15:30:55,541 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 44s
+2026-02-05 15:30:55,575 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 44s
+2026-02-05 15:30:55,608 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 44s
+2026-02-05 15:30:55,643 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 44s
+2026-02-05 15:30:55,675 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 44s
+2026-02-05 15:30:55,709 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 44s
+2026-02-05 15:30:55,741 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 44s
+2026-02-05 15:30:55,775 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 44s
+2026-02-05 15:30:55,808 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 44s
+2026-02-05 15:30:55,841 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 44s
+2026-02-05 15:30:55,875 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 44s
+2026-02-05 15:30:55,908 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 44s
+2026-02-05 15:30:55,942 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 44s
+2026-02-05 15:30:55,975 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 44s
+2026-02-05 15:31:00,008 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 40s
+2026-02-05 15:31:00,043 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 40s
+2026-02-05 15:31:00,076 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 40s
+2026-02-05 15:31:00,109 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 40s
+2026-02-05 15:31:00,143 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 40s
+2026-02-05 15:31:00,175 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 40s
+2026-02-05 15:31:00,208 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 40s
+2026-02-05 15:31:00,242 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 39s
+2026-02-05 15:31:00,275 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 39s
+2026-02-05 15:31:00,308 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 39s
+2026-02-05 15:31:00,342 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 39s
+2026-02-05 15:31:00,375 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 39s
+2026-02-05 15:31:00,408 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 39s
+2026-02-05 15:31:00,441 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 39s
+2026-02-05 15:31:00,475 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 39s
+2026-02-05 15:31:00,508 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 39s
+2026-02-05 15:31:00,540 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 39s
+2026-02-05 15:31:00,575 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 39s
+2026-02-05 15:31:00,609 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 39s
+2026-02-05 15:31:00,641 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 39s
+2026-02-05 15:31:00,675 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 39s
+2026-02-05 15:31:00,708 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 39s
+2026-02-05 15:31:00,742 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 39s
+2026-02-05 15:31:00,776 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 39s
+2026-02-05 15:31:00,809 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 39s
+2026-02-05 15:31:00,843 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 39s
+2026-02-05 15:31:00,875 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 39s
+2026-02-05 15:31:00,908 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 39s
+2026-02-05 15:31:00,941 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 39s
+2026-02-05 15:31:00,975 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 39s
+2026-02-05 15:31:05,009 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 35s
+2026-02-05 15:31:05,042 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 35s
+2026-02-05 15:31:05,074 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 35s
+2026-02-05 15:31:05,108 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 35s
+2026-02-05 15:31:05,142 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 35s
+2026-02-05 15:31:05,175 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 35s
+2026-02-05 15:31:05,209 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 35s
+2026-02-05 15:31:05,243 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 34s
+2026-02-05 15:31:05,275 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 34s
+2026-02-05 15:31:05,308 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 34s
+2026-02-05 15:31:05,399 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 34s
+2026-02-05 15:31:05,399 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 34s
+2026-02-05 15:31:05,408 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 34s
+2026-02-05 15:31:05,441 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 34s
+2026-02-05 15:31:05,475 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 34s
+2026-02-05 15:31:05,508 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 34s
+2026-02-05 15:31:05,541 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 34s
+2026-02-05 15:31:05,575 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 34s
+2026-02-05 15:31:05,608 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 34s
+2026-02-05 15:31:05,643 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 34s
+2026-02-05 15:31:05,675 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 34s
+2026-02-05 15:31:05,708 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 34s
+2026-02-05 15:31:05,741 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 34s
+2026-02-05 15:31:05,775 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 34s
+2026-02-05 15:31:05,808 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 34s
+2026-02-05 15:31:05,841 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 34s
+2026-02-05 15:31:05,875 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 34s
+2026-02-05 15:31:05,908 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 34s
+2026-02-05 15:31:05,942 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 34s
+2026-02-05 15:31:05,975 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 34s
+2026-02-05 15:31:10,009 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 30s
+2026-02-05 15:31:10,042 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 30s
+2026-02-05 15:31:10,075 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 30s
+2026-02-05 15:31:10,108 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 30s
+2026-02-05 15:31:10,141 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 30s
+2026-02-05 15:31:10,176 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 30s
+2026-02-05 15:31:10,208 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 30s
+2026-02-05 15:31:10,241 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 29s
+2026-02-05 15:31:10,276 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 29s
+2026-02-05 15:31:10,308 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 29s
+2026-02-05 15:31:10,343 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 29s
+2026-02-05 15:31:10,374 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 29s
+2026-02-05 15:31:10,408 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 29s
+2026-02-05 15:31:10,442 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 29s
+2026-02-05 15:31:10,475 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 29s
+2026-02-05 15:31:10,510 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 29s
+2026-02-05 15:31:10,542 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 29s
+2026-02-05 15:31:10,576 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 29s
+2026-02-05 15:31:10,609 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 29s
+2026-02-05 15:31:10,642 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 29s
+2026-02-05 15:31:10,675 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 29s
+2026-02-05 15:31:10,709 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 29s
+2026-02-05 15:31:10,740 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 29s
+2026-02-05 15:31:10,775 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 29s
+2026-02-05 15:31:10,809 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 29s
+2026-02-05 15:31:10,842 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 29s
+2026-02-05 15:31:10,877 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 29s
+2026-02-05 15:31:10,908 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 29s
+2026-02-05 15:31:10,943 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 29s
+2026-02-05 15:31:10,976 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 29s
+2026-02-05 15:31:15,009 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 25s
+2026-02-05 15:31:15,040 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 25s
+2026-02-05 15:31:15,076 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 25s
+2026-02-05 15:31:15,110 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 25s
+2026-02-05 15:31:15,142 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 25s
+2026-02-05 15:31:15,176 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 25s
+2026-02-05 15:31:15,209 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 25s
+2026-02-05 15:31:15,243 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 24s
+2026-02-05 15:31:15,277 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 24s
+2026-02-05 15:31:15,310 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 24s
+2026-02-05 15:31:15,343 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 24s
+2026-02-05 15:31:15,375 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 24s
+2026-02-05 15:31:15,409 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 24s
+2026-02-05 15:31:15,528 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 24s
+2026-02-05 15:31:15,529 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 24s
+2026-02-05 15:31:15,543 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 24s
+2026-02-05 15:31:15,575 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 24s
+2026-02-05 15:31:15,609 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 24s
+2026-02-05 15:31:15,642 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 24s
+2026-02-05 15:31:15,676 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 24s
+2026-02-05 15:31:15,709 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 24s
+2026-02-05 15:31:15,742 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 24s
+2026-02-05 15:31:15,776 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 24s
+2026-02-05 15:31:15,809 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 24s
+2026-02-05 15:31:15,840 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 24s
+2026-02-05 15:31:15,876 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 24s
+2026-02-05 15:31:15,908 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 24s
+2026-02-05 15:31:15,942 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 24s
+2026-02-05 15:31:15,975 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 24s
+2026-02-05 15:31:20,009 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 20s
+2026-02-05 15:31:20,043 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 20s
+2026-02-05 15:31:20,075 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 20s
+2026-02-05 15:31:20,109 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 20s
+2026-02-05 15:31:20,141 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 20s
+2026-02-05 15:31:20,175 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 20s
+2026-02-05 15:31:20,209 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 20s
+2026-02-05 15:31:20,242 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 19s
+2026-02-05 15:31:20,275 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 19s
+2026-02-05 15:31:20,308 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 19s
+2026-02-05 15:31:20,342 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 19s
+2026-02-05 15:31:20,376 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 19s
+2026-02-05 15:31:20,409 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 19s
+2026-02-05 15:31:20,442 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 19s
+2026-02-05 15:31:20,475 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 19s
+2026-02-05 15:31:20,508 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 19s
+2026-02-05 15:31:20,541 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 19s
+2026-02-05 15:31:20,576 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 19s
+2026-02-05 15:31:20,610 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 19s
+2026-02-05 15:31:20,642 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 19s
+2026-02-05 15:31:20,675 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 19s
+2026-02-05 15:31:20,708 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 19s
+2026-02-05 15:31:20,743 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 19s
+2026-02-05 15:31:20,774 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 19s
+2026-02-05 15:31:20,809 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 19s
+2026-02-05 15:31:20,843 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 19s
+2026-02-05 15:31:20,876 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 19s
+2026-02-05 15:31:20,909 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 19s
+2026-02-05 15:31:20,941 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 19s
+2026-02-05 15:31:20,975 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 19s
+2026-02-05 15:31:25,009 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 15s
+2026-02-05 15:31:25,041 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 15s
+2026-02-05 15:31:25,076 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 15s
+2026-02-05 15:31:25,109 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 15s
+2026-02-05 15:31:25,140 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 15s
+2026-02-05 15:31:25,175 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 15s
+2026-02-05 15:31:25,209 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 15s
+2026-02-05 15:31:25,242 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 14s
+2026-02-05 15:31:25,275 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 14s
+2026-02-05 15:31:25,309 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 14s
+2026-02-05 15:31:25,343 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 14s
+2026-02-05 15:31:25,375 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 14s
+2026-02-05 15:31:25,409 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 14s
+2026-02-05 15:31:25,441 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 14s
+2026-02-05 15:31:25,476 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 14s
+2026-02-05 15:31:25,509 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 14s
+2026-02-05 15:31:25,594 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 14s
+2026-02-05 15:31:25,595 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 14s
+2026-02-05 15:31:25,609 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 14s
+2026-02-05 15:31:25,641 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 14s
+2026-02-05 15:31:25,675 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 14s
+2026-02-05 15:31:25,709 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 14s
+2026-02-05 15:31:25,742 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 14s
+2026-02-05 15:31:25,775 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 14s
+2026-02-05 15:31:25,809 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 14s
+2026-02-05 15:31:25,842 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 14s
+2026-02-05 15:31:25,875 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 14s
+2026-02-05 15:31:25,909 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 14s
+2026-02-05 15:31:25,942 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 14s
+2026-02-05 15:31:25,975 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 14s
+2026-02-05 15:31:30,008 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 10s
+2026-02-05 15:31:30,042 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 10s
+2026-02-05 15:31:30,075 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 10s
+2026-02-05 15:31:30,109 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 10s
+2026-02-05 15:31:30,141 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 10s
+2026-02-05 15:31:30,176 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 10s
+2026-02-05 15:31:30,209 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 10s
+2026-02-05 15:31:30,241 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 9s
+2026-02-05 15:31:30,276 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 9s
+2026-02-05 15:31:30,309 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 9s
+2026-02-05 15:31:30,342 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 9s
+2026-02-05 15:31:30,375 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 9s
+2026-02-05 15:31:30,409 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 9s
+2026-02-05 15:31:30,442 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 9s
+2026-02-05 15:31:30,475 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 9s
+2026-02-05 15:31:30,509 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 9s
+2026-02-05 15:31:30,541 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 9s
+2026-02-05 15:31:30,575 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 9s
+2026-02-05 15:31:30,609 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 9s
+2026-02-05 15:31:30,642 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 9s
+2026-02-05 15:31:30,675 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 9s
+2026-02-05 15:31:30,709 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 9s
+2026-02-05 15:31:30,741 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 9s
+2026-02-05 15:31:30,775 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 9s
+2026-02-05 15:31:30,809 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 9s
+2026-02-05 15:31:30,841 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 9s
+2026-02-05 15:31:30,876 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 9s
+2026-02-05 15:31:30,908 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 9s
+2026-02-05 15:31:30,942 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 9s
+2026-02-05 15:31:30,975 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 9s
+2026-02-05 15:31:35,008 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 5s
+2026-02-05 15:31:35,043 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 5s
+2026-02-05 15:31:35,075 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 5s
+2026-02-05 15:31:35,108 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 5s
+2026-02-05 15:31:35,142 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 5s
+2026-02-05 15:31:35,176 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 5s
+2026-02-05 15:31:35,208 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 5s
+2026-02-05 15:31:35,242 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 4s
+2026-02-05 15:31:35,275 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 4s
+2026-02-05 15:31:35,308 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 4s
+2026-02-05 15:31:35,341 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 4s
+2026-02-05 15:31:35,376 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 4s
+2026-02-05 15:31:35,408 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 4s
+2026-02-05 15:31:35,442 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 4s
+2026-02-05 15:31:35,475 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 4s
+2026-02-05 15:31:35,508 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 4s
+2026-02-05 15:31:35,543 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 4s
+2026-02-05 15:31:35,634 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 4s
+2026-02-05 15:31:35,634 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 4s
+2026-02-05 15:31:35,642 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 4s
+2026-02-05 15:31:35,676 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 4s
+2026-02-05 15:31:35,709 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 4s
+2026-02-05 15:31:35,742 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 4s
+2026-02-05 15:31:35,775 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 4s
+2026-02-05 15:31:35,809 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 4s
+2026-02-05 15:31:35,843 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 4s
+2026-02-05 15:31:35,876 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 4s
+2026-02-05 15:31:35,908 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 4s
+2026-02-05 15:31:35,942 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 4s
+2026-02-05 15:31:35,975 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 4s
+2026-02-05 15:31:40,008 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 0s
+2026-02-05 15:31:40,043 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 0s
+2026-02-05 15:31:40,075 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 0s
+2026-02-05 15:31:40,109 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 0s
+2026-02-05 15:31:40,141 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 0s
+2026-02-05 15:31:40,175 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 0s
+2026-02-05 15:31:40,208 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 0s
+2026-02-05 15:31:40,241 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 0s
+2026-02-05 15:31:40,261 [INFO] VisionTera.PipelineManager: [Data Collection] ==================================================
+2026-02-05 15:31:40,261 [INFO] VisionTera.PipelineManager: [Data Collection] COLLECTION COMPLETE
+2026-02-05 15:31:40,261 [INFO] VisionTera.PipelineManager: [Data Collection] ==================================================
+2026-02-05 15:31:40,261 [INFO] VisionTera.PipelineManager: [Data Collection] Unique persons captured: 4
+2026-02-05 15:31:40,261 [INFO] VisionTera.PipelineManager: [Data Collection] Total tracked IDs: 4
+2026-02-05 15:31:40,261 [INFO] VisionTera.PipelineManager: [Data Collection] Saved to: D:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\datasets\to_label
+2026-02-05 15:31:40,261 [INFO] VisionTera.PipelineManager: [Data Collection] NEXT STEPS:
+2026-02-05 15:31:40,261 [INFO] VisionTera.PipelineManager: [Data Collection] 1. Run: python infrastructure/auto_label_images.py
+2026-02-05 15:31:40,261 [INFO] VisionTera.PipelineManager: [Data Collection] 2. Review MALE/ and FEMALE/ folders
+2026-02-05 15:31:40,261 [INFO] VisionTera.PipelineManager: [Data Collection] 3. Run: python infrastructure/merge_to_dataset.py
+2026-02-05 15:31:40,261 [INFO] VisionTera.PipelineManager: [Data Collection] 4. Run: python infrastructure/prepare_yolo_dataset.py
+2026-02-05 15:31:40,261 [INFO] VisionTera.PipelineManager: [Data Collection] 5. Run: python infrastructure/train_yolo_gender.py
+2026-02-05 15:31:40,263 [INFO] VisionTera.PipelineManager: [Data Collection] ==================================================
+2026-02-05 15:37:49,344 [INFO] VisionTera.PipelineManager: Started task: Auto-Labeling (auto_label_images.py)
+2026-02-05 15:37:53,574 [INFO] VisionTera.PipelineManager: [Auto-Labeling] D:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\infrastructure\auto_label_images.py:38: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+2026-02-05 15:37:53,575 [INFO] VisionTera.PipelineManager: [Auto-Labeling] checkpoint = torch.load(candidate, map_location='cpu')
+2026-02-05 15:37:53,708 [INFO] VisionTera.PipelineManager: [Auto-Labeling] D:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\infrastructure\auto_label_images.py:38: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+2026-02-05 15:37:53,708 [INFO] VisionTera.PipelineManager: [Auto-Labeling] checkpoint = torch.load(candidate, map_location='cpu')
+2026-02-05 15:37:53,877 [INFO] VisionTera.PipelineManager: [Auto-Labeling] Loading ResNet50 from: infrastructure\models\v_20260114_120915\best_model.pt
+2026-02-05 15:37:54,326 [INFO] VisionTera.PipelineManager: [Auto-Labeling] D:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\infrastructure\auto_label_images.py:54: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+2026-02-05 15:37:54,326 [INFO] VisionTera.PipelineManager: [Auto-Labeling] state_dict = torch.load(model_path, map_location='cpu')
+2026-02-05 15:37:54,599 [INFO] VisionTera.PipelineManager: [Auto-Labeling] Model loaded on: cuda
+2026-02-05 15:37:54,600 [INFO] VisionTera.PipelineManager: [Auto-Labeling] Traceback (most recent call last):
+2026-02-05 15:37:54,600 [INFO] VisionTera.PipelineManager: [Auto-Labeling] File "D:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\infrastructure\auto_label_images.py", line 158, in <module>
+2026-02-05 15:37:54,600 [INFO] VisionTera.PipelineManager: [Auto-Labeling] main()
+2026-02-05 15:37:54,601 [INFO] VisionTera.PipelineManager: [Auto-Labeling] File "D:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\infrastructure\auto_label_images.py", line 155, in main
+2026-02-05 15:37:54,601 [INFO] VisionTera.PipelineManager: [Auto-Labeling] auto_label_images(confidence_threshold=args.confidence)
+2026-02-05 15:37:54,601 [INFO] VisionTera.PipelineManager: [Auto-Labeling] File "D:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\infrastructure\auto_label_images.py", line 101, in auto_label_images
+2026-02-05 15:37:54,602 [INFO] VisionTera.PipelineManager: [Auto-Labeling] male_dir.mkdir(exist_ok=True)
+2026-02-05 15:37:54,602 [INFO] VisionTera.PipelineManager: [Auto-Labeling] File "C:\Users\muksi\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1173, in mkdir
+2026-02-05 15:37:54,626 [INFO] VisionTera.PipelineManager: [Auto-Labeling] self._accessor.mkdir(self, mode)
+2026-02-05 15:37:54,627 [INFO] VisionTera.PipelineManager: [Auto-Labeling] FileNotFoundError: [WinError 3] The system cannot find the path specified: 'datasets\\to_label\\data\\MALE'
+2026-02-05 15:39:13,252 [INFO] VisionTera: Application shutdown - All cameras stopped
+2026-02-05 15:39:20,408 [INFO] VisionTera: Detection model loaded on device: cuda
+2026-02-05 15:39:20,410 [INFO] VisionTera: Found latest model version: v_20260127_100116
+2026-02-05 15:39:20,480 [INFO] VisionTera: YOLO-cls gender classification model loaded.
+2026-02-05 15:39:20,482 [INFO] VisionTera: Application started - Multi-camera detection ready
+2026-02-05 15:39:28,259 [INFO] VisionTera: Application shutdown - All cameras stopped
+2026-02-05 15:39:35,207 [INFO] VisionTera: Detection model loaded on device: cuda
+2026-02-05 15:39:35,208 [INFO] VisionTera: Found latest model version: v_20260127_100116
+2026-02-05 15:39:35,287 [INFO] VisionTera: YOLO-cls gender classification model loaded.
+2026-02-05 15:39:35,290 [INFO] VisionTera: Application started - Multi-camera detection ready
+2026-02-05 15:42:12,420 [INFO] VisionTera.PipelineManager: Started task: Data Collection (collect_cctv_images.py)
+2026-02-05 15:42:16,179 [INFO] VisionTera.PipelineManager: [Data Collection] Loading YOLO model from: infrastructure/models/yolo11m.pt
+2026-02-05 15:42:16,313 [INFO] VisionTera.PipelineManager: [Data Collection] Opening camera: 1
+2026-02-05 15:42:17,512 [INFO] VisionTera.PipelineManager: [Data Collection] Camera opened: 640x480
+2026-02-05 15:42:17,512 [INFO] VisionTera.PipelineManager: [Data Collection] ==================================================
+2026-02-05 15:42:17,512 [INFO] VisionTera.PipelineManager: [Data Collection] CCTV Person Crop Collector
+2026-02-05 15:42:17,512 [INFO] VisionTera.PipelineManager: [Data Collection] ==================================================
+2026-02-05 15:42:17,512 [INFO] VisionTera.PipelineManager: [Data Collection] Duration: 60 seconds
+2026-02-05 15:42:17,512 [INFO] VisionTera.PipelineManager: [Data Collection] Capture interval: 2 seconds
+2026-02-05 15:42:17,513 [INFO] VisionTera.PipelineManager: [Data Collection] Duplicate detection: TRACKING (each person captured once)
+2026-02-05 15:42:17,514 [INFO] VisionTera.PipelineManager: [Data Collection] Output: D:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\datasets\to_label
+2026-02-05 15:42:17,514 [INFO] VisionTera.PipelineManager: [Data Collection] Press 'q' to stop early
+2026-02-05 15:42:17,515 [INFO] VisionTera.PipelineManager: [Data Collection] ==================================================
+2026-02-05 15:42:19,420 [INFO] VisionTera.PipelineManager: [Data Collection] [1] Captured: person_20260205_154219_413540_id1.jpg (98x236)
+2026-02-05 15:42:19,422 [INFO] VisionTera.PipelineManager: [Data Collection] [2] Captured: person_20260205_154219_420405_id2.jpg (99x252)
+2026-02-05 15:42:20,008 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 57s
+2026-02-05 15:42:20,043 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 57s
+2026-02-05 15:42:20,076 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 57s
+2026-02-05 15:42:20,108 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 57s
+2026-02-05 15:42:20,142 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 57s
+2026-02-05 15:42:20,176 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 57s
+2026-02-05 15:42:20,208 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 57s
+2026-02-05 15:42:20,241 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 57s
+2026-02-05 15:42:20,275 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 57s
+2026-02-05 15:42:20,308 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 57s
+2026-02-05 15:42:20,342 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 57s
+2026-02-05 15:42:20,375 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 57s
+2026-02-05 15:42:20,409 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 57s
+2026-02-05 15:42:20,442 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 57s
+2026-02-05 15:42:20,474 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 57s
+2026-02-05 15:42:20,509 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 57s
+2026-02-05 15:42:20,543 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:42:20,575 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:42:20,610 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:42:20,643 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:42:20,675 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:42:20,708 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:42:20,743 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:42:20,775 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:42:20,809 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:42:20,843 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:42:20,876 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:42:20,908 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:42:20,942 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:42:20,976 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:42:25,008 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 52s
+2026-02-05 15:42:25,042 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 52s
+2026-02-05 15:42:25,076 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 52s
+2026-02-05 15:42:25,109 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 52s
+2026-02-05 15:42:25,143 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 52s
+2026-02-05 15:42:25,175 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 52s
+2026-02-05 15:42:25,208 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 52s
+2026-02-05 15:42:25,243 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 52s
+2026-02-05 15:42:25,276 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 52s
+2026-02-05 15:42:25,308 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 52s
+2026-02-05 15:42:25,343 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 52s
+2026-02-05 15:42:25,375 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 52s
+2026-02-05 15:42:25,409 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 52s
+2026-02-05 15:42:25,441 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 52s
+2026-02-05 15:42:25,476 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 52s
+2026-02-05 15:42:25,508 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 52s
+2026-02-05 15:42:25,542 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 51s
+2026-02-05 15:42:25,615 [INFO] VisionTera.PipelineManager: [Data Collection] [3] Captured: person_20260205_154225_609754_id18.jpg (129x262)
+2026-02-05 15:42:25,616 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:42:25,616 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:42:25,642 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:42:25,675 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:42:25,709 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:42:25,741 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:42:25,774 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:42:25,808 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:42:25,842 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:42:25,875 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:42:25,909 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:42:25,942 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:42:25,975 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:42:30,009 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 47s
+2026-02-05 15:42:30,041 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 47s
+2026-02-05 15:42:30,074 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 47s
+2026-02-05 15:42:30,109 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 47s
+2026-02-05 15:42:30,143 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 47s
+2026-02-05 15:42:30,175 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 47s
+2026-02-05 15:42:30,208 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 47s
+2026-02-05 15:42:30,243 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 47s
+2026-02-05 15:42:30,275 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 47s
+2026-02-05 15:42:30,308 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 47s
+2026-02-05 15:42:30,341 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 47s
+2026-02-05 15:42:30,375 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 47s
+2026-02-05 15:42:30,409 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 47s
+2026-02-05 15:42:30,441 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 47s
+2026-02-05 15:42:30,475 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 47s
+2026-02-05 15:42:30,509 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 47s
+2026-02-05 15:42:30,542 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:42:30,575 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:42:30,608 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:42:30,641 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:42:30,675 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:42:30,708 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:42:30,742 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:42:30,776 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:42:30,808 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:42:30,843 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:42:30,875 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:42:30,909 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:42:30,943 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:42:30,977 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:42:35,009 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 42s
+2026-02-05 15:42:35,043 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 42s
+2026-02-05 15:42:35,075 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 42s
+2026-02-05 15:42:35,108 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 42s
+2026-02-05 15:42:35,142 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 42s
+2026-02-05 15:42:35,175 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 42s
+2026-02-05 15:42:35,208 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 42s
+2026-02-05 15:42:35,243 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 42s
+2026-02-05 15:42:35,275 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 42s
+2026-02-05 15:42:35,308 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 42s
+2026-02-05 15:42:35,342 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 42s
+2026-02-05 15:42:35,375 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 42s
+2026-02-05 15:42:35,408 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 42s
+2026-02-05 15:42:35,443 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 42s
+2026-02-05 15:42:35,475 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 42s
+2026-02-05 15:42:35,508 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 42s
+2026-02-05 15:42:35,542 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:42:35,574 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:42:35,608 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:42:35,692 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:42:35,692 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:42:35,709 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:42:35,742 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:42:35,775 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:42:35,808 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:42:35,843 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:42:35,875 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:42:35,908 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:42:35,940 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:42:35,975 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:42:40,008 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 37s
+2026-02-05 15:42:40,041 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 37s
+2026-02-05 15:42:40,075 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 37s
+2026-02-05 15:42:40,108 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 37s
+2026-02-05 15:42:40,143 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 37s
+2026-02-05 15:42:40,175 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 37s
+2026-02-05 15:42:40,208 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 37s
+2026-02-05 15:42:40,243 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 37s
+2026-02-05 15:42:40,276 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 37s
+2026-02-05 15:42:40,308 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 37s
+2026-02-05 15:42:40,343 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 37s
+2026-02-05 15:42:40,375 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 37s
+2026-02-05 15:42:40,408 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 37s
+2026-02-05 15:42:40,442 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 37s
+2026-02-05 15:42:40,475 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 37s
+2026-02-05 15:42:40,509 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 37s
+2026-02-05 15:42:40,541 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 36s
+2026-02-05 15:42:40,575 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 36s
+2026-02-05 15:42:40,608 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 36s
+2026-02-05 15:42:40,641 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 36s
+2026-02-05 15:42:40,675 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 36s
+2026-02-05 15:42:40,708 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 36s
+2026-02-05 15:42:40,742 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 36s
+2026-02-05 15:42:40,775 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 36s
+2026-02-05 15:42:40,808 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 36s
+2026-02-05 15:42:40,840 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 36s
+2026-02-05 15:42:40,876 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 36s
+2026-02-05 15:42:40,909 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 36s
+2026-02-05 15:42:40,943 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 36s
+2026-02-05 15:42:40,975 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 36s
+2026-02-05 15:42:41,765 [INFO] VisionTera.PipelineManager: [Data Collection] [4] Captured: person_20260205_154241_759705_id48.jpg (88x207)
+2026-02-05 15:42:41,766 [INFO] VisionTera.PipelineManager: [Data Collection] [5] Captured: person_20260205_154241_765386_id5.jpg (50x123)
+2026-02-05 15:42:45,008 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 5 captured. Time remaining: 32s
+2026-02-05 15:42:45,042 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 5 captured. Time remaining: 32s
+2026-02-05 15:42:45,075 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 5 captured. Time remaining: 32s
+2026-02-05 15:42:45,108 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 5 captured. Time remaining: 32s
+2026-02-05 15:42:45,143 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 5 captured. Time remaining: 32s
+2026-02-05 15:42:45,176 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 5 captured. Time remaining: 32s
+2026-02-05 15:42:45,208 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 5 captured. Time remaining: 32s
+2026-02-05 15:42:45,243 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 5 captured. Time remaining: 32s
+2026-02-05 15:42:45,276 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 5 captured. Time remaining: 32s
+2026-02-05 15:42:45,308 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 5 captured. Time remaining: 32s
+2026-02-05 15:42:45,343 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 5 captured. Time remaining: 32s
+2026-02-05 15:42:45,376 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 5 captured. Time remaining: 32s
+2026-02-05 15:42:45,408 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 5 captured. Time remaining: 32s
+2026-02-05 15:42:45,443 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 5 captured. Time remaining: 32s
+2026-02-05 15:42:45,476 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 5 captured. Time remaining: 32s
+2026-02-05 15:42:45,508 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 5 captured. Time remaining: 32s
+2026-02-05 15:42:45,543 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 5 captured. Time remaining: 31s
+2026-02-05 15:42:45,576 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 5 captured. Time remaining: 31s
+2026-02-05 15:42:45,610 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 5 captured. Time remaining: 31s
+2026-02-05 15:42:45,642 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 5 captured. Time remaining: 31s
+2026-02-05 15:42:45,676 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 5 captured. Time remaining: 31s
+2026-02-05 15:42:45,761 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 5 captured. Time remaining: 31s
+2026-02-05 15:42:45,761 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 5 captured. Time remaining: 31s
+2026-02-05 15:42:45,774 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 5 captured. Time remaining: 31s
+2026-02-05 15:42:45,808 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 5 captured. Time remaining: 31s
+2026-02-05 15:42:45,842 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 5 captured. Time remaining: 31s
+2026-02-05 15:42:45,874 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 5 captured. Time remaining: 31s
+2026-02-05 15:42:45,908 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 5 captured. Time remaining: 31s
+2026-02-05 15:42:45,941 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 5 captured. Time remaining: 31s
+2026-02-05 15:42:45,976 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 5 captured. Time remaining: 31s
+2026-02-05 15:42:49,998 [INFO] VisionTera.PipelineManager: [Data Collection] [6] Captured: person_20260205_154249_994584_id6.jpg (50x149)
+2026-02-05 15:42:50,008 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 27s
+2026-02-05 15:42:50,043 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 27s
+2026-02-05 15:42:50,075 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 27s
+2026-02-05 15:42:50,109 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 27s
+2026-02-05 15:42:50,141 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 27s
+2026-02-05 15:42:50,175 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 27s
+2026-02-05 15:42:50,208 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 27s
+2026-02-05 15:42:50,242 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 27s
+2026-02-05 15:42:50,275 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 27s
+2026-02-05 15:42:50,308 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 27s
+2026-02-05 15:42:50,341 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 27s
+2026-02-05 15:42:50,375 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 27s
+2026-02-05 15:42:50,409 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 27s
+2026-02-05 15:42:50,442 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 27s
+2026-02-05 15:42:50,475 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 27s
+2026-02-05 15:42:50,508 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 27s
+2026-02-05 15:42:50,541 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 26s
+2026-02-05 15:42:50,575 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 26s
+2026-02-05 15:42:50,608 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 26s
+2026-02-05 15:42:50,642 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 26s
+2026-02-05 15:42:50,675 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 26s
+2026-02-05 15:42:50,709 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 26s
+2026-02-05 15:42:50,742 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 26s
+2026-02-05 15:42:50,775 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 26s
+2026-02-05 15:42:50,808 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 26s
+2026-02-05 15:42:50,843 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 26s
+2026-02-05 15:42:50,875 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 26s
+2026-02-05 15:42:50,909 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 26s
+2026-02-05 15:42:50,943 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 26s
+2026-02-05 15:42:50,975 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 26s
+2026-02-05 15:42:55,008 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 22s
+2026-02-05 15:42:55,042 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 22s
+2026-02-05 15:42:55,075 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 22s
+2026-02-05 15:42:55,109 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 22s
+2026-02-05 15:42:55,142 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 22s
+2026-02-05 15:42:55,175 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 22s
+2026-02-05 15:42:55,208 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 22s
+2026-02-05 15:42:55,242 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 22s
+2026-02-05 15:42:55,275 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 22s
+2026-02-05 15:42:55,308 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 22s
+2026-02-05 15:42:55,342 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 22s
+2026-02-05 15:42:55,376 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 22s
+2026-02-05 15:42:55,409 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 22s
+2026-02-05 15:42:55,441 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 22s
+2026-02-05 15:42:55,476 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 22s
+2026-02-05 15:42:55,509 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 22s
+2026-02-05 15:42:55,541 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 21s
+2026-02-05 15:42:55,575 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 21s
+2026-02-05 15:42:55,608 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 21s
+2026-02-05 15:42:55,641 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 21s
+2026-02-05 15:42:55,676 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 21s
+2026-02-05 15:42:55,708 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 21s
+2026-02-05 15:42:55,743 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 21s
+2026-02-05 15:42:55,775 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 21s
+2026-02-05 15:42:55,809 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 21s
+2026-02-05 15:42:55,868 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 21s
+2026-02-05 15:42:55,875 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 21s
+2026-02-05 15:42:55,908 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 21s
+2026-02-05 15:42:55,943 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 21s
+2026-02-05 15:42:55,976 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 21s
+2026-02-05 15:43:00,019 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 17s
+2026-02-05 15:43:00,043 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 17s
+2026-02-05 15:43:00,075 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 17s
+2026-02-05 15:43:00,109 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 17s
+2026-02-05 15:43:00,142 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 17s
+2026-02-05 15:43:00,175 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 17s
+2026-02-05 15:43:00,209 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 17s
+2026-02-05 15:43:00,242 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 17s
+2026-02-05 15:43:00,275 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 17s
+2026-02-05 15:43:00,308 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 17s
+2026-02-05 15:43:00,340 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 17s
+2026-02-05 15:43:00,376 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 17s
+2026-02-05 15:43:00,408 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 17s
+2026-02-05 15:43:00,442 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 17s
+2026-02-05 15:43:00,475 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 17s
+2026-02-05 15:43:00,508 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 17s
+2026-02-05 15:43:00,542 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 16s
+2026-02-05 15:43:00,575 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 16s
+2026-02-05 15:43:00,608 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 16s
+2026-02-05 15:43:00,643 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 16s
+2026-02-05 15:43:00,675 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 16s
+2026-02-05 15:43:00,709 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 16s
+2026-02-05 15:43:00,742 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 16s
+2026-02-05 15:43:00,775 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 16s
+2026-02-05 15:43:00,809 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 16s
+2026-02-05 15:43:00,842 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 16s
+2026-02-05 15:43:00,875 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 16s
+2026-02-05 15:43:00,908 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 16s
+2026-02-05 15:43:00,942 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 16s
+2026-02-05 15:43:00,975 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 16s
+2026-02-05 15:43:05,009 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 12s
+2026-02-05 15:43:05,043 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 12s
+2026-02-05 15:43:05,075 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 12s
+2026-02-05 15:43:05,109 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 12s
+2026-02-05 15:43:05,143 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 12s
+2026-02-05 15:43:05,175 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 12s
+2026-02-05 15:43:05,209 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 12s
+2026-02-05 15:43:05,243 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 12s
+2026-02-05 15:43:05,275 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 12s
+2026-02-05 15:43:05,308 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 12s
+2026-02-05 15:43:05,342 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 12s
+2026-02-05 15:43:05,375 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 12s
+2026-02-05 15:43:05,408 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 12s
+2026-02-05 15:43:05,441 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 12s
+2026-02-05 15:43:05,475 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 12s
+2026-02-05 15:43:05,509 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 12s
+2026-02-05 15:43:05,542 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 11s
+2026-02-05 15:43:05,575 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 11s
+2026-02-05 15:43:05,609 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 11s
+2026-02-05 15:43:05,642 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 11s
+2026-02-05 15:43:05,675 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 11s
+2026-02-05 15:43:05,709 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 11s
+2026-02-05 15:43:05,743 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 11s
+2026-02-05 15:43:05,775 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 11s
+2026-02-05 15:43:05,808 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 11s
+2026-02-05 15:43:05,841 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 11s
+2026-02-05 15:43:05,875 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 11s
+2026-02-05 15:43:05,908 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 11s
+2026-02-05 15:43:06,012 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 11s
+2026-02-05 15:43:10,118 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 7s
+2026-02-05 15:43:10,141 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 7s
+2026-02-05 15:43:10,175 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 7s
+2026-02-05 15:43:10,209 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 7s
+2026-02-05 15:43:10,242 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 7s
+2026-02-05 15:43:10,275 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 7s
+2026-02-05 15:43:10,309 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 7s
+2026-02-05 15:43:10,342 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 7s
+2026-02-05 15:43:10,375 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 7s
+2026-02-05 15:43:10,409 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 7s
+2026-02-05 15:43:10,441 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 7s
+2026-02-05 15:43:10,475 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 7s
+2026-02-05 15:43:10,509 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 7s
+2026-02-05 15:43:10,543 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 6s
+2026-02-05 15:43:10,574 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 6s
+2026-02-05 15:43:10,609 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 6s
+2026-02-05 15:43:10,641 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 6s
+2026-02-05 15:43:10,675 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 6s
+2026-02-05 15:43:10,708 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 6s
+2026-02-05 15:43:10,741 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 6s
+2026-02-05 15:43:10,776 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 6s
+2026-02-05 15:43:10,808 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 6s
+2026-02-05 15:43:10,841 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 6s
+2026-02-05 15:43:10,875 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 6s
+2026-02-05 15:43:10,909 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 6s
+2026-02-05 15:43:10,941 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 6s
+2026-02-05 15:43:10,975 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 6s
+2026-02-05 15:43:15,008 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 2s
+2026-02-05 15:43:15,042 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 2s
+2026-02-05 15:43:15,076 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 2s
+2026-02-05 15:43:15,108 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 2s
+2026-02-05 15:43:15,142 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 2s
+2026-02-05 15:43:15,175 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 2s
+2026-02-05 15:43:15,208 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 2s
+2026-02-05 15:43:15,240 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 2s
+2026-02-05 15:43:15,276 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 2s
+2026-02-05 15:43:15,309 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 2s
+2026-02-05 15:43:15,343 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 2s
+2026-02-05 15:43:15,376 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 2s
+2026-02-05 15:43:15,408 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 2s
+2026-02-05 15:43:15,440 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 2s
+2026-02-05 15:43:15,476 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 2s
+2026-02-05 15:43:15,509 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 2s
+2026-02-05 15:43:15,543 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 1s
+2026-02-05 15:43:15,574 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 1s
+2026-02-05 15:43:15,609 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 1s
+2026-02-05 15:43:15,643 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 1s
+2026-02-05 15:43:15,675 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 1s
+2026-02-05 15:43:15,709 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 1s
+2026-02-05 15:43:15,742 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 1s
+2026-02-05 15:43:15,775 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 1s
+2026-02-05 15:43:15,809 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 1s
+2026-02-05 15:43:15,841 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 1s
+2026-02-05 15:43:15,875 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 1s
+2026-02-05 15:43:15,908 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 1s
+2026-02-05 15:43:15,941 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 1s
+2026-02-05 15:43:15,975 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 6 captured. Time remaining: 1s
+2026-02-05 15:43:17,550 [INFO] VisionTera.PipelineManager: [Data Collection] ==================================================
+2026-02-05 15:43:17,551 [INFO] VisionTera.PipelineManager: [Data Collection] COLLECTION COMPLETE
+2026-02-05 15:43:17,551 [INFO] VisionTera.PipelineManager: [Data Collection] ==================================================
+2026-02-05 15:43:17,551 [INFO] VisionTera.PipelineManager: [Data Collection] Unique persons captured: 6
+2026-02-05 15:43:17,552 [INFO] VisionTera.PipelineManager: [Data Collection] Total tracked IDs: 6
+2026-02-05 15:43:17,552 [INFO] VisionTera.PipelineManager: [Data Collection] Saved to: D:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\datasets\to_label
+2026-02-05 15:43:17,552 [INFO] VisionTera.PipelineManager: [Data Collection] NEXT STEPS:
+2026-02-05 15:43:17,552 [INFO] VisionTera.PipelineManager: [Data Collection] 1. Run: python infrastructure/auto_label_images.py
+2026-02-05 15:43:17,552 [INFO] VisionTera.PipelineManager: [Data Collection] 2. Review MALE/ and FEMALE/ folders
+2026-02-05 15:43:17,553 [INFO] VisionTera.PipelineManager: [Data Collection] 3. Run: python infrastructure/merge_to_dataset.py
+2026-02-05 15:43:17,553 [INFO] VisionTera.PipelineManager: [Data Collection] 4. Run: python infrastructure/prepare_yolo_dataset.py
+2026-02-05 15:43:17,553 [INFO] VisionTera.PipelineManager: [Data Collection] 5. Run: python infrastructure/train_yolo_gender.py
+2026-02-05 15:43:17,554 [INFO] VisionTera.PipelineManager: [Data Collection] ==================================================
+2026-02-05 15:44:58,452 [INFO] VisionTera: Application shutdown - All cameras stopped
+2026-02-05 15:45:04,253 [INFO] VisionTera: Detection model loaded on device: cuda
+2026-02-05 15:45:04,254 [INFO] VisionTera: Found latest model version: v_20260127_100116
+2026-02-05 15:45:04,309 [INFO] VisionTera: YOLO-cls gender classification model loaded.
+2026-02-05 15:45:04,310 [INFO] VisionTera: Application started - Multi-camera detection ready
+2026-02-05 15:45:40,242 [INFO] VisionTera: Detection model loaded on device: cuda
+2026-02-05 15:45:40,243 [INFO] VisionTera: Found latest model version: v_20260127_100116
+2026-02-05 15:45:40,301 [INFO] VisionTera: YOLO-cls gender classification model loaded.
+2026-02-05 15:45:40,303 [INFO] VisionTera: Application started - Multi-camera detection ready
+2026-02-05 15:46:01,747 [INFO] VisionTera.PipelineManager: Started task: Data Collection (collect_cctv_images.py)
+2026-02-05 15:46:05,561 [INFO] VisionTera.PipelineManager: [Data Collection] Loading YOLO model from: infrastructure/models/yolo11m.pt
+2026-02-05 15:46:05,694 [INFO] VisionTera.PipelineManager: [Data Collection] Opening camera: 1
+2026-02-05 15:46:06,643 [INFO] VisionTera.PipelineManager: [Data Collection] Camera opened: 640x480
+2026-02-05 15:46:06,644 [INFO] VisionTera.PipelineManager: [Data Collection] ==================================================
+2026-02-05 15:46:06,644 [INFO] VisionTera.PipelineManager: [Data Collection] CCTV Person Crop Collector
+2026-02-05 15:46:06,644 [INFO] VisionTera.PipelineManager: [Data Collection] ==================================================
+2026-02-05 15:46:06,645 [INFO] VisionTera.PipelineManager: [Data Collection] Duration: 60 seconds
+2026-02-05 15:46:06,645 [INFO] VisionTera.PipelineManager: [Data Collection] Capture interval: 2 seconds
+2026-02-05 15:46:06,645 [INFO] VisionTera.PipelineManager: [Data Collection] Duplicate detection: TRACKING (each person captured once)
+2026-02-05 15:46:06,645 [INFO] VisionTera.PipelineManager: [Data Collection] Output: D:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\datasets\to_label
+2026-02-05 15:46:06,646 [INFO] VisionTera.PipelineManager: [Data Collection] Press 'q' to stop early
+2026-02-05 15:46:06,646 [INFO] VisionTera.PipelineManager: [Data Collection] ==================================================
+2026-02-05 15:46:08,222 [INFO] VisionTera.PipelineManager: [Data Collection] [1] Captured: person_20260205_154608_216391_id1.jpg (56x158)
+2026-02-05 15:46:08,224 [INFO] VisionTera.PipelineManager: [Data Collection] [2] Captured: person_20260205_154608_222159_id2.jpg (93x264)
+2026-02-05 15:46:10,008 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:46:10,043 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:46:10,075 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:46:10,109 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:46:10,141 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:46:10,175 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:46:10,209 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:46:10,242 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:46:10,275 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:46:10,308 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:46:10,341 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:46:10,376 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:46:10,409 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:46:10,441 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:46:10,476 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:46:10,508 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:46:10,541 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:46:10,576 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:46:10,608 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:46:10,643 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 56s
+2026-02-05 15:46:10,675 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 55s
+2026-02-05 15:46:10,729 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 55s
+2026-02-05 15:46:10,743 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 55s
+2026-02-05 15:46:10,774 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 55s
+2026-02-05 15:46:10,808 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 55s
+2026-02-05 15:46:10,841 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 55s
+2026-02-05 15:46:10,876 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 55s
+2026-02-05 15:46:10,908 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 55s
+2026-02-05 15:46:10,941 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 55s
+2026-02-05 15:46:10,976 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 2 captured. Time remaining: 55s
+2026-02-05 15:46:12,730 [INFO] VisionTera.PipelineManager: [Data Collection] [3] Captured: person_20260205_154612_728253_id10.jpg (101x236)
+2026-02-05 15:46:15,009 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:46:15,043 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:46:15,075 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:46:15,109 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:46:15,143 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:46:15,175 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:46:15,208 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:46:15,241 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:46:15,275 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:46:15,309 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:46:15,343 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:46:15,375 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:46:15,408 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:46:15,443 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:46:15,475 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:46:15,509 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:46:15,542 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:46:15,576 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:46:15,608 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:46:15,643 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 51s
+2026-02-05 15:46:15,676 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 50s
+2026-02-05 15:46:15,708 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 50s
+2026-02-05 15:46:15,741 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 50s
+2026-02-05 15:46:15,775 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 50s
+2026-02-05 15:46:15,809 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 50s
+2026-02-05 15:46:15,841 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 50s
+2026-02-05 15:46:15,876 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 50s
+2026-02-05 15:46:15,908 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 50s
+2026-02-05 15:46:15,943 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 50s
+2026-02-05 15:46:15,975 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 50s
+2026-02-05 15:46:20,008 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:46:20,043 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:46:20,076 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:46:20,109 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:46:20,143 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:46:20,174 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:46:20,209 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:46:20,243 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:46:20,276 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:46:20,309 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:46:20,343 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:46:20,376 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:46:20,409 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:46:20,442 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:46:20,476 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:46:20,509 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:46:20,543 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:46:20,576 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:46:20,610 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:46:20,643 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 46s
+2026-02-05 15:46:20,675 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 45s
+2026-02-05 15:46:20,708 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 45s
+2026-02-05 15:46:20,742 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 45s
+2026-02-05 15:46:20,804 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 45s
+2026-02-05 15:46:20,809 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 45s
+2026-02-05 15:46:20,843 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 45s
+2026-02-05 15:46:20,875 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 45s
+2026-02-05 15:46:20,908 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 45s
+2026-02-05 15:46:20,941 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 45s
+2026-02-05 15:46:20,976 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 45s
+2026-02-05 15:46:25,009 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:46:25,043 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:46:25,077 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:46:25,110 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:46:25,143 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:46:25,176 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:46:25,209 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:46:25,243 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:46:25,275 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:46:25,308 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:46:25,341 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:46:25,375 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:46:25,408 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:46:25,443 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:46:25,475 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:46:25,508 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:46:25,541 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:46:25,576 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:46:25,609 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:46:25,643 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 41s
+2026-02-05 15:46:25,675 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 40s
+2026-02-05 15:46:25,708 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 40s
+2026-02-05 15:46:25,743 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 40s
+2026-02-05 15:46:25,776 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 40s
+2026-02-05 15:46:25,809 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 40s
+2026-02-05 15:46:25,842 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 40s
+2026-02-05 15:46:25,876 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 40s
+2026-02-05 15:46:25,909 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 40s
+2026-02-05 15:46:25,943 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 40s
+2026-02-05 15:46:25,975 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 3 captured. Time remaining: 40s
+2026-02-05 15:46:28,898 [INFO] VisionTera.PipelineManager: [Data Collection] [4] Captured: person_20260205_154628_897280_id4.jpg (50x146)
+2026-02-05 15:46:30,009 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 36s
+2026-02-05 15:46:30,043 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 36s
+2026-02-05 15:46:30,077 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 36s
+2026-02-05 15:46:30,108 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 36s
+2026-02-05 15:46:30,143 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 36s
+2026-02-05 15:46:30,175 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 36s
+2026-02-05 15:46:30,210 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 36s
+2026-02-05 15:46:30,243 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 36s
+2026-02-05 15:46:30,276 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 36s
+2026-02-05 15:46:30,309 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 36s
+2026-02-05 15:46:30,341 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 36s
+2026-02-05 15:46:30,375 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 36s
+2026-02-05 15:46:30,410 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 36s
+2026-02-05 15:46:30,443 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 36s
+2026-02-05 15:46:30,475 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 36s
+2026-02-05 15:46:30,509 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 36s
+2026-02-05 15:46:30,543 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 36s
+2026-02-05 15:46:30,576 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 36s
+2026-02-05 15:46:30,609 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 36s
+2026-02-05 15:46:30,642 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 36s
+2026-02-05 15:46:30,676 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 35s
+2026-02-05 15:46:30,709 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 35s
+2026-02-05 15:46:30,743 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 35s
+2026-02-05 15:46:30,775 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 35s
+2026-02-05 15:46:30,808 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 35s
+2026-02-05 15:46:30,871 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 35s
+2026-02-05 15:46:30,875 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 35s
+2026-02-05 15:46:30,909 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 35s
+2026-02-05 15:46:30,943 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 35s
+2026-02-05 15:46:30,975 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 35s
+2026-02-05 15:46:35,009 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 31s
+2026-02-05 15:46:35,042 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 31s
+2026-02-05 15:46:35,076 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 31s
+2026-02-05 15:46:35,109 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 31s
+2026-02-05 15:46:35,141 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 31s
+2026-02-05 15:46:35,176 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 31s
+2026-02-05 15:46:35,209 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 31s
+2026-02-05 15:46:35,242 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 31s
+2026-02-05 15:46:35,275 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 31s
+2026-02-05 15:46:35,308 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 31s
+2026-02-05 15:46:35,342 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 31s
+2026-02-05 15:46:35,376 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 31s
+2026-02-05 15:46:35,409 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 31s
+2026-02-05 15:46:35,443 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 31s
+2026-02-05 15:46:35,475 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 31s
+2026-02-05 15:46:35,509 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 31s
+2026-02-05 15:46:35,543 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 31s
+2026-02-05 15:46:35,576 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 31s
+2026-02-05 15:46:35,609 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 31s
+2026-02-05 15:46:35,643 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 31s
+2026-02-05 15:46:35,675 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 30s
+2026-02-05 15:46:35,708 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 30s
+2026-02-05 15:46:35,742 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 30s
+2026-02-05 15:46:35,775 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 30s
+2026-02-05 15:46:35,809 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 30s
+2026-02-05 15:46:35,843 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 30s
+2026-02-05 15:46:35,875 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 30s
+2026-02-05 15:46:35,908 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 30s
+2026-02-05 15:46:35,944 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 30s
+2026-02-05 15:46:35,976 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 30s
+2026-02-05 15:46:40,009 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 26s
+2026-02-05 15:46:40,043 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 26s
+2026-02-05 15:46:40,077 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 26s
+2026-02-05 15:46:40,109 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 26s
+2026-02-05 15:46:40,142 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 26s
+2026-02-05 15:46:40,177 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 26s
+2026-02-05 15:46:40,208 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 26s
+2026-02-05 15:46:40,243 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 26s
+2026-02-05 15:46:40,276 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 26s
+2026-02-05 15:46:40,309 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 26s
+2026-02-05 15:46:40,343 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 26s
+2026-02-05 15:46:40,376 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 26s
+2026-02-05 15:46:40,410 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 26s
+2026-02-05 15:46:40,443 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 26s
+2026-02-05 15:46:40,475 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 26s
+2026-02-05 15:46:40,508 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 26s
+2026-02-05 15:46:40,543 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 26s
+2026-02-05 15:46:40,576 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 26s
+2026-02-05 15:46:40,609 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 26s
+2026-02-05 15:46:40,641 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 26s
+2026-02-05 15:46:40,675 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 25s
+2026-02-05 15:46:40,709 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 25s
+2026-02-05 15:46:40,742 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 25s
+2026-02-05 15:46:40,775 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 25s
+2026-02-05 15:46:40,809 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 25s
+2026-02-05 15:46:40,843 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 25s
+2026-02-05 15:46:40,875 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 25s
+2026-02-05 15:46:40,908 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 25s
+2026-02-05 15:46:40,967 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 25s
+2026-02-05 15:46:40,975 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 25s
+2026-02-05 15:46:45,148 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 21s
+2026-02-05 15:46:45,148 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 21s
+2026-02-05 15:46:45,176 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 21s
+2026-02-05 15:46:45,209 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 21s
+2026-02-05 15:46:45,243 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 21s
+2026-02-05 15:46:45,275 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 21s
+2026-02-05 15:46:45,308 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 21s
+2026-02-05 15:46:45,342 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 21s
+2026-02-05 15:46:45,375 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 21s
+2026-02-05 15:46:45,409 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 21s
+2026-02-05 15:46:45,443 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 21s
+2026-02-05 15:46:45,475 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 21s
+2026-02-05 15:46:45,509 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 21s
+2026-02-05 15:46:45,543 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 21s
+2026-02-05 15:46:45,575 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 21s
+2026-02-05 15:46:45,608 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 21s
+2026-02-05 15:46:45,643 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 21s
+2026-02-05 15:46:45,675 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 20s
+2026-02-05 15:46:45,709 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 20s
+2026-02-05 15:46:45,743 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 20s
+2026-02-05 15:46:45,775 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 20s
+2026-02-05 15:46:45,809 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 20s
+2026-02-05 15:46:45,843 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 20s
+2026-02-05 15:46:45,876 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 20s
+2026-02-05 15:46:45,909 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 20s
+2026-02-05 15:46:45,943 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 20s
+2026-02-05 15:46:45,975 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 20s
+2026-02-05 15:46:50,009 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 16s
+2026-02-05 15:46:50,041 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 16s
+2026-02-05 15:46:50,076 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 16s
+2026-02-05 15:46:50,109 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 16s
+2026-02-05 15:46:50,142 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 16s
+2026-02-05 15:46:50,176 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 16s
+2026-02-05 15:46:50,208 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 16s
+2026-02-05 15:46:50,242 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 16s
+2026-02-05 15:46:50,275 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 16s
+2026-02-05 15:46:50,309 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 16s
+2026-02-05 15:46:50,341 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 16s
+2026-02-05 15:46:50,376 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 16s
+2026-02-05 15:46:50,408 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 16s
+2026-02-05 15:46:50,442 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 16s
+2026-02-05 15:46:50,476 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 16s
+2026-02-05 15:46:50,509 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 16s
+2026-02-05 15:46:50,543 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 16s
+2026-02-05 15:46:50,575 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 16s
+2026-02-05 15:46:50,609 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 16s
+2026-02-05 15:46:50,642 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 16s
+2026-02-05 15:46:50,676 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 15s
+2026-02-05 15:46:50,708 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 15s
+2026-02-05 15:46:50,743 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 15s
+2026-02-05 15:46:50,775 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 15s
+2026-02-05 15:46:50,809 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 15s
+2026-02-05 15:46:50,841 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 15s
+2026-02-05 15:46:50,876 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 15s
+2026-02-05 15:46:50,909 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 15s
+2026-02-05 15:46:50,941 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 15s
+2026-02-05 15:46:50,975 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 15s
+2026-02-05 15:46:55,008 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 11s
+2026-02-05 15:46:55,041 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 11s
+2026-02-05 15:46:55,154 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 11s
+2026-02-05 15:46:55,155 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 11s
+2026-02-05 15:46:55,175 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 11s
+2026-02-05 15:46:55,209 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 11s
+2026-02-05 15:46:55,243 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 11s
+2026-02-05 15:46:55,276 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 11s
+2026-02-05 15:46:55,309 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 11s
+2026-02-05 15:46:55,343 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 11s
+2026-02-05 15:46:55,375 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 11s
+2026-02-05 15:46:55,409 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 11s
+2026-02-05 15:46:55,443 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 11s
+2026-02-05 15:46:55,475 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 11s
+2026-02-05 15:46:55,509 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 11s
+2026-02-05 15:46:55,543 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 11s
+2026-02-05 15:46:55,575 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 11s
+2026-02-05 15:46:55,609 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 11s
+2026-02-05 15:46:55,643 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 11s
+2026-02-05 15:46:55,675 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 10s
+2026-02-05 15:46:55,708 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 10s
+2026-02-05 15:46:55,742 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 10s
+2026-02-05 15:46:55,775 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 10s
+2026-02-05 15:46:55,808 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 10s
+2026-02-05 15:46:55,843 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 10s
+2026-02-05 15:46:55,875 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 10s
+2026-02-05 15:46:55,908 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 10s
+2026-02-05 15:46:55,941 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 10s
+2026-02-05 15:46:55,976 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 10s
+2026-02-05 15:47:00,010 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 6s
+2026-02-05 15:47:00,043 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 6s
+2026-02-05 15:47:00,075 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 6s
+2026-02-05 15:47:00,108 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 6s
+2026-02-05 15:47:00,142 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 6s
+2026-02-05 15:47:00,178 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 6s
+2026-02-05 15:47:00,209 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 6s
+2026-02-05 15:47:00,242 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 6s
+2026-02-05 15:47:00,276 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 6s
+2026-02-05 15:47:00,309 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 6s
+2026-02-05 15:47:00,342 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 6s
+2026-02-05 15:47:00,374 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 6s
+2026-02-05 15:47:00,408 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 6s
+2026-02-05 15:47:00,443 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 6s
+2026-02-05 15:47:00,476 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 6s
+2026-02-05 15:47:00,509 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 6s
+2026-02-05 15:47:00,543 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 6s
+2026-02-05 15:47:00,575 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 6s
+2026-02-05 15:47:00,608 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 6s
+2026-02-05 15:47:00,643 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 6s
+2026-02-05 15:47:00,675 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 5s
+2026-02-05 15:47:00,709 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 5s
+2026-02-05 15:47:00,743 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 5s
+2026-02-05 15:47:00,776 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 5s
+2026-02-05 15:47:00,809 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 5s
+2026-02-05 15:47:00,841 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 5s
+2026-02-05 15:47:00,876 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 5s
+2026-02-05 15:47:00,908 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 5s
+2026-02-05 15:47:00,943 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 5s
+2026-02-05 15:47:00,976 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 5s
+2026-02-05 15:47:05,009 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 1s
+2026-02-05 15:47:05,041 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 1s
+2026-02-05 15:47:05,075 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 1s
+2026-02-05 15:47:05,109 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 1s
+2026-02-05 15:47:05,193 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 1s
+2026-02-05 15:47:05,194 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 1s
+2026-02-05 15:47:05,209 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 1s
+2026-02-05 15:47:05,243 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 1s
+2026-02-05 15:47:05,275 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 1s
+2026-02-05 15:47:05,308 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 1s
+2026-02-05 15:47:05,341 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 1s
+2026-02-05 15:47:05,376 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 1s
+2026-02-05 15:47:05,409 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 1s
+2026-02-05 15:47:05,442 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 1s
+2026-02-05 15:47:05,478 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 1s
+2026-02-05 15:47:05,508 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 1s
+2026-02-05 15:47:05,543 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 1s
+2026-02-05 15:47:05,575 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 1s
+2026-02-05 15:47:05,609 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 1s
+2026-02-05 15:47:05,642 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 1s
+2026-02-05 15:47:05,675 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 0s
+2026-02-05 15:47:05,708 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 0s
+2026-02-05 15:47:05,741 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 0s
+2026-02-05 15:47:05,776 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 0s
+2026-02-05 15:47:05,809 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 0s
+2026-02-05 15:47:05,843 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 0s
+2026-02-05 15:47:05,876 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 0s
+2026-02-05 15:47:05,909 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 0s
+2026-02-05 15:47:05,943 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 0s
+2026-02-05 15:47:05,976 [INFO] VisionTera.PipelineManager: [Data Collection] Progress: 4 captured. Time remaining: 0s
+2026-02-05 15:47:06,684 [INFO] VisionTera.PipelineManager: [Data Collection] ==================================================
+2026-02-05 15:47:06,685 [INFO] VisionTera.PipelineManager: [Data Collection] COLLECTION COMPLETE
+2026-02-05 15:47:06,685 [INFO] VisionTera.PipelineManager: [Data Collection] ==================================================
+2026-02-05 15:47:06,685 [INFO] VisionTera.PipelineManager: [Data Collection] Unique persons captured: 4
+2026-02-05 15:47:06,685 [INFO] VisionTera.PipelineManager: [Data Collection] Total tracked IDs: 4
+2026-02-05 15:47:06,685 [INFO] VisionTera.PipelineManager: [Data Collection] Saved to: D:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\datasets\to_label
+2026-02-05 15:47:06,685 [INFO] VisionTera.PipelineManager: [Data Collection] NEXT STEPS:
+2026-02-05 15:47:06,686 [INFO] VisionTera.PipelineManager: [Data Collection] 1. Run: python infrastructure/auto_label_images.py
+2026-02-05 15:47:06,686 [INFO] VisionTera.PipelineManager: [Data Collection] 2. Review MALE/ and FEMALE/ folders
+2026-02-05 15:47:06,686 [INFO] VisionTera.PipelineManager: [Data Collection] 3. Run: python infrastructure/merge_to_dataset.py
+2026-02-05 15:47:06,686 [INFO] VisionTera.PipelineManager: [Data Collection] 4. Run: python infrastructure/prepare_yolo_dataset.py
+2026-02-05 15:47:06,686 [INFO] VisionTera.PipelineManager: [Data Collection] 5. Run: python infrastructure/train_yolo_gender.py
+2026-02-05 15:47:06,687 [INFO] VisionTera.PipelineManager: [Data Collection] ==================================================
+2026-02-05 15:57:43,890 [INFO] VisionTera: Application shutdown - All cameras stopped
+2026-02-05 15:58:17,266 [INFO] VisionTera: Detection model loaded on device: cuda
+2026-02-05 15:58:17,268 [INFO] VisionTera: Found latest model version: v_20260127_100116
+2026-02-05 15:58:17,430 [INFO] VisionTera: YOLO-cls gender classification model loaded.
+2026-02-05 15:58:17,434 [INFO] VisionTera: Application started - Multi-camera detection ready
+2026-02-05 16:04:29,097 [INFO] VisionTera: Application shutdown - All cameras stopped
+2026-02-05 16:04:53,951 [INFO] VisionTera: Detection model loaded on device: cuda
+2026-02-05 16:04:53,956 [INFO] VisionTera: Found latest model version: v_20260127_100116
+2026-02-05 16:04:54,103 [INFO] VisionTera: YOLO-cls gender classification model loaded.
+2026-02-05 16:04:54,106 [INFO] VisionTera: Application started - Multi-camera detection ready
+2026-02-05 16:05:31,651 [INFO] VisionTera: Camera opened: 1
+2026-02-05 16:05:31,654 [INFO] VisionTera: Camera cam_1770287729600_1 started: 640x480
+2026-02-05 16:05:31,654 [INFO] VisionTera: Camera cam_1770287729600_1 started successfully
+2026-02-05 16:06:47,656 [INFO] VisionTera: Camera opened: 0
+2026-02-05 16:06:47,667 [INFO] VisionTera: Camera cam_1770287803668_2 started: 640x480
+2026-02-05 16:06:47,668 [INFO] VisionTera: Camera cam_1770287803668_2 started successfully
+2026-02-05 16:07:12,915 [INFO] VisionTera: Camera cam_1770287729600_1 capture loop cancelled
+2026-02-05 16:07:12,921 [INFO] VisionTera: Camera cam_1770287803668_2 capture loop cancelled
+2026-02-05 16:07:12,943 [INFO] VisionTera: Camera released: 1
+2026-02-05 16:07:12,944 [INFO] VisionTera: Camera cam_1770287729600_1 stopped
+2026-02-05 16:07:12,944 [INFO] VisionTera: Camera cam_1770287729600_1 stopped
+2026-02-05 16:07:13,430 [INFO] VisionTera: Camera released: 0
+2026-02-05 16:07:13,430 [INFO] VisionTera: Camera cam_1770287803668_2 stopped
+2026-02-05 16:07:13,430 [INFO] VisionTera: Camera cam_1770287803668_2 stopped
+2026-02-05 16:15:14,477 [INFO] VisionTera: Application shutdown - All cameras stopped
+2026-02-05 16:15:22,272 [INFO] VisionTera: Detection model loaded on device: cuda
+2026-02-05 16:15:22,273 [INFO] VisionTera: Found latest model version: v_20260127_100116
+2026-02-05 16:15:22,377 [INFO] VisionTera: YOLO-cls gender classification model loaded.
+2026-02-05 16:15:22,378 [INFO] VisionTera: Application started - Multi-camera detection ready
+2026-02-05 16:27:44,830 [INFO] VisionTera: Application shutdown - All cameras stopped
+2026-02-05 16:28:15,986 [INFO] VisionTera: Detection model loaded on device: cuda
+2026-02-05 16:28:15,989 [INFO] VisionTera: Found latest model version: v_20260127_100116
+2026-02-05 16:28:16,175 [INFO] VisionTera: YOLO-cls gender classification model loaded.
+2026-02-05 16:28:16,178 [INFO] VisionTera: Application started - Multi-camera detection ready

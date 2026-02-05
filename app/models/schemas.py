@@ -1,89 +1,131 @@
 from pydantic import BaseModel, Field
-from typing import Optional
+from typing import Optional, List, Dict, Any
+
+
+class BoundingBoxSchema(BaseModel):
+    x1: float = Field(..., description="Left x coordinate")
+    y1: float = Field(..., description="Top y coordinate")
+    x2: float = Field(..., description="Right x coordinate")
+    y2: float = Field(..., description="Bottom y coordinate")
+
+
+class DetectionSchema(BaseModel):
+    id: int = Field(..., description="Track ID of the detection")
+    x: float = Field(..., description="Center x coordinate")
+    y: float = Field(..., description="Bottom y coordinate")
+    confidence: float = Field(..., description="Detection confidence")
+    gender: str = Field(..., description="Gender classification: Male, Female, or Person")
+    bbox: BoundingBoxSchema = Field(..., description="Bounding box coordinates")
+
+
+class CameraStatusSchema(BaseModel):
+    camera_id: str = Field(..., description="Unique camera identifier")
+    state: str = Field(..., description="Current camera state")
+    name: str = Field(..., description="Camera display name")
+    source: str = Field(..., description="Camera source (index or URL)")
+    camera_type: str = Field(..., description="Camera type: local or rtsp")
+    frames_processed: int = Field(..., description="Total frames processed")
+    error_message: Optional[str] = Field(None, description="Error message if any")
+
+
+class CameraStartRequest(BaseModel):
+    camera_id: str = Field(..., description="Unique identifier for this camera session")
+    source: str = Field(..., description="Camera index or RTSP URL")
+    name: Optional[str] = Field(None, description="Display name for the camera")
+    confidence: float = Field(0.5, ge=0.1, le=1.0, description="Detection confidence threshold")
+    show_coords: bool = Field(True, description="Show coordinates on detections")
+    show_fps: bool = Field(True, description="Show FPS counter")
+    box_color: str = Field("00FF88", description="Box color in hex format")
+
+    model_config = {
+        "json_schema_extra": {
+            "example": {
+                "camera_id": "cam_1",
+                "source": "0",
+                "name": "Main Entrance",
+                "confidence": 0.5,
+                "show_coords": True,
+                "show_fps": True,
+                "box_color": "00FF88"
+            }
+        }
+    }
+
+
+class CameraResponse(BaseModel):
+    status: str = Field(..., description="Response status")
+    camera_id: str = Field(..., description="Camera identifier")
+    message: Optional[str] = Field(None, description="Additional message")
+
+
+class MultiCameraStatusResponse(BaseModel):
+    total_cameras: int = Field(..., description="Total number of active cameras")
+    cameras: List[Dict[str, Any]] = Field(..., description="List of camera statuses")
+
+
+class ProcessingStatsSchema(BaseModel):
+    camera_id: str = Field(..., description="Camera identifier")
+    fps: float = Field(..., description="Current frames per second")
+    width: int = Field(..., description="Frame width")
+    height: int = Field(..., description="Frame height")
+    person_count: int = Field(..., description="Number of persons detected")
+    male_count: int = Field(..., description="Number of males detected")
+    female_count: int = Field(..., description="Number of females detected")
+    detections: List[Dict[str, Any]] = Field(..., description="List of detections")
+    timestamp: str = Field(..., description="ISO timestamp")
+
+
+class AllStatsResponse(BaseModel):
+    type: str = Field("all_stats", description="Message type")
+    cameras: List[ProcessingStatsSchema] = Field(..., description="Stats for all cameras")
+
 
 class DetectionStatus(BaseModel):
     status: str = Field(..., description="System status indicator", example="ok")
     running: bool = Field(..., description="Whether detection is currently running", example=True)
-    frames_processed: int = Field(..., description="Total number of frames processed since start", example=1234)
-    camera_index: int = Field(..., description="Currently active camera index", example=0)
+    active_cameras: int = Field(..., description="Number of active cameras")
+    total_cameras: int = Field(..., description="Total cameras being managed")
 
     model_config = {
         "json_schema_extra": {
             "example": {
                 "status": "ok",
                 "running": True,
-                "frames_processed": 1234,
-                "camera_index": 0
+                "active_cameras": 2,
+                "total_cameras": 2
             }
         }
     }
+
 
 class StartResponse(BaseModel):
-    status: str = Field(..., description="Response status: 'started', 'already_running', or 'error'", example="started")
-    message: Optional[str] = Field(None, description="Additional message for error responses", example=None)
+    status: str = Field(..., description="Response status: 'started', 'already_running', or 'error'")
+    camera_id: Optional[str] = Field(None, description="Camera identifier")
+    message: Optional[str] = Field(None, description="Additional message")
 
-    model_config = {
-        "json_schema_extra": {
-            "example": {
-                "status": "started",
-                "message": None
-            }
-        }
-    }
 
 class StopResponse(BaseModel):
-    status: str = Field(..., description="Response status indicating detection stopped", example="stopped")
+    status: str = Field(..., description="Response status")
+    camera_id: Optional[str] = Field(None, description="Camera identifier")
+    count: Optional[int] = Field(None, description="Number of cameras stopped (for stop_all)")
 
-    model_config = {
-        "json_schema_extra": {
-            "example": {
-                "status": "stopped"
-            }
-        }
-    }
 
 class TrainingStatus(BaseModel):
-    is_training: bool = Field(..., description="Whether training is currently in progress", example=False)
-    status: str = Field(..., description="Current training status message", example="idle")
+    is_training: bool = Field(..., description="Whether training is in progress")
+    status: str = Field(..., description="Current training status message")
 
-    model_config = {
-        "json_schema_extra": {
-            "example": {
-                "is_training": False,
-                "status": "idle"
-            }
-        }
-    }
 
 class TrainingStartResponse(BaseModel):
-    status: str = Field(..., description="Response status: 'started' or 'error'", example="started")
-    message: str = Field(..., description="Detailed response message", example="Training pipeline started in background.")
+    status: str = Field(..., description="Response status")
+    message: str = Field(..., description="Detailed response message")
 
-    model_config = {
-        "json_schema_extra": {
-            "example": {
-                "status": "started",
-                "message": "Training pipeline started in background. Monitor logs or /api/training_status for progress."
-            }
-        }
-    }
 
 class WebSocketStatsMessage(BaseModel):
-    fps: float = Field(..., description="Current frames per second", example=30.5)
-    person_count: int = Field(..., description="Number of persons detected in current frame", example=3)
-    timestamp: str = Field(..., description="ISO timestamp of the stats update", example="2025-12-29T13:45:00.000Z")
-    detections: list = Field(..., description="List of detection coordinates for each person", example=[{"x": 100, "y": 150, "width": 80, "height": 200}])
-
-    model_config = {
-        "json_schema_extra": {
-            "example": {
-                "fps": 30.5,
-                "person_count": 3,
-                "timestamp": "2025-12-29T13:45:00.000Z",
-                "detections": [
-                    {"x": 100, "y": 150, "width": 80, "height": 200},
-                    {"x": 300, "y": 120, "width": 75, "height": 190}
-                ]
-            }
-        }
-    }
+    type: str = Field("stats", description="Message type")
+    camera_id: str = Field(..., description="Camera identifier")
+    fps: float = Field(..., description="Current frames per second")
+    person_count: int = Field(..., description="Number of persons detected")
+    male_count: int = Field(..., description="Number of males detected")
+    female_count: int = Field(..., description="Number of females detected")
+    timestamp: str = Field(..., description="ISO timestamp")
+    detections: List[Dict[str, Any]] = Field(..., description="List of detections")

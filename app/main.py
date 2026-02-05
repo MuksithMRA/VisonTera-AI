@@ -5,7 +5,7 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from contextlib import asynccontextmanager
 from app.config import AppConfig, logger
-from app.services.state import engine
+from app.services.state import camera_manager
 from app.controllers.base_controller import router as base_router
 from app.controllers.detection_controller import router as detection_router
 from app.controllers.training_controller import router as training_router
@@ -17,7 +17,7 @@ tags_metadata = [
     },
     {
         "name": "Detection",
-        "description": "Real-time person detection operations including start/stop detection and video streaming",
+        "description": "Multi-camera real-time person detection with parallel processing",
     },
     {
         "name": "Training",
@@ -27,29 +27,38 @@ tags_metadata = [
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    engine.load_model()
-    logger.info("Application started")
+    camera_manager.load_models()
+    logger.info("Application started - Multi-camera detection ready")
     yield
-    logger.info("Application shutdown")
+    await camera_manager.stop_all_cameras()
+    logger.info("Application shutdown - All cameras stopped")
 
 app = FastAPI(
     lifespan=lifespan,
     title="VisionTera API",
     description="""
-## VisionTera - YOLO Person Detection API
+## VisionTera - Multi-Camera YOLO Person Detection API
 
-This API provides real-time person detection capabilities using YOLO models.
+This API provides real-time person detection capabilities with **parallel multi-camera processing**.
 
-### Features:
-* **Real-time Detection**: Start/stop person detection from camera feeds
-* **Video Streaming**: MJPEG video stream with detection overlays
-* **WebSocket Stats**: Real-time statistics via WebSocket connection
-* **Model Training**: Retrain detection models with new data
+### Key Features:
+* **Multi-Camera Support**: Run detection on multiple cameras simultaneously
+* **Parallel Processing**: Each camera runs in its own thread with shared GPU inference
+* **Real-time Detection**: YOLO-based person detection with gender classification
+* **Auto-Reconnection**: Automatic camera reconnection on failures
+* **Per-Camera Stats**: Individual statistics for each camera
+
+### Multi-Camera Endpoints:
+* **POST `/api/camera/start`**: Start a specific camera with unique ID
+* **POST `/api/camera/{camera_id}/stop`**: Stop a specific camera
+* **GET `/api/cameras/active`**: Get all active cameras and their statuses
+* **GET `/video_feed/{camera_id}`**: Video stream for a specific camera
 
 ### WebSocket Endpoints:
-* **`/ws/stats`**: Real-time detection statistics (FPS, person count, coordinates)
+* **`/ws/stats/{camera_id}`**: Real-time stats for a specific camera
+* **`/ws/stats`**: Aggregated stats for all cameras
 """,
-    version="1.0.0",
+    version="2.0.0",
     openapi_tags=tags_metadata,
     docs_url="/docs",
     redoc_url="/redoc",

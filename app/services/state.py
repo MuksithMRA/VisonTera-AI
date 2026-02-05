@@ -1,5 +1,5 @@
-from app.services.detection_service import DetectionEngine
+from app.application.camera_manager import CameraManager
 from app.services.training_pipeline import TrainingPipeline
 
-engine = DetectionEngine()
+camera_manager = CameraManager()
 pipeline = TrainingPipeline()

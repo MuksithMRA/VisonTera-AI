@@ -1,87 +1,132 @@
-from fastapi import APIRouter, Query, BackgroundTasks, WebSocket
+from fastapi import APIRouter, Query, WebSocket, WebSocketDisconnect
 from fastapi.responses import StreamingResponse
 import asyncio
 import json
-from app.services.state import engine
+from app.services.state import camera_manager
 from app.config import logger
-from app.models.schemas import StartResponse, StopResponse
+from app.models.schemas import (
+    CameraStartRequest,
+    CameraResponse,
+    StopResponse,
+    MultiCameraStatusResponse,
+    DetectionStatus
+)
 
 router = APIRouter()
 
+
 @router.get("/api/cameras", tags=["Detection"])
-async def get_cameras():
-    cameras = engine.get_available_cameras()
+async def get_available_cameras():
+    cameras = camera_manager.get_available_cameras()
     return {"cameras": cameras}
 
-@router.post("/api/start", response_model=StartResponse, tags=["Detection"])
-async def start_detection(
+
+@router.get("/api/cameras/active", tags=["Detection"])
+async def get_active_cameras():
+    statuses = camera_manager.get_all_camera_statuses()
+    return MultiCameraStatusResponse(
+        total_cameras=len(statuses),
+        cameras=statuses
+    )
+
+
+@router.get("/api/camera/{camera_id}/status", tags=["Detection"])
+async def get_camera_status(camera_id: str):
+    status = camera_manager.get_camera_status(camera_id)
+    if status is None:
+        return {"status": "not_found", "camera_id": camera_id}
+    return status.to_dict()
+
+
+@router.post("/api/camera/start", response_model=CameraResponse, tags=["Detection"])
+async def start_camera(request: CameraStartRequest):
+    r = int(request.box_color[4:6], 16) if len(request.box_color) >= 6 else 0
+    g = int(request.box_color[2:4], 16) if len(request.box_color) >= 4 else 255
+    b = int(request.box_color[0:2], 16) if len(request.box_color) >= 2 else 136
+    box_color = (b, g, r)
+
+    result = await camera_manager.start_camera(
+        camera_id=request.camera_id,
+        source=request.source,
+        name=request.name,
+        confidence=request.confidence,
+        show_coords=request.show_coords,
+        show_fps=request.show_fps,
+        box_color=box_color
+    )
+
+    return CameraResponse(**result)
+
+
+@router.post("/api/start", response_model=CameraResponse, tags=["Detection"])
+async def start_detection_legacy(
     camera: str = Query("0", description="Camera index or RTSP URL"),
     confidence: float = Query(0.5, ge=0.1, le=1.0),
     show_coords: str = Query("1"),
     show_fps: str = Query("1"),
-    box_color: str = Query("00FF88"),
-    background_tasks: BackgroundTasks = None
+    box_color: str = Query("00FF88")
 ):
-    if engine.is_running:
-        return {"status": "already_running"}
+    r = int(box_color[4:6], 16) if len(box_color) >= 6 else 0
+    g = int(box_color[2:4], 16) if len(box_color) >= 4 else 255
+    b = int(box_color[0:2], 16) if len(box_color) >= 2 else 136
+    box_color_tuple = (b, g, r)
 
-    if camera.startswith("rtsp://"):
-        engine.camera_index = camera
-    else:
-        try:
-            engine.camera_index = int(camera)
-        except ValueError:
-            engine.camera_index = camera
+    camera_id = f"legacy_{camera}"
 
-    engine.confidence = max(0.1, min(1.0, confidence))
-    engine.show_coords = show_coords == "1"
-    engine.show_fps = show_fps == "1"
+    result = await camera_manager.start_camera(
+        camera_id=camera_id,
+        source=camera,
+        name=f"Camera {camera}",
+        confidence=confidence,
+        show_coords=show_coords == "1",
+        show_fps=show_fps == "1",
+        box_color=box_color_tuple
+    )
 
-    r = int(box_color[4:6], 16)
-    g = int(box_color[2:4], 16)
-    b = int(box_color[0:2], 16)
-    engine.box_color = (b, g, r)
+    return CameraResponse(**result)
 
-    engine.is_running = True
-    
-    try:
-        engine.capture_task = asyncio.create_task(engine.capture_frames())
-        engine.stats_task = asyncio.create_task(engine.broadcast_stats())
-        logger.info(f"Started detection with camera {camera}")
-    except Exception as e:
-        engine.is_running = False
-        logger.error(f"Failed to start tasks: {e}")
-        return {"status": "error", "message": str(e)}
 
-    return {"status": "started"}
+@router.post("/api/camera/{camera_id}/stop", response_model=StopResponse, tags=["Detection"])
+async def stop_camera(camera_id: str):
+    result = await camera_manager.stop_camera(camera_id)
+    return StopResponse(**result)
+
 
 @router.post("/api/stop", response_model=StopResponse, tags=["Detection"])
-async def stop_detection():
-    engine.is_running = False
-    await asyncio.sleep(0.1)
-    
-    if engine.capture_task and not engine.capture_task.done():
-        engine.capture_task.cancel()
-    if engine.stats_task and not engine.stats_task.done():
-        engine.stats_task.cancel()
-    
-    if engine.cap:
-        engine.cap.release()
-        engine.cap = None
-    
-    await asyncio.sleep(0.2)
-    return {"status": "stopped"}
+async def stop_all_cameras():
+    result = await camera_manager.stop_all_cameras()
+    return StopResponse(**result)
 
-@router.get("/video_feed", tags=["Detection"])
-async def video_feed():
+
+@router.get("/api/status", response_model=DetectionStatus, tags=["Detection"])
+async def get_status():
+    return DetectionStatus(
+        status="ok",
+        running=camera_manager.active_camera_count > 0,
+        active_cameras=camera_manager.active_camera_count,
+        total_cameras=camera_manager.total_camera_count
+    )
+
+
+@router.get("/video_feed/{camera_id}", tags=["Detection"])
+async def video_feed(camera_id: str):
+    processor = camera_manager.get_processor(camera_id)
+    if processor is None:
+        return {"error": "Camera not found", "camera_id": camera_id}
+
     async def frame_generator():
-        while engine.is_running:
+        while processor.is_running:
             try:
-                frame_bytes, _, _, _, _ = await asyncio.wait_for(engine.frame_queue.get(), timeout=2.0)
-                yield (b'--frame\r\n'
-                       b'Content-Type: image/jpeg\r\n'
-                       b'Content-Length: ' + str(len(frame_bytes)).encode() + b'\r\n\r\n'
-                       + frame_bytes + b'\r\n')
+                frame_bytes = await asyncio.wait_for(
+                    processor.frame_queue.get(),
+                    timeout=2.0
+                )
+                yield (
+                    b'--frame\r\n'
+                    b'Content-Type: image/jpeg\r\n'
+                    b'Content-Length: ' + str(len(frame_bytes)).encode() + b'\r\n\r\n'
+                    + frame_bytes + b'\r\n'
+                )
             except asyncio.TimeoutError:
                 pass
 
@@ -90,18 +135,58 @@ async def video_feed():
         media_type="multipart/x-mixed-replace; boundary=frame"
     )
 
+
+@router.get("/video_feed", tags=["Detection"])
+async def video_feed_legacy():
+    active_ids = camera_manager.get_active_camera_ids()
+    if not active_ids:
+        return {"error": "No active cameras"}
+
+    camera_id = active_ids[0]
+    return await video_feed(camera_id)
+
+
+@router.websocket("/ws/stats/{camera_id}")
+async def websocket_camera_stats(websocket: WebSocket, camera_id: str):
+    await websocket.accept()
+
+    processor = camera_manager.get_processor(camera_id)
+    if processor is None:
+        await websocket.send_text(json.dumps({"error": "Camera not found"}))
+        await websocket.close()
+        return
+
+    try:
+        while processor.is_running:
+            stats = processor.get_latest_stats()
+            if stats:
+                await websocket.send_text(json.dumps(stats.to_dict()))
+            await asyncio.sleep(0.1)
+    except WebSocketDisconnect:
+        logger.info(f"WebSocket disconnected for camera {camera_id}")
+    except Exception as e:
+        logger.error(f"WebSocket error for camera {camera_id}: {e}")
+    finally:
+        await websocket.close()
+
+
 @router.websocket("/ws/stats")
-async def websocket_stats(websocket: WebSocket):
+async def websocket_all_stats(websocket: WebSocket):
     await websocket.accept()
 
     try:
         while True:
-            try:
-                stats = await asyncio.wait_for(engine.stats_queue.get(), timeout=1.0)
-                await websocket.send_text(json.dumps(stats))
-            except asyncio.TimeoutError:
-                pass
+            all_stats = camera_manager.get_all_stats()
+            if all_stats:
+                message = {
+                    "type": "all_stats",
+                    "cameras": all_stats
+                }
+                await websocket.send_text(json.dumps(message))
+            await asyncio.sleep(0.1)
+    except WebSocketDisconnect:
+        logger.info("WebSocket disconnected for all stats")
     except Exception as e:
-        logger.error(f"WebSocket error: {e}")
+        logger.error(f"WebSocket error for all stats: {e}")
     finally:
         await websocket.close()
