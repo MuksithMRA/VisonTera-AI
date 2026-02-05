@@ -10,15 +10,17 @@ class Dashboard {
         this.currentDetections = [];
         this.peakCount = 0;
         this.heatmapEnabled = true;
-        this.chartRange = '1m'; // 1m, 5m, 15m
+        this.chartRange = '1m';
         this.peopleHistory = [];
-        this.maxHistoryPoints = 60; // 60 data points for 1 minute (1 per second)
+        this.maxHistoryPoints = 60;
+        this.availableCameras = [];
         
         this.initElements();
         this.initEventListeners();
         this.initChart();
         this.initHeatmap();
         this.loadSettings();
+        this.loadCameras();
         this.startClock();
     }
 
@@ -317,6 +319,7 @@ class Dashboard {
             chartRange: this.chartRange
         };
         localStorage.setItem('visionteraSettings', JSON.stringify(settings));
+        localStorage.setItem('visionteraCameraId', this.elements.cameraSelect.value);
     }
 
     loadSettings() {
@@ -346,6 +349,70 @@ class Dashboard {
             }
         }
         this.updateHeatmapVisibility();
+    }
+
+    async loadCameras() {
+        try {
+            const response = await fetch('/api/cameras');
+            const data = await response.json();
+            
+            if (data.cameras && Array.isArray(data.cameras)) {
+                this.availableCameras = data.cameras;
+                this.updateCameraSelect();
+            }
+        } catch (err) {
+            console.warn('Failed to load cameras:', err);
+        }
+    }
+
+    updateCameraSelect() {
+        const select = this.elements.cameraSelect;
+        const currentValue = select.value;
+        
+        select.innerHTML = '';
+        
+        const localCameras = this.availableCameras.filter(c => c.type === 'local');
+        const rtspCameras = this.availableCameras.filter(c => c.type === 'rtsp');
+        
+        if (localCameras.length > 0) {
+            const localGroup = document.createElement('optgroup');
+            localGroup.label = 'Local Cameras';
+            localCameras.forEach(cam => {
+                const option = document.createElement('option');
+                option.value = cam.id;
+                option.textContent = cam.name;
+                localGroup.appendChild(option);
+            });
+            select.appendChild(localGroup);
+        }
+        
+        if (rtspCameras.length > 0) {
+            const rtspGroup = document.createElement('optgroup');
+            rtspGroup.label = 'RTSP Cameras';
+            rtspCameras.forEach(cam => {
+                const option = document.createElement('option');
+                option.value = cam.id;
+                option.textContent = cam.name;
+                rtspGroup.appendChild(option);
+            });
+            select.appendChild(rtspGroup);
+        }
+        
+        if (select.options.length === 0) {
+            for (let i = 0; i < 3; i++) {
+                const option = document.createElement('option');
+                option.value = String(i);
+                option.textContent = i === 0 ? 'Default Camera (0)' : `Camera ${i}`;
+                select.appendChild(option);
+            }
+        }
+        
+        const savedCamera = localStorage.getItem('visionteraCameraId');
+        if (savedCamera && Array.from(select.options).some(opt => opt.value === savedCamera)) {
+            select.value = savedCamera;
+        } else if (Array.from(select.options).some(opt => opt.value === currentValue)) {
+            select.value = currentValue;
+        }
     }
 
     start() {

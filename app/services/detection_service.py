@@ -39,7 +39,7 @@ class DetectionEngine:
         self.is_running = False
         self.camera_index = AppConfig.CAMERA_INDEX
         self.frame_count = 0
-        self.gender_check_interval = AppConfig.PETA_CHECK_INTERVAL
+        self.gender_check_interval = AppConfig.GENDER_CHECK_INTERVAL
         self.gender_voting_enabled = AppConfig.GENDER_VOTING_ENABLED
         self.gender_vote_threshold = AppConfig.GENDER_VOTE_THRESHOLD
         self.confidence = AppConfig.CONFIDENCE_THRESHOLD
@@ -99,33 +99,33 @@ class DetectionEngine:
             
             if gender_model_path and Path(gender_model_path).exists():
                 logger.info(f"Loading Gender Model from: {gender_model_path}")
-                try:
-                    self.gender_net = ResNet50GenderClassifier(num_classes=2)
-                    state_dict = torch.load(gender_model_path)
-                    self.gender_net.load_state_dict(state_dict)
-                    logger.info("ResNet50 gender classification model loaded successfully.")
-                except Exception as e:
-                    logger.error(f"Error loading ResNet50 gender model: {e}")
-                    self.gender_net = None
+                
+                checkpoint = torch.load(gender_model_path, map_location='cpu')
+                is_yolo_checkpoint = isinstance(checkpoint, dict) and 'model' in checkpoint
+                
+                if is_yolo_checkpoint:
+                    try:
+                        from ultralytics import YOLO as YOLO_CLS
+                        self.gender_net = YOLO_CLS(gender_model_path)
+                        self.gender_net_type = 'yolo'
+                        logger.info("YOLO-cls gender classification model loaded successfully.")
+                    except Exception as e:
+                        logger.error(f"Error loading YOLO-cls gender model: {e}")
+                        self.gender_net = None
+                else:
+                    try:
+                        self.gender_net = ResNet50GenderClassifier(num_classes=2)
+                        self.gender_net.load_state_dict(checkpoint)
+                        self.gender_net_type = 'resnet50'
+                        logger.info("ResNet50 gender classification model loaded successfully.")
+                    except Exception as e:
+                        logger.error(f"Error loading ResNet50 gender model: {e}")
+                        self.gender_net = None
             elif Path(old_gender_path).exists():
                 try:
                     from ultralytics import YOLO as YOLO_CLS
-                    base_model_path = 'infrastructure/models/yolo11m-cls.pt'
-                    if not Path(base_model_path).exists():
-                        base_model_path = 'yolo11m-cls.pt'
-                    
-                    base_cls_model = YOLO_CLS(base_model_path)
-                    self.gender_net = base_cls_model.model
-                    
-                    if hasattr(self.gender_net, 'model') and isinstance(self.gender_net.model[-1], nn.Linear):
-                        in_features = self.gender_net.model[-1].in_features
-                        self.gender_net.model[-1] = nn.Linear(in_features, 2)
-                    elif hasattr(self.gender_net.model[-1], 'linear'):
-                        in_features = self.gender_net.model[-1].linear.in_features
-                        self.gender_net.model[-1].linear = nn.Linear(in_features, 2)
-                    
-                    state_dict = torch.load(old_gender_path)
-                    self.gender_net.load_state_dict(state_dict)
+                    self.gender_net = YOLO_CLS(old_gender_path)
+                    self.gender_net_type = 'yolo'
                     logger.info("YOLO gender classification model loaded (fallback).")
                 except Exception as e:
                     logger.error(f"Error loading fallback gender model: {e}")
@@ -136,7 +136,7 @@ class DetectionEngine:
 
             device = 'cuda' if torch.cuda.is_available() else 'cpu'
             self.model.to(device)
-            if self.gender_net:
+            if self.gender_net and hasattr(self, 'gender_net_type') and self.gender_net_type == 'resnet50':
                 self.gender_net.to(device)
                 self.gender_net.eval()
                 
@@ -157,29 +157,44 @@ class DetectionEngine:
         
         if self.gender_net:
             try:
-                img = cv2.resize(person_img, (224, 224))
-                img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-                img = img.transpose((2, 0, 1))
-                img = np.ascontiguousarray(img, dtype=np.float32)
-                img /= 255.0
-                img = (img - np.array([0.485, 0.456, 0.406]).reshape(3,1,1)) / np.array([0.229, 0.224, 0.225]).reshape(3,1,1)
-                
-                img_tensor = torch.from_numpy(img).unsqueeze(0)
-                device = next(self.gender_net.parameters()).device
-                img_tensor = img_tensor.to(device).float()
-                
-                with torch.no_grad():
-                    outputs = self.gender_net(img_tensor)
-                    if isinstance(outputs, (list, tuple)): outputs = outputs[0]
-                    probs = torch.softmax(outputs, dim=1).squeeze()
-                
-                confidence, predicted = torch.max(probs, 0)
-                gender = self.gender_classes[predicted.item()]
-                
-                if confidence.item() < 0.6:
-                    return None, confidence.item()
-                
-                return gender, confidence.item()
+                if hasattr(self, 'gender_net_type') and self.gender_net_type == 'yolo':
+                    results = self.gender_net.predict(person_img, verbose=False, imgsz=224)
+                    if results and len(results) > 0:
+                        probs = results[0].probs
+                        if probs is not None:
+                            predicted = probs.top1
+                            confidence = float(probs.top1conf)
+                            gender = self.gender_classes[predicted]
+                            
+                            if confidence < 0.6:
+                                return None, confidence
+                            
+                            return gender, confidence
+                    return None, 0.0
+                else:
+                    img = cv2.resize(person_img, (224, 224))
+                    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+                    img = img.transpose((2, 0, 1))
+                    img = np.ascontiguousarray(img, dtype=np.float32)
+                    img /= 255.0
+                    img = (img - np.array([0.485, 0.456, 0.406]).reshape(3,1,1)) / np.array([0.229, 0.224, 0.225]).reshape(3,1,1)
+                    
+                    img_tensor = torch.from_numpy(img).unsqueeze(0)
+                    device = next(self.gender_net.parameters()).device
+                    img_tensor = img_tensor.to(device).float()
+                    
+                    with torch.no_grad():
+                        outputs = self.gender_net(img_tensor)
+                        if isinstance(outputs, (list, tuple)): outputs = outputs[0]
+                        probs = torch.softmax(outputs, dim=1).squeeze()
+                    
+                    confidence, predicted = torch.max(probs, 0)
+                    gender = self.gender_classes[predicted.item()]
+                    
+                    if confidence.item() < 0.6:
+                        return None, confidence.item()
+                    
+                    return gender, confidence.item()
             except Exception as e:
                 logger.error(f"Gender prediction error: {e}")
         return None, 0.0
@@ -432,12 +447,40 @@ class DetectionEngine:
                 logger.info("[CAMERA] Camera released")
 
     def _init_camera(self):
-        backend = cv2.CAP_DSHOW if (os.name == 'nt') else cv2.CAP_ANY
-        self.cap = cv2.VideoCapture(self.camera_index, backend)
+        if isinstance(self.camera_index, str) and self.camera_index.startswith("rtsp://"):
+            os.environ["OPENCV_FFMPEG_CAPTURE_OPTIONS"] = "rtsp_transport;tcp"
+            self.cap = cv2.VideoCapture(self.camera_index, cv2.CAP_FFMPEG)
+            self.cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
+        else:
+            backend = cv2.CAP_DSHOW if (os.name == 'nt') else cv2.CAP_ANY
+            cam_idx = int(self.camera_index) if isinstance(self.camera_index, str) else self.camera_index
+            self.cap = cv2.VideoCapture(cam_idx, backend)
         if self.cap.isOpened():
             self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, AppConfig.FRAME_WIDTH)
             self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, AppConfig.FRAME_HEIGHT)
             self.cap.set(cv2.CAP_PROP_FPS, 30)
+
+    def get_available_cameras(self):
+        cameras = []
+        for i in range(5):
+            cameras.append({
+                "id": str(i),
+                "name": f"Local Camera {i}",
+                "type": "local"
+            })
+        if AppConfig.RTSP_ENABLED and AppConfig.RTSP_URLS:
+            urls = AppConfig.RTSP_URLS.split(",")
+            names = AppConfig.RTSP_NAMES.split(",") if AppConfig.RTSP_NAMES else []
+            for idx, url in enumerate(urls):
+                url = url.strip()
+                if url:
+                    name = names[idx].strip() if idx < len(names) else f"RTSP Camera {idx + 1}"
+                    cameras.append({
+                        "id": url,
+                        "name": name,
+                        "type": "rtsp"
+                    })
+        return cameras
 
     def _process_one_frame(self):
         if not self.cap: return None
