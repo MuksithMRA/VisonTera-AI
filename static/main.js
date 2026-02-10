@@ -154,32 +154,20 @@ class MultiCameraDashboard {
         const select = this.elements.cameraSelect;
         select.innerHTML = '';
         
-        const localCameras = this.availableCameras.filter(c => c.type === 'local');
-        const rtspCameras = this.availableCameras.filter(c => c.type === 'rtsp');
-        
-        if (localCameras.length > 0) {
-            const localGroup = document.createElement('optgroup');
-            localGroup.label = 'Available Cameras';
-            localCameras.forEach(cam => {
-                const option = document.createElement('option');
-                option.value = cam.id; // This is the backend ID in our case
-                option.textContent = cam.name + (cam.site_name ? ` (${cam.site_name})` : '');
-                option.dataset.backendId = cam.id; // Store backend ID
-                localGroup.appendChild(option);
-            });
-            select.appendChild(localGroup);
-        }
-        
-        if (rtspCameras.length > 0) {
-            const rtspGroup = document.createElement('optgroup');
-            rtspGroup.label = 'RTSP Cameras';
-            rtspCameras.forEach(cam => {
+        if (this.availableCameras.length > 0) {
+            const group = document.createElement('optgroup');
+            group.label = 'Available Cameras';
+            
+            this.availableCameras.forEach(cam => {
                 const option = document.createElement('option');
                 option.value = cam.id;
-                option.textContent = cam.name;
-                rtspGroup.appendChild(option);
+                option.textContent = cam.name + (cam.site_name ? ` (${cam.site_name})` : '');
+                option.dataset.backendId = cam.id;
+                option.dataset.backendUrl = cam.url || '';
+                group.appendChild(option);
             });
-            select.appendChild(rtspGroup);
+            
+            select.appendChild(group);
         }
     }
 
@@ -197,14 +185,15 @@ class MultiCameraDashboard {
         const selectedOption = this.elements.cameraSelect.options[this.elements.cameraSelect.selectedIndex];
         const backendId = selectedOption.dataset.backendId;
 
-        // Use backend ID as source for now, or default to 0 (webcam) if it's just an ID
-        // In a real scenario, we might map this ID to a real RTSP URL if available
-        // For now, we'll assume the user wants to use their local webcam (0) but map it to this backend ID
-        // Or if the backend provided a source URL, we would use that.
-        // Since the backend payload shows "counts" and "id", but no RTSP URL in the example,
-        // we will simulate by using local webcam 0 but associating it with the backend ID.
+        // Check if the selected backend camera has a specific URL
+        const backendUrl = selectedOption.dataset.backendUrl;
         
-        const realSource = "0"; // Force local webcam for demo purposes, mapped to selected backend ID
+        // If we have a backend RTSP/HTTP URL, use that. 
+        // Otherwise, fallback to "0" for the local webcam.
+        let realSource = "0";
+        if (backendUrl && backendUrl !== "undefined" && backendUrl !== "null" && backendUrl.trim() !== "") {
+            realSource = backendUrl;
+        }
 
         const payload = {
             camera_id: cameraId,

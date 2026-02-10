@@ -37,11 +37,15 @@ class CameraManager:
         
         cameras = []
         for cam in backend_cameras:
+            camera_url = cam.get("url")
+            if camera_url:
+                logger.info(f"[CameraManager] Found camera: {camera_url}")
             cameras.append({
                 "id": str(cam.get("id")),
                 "name": cam.get("name") or f"Camera {cam.get('id')}",
-                "type": CameraType.LOCAL.value, # Assuming local for now as per request
-                "site_name": cam.get("site_name")
+                "type": CameraType.RTSP.value if camera_url and "rtsp" in camera_url else CameraType.LOCAL.value, 
+                "site_name": cam.get("site_name"),
+                "url": camera_url 
             })
 
         return cameras
