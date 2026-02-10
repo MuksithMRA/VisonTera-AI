@@ -113,4 +113,18 @@ class AuthService:
     def is_authenticated(self) -> bool:
         return self._access_token is not None
 
+    def logout(self):
+        """Logs out the user by clearing the tokens."""
+        self._access_token = None
+        self._refresh_token = None
+        
+        from app.services.api_client import api_client
+        try:
+            loop = asyncio.get_running_loop()
+            loop.create_task(api_client.update_token(None))
+        except RuntimeError:
+            pass
+            
+        logger.info("[Auth] User logged out")
+
 auth_service = AuthService()

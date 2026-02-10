@@ -19,6 +19,11 @@ async def login(request: LoginRequest):
     else:
         raise HTTPException(status_code=401, detail=result["message"])
 
+@router.post("/api/logout", summary="Logout from the platform")
+async def logout():
+    auth_service.logout()
+    return JSONResponse(content={"message": "Logout successful"})
+
 @router.get("/api/auth/status", summary="Check authentication status")
 async def check_auth_status():
     return {"authenticated": auth_service.is_authenticated()}

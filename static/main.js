@@ -46,7 +46,8 @@ class MultiCameraDashboard {
             boxColor: document.getElementById('boxColor'),
             colorValue: document.getElementById('colorValue'),
             addCameraBtn: document.getElementById('addCameraBtn'),
-            stopAllBtn: document.getElementById('stopAllBtn')
+            stopAllBtn: document.getElementById('stopAllBtn'),
+            logoutBtn: document.getElementById('logoutBtn')
         };
     }
 
@@ -54,6 +55,10 @@ class MultiCameraDashboard {
         this.elements.addCameraBtn.addEventListener('click', () => this.addCamera());
         this.elements.stopAllBtn.addEventListener('click', () => this.stopAllCameras());
         this.elements.refreshCamerasBtn.addEventListener('click', () => this.loadCameras());
+        
+        if (this.elements.logoutBtn) {
+            this.elements.logoutBtn.addEventListener('click', () => this.handleLogout());
+        }
         
         this.elements.confidenceSlider.addEventListener('input', (e) => {
             this.elements.confidenceValue.textContent = parseFloat(e.target.value).toFixed(2);
@@ -536,6 +541,31 @@ class MultiCameraDashboard {
             this.updateGlobalStats();
             this.updateCameraStatusList();
         }, 1000);
+    }
+
+    async handleLogout() {
+        if (!confirm('Are you sure you want to logout?')) {
+            return;
+        }
+
+        try {
+            const response = await fetch('/api/logout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                window.location.href = '/login';
+            } else {
+                console.error('Logout failed');
+                window.location.href = '/login';
+            }
+        } catch (error) {
+            console.error('Error during logout:', error);
+            window.location.href = '/login';
+        }
     }
 }
 

@@ -116,6 +116,32 @@ body {
     color: var(--color-accent);
 }
 
+.logout-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--color-text-active);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.logout-btn:hover {
+    background: rgba(239, 68, 68, 0.15);
+    border-color: var(--color-danger);
+    color: var(--color-danger);
+}
+
+@media (max-width: 768px) {
+    .logout-text {
+        display: none;
+    }
+}
+
 .status-indicator {
     display: flex;
     align-items: center;
@@ -678,6 +704,7 @@ body {
 .form-slider {
     flex: 1;
     -webkit-appearance: none;
+    appearance: none;
     height: 4px;
     background: var(--color-bg-tertiary);
     border-radius: 2px;

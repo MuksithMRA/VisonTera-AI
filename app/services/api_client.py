@@ -58,7 +58,7 @@ class APIClient:
                     logger.info("[API] HTTP client initialized with connection pooling")
         return self._client
 
-    async def update_token(self, token: str) -> None:
+    async def update_token(self, token: Optional[str]) -> None:
         """Update the API token and reset the client."""
         self._api_token = token
         async with self._lock:
