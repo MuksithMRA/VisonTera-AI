@@ -11,6 +11,7 @@ from app.domain.entities import (
 from app.infrastructure.inference_engine import InferenceEngine
 from app.infrastructure.camera_capture import CameraCapture
 from app.services.api_client import api_client
+from app.services.dataset_collector import DatasetCollector
 from app.config import AppConfig, logger
 
 
@@ -19,6 +20,7 @@ class CameraProcessor(ICameraProcessor):
         self._config = config
         self._inference_engine = inference_engine
         self._capture = CameraCapture()
+        self._dataset_collector = DatasetCollector()
         self._state = CameraState.IDLE
         self._error_message: Optional[str] = None
         self._frames_processed = 0
@@ -157,6 +159,12 @@ class CameraProcessor(ICameraProcessor):
             frame,
             self._config.confidence_threshold,
             self._config.camera_id
+        )
+
+        self._dataset_collector.process_frame(
+            self._config.camera_id,
+            frame,
+            detections
         )
 
         annotated = self._draw_detections(frame, detections)

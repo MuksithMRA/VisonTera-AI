@@ -29,6 +29,13 @@ class AppConfig:
     RTSP_ENABLED = os.getenv("RTSP_ENABLED", "false").lower() == "true"
     RTSP_URLS = os.getenv("RTSP_URLS", "")
     RTSP_NAMES = os.getenv("RTSP_NAMES", "")
+    
+    # Dataset Collection Configuration
+    DATASET_COLLECTION_ENABLED = True
+    DATASET_OUTPUT_DIR = "datasets/to_label"
+    DATASET_MIN_HEIGHT = 100
+    DATASET_MIN_WIDTH = 50
+    DATASET_CAPTURE_INTERVAL = 2.0
 
 logging.basicConfig(
     level=logging.INFO,
