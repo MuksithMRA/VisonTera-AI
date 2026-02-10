@@ -14492,3 +14492,10 @@ DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error
 2026-02-10 10:53:24,209 [INFO] VisionTera: Camera released: 0
 2026-02-10 10:53:24,209 [INFO] VisionTera: Camera cam_1770700944735_1 stopped
 2026-02-10 10:53:24,209 [INFO] VisionTera: Camera cam_1770700944735_1 stopped
+2026-02-10 11:01:03,626 [INFO] VisionTera: [API] HTTP client closed
+2026-02-10 11:01:03,626 [INFO] VisionTera: Application shutdown - All cameras stopped
+2026-02-10 11:01:11,680 [INFO] VisionTera: Detection model loaded on device: cuda
+2026-02-10 11:01:11,681 [INFO] VisionTera: Found latest model version: v_20260209_170745
+2026-02-10 11:01:11,745 [INFO] VisionTera: YOLO-cls gender classification model loaded.
+2026-02-10 11:01:11,747 [INFO] VisionTera: [API] API client worker started
+2026-02-10 11:01:11,747 [INFO] VisionTera: Application started - Multi-camera detection ready
