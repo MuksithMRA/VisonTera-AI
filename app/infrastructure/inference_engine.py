@@ -252,6 +252,49 @@ class InferenceEngine(IInferenceEngine):
 
         return None, 0.0
 
+    def predict_gender_from_crop(self, crop: np.ndarray) -> Tuple[Optional[str], float]:
+        """
+        Predict gender from a cropped image.
+        """
+        if self._gender_model is None:
+            return None, 0.0
+            
+        try:
+            if self._gender_model_type == 'yolo':
+                 with self._inference_lock:
+                    results = self._gender_model.predict(crop, verbose=False, imgsz=224)
+                 if results and len(results) > 0:
+                    probs = results[0].probs
+                    if probs is not None:
+                        predicted = probs.top1
+                        confidence = float(probs.top1conf)
+                        return self._gender_classes[predicted], confidence
+            else:
+                img = cv2.resize(crop, (224, 224))
+                img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+                img = img.transpose((2, 0, 1))
+                img = np.ascontiguousarray(img, dtype=np.float32)
+                img /= 255.0
+                mean = np.array([0.485, 0.456, 0.406]).reshape(3, 1, 1)
+                std = np.array([0.229, 0.224, 0.225]).reshape(3, 1, 1)
+                img = (img - mean) / std
+
+                img_tensor = torch.from_numpy(img).unsqueeze(0).to(self._device).float()
+
+                with torch.no_grad():
+                    outputs = self._gender_model(img_tensor)
+                    if isinstance(outputs, (list, tuple)):
+                        outputs = outputs[0]
+                    probs = torch.softmax(outputs, dim=1).squeeze()
+
+                confidence, predicted = torch.max(probs, 0)
+                return self._gender_classes[predicted.item()], confidence.item()
+
+        except Exception as e:
+            logger.error(f"Gender crop prediction error: {e}")
+            
+        return None, 0.0
+
     def is_loaded(self) -> bool:
         return self._detection_model is not None
 

@@ -1,6 +1,7 @@
 import cv2
 import threading
 import time
+import shutil
 import concurrent.futures
 from typing import List, Set, Dict, Optional
 from pathlib import Path
@@ -30,8 +31,23 @@ class DatasetCollector:
                         logger.error(f"Failed to create dataset output directory: {e}")
                         
                     instance._save_executor = concurrent.futures.ThreadPoolExecutor(max_workers=2)
+                    instance._labeling_active = True
+                    instance._labeling_thread = None
+                    instance._start_labeling_thread()
+                    
                     cls._instance = instance
         return cls._instance
+
+    def _start_labeling_thread(self):
+        if not AppConfig.DATASET_AUTOLABEL_ENABLED:
+            return
+            
+        if self._labeling_thread and self._labeling_thread.is_alive():
+            return
+            
+        self._labeling_thread = threading.Thread(target=self._auto_label_loop, daemon=True)
+        self._labeling_thread.start()
+        logger.info("Dataset auto-labeling background thread started")
 
     def __init__(self):
         pass
@@ -119,3 +135,71 @@ class DatasetCollector:
             
         except Exception as e:
             logger.error(f"Error saving dataset crop: {e}")
+
+    def _auto_label_loop(self):
+        """Background loop to auto-label collected images."""
+        from app.infrastructure.inference_engine import InferenceEngine
+        inference_engine = InferenceEngine()
+        
+        # Create directories
+        male_dir = self._output_dir / "MALE"
+        female_dir = self._output_dir / "FEMALE"
+        uncertain_dir = self._output_dir / "UNCERTAIN"
+        
+        try:
+            male_dir.mkdir(parents=True, exist_ok=True)
+            female_dir.mkdir(parents=True, exist_ok=True)
+            uncertain_dir.mkdir(parents=True, exist_ok=True)
+        except Exception as e:
+            logger.error(f"Failed to create labeling directories: {e}")
+            return
+            
+        logger.info(f"Auto-labeling loop running. Interval: {AppConfig.DATASET_AUTOLABEL_INTERVAL}s")
+        
+        while self._labeling_active:
+            try:
+                time.sleep(AppConfig.DATASET_AUTOLABEL_INTERVAL)
+                
+                # Check if inference engine is ready
+                if not inference_engine.is_loaded():
+                    continue
+                    
+                # Scan for images in the root output directory (not recursive)
+                images = [f for f in self._output_dir.iterdir() 
+                          if f.is_file() and f.suffix.lower() in ['.jpg', '.jpeg', '.png']]
+                
+                if not images:
+                    continue
+                    
+                logger.debug(f"Auto-labeling found {len(images)} images to process")
+                
+                for img_path in images:
+                    try:
+                        # Read image
+                        img = cv2.imread(str(img_path))
+                        if img is None:
+                            logger.warning(f"Failed to read image for labeling: {img_path}")
+                            continue
+                            
+                        # Predict gender
+                        gender, confidence = inference_engine.predict_gender_from_crop(img)
+                        
+                        target_dir = uncertain_dir
+                        if gender and confidence >= AppConfig.DATASET_AUTOLABEL_CONFIDENCE:
+                            if gender == "Male":
+                                target_dir = male_dir
+                            elif gender == "Female":
+                                target_dir = female_dir
+                        
+                        # Move file
+                        dest_path = target_dir / img_path.name
+                        shutil.move(str(img_path), str(dest_path))
+                        
+                        # logger.debug(f"Labeled {img_path.name} -> {target_dir.name} ({confidence:.2f})")
+                        
+                    except Exception as e:
+                        logger.error(f"Error processing image {img_path}: {e}")
+                        
+            except Exception as e:
+                logger.error(f"Error in auto-labeling loop: {e}")
+                time.sleep(5) # Wait a bit on error
