@@ -10,6 +10,7 @@ from app.domain.entities import (
 )
 from app.infrastructure.inference_engine import InferenceEngine
 from app.infrastructure.camera_capture import CameraCapture
+from app.services.api_client import api_client
 from app.config import AppConfig, logger
 
 
@@ -127,6 +128,8 @@ class CameraProcessor(ICameraProcessor):
                 self._latest_detections = result['detections']
                 self._update_stats()
 
+                await self._push_stats_to_api()
+
                 try:
                     if self._frame_queue.full():
                         self._frame_queue.get_nowait()
@@ -224,6 +227,28 @@ class CameraProcessor(ICameraProcessor):
             female_count=female_count,
             detections=[d.to_dict() for d in self._latest_detections],
             timestamp=datetime.now()
+        )
+
+    async def _push_stats_to_api(self) -> None:
+        if not self._latest_detections:
+            return
+        
+        detections_for_api = []
+        for det in self._latest_detections:
+            detections_for_api.append({
+                'id': det.track_id,
+                'gender': det.gender or 'Person',
+                'bbox': {
+                    'x1': det.bbox.x1,
+                    'y1': det.bbox.y1,
+                    'x2': det.bbox.x2,
+                    'y2': det.bbox.y2
+                }
+            })
+        
+        await api_client.push_detections(
+            camera_id=self._config.camera_id,
+            detections=detections_for_api
         )
 
     async def _handle_reconnect(self) -> None:

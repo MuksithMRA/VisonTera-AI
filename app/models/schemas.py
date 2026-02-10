@@ -32,6 +32,7 @@ class CameraStartRequest(BaseModel):
     camera_id: str = Field(..., description="Unique identifier for this camera session")
     source: str = Field(..., description="Camera index or RTSP URL")
     name: Optional[str] = Field(None, description="Display name for the camera")
+    backend_camera_id: Optional[int] = Field(None, description="Backend ID to map to this camera")
     confidence: float = Field(0.5, ge=0.1, le=1.0, description="Detection confidence threshold")
     show_coords: bool = Field(True, description="Show coordinates on detections")
     show_fps: bool = Field(True, description="Show FPS counter")
@@ -43,6 +44,7 @@ class CameraStartRequest(BaseModel):
                 "camera_id": "cam_1",
                 "source": "0",
                 "name": "Main Entrance",
+                "backend_camera_id": 12,
                 "confidence": 0.5,
                 "show_coords": True,
                 "show_fps": True,

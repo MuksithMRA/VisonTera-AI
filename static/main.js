@@ -154,11 +154,12 @@ class MultiCameraDashboard {
         
         if (localCameras.length > 0) {
             const localGroup = document.createElement('optgroup');
-            localGroup.label = 'Local Cameras';
+            localGroup.label = 'Available Cameras';
             localCameras.forEach(cam => {
                 const option = document.createElement('option');
-                option.value = cam.id;
-                option.textContent = cam.name;
+                option.value = cam.id; // This is the backend ID in our case
+                option.textContent = cam.name + (cam.site_name ? ` (${cam.site_name})` : '');
+                option.dataset.backendId = cam.id; // Store backend ID
                 localGroup.appendChild(option);
             });
             select.appendChild(localGroup);
@@ -188,14 +189,27 @@ class MultiCameraDashboard {
         this.cameraCounter++;
         const cameraId = `cam_${Date.now()}_${this.cameraCounter}`;
         
+        const selectedOption = this.elements.cameraSelect.options[this.elements.cameraSelect.selectedIndex];
+        const backendId = selectedOption.dataset.backendId;
+
+        // Use backend ID as source for now, or default to 0 (webcam) if it's just an ID
+        // In a real scenario, we might map this ID to a real RTSP URL if available
+        // For now, we'll assume the user wants to use their local webcam (0) but map it to this backend ID
+        // Or if the backend provided a source URL, we would use that.
+        // Since the backend payload shows "counts" and "id", but no RTSP URL in the example,
+        // we will simulate by using local webcam 0 but associating it with the backend ID.
+        
+        const realSource = "0"; // Force local webcam for demo purposes, mapped to selected backend ID
+
         const payload = {
             camera_id: cameraId,
-            source: source,
+            source: realSource,
             name: name,
             confidence: confidence,
             show_coords: showCoords,
             show_fps: showFps,
-            box_color: boxColor
+            box_color: boxColor,
+            backend_camera_id: backendId ? parseInt(backendId) : null
         };
         
         try {

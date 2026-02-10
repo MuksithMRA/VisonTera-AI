@@ -6,11 +6,11 @@ from datetime import datetime
 import asyncio
 from pathlib import Path
 import concurrent.futures
-import httpx
 import os
 from ultralytics import YOLO
 from torchvision import models
 from app.config import AppConfig, logger
+from app.services.api_client import api_client
 
 
 class ResNet50GenderClassifier(nn.Module):
@@ -43,9 +43,6 @@ class DetectionEngine:
         self.gender_voting_enabled = AppConfig.GENDER_VOTING_ENABLED
         self.gender_vote_threshold = AppConfig.GENDER_VOTE_THRESHOLD
         self.confidence = AppConfig.CONFIDENCE_THRESHOLD
-        self.api_url = AppConfig.API_URL
-        self.api_token = AppConfig.API_TOKEN
-        self.last_api_push = datetime.min
         self.show_coords = True
         self.show_fps = True
         self.box_color = (0, 255, 136)
@@ -290,56 +287,7 @@ class DetectionEngine:
                            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 212, 255), 2)
         return annotated
 
-    async def _push_to_api(self, detections):
-        if not self.api_url or not self.api_token:
-            return
-        url = f"{self.api_url}/agent/stats"
-        now = datetime.now()
-        now_iso = now.isoformat()
-        boxes = []
-        male_count = 0
-        female_count = 0
-        for d in detections:
-            g = d.get('gender', 'Person')
-            if g == 'Male':
-                g_code = 'M'
-                male_count += 1
-            elif g == 'Female':
-                g_code = 'F'
-                female_count += 1
-            else:
-                continue
-            boxes.append({
-                "camera_id": self.camera_index,
-                "date": now_iso,
-                "bbox_id": d.get('id', -1),
-                "bbox_left": int(d['bbox']['x1']),
-                "bbox_top": int(d['bbox']['y1']),
-                "bbox_w": int(d['bbox']['x2'] - d['bbox']['x1']),
-                "bbox_h": int(d['bbox']['y2'] - d['bbox']['y1']),
-                "gender": g_code
-            })
-        payload = {
-            "boxes": boxes,
-            "counts": {
-                "camera_id": self.camera_index,
-                "date": now_iso,
-                "counter": len(detections),
-                "male_counter": male_count,
-                "female_counter": female_count
-            }
-        }
-        headers = {
-            "Authorization": f"Bearer {self.api_token}",
-            "Content-Type": "application/json"
-        }
-        try:
-            async with httpx.AsyncClient() as client:
-                response = await client.post(url, json=payload, headers=headers, timeout=5.0)
-                if response.status_code not in [200, 201]:
-                    logger.warning(f"[API] Push failed with status {response.status_code}")
-        except Exception as e:
-            logger.debug(f"[API] Error: {e}")
+
 
     async def demo_mode(self):
         frame_width, frame_height = 640, 480
@@ -511,11 +459,10 @@ class DetectionEngine:
                         'height': self.frame_height,
                         'detections': self.last_detections
                     }
-                    now = datetime.now()
-                    if (now - self.last_api_push).total_seconds() >= 1.0:
-                        self.last_api_push = now
-                        #commented for  future reference
-                      #  asyncio.create_task(self._push_to_api(self.last_detections))
+                    await api_client.push_detections(
+                        camera_id=str(self.camera_index),
+                        detections=self.last_detections
+                    )
                     try:
                         self.stats_queue.put_nowait(stats)
                     except asyncio.QueueFull:

@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, RedirectResponse
 from app.config import AppConfig
 from app.services.state import camera_manager
 from app.models.schemas import DetectionStatus
@@ -12,6 +12,9 @@ router = APIRouter(tags=["Dashboard"])
     description="Returns the main dashboard HTML page for the VisionTera application."
 )
 async def get_dashboard():
+    from app.services.auth_service import auth_service
+    if not auth_service.is_authenticated():
+        return RedirectResponse(url="/login", status_code=303)
     return FileResponse(AppConfig.BASE_DIR / "index.html", media_type="text/html")
 
 @router.get(

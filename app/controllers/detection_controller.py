@@ -3,6 +3,7 @@ from fastapi.responses import StreamingResponse
 import asyncio
 import json
 from app.services.state import camera_manager
+from app.services.api_client import api_client
 from app.config import logger
 from app.models.schemas import (
     CameraStartRequest,
@@ -17,8 +18,22 @@ router = APIRouter()
 
 @router.get("/api/cameras", tags=["Detection"])
 async def get_available_cameras():
-    cameras = camera_manager.get_available_cameras()
+    cameras = await camera_manager.get_available_cameras()
     return {"cameras": cameras}
+
+
+@router.get("/api/cameras/backend", tags=["Detection"])
+async def get_backend_cameras():
+    """Get cameras registered in the VisionTera backend."""
+    cameras = api_client.get_backend_cameras()
+    return {"cameras": cameras}
+
+
+@router.get("/api/cameras/backend/refresh", tags=["Detection"])
+async def refresh_backend_cameras():
+    """Refresh the list of cameras from the VisionTera backend."""
+    cameras = await api_client.fetch_backend_cameras()
+    return {"cameras": cameras, "count": len(cameras)}
 
 
 @router.get("/api/cameras/active", tags=["Detection"])
@@ -44,6 +59,9 @@ async def start_camera(request: CameraStartRequest):
     g = int(request.box_color[2:4], 16) if len(request.box_color) >= 4 else 255
     b = int(request.box_color[0:2], 16) if len(request.box_color) >= 2 else 136
     box_color = (b, g, r)
+
+    if request.backend_camera_id:
+        api_client.register_camera(request.camera_id, request.backend_camera_id)
 
     result = await camera_manager.start_camera(
         camera_id=request.camera_id,
@@ -88,6 +106,7 @@ async def start_detection_legacy(
 
 @router.post("/api/camera/{camera_id}/stop", response_model=StopResponse, tags=["Detection"])
 async def stop_camera(camera_id: str):
+    api_client.unregister_camera(camera_id)
     result = await camera_manager.stop_camera(camera_id)
     return StopResponse(**result)
 

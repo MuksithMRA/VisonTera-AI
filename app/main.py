@@ -6,9 +6,11 @@ from fastapi.staticfiles import StaticFiles
 from contextlib import asynccontextmanager
 from app.config import AppConfig, logger
 from app.services.state import camera_manager
+from app.services.api_client import api_client
 from app.controllers.base_controller import router as base_router
 from app.controllers.detection_controller import router as detection_router
 from app.controllers.training_controller import router as training_router
+from app.controllers.auth_controller import router as auth_router
 
 tags_metadata = [
     {
@@ -28,9 +30,11 @@ tags_metadata = [
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     camera_manager.load_models()
+    await api_client.start()
     logger.info("Application started - Multi-camera detection ready")
     yield
     await camera_manager.stop_all_cameras()
+    await api_client.stop()
     logger.info("Application shutdown - All cameras stopped")
 
 app = FastAPI(
@@ -76,6 +80,7 @@ app.mount("/static", StaticFiles(directory=AppConfig.BASE_DIR / "static"), name=
 app.include_router(base_router)
 app.include_router(detection_router)
 app.include_router(training_router)
+app.include_router(auth_router)
 
 if __name__ == "__main__":
     import uvicorn

@@ -31,28 +31,18 @@ class CameraManager:
         self._inference_engine.load_models(detection_path, gender_path)
         self._models_loaded = True
 
-    def get_available_cameras(self) -> List[dict]:
+    async def get_available_cameras(self) -> List[dict]:
+        from app.services.api_client import api_client
+        backend_cameras = await api_client.fetch_backend_cameras()
+        
         cameras = []
-
-        for i in range(5):
+        for cam in backend_cameras:
             cameras.append({
-                "id": str(i),
-                "name": f"Local Camera {i}",
-                "type": CameraType.LOCAL.value
+                "id": str(cam.get("id")),
+                "name": cam.get("name") or f"Camera {cam.get('id')}",
+                "type": CameraType.LOCAL.value, # Assuming local for now as per request
+                "site_name": cam.get("site_name")
             })
-
-        if AppConfig.RTSP_ENABLED and AppConfig.RTSP_URLS:
-            urls = AppConfig.RTSP_URLS.split(",")
-            names = AppConfig.RTSP_NAMES.split(",") if AppConfig.RTSP_NAMES else []
-            for idx, url in enumerate(urls):
-                url = url.strip()
-                if url:
-                    name = names[idx].strip() if idx < len(names) else f"RTSP Camera {idx + 1}"
-                    cameras.append({
-                        "id": url,
-                        "name": name,
-                        "type": CameraType.RTSP.value
-                    })
 
         return cameras
 
