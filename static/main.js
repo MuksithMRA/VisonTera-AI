@@ -47,7 +47,14 @@ class MultiCameraDashboard {
             colorValue: document.getElementById('colorValue'),
             addCameraBtn: document.getElementById('addCameraBtn'),
             stopAllBtn: document.getElementById('stopAllBtn'),
-            logoutBtn: document.getElementById('logoutBtn')
+            logoutBtn: document.getElementById('logoutBtn'),
+            
+            // Modal Elements
+            modal: document.getElementById('customModal'),
+            modalIcon: document.getElementById('modalIcon'),
+            modalTitle: document.getElementById('modalTitle'),
+            modalMessage: document.getElementById('modalMessage'),
+            modalCloseBtn: document.getElementById('modalCloseBtn')
         };
     }
 
@@ -58,6 +65,16 @@ class MultiCameraDashboard {
         
         if (this.elements.logoutBtn) {
             this.elements.logoutBtn.addEventListener('click', () => this.handleLogout());
+        }
+        
+        if (this.elements.modalCloseBtn) {
+            this.elements.modalCloseBtn.addEventListener('click', () => this.closeModal());
+        }
+        
+        if (this.elements.modal) {
+            this.elements.modal.addEventListener('click', (e) => {
+                if (e.target === this.elements.modal) this.closeModal();
+            });
         }
         
         this.elements.confidenceSlider.addEventListener('input', (e) => {
@@ -223,11 +240,11 @@ class MultiCameraDashboard {
                 this.connectCameraWebSocket(cameraId);
                 this.elements.cameraName.value = '';
             } else {
-                alert(`Failed to start camera: ${result.message || 'Unknown error'}`);
+                this.showModal('Error Starting Camera', `Failed to start camera: ${result.message || 'Unknown error'}`);
             }
         } catch (err) {
             console.error('Failed to add camera:', err);
-            alert('Failed to add camera. Check console for details.');
+            this.showModal('System Error', 'Failed to add camera. Check console for details.');
         } finally {
             this.elements.addCameraBtn.disabled = false;
             this.elements.addCameraBtn.innerHTML = `
@@ -532,29 +549,57 @@ class MultiCameraDashboard {
         }, 1000);
     }
 
-    async handleLogout() {
+    handleLogout() {
         if (!confirm('Are you sure you want to logout?')) {
             return;
         }
 
         try {
-            const response = await fetch('/api/logout', {
+            fetch('/api/logout', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 }
+            }).finally(() => {
+                 window.location.href = '/login';
             });
-
-            if (response.ok) {
-                window.location.href = '/login';
-            } else {
-                console.error('Logout failed');
-                window.location.href = '/login';
-            }
         } catch (error) {
             console.error('Error during logout:', error);
             window.location.href = '/login';
         }
+    }
+
+    showModal(title, message, isError = true) {
+        if (this.elements.modalTitle) this.elements.modalTitle.textContent = title;
+        if (this.elements.modalMessage) this.elements.modalMessage.textContent = message;
+        
+        if (this.elements.modalIcon) {
+            if (isError) {
+                this.elements.modalIcon.className = 'modal-icon error';
+                this.elements.modalIcon.innerHTML = `
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                `;
+            } else {
+                this.elements.modalIcon.className = 'modal-icon info';
+                this.elements.modalIcon.innerHTML = `
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                `;
+            }
+        }
+        
+        if (this.elements.modal) this.elements.modal.classList.add('active');
+    }
+
+    closeModal() {
+        if (this.elements.modal) this.elements.modal.classList.remove('active');
     }
 }
 

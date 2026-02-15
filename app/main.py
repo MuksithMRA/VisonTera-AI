@@ -4,6 +4,7 @@ patch_torch_load()
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from contextlib import asynccontextmanager
+import asyncio
 from app.config import AppConfig, logger
 from app.services.state import camera_manager
 from app.services.api_client import api_client
@@ -31,10 +32,21 @@ tags_metadata = [
 async def lifespan(app: FastAPI):
     camera_manager.load_models()
     await api_client.start()
+    
+    from app.services.training_scheduler import run_scheduler_loop
+    scheduler_task = asyncio.create_task(run_scheduler_loop())
+    
     logger.info("Application started - Multi-camera detection ready")
     yield
     await camera_manager.stop_all_cameras()
     await api_client.stop()
+    
+    scheduler_task.cancel()
+    try:
+        await scheduler_task
+    except asyncio.CancelledError:
+        pass
+        
     logger.info("Application shutdown - All cameras stopped")
 
 app = FastAPI(

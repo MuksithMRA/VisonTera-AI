@@ -226,6 +226,28 @@
         </footer>
     </div>
 
+    <!-- Custom Modal -->
+    <div id="customModal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <div class="modal-icon error" id="modalIcon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                </div>
+                <h3 class="modal-title" id="modalTitle">Error</h3>
+            </div>
+            <div class="modal-body" id="modalMessage">
+                Something went wrong.
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-primary" id="modalCloseBtn">OK</button>
+            </div>
+        </div>
+    </div>
+
     <script src="/static/main.js"></script>
 </body>
 

@@ -39,6 +39,9 @@ class AppConfig:
     DATASET_AUTOLABEL_ENABLED = True
     DATASET_AUTOLABEL_INTERVAL = 60
     DATASET_AUTOLABEL_CONFIDENCE = 0.8
+    
+    TRAINING_SCHEDULER_ENABLED = False
+    TRAINING_SCHEDULER_INTERVAL = 86400  # 24 hours in seconds
 
 logging.basicConfig(
     level=logging.INFO,

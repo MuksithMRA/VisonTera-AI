@@ -1,66 +1,63 @@
-# Data Guidelines for VisionTera AI (Gender Classification)
+# Data Review Guidelines for Freelancers
 
-This document outlines the end-to-end workflow for collecting, labeling, and training the Gender Classification model.
+This document explains how to review and clean the dataset collected by the VisionTera AI system.
 
-## 1. Project Objective
-The goal is to train a YOLOv11 Classification model to accurately distinguish between **MALE** and **FEMALE** subjects in CCTV/surveillance footage.
+**Your Role:** Quality Control. The AI automatically collects and attempts to label images. Your job is to fix its mistakes.
 
-## 2. Automated Data Workflow
+## 1. Where to Work
 
-We have a master pipeline script to automate the entire process.
+All work happens in this folder:
+`datasets/to_label/`
 
-### Master Command
-Run the interactive pipeline:
-```bash
-python infrastructure/run_pipeline.py
-```
-*You will be prompted to choose a mode: Ingest, Learning, or Full Cycle.*
+Inside, you will find three folders:
+1.  📂 **`MALE`** (AI thinks these are Male)
+2.  📂 **`FEMALE`** (AI thinks these are Female)
+3.  📂 **`UNCERTAIN`** (AI is not sure)
 
-### Phase 1: Ingest (Mode 1)
-1. **Data Collection**: Automatically captures crops of people.
-   - Captures for 60s by default (configurable).
-   - Saves to `datasets/to_label/`.
-2. **Auto-Labeling**: Sorts images into `MALE`, `FEMALE`, and `UNCERTAIN`.
+---
 
-### Phase 2: Manual Review (Critical)
-**The pipeline pauses here.** You must manually:
-1. Go to `datasets/to_label/MALE` and **delete/move** any wrong images.
-2. Go to `datasets/to_label/FEMALE` and **delete/move** any wrong images.
-3. Check `datasets/to_label/UNCERTAIN` and manually move images to the correct folder.
-4. **Delete** any bad quality / blurry images.
+## 2. Your Tasks (Step-by-Step)
 
-### Phase 3: Learning (Mode 2)
-Once review is done, this mode runs the rest:
-1. **Merge**: Moves clean data from `to_label/` to the master `new_dataset/`.
-2. **Prepare**: Splits data into Train (80%) and Val (20%) for YOLO.
-3. **Train**: Trains the model (`epochs=50` default).
+### Step 1: Review the MALE Folder
+1.  Open `datasets/to_label/MALE`.
+2.  Look through **all** images.
+3.  **Action**:
+    *   If you see a **Female**, move the image to the `FEMALE` folder.
+    *   If you see a **non-person** (chair, shadow, empty wall), **DELETE** it.
+    *   If the image is extremely blurry or you can't tell, **DELETE** it.
 
-## 3. Directory Structure
+### Step 2: Review the FEMALE Folder
+1.  Open `datasets/to_label/FEMALE`.
+2.  Look through **all** images.
+3.  **Action**:
+    *   If you see a **Male**, move the image to the `MALE` folder.
+    *   If you see a **non-person**, **DELETE** it.
+    *   If the image is extremely blurry or you can't tell, **DELETE** it.
 
-- **`datasets/to_label/`**: Temporary staging area for new captures.
-- **`datasets/new_dataset/`**: The MASTER collection of all your source images.
-- **`datasets/new_dataset_yolo/`**: The generated, split dataset for YOLO (do not edit manually).
+### Step 3: Sort the UNCERTAIN Folder
+1.  Open `datasets/to_label/UNCERTAIN`.
+2.  These are images the AI found difficult.
+3.  **Action**:
+    *   Identify the person's gender.
+    *   **Move** Males to the `MALE` folder.
+    *   **Move** Females to the `FEMALE` folder.
+    *   **DELETE** anything else (blurry, unknown, not a person).
 
-## 4. Image Requirements
+---
 
-### 4.1. Format
-- **File Type**: `.jpg` (preferred) or `.png`.
-- **Naming**: Handled by automation scripts.
+## 3. Important Rules
 
-### 4.2. Content
-- **Single Subject**: Each image must contain **only one** person. (Handled by collector)
-- **Cropping**: Images should be **cropped** to the person's bounding box.
-- **Resolution**: Width > 64px recommended.
+1.  **Quality over Quantity**: It is better to DELETE a bad image than to keep a confusing one.
+    *   *Rule of Thumb: If you cannot tell the gender within 2 seconds, DELETE it.*
+2.  **One Person Only**: The image should ideally show one clear person. If there are multiple people and it's confusing who is the subject, DELETE it.
+3.  **Continuous Work**: The system is running in the background and adding new images 24/7.
+    *   You might see new files appear while you work. This is normal.
+    *   Just focus on clearing the folders one by one.
 
-### 4.3. Quality
-- **Camera Angles**: Priority on **CCTV/Surveillance angles**.
-- **Diversity**: Varied lighting, clothing, and poses.
+## 4. Summary of Classes
 
-## 5. Labeling Criteria
-
-| Class | Criteria |
+| Class | Description |
 | :--- | :--- |
-| **MALE** | Subject is identifiable as male based on clothing, appearance, or context. |
-| **FEMALE** | Subject is identifiable as female. Note: Includes subjects wearing Abaya/Hijab. |
-
-> **Rule of Thumb**: If you can't tell the gender in 2 seconds, delete the image. Don't let the model guess on bad data.
+| **MALE** | Subject is clearly male (clothing, appearance). |
+| **FEMALE** | Subject is clearly female. (Includes Abaya/Hijab). |
+| **DELETE** | Blurry, too dark, not a person, or impossible to tell. |

@@ -2,7 +2,7 @@
 
 > **Project**: VisionTera AI - Person Detection & Gender Classification
 > **Version**: 1.0
-> **Last Updated**: February 3, 2026
+> **Last Updated**: February 11, 2026
 > **Status**: 🟢 Active Development
 
 ---
@@ -51,7 +51,7 @@ flowchart TB
 
     subgraph Cloud["☁️ Cloud Infrastructure"]
         CloudAPI["🌐 Cloud API Gateway"]
-        Database["🗄️ Database"]
+        Database["� PostgreSQL"]
         Dashboard["📊 Dashboard"]
         Analytics["📈 Analytics Engine"]
     end
@@ -140,37 +140,36 @@ flowchart LR
 
 ```mermaid
 flowchart TB
-    subgraph DataPipeline["2.1 Data Collection Pipeline"]
-        D1["📸 Frame Extraction"]
-        D2["✂️ Person Cropping"]
-        D3["🏷️ Auto-Labeling"]
-        D4["✅ Quality Control"]
-        D5["📁 Dataset Organization"]
+    subgraph AutoPipeline["🔄 Automated ML Pipeline"]
+        Scheduler["⏱️ Scheduler"]
+        Merge["📥 Data Merge"]
+        Prepare["�️ Prepare YOLO Dataset"]
+        Train["🏋️ Train Model"]
+        Reload["� Hot Reload"]
     end
     
-    subgraph Training["2.2 Model Training"]
-        T1["📊 Data Preprocessing"]
-        T2["⚙️ Hyperparameter Tuning"]
-        T3["🔄 Training Loop"]
-        T4["📈 Validation"]
-        T5["💾 Model Export"]
+    subgraph Manual["👤 Manual Labeling"]
+        Collect["� Collection"]
+        Label["🏷️ Labeling"]
+        Verify["✅ Verification"]
     end
     
-    D1 --> D2 --> D3 --> D4 --> D5 --> T1
-    T1 --> T2 --> T3 --> T4 --> T5
+    Collect --> Label --> Verify --> Merge
+    Scheduler --> Merge --> Prepare --> Train --> Reload
 ```
 
 | Task ID | Task Name | Description | Priority | Status |
 |---------|-----------|-------------|----------|--------|
 | 2.1.1 | CCTV Image Collection | Extract frames from CCTV streams | 🔴 High | ⬜ To Do |
-| 2.1.2 | Person Detection & Crop | Detect and crop person regions | 🔴 High | ⬜ To Do |
-| 2.1.3 | Gender Auto-Labeling | Initial auto-labeling using existing model | 🟡 Medium | ⬜ To Do |
+| 2.1.2 | Person Detection & Crop | Detect and crop person regions | 🔴 High | ✅ Done |
+| 2.1.3 | Gender Auto-Labeling | Initial auto-labeling using existing model | 🟡 Medium | ✅ Done |
 | 2.1.4 | Manual QC Review | Human verification of labels | 🟡 Medium | ⬜ To Do |
-| 2.1.5 | Dataset Merge | Merge with existing training data | 🟡 Medium | ⬜ To Do |
-| 2.2.1 | YOLOv11-cls Training | Train gender classification model | 🔴 High | ⬜ To Do |
-| 2.2.2 | Model Evaluation | Detailed accuracy metrics | 🔴 High | ⬜ To Do |
+| 2.1.5 | Dataset Merge | Merge with existing training data | 🟡 Medium | ✅ Done |
+| 2.2.1 | YOLOv11-cls Training | Train gender classification model | 🔴 High | ✅ Done |
+| 2.2.2 | Model Evaluation | Detailed accuracy metrics | 🔴 High | ✅ Done |
 | 2.2.3 | Model Optimization | Optimize for inference speed | 🟡 Medium | ⬜ To Do |
-| 2.2.4 | Model Versioning | Version control for model artifacts | 🟢 Low | ⬜ To Do |
+| 2.3.1 | Automated Scheduler | Periodic retraining pipeline | 🔴 High | ✅ Done |
+| 2.3.2 | Model Hot-Reloading | Reload model without restart | � High | ✅ Done |
 
 ---
 
@@ -220,12 +219,11 @@ flowchart TB
         LocalQueue["📤 Message Queue"]
     end
     
-    subgraph CloudLayer["☁️ Cloud Layer (GCP)"]
+    subgraph CloudLayer["☁️ Cloud Layer"]
         Gateway["🚪 API Gateway"]
-        CloudRun["🏃 Cloud Run"]
-        Firestore["🔥 Firestore"]
-        BigQuery["📊 BigQuery"]
-        Storage["💾 Cloud Storage"]
+        Backend["🏃 Cloud Backend"]
+        DB["� PostgreSQL"]
+        Storage["💾 Object Storage"]
     end
     
     subgraph Analytics["📈 Analytics Layer"]
@@ -236,27 +234,26 @@ flowchart TB
     
     EdgeAPI --> LocalQueue
     LocalQueue --> Gateway
-    Gateway --> CloudRun
-    CloudRun --> Firestore
-    CloudRun --> BigQuery
-    CloudRun --> Storage
-    Firestore --> Dashboard
-    BigQuery --> Reports
-    Firestore --> Alerts
+    Gateway --> Backend
+    Backend --> DB
+    Backend --> Storage
+    DB --> Dashboard
+    DB --> Reports
+    DB --> Alerts
 ```
 
 | Task ID | Task Name | Description | Priority | Status |
 |---------|-----------|-------------|----------|--------|
-| 4.1.1 | Cloud Run Setup | Configure Cloud Run service | 🔴 High | ⬜ To Do |
+| 4.1.1 | Cloud Backend Setup | Configure Cloud service | 🔴 High | ⬜ To Do |
 | 4.1.2 | API Gateway Configuration | Set up API Gateway for edge | 🔴 High | ⬜ To Do |
-| 4.1.3 | Authentication Service | JWT/OAuth implementation | 🔴 High | ⬜ To Do |
-| 4.2.1 | Firestore Setup | Real-time database configuration | 🔴 High | ⬜ To Do |
-| 4.2.2 | BigQuery Integration | Analytics data warehouse | 🟡 Medium | ⬜ To Do |
+| 4.1.3 | Authentication Service | JWT/OAuth implementation | 🔴 High | ✅ Done |
+| 4.2.1 | PostgreSQL Setup | Relational database configuration | 🔴 High | ⬜ To Do |
+| 4.2.2 | Data Warehousing | Historical data storage | 🟡 Medium | ⬜ To Do |
 | 4.2.3 | Cloud Storage Setup | Media storage bucket | 🟡 Medium | ⬜ To Do |
 | 4.3.1 | API Sync Service | Edge-to-Cloud data sync | 🔴 High | ⬜ To Do |
 | 4.3.2 | Queue Management | Message queue for reliability | 🟡 Medium | ⬜ To Do |
 | 4.4.1 | Dashboard Backend | Real-time data API | 🟡 Medium | ⬜ To Do |
-| 4.4.2 | Dashboard Frontend | Web interface development | 🟡 Medium | ⬜ To Do |
+| 4.4.2 | Dashboard Frontend | Web interface development | 🟡 Medium | ✅ Done |
 
 ---
 
@@ -502,10 +499,9 @@ graph TD
     C --> F[CUDA 11.8+]
     C --> G[cuDNN 8.6+]
     
-    H[GCP] --> I[Cloud Run]
-    H --> J[Firestore]
-    H --> K[BigQuery]
-    H --> L[Cloud Storage]
+    H[Cloud] --> I[Backend Service]
+    H --> J[PostgreSQL]
+    H --> L[Object Storage]
     
     B --> M[VisionTera API]
     D --> M
