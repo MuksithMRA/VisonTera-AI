@@ -82,18 +82,18 @@ def train_yolo_gender(epochs=50, batch_size=64, imgsz=224, patience=10):
         # Surveillance-optimized augmentations
         degrees=15.0,      # Rotation for camera angle variation
         translate=0.1,     # Slight translation
-        scale=0.3,         # Scale variation (people at different distances)
+        scale=0.5,         # Scale variation (increased for mixed-resolution dataset)
         shear=0.0,         # No shear
         perspective=0.0,   # No perspective transform
         flipud=0.1,        # Vertical flip for top-down views
         fliplr=0.5,        # Horizontal flip
         mosaic=0.0,        # Disabled for classification
-        mixup=0.0,         # Disabled for classification
+        mixup=0.1,         # Soft regularizer for mixed-domain data
         erasing=0.5,       # Random erasing for occlusion robustness
         
         # Color augmentations for varying lighting
         hsv_h=0.015,       # Hue variation
-        hsv_s=0.7,         # Saturation variation
+        hsv_s=0.5,         # Saturation variation (reduced to avoid over-desaturation)
         hsv_v=0.4,         # Brightness variation
         
         # Training settings
