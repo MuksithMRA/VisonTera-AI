@@ -997,3 +997,82 @@ body {
 .modal-btn-primary:hover {
     background: var(--color-accent-dark);
 }
+
+/* Model Switcher Styles */
+.model-switcher {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.model-indicator {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    border-radius: 9999px;
+    color: var(--color-success);
+    font-size: 0.7rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.model-indicator svg {
+    flex-shrink: 0;
+}
+
+.model-name-text {
+    max-width: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.model-select {
+    max-width: 220px;
+    padding: 4px 8px !important;
+    font-size: 0.75rem !important;
+    background: var(--color-bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--color-text-primary);
+}
+
+.model-select:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
+    outline: none;
+}
+
+.btn-accent {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    border: none;
+}
+
+.btn-accent:hover:not(:disabled) {
+    background: linear-gradient(135deg, #059669, #047857);
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+.btn-sm {
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    gap: 4px;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spin {
+    animation: spin 1s linear infinite;
+}
