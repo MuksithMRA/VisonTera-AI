@@ -46,6 +46,7 @@ class InferenceEngine(IInferenceEngine):
             return
         self._initialized = True
         self._detection_model: Optional[YOLO] = None
+        self._detection_model_path: Optional[str] = None
         self._gender_model = None
         self._gender_model_type: Optional[str] = None
         self._device = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -93,6 +94,84 @@ class InferenceEngine(IInferenceEngine):
         """Find latest crowd detection model (crowd_v_* directories)."""
         return self._get_latest_versioned_model("crowd_v_")
 
+    def get_available_detection_models(self) -> list:
+        """Scan for all available detection models (.pt files) across known directories."""
+        models = []
+        search_dirs = [
+            Path("infrastructure/models"),
+            Path("scut_head/models"),
+        ]
+
+        for search_dir in search_dirs:
+            if not search_dir.exists():
+                continue
+
+            # Top-level .pt files (e.g., yolo11m.pt, yolo11m-head.pt)
+            for pt_file in search_dir.glob("*.pt"):
+                # Skip gender/classification models
+                if any(skip in pt_file.name for skip in ['gender', 'cls', 'peta', 'face']):
+                    continue
+                models.append({
+                    'name': pt_file.stem,
+                    'path': str(pt_file),
+                    'type': 'base',
+                    'active': str(pt_file) == self._detection_model_path
+                })
+
+            # Versioned directories (e.g., crowd_v_*/best_model.pt, scut_head_*/best_model.pt)
+            for v_dir in sorted(search_dir.iterdir(), key=lambda x: x.name, reverse=True):
+                if not v_dir.is_dir():
+                    continue
+                for candidate in [v_dir / "best_model.pt", v_dir / "weights" / "best.pt"]:
+                    if candidate.exists():
+                        models.append({
+                            'name': v_dir.name,
+                            'path': str(candidate),
+                            'type': 'trained',
+                            'active': str(candidate) == self._detection_model_path
+                        })
+                        break  # Only use best_model.pt, not both
+
+        return models
+
+    def switch_detection_model(self, model_path: str) -> dict:
+        """Hot-swap the detection model without restarting the server."""
+        try:
+            path = Path(model_path)
+            if not path.exists():
+                return {'status': 'error', 'message': f'Model not found: {model_path}'}
+
+            logger.info(f"Switching detection model to: {model_path}")
+
+            # Load the new model
+            new_model = YOLO(model_path)
+            if self._device == 'cuda':
+                new_model.to(self._device)
+
+            # Swap with lock to avoid inference during swap
+            with self._inference_lock:
+                self._detection_model = new_model
+                self._detection_model_path = str(path)
+                # Clear ALL track histories since ByteTrack IDs won't carry over
+                self._track_histories.clear()
+                self._frame_counts.clear()
+
+            logger.info(f"Detection model switched successfully to: {path.name}")
+            return {
+                'status': 'success',
+                'model': path.name,
+                'path': str(path),
+                'device': self._device
+            }
+
+        except Exception as e:
+            logger.error(f"Failed to switch detection model: {e}")
+            return {'status': 'error', 'message': str(e)}
+
+    @property
+    def current_detection_model_path(self) -> Optional[str]:
+        return self._detection_model_path
+
     def load_models(self, detection_model_path: str, gender_model_path: Optional[str] = None) -> None:
         try:
             # ── Detection Model: prefer latest crowd-trained model ──
@@ -104,6 +183,7 @@ class InferenceEngine(IInferenceEngine):
                 logger.info(f"No crowd model found, using default: {detection_model_path}")
 
             self._detection_model = YOLO(detection_model_path)
+            self._detection_model_path = detection_model_path
             if self._device == 'cuda':
                 self._detection_model.to(self._device)
                 logger.info(f"Detection model loaded on GPU: {torch.cuda.get_device_name(0)}, half={self._use_half}")
