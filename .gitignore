@@ -6,3 +6,4 @@ runs/
 __pycache__
 PETA/
 datasets/
+scut_head/datasets/
