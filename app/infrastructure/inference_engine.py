@@ -57,29 +57,55 @@ class InferenceEngine(IInferenceEngine):
         self._gender_vote_threshold = AppConfig.GENDER_VOTE_THRESHOLD
         self._frame_counts: Dict[str, int] = {}
 
-    def _get_latest_model_path(self) -> Optional[str]:
+    def _get_latest_versioned_model(self, prefix: str) -> Optional[str]:
+        """Find the latest versioned model directory matching the given prefix.
+        
+        Args:
+            prefix: Directory name prefix to match (e.g., 'v_' for gender, 'crowd_v_' for detection)
+        
+        Returns:
+            Path to best model weights, or None if not found.
+        """
         try:
             models_dir = Path("infrastructure/models")
             if not models_dir.exists():
                 return None
-            version_dirs = [d for d in models_dir.iterdir() if d.is_dir() and d.name.startswith("v_")]
+            version_dirs = [d for d in models_dir.iterdir() if d.is_dir() and d.name.startswith(prefix)]
             version_dirs.sort(key=lambda x: x.name, reverse=True)
             for v_dir in version_dirs:
-                model_path = v_dir / "best_model.pt"
-                if model_path.exists():
-                    logger.info(f"Found latest model version: {v_dir.name}")
-                    return str(model_path)
+                # Check both naming conventions: best_model.pt (our copy) and weights/best.pt (YOLO default)
+                for candidate in [v_dir / "best_model.pt", v_dir / "weights" / "best.pt"]:
+                    if candidate.exists():
+                        logger.info(f"Found latest {prefix} model: {v_dir.name} -> {candidate}")
+                        return str(candidate)
             return None
         except Exception as e:
-            logger.error(f"Error searching for latest model: {e}")
+            logger.error(f"Error searching for latest {prefix} model: {e}")
             return None
+
+    def _get_latest_model_path(self) -> Optional[str]:
+        """Find latest gender classification model (v_* directories)."""
+        return self._get_latest_versioned_model("v_")
+
+    def _get_latest_detection_model_path(self) -> Optional[str]:
+        """Find latest crowd detection model (crowd_v_* directories)."""
+        return self._get_latest_versioned_model("crowd_v_")
 
     def load_models(self, detection_model_path: str, gender_model_path: Optional[str] = None) -> None:
         try:
+            # ── Detection Model: prefer latest crowd-trained model ──
+            crowd_model = self._get_latest_detection_model_path()
+            if crowd_model:
+                detection_model_path = crowd_model
+                logger.info(f"Using crowd-optimized detection model: {crowd_model}")
+            else:
+                logger.info(f"No crowd model found, using default: {detection_model_path}")
+
             self._detection_model = YOLO(detection_model_path)
             self._detection_model.to(self._device)
             logger.info(f"Detection model loaded on device: {self._device}")
 
+            # ── Gender Model: prefer latest versioned model ──
             gender_path = self._get_latest_model_path()
             if not gender_path:
                 default_path = "infrastructure/models/resnet50-gender.pt"
