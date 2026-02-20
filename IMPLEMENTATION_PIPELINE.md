@@ -169,7 +169,8 @@ flowchart TB
 | 2.2.2 | Model Evaluation | Detailed accuracy metrics | 🔴 High | ✅ Done |
 | 2.2.3 | Model Optimization | Optimize for inference speed | 🟡 Medium | ⬜ To Do |
 | 2.3.1 | Automated Scheduler | Periodic retraining pipeline | 🔴 High | ✅ Done |
-| 2.3.2 | Model Hot-Reloading | Reload model without restart | � High | ✅ Done |
+| 2.3.2 | Model Hot-Reloading | Reload model without restart | 🔴 High | ✅ Done |
+| 2.4.1 | Head Counting Research | Evaluate CrowdHuman/YOLO for high density | 🟡 Medium | 🔄 In Progress |
 
 ---
 

@@ -1,0 +1,7 @@
+names:
+- person
+nc: 1
+path: D:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\research\crowdhuman
+test: test/images
+train: train/images
+val: valid/images
