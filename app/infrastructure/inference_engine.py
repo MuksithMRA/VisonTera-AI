@@ -10,6 +10,8 @@ from torchvision import models
 from app.domain.interfaces import IInferenceEngine
 from app.domain.entities import Detection, BoundingBox
 from app.config import AppConfig, logger
+from app.infrastructure.reid_extractor import ReIDFeatureExtractor
+from app.infrastructure.cross_camera_reid import CrossCameraReIDManager
 
 
 class ResNet50GenderClassifier(nn.Module):
@@ -58,6 +60,21 @@ class InferenceEngine(IInferenceEngine):
         self._gender_voting_enabled = AppConfig.GENDER_VOTING_ENABLED
         self._gender_vote_threshold = AppConfig.GENDER_VOTE_THRESHOLD
         self._frame_counts: Dict[str, int] = {}
+
+        # ── Cross-Camera Re-ID ──
+        self._reid_extractor = ReIDFeatureExtractor(
+            device=self._device,
+            use_half=self._use_half
+        )
+        self._reid_manager = CrossCameraReIDManager(
+            similarity_threshold=0.60,
+            max_gallery_size=10,
+            stale_timeout=300.0,
+        )
+        self._reid_refresh_interval = 60  # Re-extract embedding every N frames
+        self._reid_min_crop_height = 50   # Minimum crop height to extract features
+        self._reid_min_crop_width = 25    # Minimum crop width to extract features
+
         logger.info(f"InferenceEngine initialized: device={self._device}, half={self._use_half}, CUDA available={torch.cuda.is_available()}")
 
     def _get_latest_versioned_model(self, prefix: str) -> Optional[str]:
@@ -205,6 +222,16 @@ class InferenceEngine(IInferenceEngine):
             else:
                 logger.warning("Gender model not found. Gender detection disabled.")
 
+            # ── Re-ID Model: FastReID SBS for cross-camera deduplication ──
+            reid_loaded = self._reid_extractor.load()
+            if reid_loaded:
+                logger.info("Cross-camera Re-ID feature extractor loaded successfully")
+            else:
+                logger.warning(
+                    "Re-ID model failed to load. Cross-camera deduplication disabled. "
+                    "Person counts will be summed per camera (may include duplicates)."
+                )
+
         except Exception as e:
             logger.error(f"Failed to load models: {e}")
             raise
@@ -272,7 +299,8 @@ class InferenceEngine(IInferenceEngine):
                             'gender_confidence': 0.0,
                             'male_votes': 0,
                             'female_votes': 0,
-                            'last_check': 0
+                            'last_check': 0,
+                            'reid_last_extract': 0,
                         }
 
                     hist = track_history[track_id]
@@ -301,13 +329,43 @@ class InferenceEngine(IInferenceEngine):
 
                     gender_label = hist['gender']
 
+                # ── Cross-Camera Re-ID ──
+                global_id = track_id  # Default: use local track_id
+                if track_id != -1 and self._reid_extractor.is_loaded:
+                    should_extract_reid = (
+                        hist.get('reid_last_extract', 0) == 0 or
+                        (frame_count - hist.get('reid_last_extract', 0)) > self._reid_refresh_interval
+                    )
+                    if should_extract_reid:
+                        global_id = self._extract_and_assign_global_id(
+                            frame, x1, y1, x2, y2,
+                            camera_id, track_id, gender_label
+                        )
+                        # Always mark extraction time so we don't re-extract every frame
+                        hist['reid_last_extract'] = frame_count
+                    else:
+                        # Use cached global_id but still update last_seen_time
+                        cached_gid = self._reid_manager.get_global_id(camera_id, track_id)
+                        if cached_gid is not None:
+                            global_id = cached_gid
+                            self._reid_manager.touch_person(cached_gid)
+
                 detection = Detection(
                     track_id=track_id,
                     bbox=BoundingBox(x1=float(x1), y1=float(y1), x2=float(x2), y2=float(y2)),
                     confidence=conf,
+                    global_id=global_id,
                     gender=gender_label
                 )
                 detections.append(detection)
+
+        # Periodic Re-ID maintenance
+        # Merge duplicates frequently (every 30 frames) to fix race conditions
+        if frame_count % 30 == 0:
+            self._reid_manager.merge_duplicates()
+        # Cleanup stale entries less frequently (every 500 frames)
+        if frame_count % 500 == 0:
+            self._reid_manager.cleanup_stale()
 
         return detections
 
@@ -416,3 +474,65 @@ class InferenceEngine(IInferenceEngine):
             del self._track_histories[camera_id]
         if camera_id in self._frame_counts:
             del self._frame_counts[camera_id]
+        # Also clear Re-ID state for this camera
+        self._reid_manager.clear_camera(camera_id)
+
+    # ── Cross-Camera Re-ID Helpers ──
+
+    def _extract_and_assign_global_id(
+        self,
+        frame: np.ndarray,
+        x1: float, y1: float, x2: float, y2: float,
+        camera_id: str,
+        local_track_id: int,
+        gender: str = None,
+    ) -> int:
+        """Extract Re-ID embedding from person crop and assign global ID."""
+        try:
+            h, w = frame.shape[:2]
+            cx1, cy1 = max(0, int(x1)), max(0, int(y1))
+            cx2, cy2 = min(w, int(x2)), min(h, int(y2))
+
+            crop_h = cy2 - cy1
+            crop_w = cx2 - cx1
+
+            # Skip tiny crops — not enough visual info for Re-ID
+            if crop_h < self._reid_min_crop_height or crop_w < self._reid_min_crop_width:
+                return local_track_id
+
+            person_crop = frame[cy1:cy2, cx1:cx2]
+            if person_crop.size == 0:
+                return local_track_id
+
+            embedding = self._reid_extractor.extract(person_crop)
+            if embedding is None:
+                return local_track_id
+
+            global_id = self._reid_manager.assign_global_id(
+                camera_id=camera_id,
+                local_track_id=local_track_id,
+                feature_embedding=embedding,
+                gender=gender,
+            )
+            return global_id
+
+        except Exception as e:
+            logger.error(f"Re-ID assignment error: {e}")
+            return local_track_id
+
+    def get_deduplicated_counts(self) -> Dict:
+        """Return globally deduplicated person counts across all cameras."""
+        return self._reid_manager.get_deduplicated_counts()
+
+    def get_currently_visible_persons(self, max_age: float = 5.0) -> Dict:
+        """Return deduplicated counts for persons seen within the last max_age seconds."""
+        return self._reid_manager.get_currently_visible(max_age=max_age)
+
+    def get_reid_stats(self) -> Dict:
+        """Return Re-ID subsystem statistics."""
+        return self._reid_manager.get_stats()
+
+    @property
+    def reid_manager(self) -> CrossCameraReIDManager:
+        """Access the Re-ID manager directly."""
+        return self._reid_manager

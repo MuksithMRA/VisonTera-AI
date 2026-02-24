@@ -10,7 +10,8 @@ class BoundingBoxSchema(BaseModel):
 
 
 class DetectionSchema(BaseModel):
-    id: int = Field(..., description="Track ID of the detection")
+    id: int = Field(..., description="Track ID of the detection (per-camera)")
+    global_id: int = Field(-1, description="Cross-camera unique person ID from Re-ID")
     x: float = Field(..., description="Center x coordinate")
     y: float = Field(..., description="Bottom y coordinate")
     confidence: float = Field(..., description="Detection confidence")

@@ -225,6 +225,9 @@ class CameraProcessor(ICameraProcessor):
         male_count = sum(1 for d in self._latest_detections if d.gender == 'Male')
         female_count = sum(1 for d in self._latest_detections if d.gender == 'Female')
 
+        # Get deduplicated counts from the Re-ID manager
+        dedup_counts = self._inference_engine.get_currently_visible_persons(max_age=5.0)
+
         self._latest_stats = ProcessingStats(
             camera_id=self._config.camera_id,
             fps=self._fps,
@@ -236,6 +239,8 @@ class CameraProcessor(ICameraProcessor):
             detections=[d.to_dict() for d in self._latest_detections],
             timestamp=datetime.now()
         )
+        # Attach deduplicated counts to stats for frontend consumption
+        self._latest_stats.deduplicated = dedup_counts
 
     async def _push_stats_to_api(self) -> None:
         if not self._latest_detections:
@@ -245,6 +250,7 @@ class CameraProcessor(ICameraProcessor):
         for det in self._latest_detections:
             detections_for_api.append({
                 'id': det.track_id,
+                'global_id': det.global_id,
                 'gender': det.gender or 'Person',
                 'bbox': {
                     'x1': det.bbox.x1,

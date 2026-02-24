@@ -59,12 +59,14 @@ class Detection:
     track_id: int
     bbox: BoundingBox
     confidence: float
+    global_id: int = -1  # Cross-camera unique ID from Re-ID (-1 = not assigned)
     gender: Optional[str] = None
     gender_confidence: float = 0.0
 
     def to_dict(self) -> Dict[str, Any]:
         return {
             "id": self.track_id,
+            "global_id": self.global_id,
             "x": self.bbox.center_x,
             "y": self.bbox.y2,
             "confidence": self.confidence,
@@ -99,9 +101,10 @@ class ProcessingStats:
     female_count: int = 0
     detections: list = field(default_factory=list)
     timestamp: datetime = field(default_factory=datetime.now)
+    deduplicated: Optional[Dict[str, Any]] = None  # Cross-camera dedup counts
 
     def to_dict(self) -> Dict[str, Any]:
-        return {
+        result = {
             "type": "stats",
             "camera_id": self.camera_id,
             "fps": self.fps,
@@ -113,6 +116,9 @@ class ProcessingStats:
             "detections": self.detections,
             "timestamp": self.timestamp.isoformat()
         }
+        if self.deduplicated is not None:
+            result["deduplicated"] = self.deduplicated
+        return result
 
 
 @dataclass

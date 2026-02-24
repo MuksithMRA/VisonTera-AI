@@ -39,6 +39,32 @@ async def switch_detection_model(request: dict):
     return result
 
 
+# ── Cross-Camera Re-ID Endpoints ──
+
+@router.get("/api/reid/counts", tags=["Re-ID"])
+async def get_deduplicated_counts():
+    """Get globally deduplicated person counts across all cameras."""
+    engine = InferenceEngine()
+    counts = engine.get_deduplicated_counts()
+    return counts
+
+
+@router.get("/api/reid/visible", tags=["Re-ID"])
+async def get_currently_visible(max_age: float = 5.0):
+    """Get deduplicated counts for persons seen in the last N seconds."""
+    engine = InferenceEngine()
+    visible = engine.get_currently_visible_persons(max_age=max_age)
+    return visible
+
+
+@router.get("/api/reid/stats", tags=["Re-ID"])
+async def get_reid_stats():
+    """Get Re-ID system diagnostic statistics."""
+    engine = InferenceEngine()
+    stats = engine.get_reid_stats()
+    return stats
+
+
 @router.get("/api/models/detection/current", tags=["Models"])
 async def get_current_detection_model():
     """Get the currently active detection model."""
