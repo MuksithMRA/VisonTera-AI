@@ -1,0 +1,30 @@
+2026-02-24 12:08:11,722 [INFO] VisionTera: Re-ID MATCH: cam=cam_1771914994709_2 track=12 → global=9 (sim=0.907)
+2026-02-24 12:11:05,650 [INFO] VisionTera: Re-ID MATCH: cam=cam_1771914994709_2 track=13 → global=1 (sim=0.660)
+2026-02-24 12:11:05,667 [INFO] VisionTera: Re-ID MATCH: cam=cam_1771914986948_1 track=13 → global=2 (sim=0.650)
+2026-02-24 12:12:25,424 [INFO] VisionTera: Re-ID cleanup: removed 1 stale persons
+2026-02-24 12:12:49,510 [INFO] VisionTera: Re-ID cleanup: removed 2 stale persons
+2026-02-24 12:13:13,403 [INFO] VisionTera: Re-ID NEW: cam=cam_1 track=1 -> global=1
+2026-02-24 12:13:13,403 [INFO] VisionTera: Re-ID NEW: cam=cam_2 track=1 -> global=2
+2026-02-24 12:13:13,404 [INFO] VisionTera: Re-ID NEW: cam=cam_1 track=3 -> global=3
+2026-02-24 12:13:21,763 [INFO] VisionTera: Re-ID cleanup: removed 4 stale persons
+2026-02-24 12:15:14,902 [INFO] VisionTera: Re-ID model initialised with ImageNet pre-trained backbone. For best accuracy, place Re-ID weights in infrastructure/models/reid/
+2026-02-24 12:15:15,620 [INFO] VisionTera: Re-ID extractor ready: device=cuda, half=True, embedding=512-d
+2026-02-24 12:16:06,799 [INFO] VisionTera: Re-ID NEW: cam=cam_1771914994709_2 track=17 → global=10
+2026-02-24 12:16:09,777 [INFO] VisionTera: Re-ID NEW: cam=cam_1771914994709_2 track=18 → global=11
+2026-02-24 12:16:09,874 [INFO] VisionTera: Re-ID MATCH: cam=cam_1771914986948_1 track=18 → global=11 (sim=0.969)
+2026-02-24 12:16:58,587 [INFO] VisionTera: Re-ID model initialised with ImageNet pre-trained backbone. For best accuracy, place Re-ID weights in infrastructure/models/reid/
+2026-02-24 12:16:58,950 [INFO] VisionTera: Re-ID extractor ready: device=cuda, half=True, embedding=512-d
+2026-02-24 12:16:58,950 [INFO] VisionTera: Cross-camera Re-ID feature extractor loaded successfully
+2026-02-24 12:19:13,760 [INFO] VisionTera: Re-ID NEW: cam=cam_1771915748837_1 track=1 -> global=1
+2026-02-24 12:19:23,529 [INFO] VisionTera: Re-ID MATCH: cam=cam_1771915761141_2 track=1 -> global=1 (sim=0.931)
+2026-02-24 12:19:41,782 [INFO] VisionTera: Re-ID NEW: cam=cam_1771915761141_2 track=2 -> global=2
+2026-02-24 12:19:41,791 [INFO] VisionTera: Re-ID NEW: cam=cam_1771915748837_1 track=2 -> global=3
+2026-02-24 12:24:02,145 [INFO] VisionTera: Re-ID model initialised with ImageNet pre-trained backbone. For best accuracy, place Re-ID weights in infrastructure/models/reid/
+2026-02-24 12:24:02,519 [INFO] VisionTera: Re-ID extractor ready: device=cuda, half=True, embedding=512-d
+2026-02-24 12:24:02,520 [INFO] VisionTera: Cross-camera Re-ID feature extractor loaded successfully
+2026-02-24 12:24:43,094 [INFO] VisionTera: Re-ID NEW: cam=cam_1771916078287_1 track=1 -> global=1
+2026-02-24 12:24:47,143 [INFO] VisionTera: Re-ID MATCH: cam=cam_1771916084779_2 track=1 -> global=1 (sim=0.899)
+2026-02-24 12:24:53,456 [INFO] VisionTera: Re-ID NEW: cam=cam_1771916084779_2 track=2 -> global=2
+2026-02-24 12:24:53,472 [INFO] VisionTera: Re-ID NEW: cam=cam_1771916078287_1 track=2 -> global=3
+2026-02-24 12:25:21,236 [INFO] VisionTera: Re-ID: cleared camera cam_1771916078287_1, affected 2 persons
+2026-02-24 12:25:21,237 [INFO] VisionTera: Re-ID: cleared camera cam_1771916084779_2, affected 2 persons

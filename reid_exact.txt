@@ -1,0 +1,5 @@
+2026-02-24 12:42:29,647 [INFO] VisionTera: Re-ID SKIP: cam=cam_1771917098355_1 track=4 vs global=1 (same-cam active track=1)
+2026-02-24 12:42:29,647 [INFO] VisionTera: Re-ID NEW: cam=cam_1771917098355_1 track=4 -> global=2
+2026-02-24 12:42:29,683 [INFO] VisionTera: Re-ID SKIP: cam=cam_1771917107115_2 track=4 vs global=1 (same-cam active track=1)
+2026-02-24 12:42:29,685 [INFO] VisionTera: Re-ID SIM: cam=cam_1771917107115_2 track=4 vs global=2 cams=['cam_1771917098355_1'] sim=nan threshold=0.6
+2026-02-24 12:42:29,685 [INFO] VisionTera: Re-ID NEW: cam=cam_1771917107115_2 track=4 -> global=3

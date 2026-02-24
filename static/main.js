@@ -382,7 +382,9 @@ class MultiCameraDashboard {
             personCount: data.person_count || 0,
             maleCount: data.male_count || 0,
             femaleCount: data.female_count || 0,
-            fps: data.fps || 0
+            fps: data.fps || 0,
+            detections: data.detections || [],
+            deduplicated: data.deduplicated || null
         };
         
         const fpsEl = document.getElementById(`fps-${cameraId}`);
@@ -399,15 +401,75 @@ class MultiCameraDashboard {
     }
 
     updateGlobalStats() {
-        let totalPeople = 0;
-        let totalMale = 0;
-        let totalFemale = 0;
+        // ── Cross-Camera Deduplication ──
+        // Priority:
+        //   1. Backend deduplicated counts (authoritative, merge-aware)
+        //   2. Unique global_id counting from detections (fallback)
+        //   3. Naive per-camera sum (last resort)
         
+        let totalPeople, totalMale, totalFemale;
+        let resolved = false;
+        
+        // ── Priority 1: Use backend deduplicated counts ──
+        // The backend's Re-ID manager maintains merged, authoritative counts.
+        // This is the most accurate source since it reflects real-time merges.
+        let dedupData = null;
         this.activeCameras.forEach(camera => {
-            totalPeople += camera.stats.personCount;
-            totalMale += camera.stats.maleCount;
-            totalFemale += camera.stats.femaleCount;
+            if (camera.stats.deduplicated && camera.stats.deduplicated.total !== undefined) {
+                dedupData = camera.stats.deduplicated;
+            }
         });
+        
+        if (dedupData && dedupData.total > 0) {
+            totalPeople = dedupData.total;
+            totalMale = dedupData.male || 0;
+            totalFemale = dedupData.female || 0;
+            resolved = true;
+        }
+        
+        // ── Priority 2: Count unique global_ids from detections ──
+        if (!resolved) {
+            const globalPersons = new Map();
+            let hasGlobalIds = false;
+            
+            this.activeCameras.forEach(camera => {
+                const detections = camera.stats.detections || [];
+                detections.forEach(det => {
+                    const gid = det.global_id;
+                    if (gid !== undefined && gid !== null && gid !== -1) {
+                        hasGlobalIds = true;
+                        if (!globalPersons.has(gid)) {
+                            globalPersons.set(gid, {
+                                gender: det.gender || 'Person'
+                            });
+                        }
+                    }
+                });
+            });
+            
+            if (hasGlobalIds && globalPersons.size > 0) {
+                totalPeople = globalPersons.size;
+                totalMale = 0;
+                totalFemale = 0;
+                globalPersons.forEach(person => {
+                    if (person.gender === 'Male') totalMale++;
+                    else if (person.gender === 'Female') totalFemale++;
+                });
+                resolved = true;
+            }
+        }
+        
+        // ── Priority 3: Naive per-camera sum ──
+        if (!resolved) {
+            totalPeople = 0;
+            totalMale = 0;
+            totalFemale = 0;
+            this.activeCameras.forEach(camera => {
+                totalPeople += camera.stats.personCount;
+                totalMale += camera.stats.maleCount;
+                totalFemale += camera.stats.femaleCount;
+            });
+        }
         
         this.elements.totalPersonCount.textContent = totalPeople;
         this.elements.totalMaleCount.textContent = totalMale;

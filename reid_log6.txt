@@ -1,0 +1,44 @@
+2026-02-24 12:06:31,446 [INFO] VisionTera: Re-ID NEW: cam=cam_1771914986948_1 track=1 → global=1
+2026-02-24 12:06:37,173 [INFO] VisionTera: Re-ID NEW: cam=cam_1771914994709_2 track=1 → global=2
+2026-02-24 12:07:04,432 [INFO] VisionTera: Re-ID NEW: cam=cam_1771914986948_1 track=2 → global=3
+2026-02-24 12:07:04,450 [INFO] VisionTera: Re-ID MATCH: cam=cam_1771914994709_2 track=2 → global=3 (sim=0.889)
+2026-02-24 12:07:43,522 [INFO] VisionTera: Re-ID NEW: cam=cam_1771914986948_1 track=4 → global=4
+2026-02-24 12:07:43,537 [INFO] VisionTera: Re-ID MATCH: cam=cam_1771914994709_2 track=4 → global=4 (sim=0.904)
+2026-02-24 12:07:44,899 [INFO] VisionTera: Re-ID NEW: cam=cam_1771914994709_2 track=5 → global=5
+2026-02-24 12:07:44,913 [INFO] VisionTera: Re-ID MATCH: cam=cam_1771914986948_1 track=5 → global=5 (sim=0.987)
+2026-02-24 12:08:06,775 [INFO] VisionTera: Re-ID NEW: cam=cam_1771914994709_2 track=7 → global=6
+2026-02-24 12:08:06,792 [INFO] VisionTera: Re-ID MATCH: cam=cam_1771914986948_1 track=7 → global=6 (sim=0.940)
+2026-02-24 12:08:07,439 [INFO] VisionTera: Re-ID NEW: cam=cam_1771914994709_2 track=8 → global=7
+2026-02-24 12:08:07,596 [INFO] VisionTera: Re-ID MATCH: cam=cam_1771914986948_1 track=8 → global=7 (sim=0.839)
+2026-02-24 12:08:09,305 [INFO] VisionTera: Re-ID NEW: cam=cam_1771914994709_2 track=9 → global=8
+2026-02-24 12:08:09,322 [INFO] VisionTera: Re-ID MATCH: cam=cam_1771914986948_1 track=9 → global=8 (sim=0.930)
+2026-02-24 12:08:11,568 [INFO] VisionTera: Re-ID NEW: cam=cam_1771914986948_1 track=12 → global=9
+2026-02-24 12:08:11,722 [INFO] VisionTera: Re-ID MATCH: cam=cam_1771914994709_2 track=12 → global=9 (sim=0.907)
+2026-02-24 12:11:05,650 [INFO] VisionTera: Re-ID MATCH: cam=cam_1771914994709_2 track=13 → global=1 (sim=0.660)
+2026-02-24 12:11:05,667 [INFO] VisionTera: Re-ID MATCH: cam=cam_1771914986948_1 track=13 → global=2 (sim=0.650)
+2026-02-24 12:13:13,403 [INFO] VisionTera: Re-ID NEW: cam=cam_1 track=1 -> global=1
+2026-02-24 12:13:13,403 [INFO] VisionTera: Re-ID NEW: cam=cam_2 track=1 -> global=2
+2026-02-24 12:13:13,404 [INFO] VisionTera: Re-ID NEW: cam=cam_1 track=3 -> global=3
+2026-02-24 12:16:06,799 [INFO] VisionTera: Re-ID NEW: cam=cam_1771914994709_2 track=17 → global=10
+2026-02-24 12:16:09,777 [INFO] VisionTera: Re-ID NEW: cam=cam_1771914994709_2 track=18 → global=11
+2026-02-24 12:16:09,874 [INFO] VisionTera: Re-ID MATCH: cam=cam_1771914986948_1 track=18 → global=11 (sim=0.969)
+2026-02-24 12:19:13,760 [INFO] VisionTera: Re-ID NEW: cam=cam_1771915748837_1 track=1 -> global=1
+2026-02-24 12:19:23,529 [INFO] VisionTera: Re-ID MATCH: cam=cam_1771915761141_2 track=1 -> global=1 (sim=0.931)
+2026-02-24 12:19:41,782 [INFO] VisionTera: Re-ID NEW: cam=cam_1771915761141_2 track=2 -> global=2
+2026-02-24 12:19:41,791 [INFO] VisionTera: Re-ID NEW: cam=cam_1771915748837_1 track=2 -> global=3
+2026-02-24 12:24:43,094 [INFO] VisionTera: Re-ID NEW: cam=cam_1771916078287_1 track=1 -> global=1
+2026-02-24 12:24:47,143 [INFO] VisionTera: Re-ID MATCH: cam=cam_1771916084779_2 track=1 -> global=1 (sim=0.899)
+2026-02-24 12:24:53,456 [INFO] VisionTera: Re-ID NEW: cam=cam_1771916084779_2 track=2 -> global=2
+2026-02-24 12:24:53,472 [INFO] VisionTera: Re-ID NEW: cam=cam_1771916078287_1 track=2 -> global=3
+2026-02-24 12:31:10,927 [INFO] VisionTera: Re-ID NEW: cam=cam_1771916466329_1 track=1 -> global=1
+2026-02-24 12:31:15,677 [INFO] VisionTera: Re-ID MATCH: cam=cam_1771916473263_2 track=1 -> global=1 (sim=0.926)
+2026-02-24 12:31:37,530 [INFO] VisionTera: Re-ID NEW: cam=cam_1771916484263_3 track=1 -> global=2
+2026-02-24 12:32:30,908 [INFO] VisionTera: Re-ID NEW: cam=cam_1771916546419_1 track=1 -> global=1
+2026-02-24 12:32:46,851 [INFO] VisionTera: Re-ID NEW: cam=cam_1771916564456_2 track=1 -> global=2
+2026-02-24 12:33:26,491 [INFO] VisionTera: Re-ID NEW: cam=cam_1771916604077_1 track=1 -> global=3
+2026-02-24 12:33:57,687 [INFO] VisionTera: Re-ID NEW: cam=cam_1771916634968_1 track=1 -> global=4
+2026-02-24 12:34:06,816 [INFO] VisionTera: Re-ID NEW: cam=cam_1771916644098_2 track=1 -> global=5
+2026-02-24 12:34:52,166 [INFO] VisionTera: Re-ID MERGE: global=5 absorbed into global=4 (sim=0.996)
+2026-02-24 12:41:43,178 [INFO] VisionTera: Re-ID NEW: cam=cam_1771917098355_1 track=1 -> global=1
+2026-02-24 12:41:49,822 [INFO] VisionTera: Re-ID SIM: cam=cam_1771917107115_2 track=1 vs global=1 cams=['cam_1771917098355_1'] sim=0.6738 threshold=0.6
+2026-02-24 12:41:49,823 [INFO] VisionTera: Re-ID MATCH: cam=cam_1771917107115_2 track=1 -> global=1 (sim=0.674)
