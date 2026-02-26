@@ -14,3 +14,4 @@ torch
 torchvision
 python-dotenv
 httpx
+pandas>=2.0.0

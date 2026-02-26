@@ -1,28 +1,39 @@
 version: '3.8'
 
 services:
-  yolo-stream:
+  visiontera-ai:
     build:
       context: ../../
       dockerfile: infrastructure/docker/Dockerfile
+    image: visiontera-ai:latest
+    container_name: visiontera-ai
     ports:
       - "8000:8000"
-    volumes:
-      - ../../infrastructure/models/yolo11n.pt:/app/infrastructure/models/yolo11n.pt:ro
-      - ../../runs:/app/runs:ro
-      - ../../app.log:/app/app.log
-    devices:
-      - /dev/video0:/dev/video0
+
+    # ── Environment ──────────────────────────────────────────────────────────
     environment:
+      # API backend URL (override via .env or docker run -e)
+      - base_url_dev=${base_url_dev:-https://visiontera-backend-697124318129.europe-west4.run.app}
+      # Bearer token for pushing detections to backend
+      - access_VT=${access_VT:-}
+      # RTSP stream support (set to "true" and provide URLs to enable)
+      - RTSP_ENABLED=${RTSP_ENABLED:-false}
+      - RTSP_URLS=${RTSP_URLS:-}
+      - RTSP_NAMES=${RTSP_NAMES:-}
+      # NVIDIA GPU pass-through
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=compute,utility,video
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/status"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
+
+    # ── Volumes ──────────────────────────────────────────────────────────────
+    volumes:
+      # Persist log file on the host
+      - ../../app.log:/app/app.log
+      # Persist auto-collected training datasets on the host
+      - ../../datasets:/app/datasets
+      # Persist YOLO training runs on the host
+      - ../../runs:/app/runs
+
+    # ── GPU (NVIDIA) ─────────────────────────────────────────────────────────
     deploy:
       resources:
         reservations:
@@ -30,9 +41,19 @@ services:
             - driver: nvidia
               count: 1
               capabilities: [gpu]
+
+    # ── Health & restart ─────────────────────────────────────────────────────
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
     networks:
-      - yolo-network
+      - visiontera-network
 
 networks:
-  yolo-network:
+  visiontera-network:
     driver: bridge

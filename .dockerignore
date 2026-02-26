@@ -1,0 +1,61 @@
+# ── Git / IDE ──────────────────────────────────────────────────────────────
+.git/
+.gitignore
+.cursor/
+.qodo/
+.env
+
+# ── Python cache ──────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# ── Training & research artifacts (large, not needed at runtime) ──────────
+runs/
+datasets/
+research/
+scut_head/datasets/
+PETA/
+gender_dataset_split/
+
+# ── Training scripts (not needed in runtime image) ────────────────────────
+infrastructure/auto_label_images.py
+infrastructure/collect_cctv_images.py
+infrastructure/evaluate_detailed.py
+infrastructure/extract_from_videos.py
+infrastructure/merge_to_dataset.py
+infrastructure/plot_metrics.py
+infrastructure/prepare_yolo_dataset.py
+infrastructure/run_pipeline.py
+infrastructure/train_yolo_gender.py
+
+# ── Old model versions (only latest is needed) ────────────────────────────
+infrastructure/models/v_20260107_102312/
+infrastructure/models/v_20260114_120915/
+infrastructure/models/v_20260127_100116/
+infrastructure/models/v_20260209_170745/
+infrastructure/models/v_20260219_063644/
+
+# ── Unused classification models ──────────────────────────────────────────
+infrastructure/models/yolo11m-cls.pt
+infrastructure/models/yolo11n-cls.pt
+infrastructure/models/yolo11m-peta.pt
+infrastructure/models/yolov8n-face.pt
+infrastructure/models/yolo11n-cls.pt
+
+# ── Root-level duplicate model files ──────────────────────────────────────
+yolo11m.pt
+yolo11n.pt
+yolo11m-cls.pt
+
+# ── Logs ──────────────────────────────────────────────────────────────────
+app.log
+*.log
+
+# ── Docs & tests (not needed in image) ───────────────────────────────────
+docs/
+tests/
+README.md
+Visiontera.postman_collection.json
