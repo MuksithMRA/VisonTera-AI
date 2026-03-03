@@ -1,17 +1,18 @@
 """
 VisionTera - Person Detection Model Training (Transfer Learning)
 ================================================================
-Fine-tunes our existing yolo11m.pt detection model on the CrowdHuman dataset
+Fine-tunes our existing yolo26m.pt detection model on the CrowdHuman dataset
 for person detection in high-density crowd scenarios (airports, events, etc.)
 
-Dataset: CrowdHuman from Roboflow (YOLOv11 format)
+Dataset: CrowdHuman from Roboflow (YOLO26 format)
   - 5,078 train images | 3,874 valid images | 1,937 test images
   - Single class: 0 = person (full body bounding boxes)
 
 Usage:
     python research/train_head_detector.py                        # Normal training
     python research/train_head_detector.py --epochs 100           # Custom epochs
-    python research/train_head_detector.py --imgsz 1280           # Higher resolution
+    python research/train_head_detector.py --imgsz 960            # High Accuracy resolution
+    python research/train_head_detector.py --imgsz 1280           # Ultra Accuracy (needs high VRAM)
     python research/train_head_detector.py --batch 8              # Reduce if GPU OOM
     python research/train_head_detector.py --data path/to/data.yaml  # Custom dataset
 """
@@ -35,10 +36,16 @@ logger = logging.getLogger("VisionTera.CrowdDetector")
 PROJECT_ROOT = Path(__file__).parent.parent
 RESEARCH_DIR = PROJECT_ROOT / "research"
 MODELS_DIR = PROJECT_ROOT / "infrastructure" / "models"
-DATASET_DIR = RESEARCH_DIR / "crowdhuman"
 
-# Base detection model - our production yolo11m (NOT nano, NOT classification)
-BASE_MODEL_PATH = MODELS_DIR / "yolo11m.pt"
+# Use the merged dataset if available, otherwise fallback to standard crowdhuman
+MERGED_DATASET_DIR = PROJECT_ROOT / "datasets" / "merged_visiontera"
+if MERGED_DATASET_DIR.exists():
+    DATASET_DIR = MERGED_DATASET_DIR
+else:
+    DATASET_DIR = RESEARCH_DIR / "crowdhuman"
+
+# Base detection model - our production yolo26m (NOT nano, NOT classification)
+BASE_MODEL_PATH = MODELS_DIR / "yolo26m.pt"
 
 
 def get_latest_detection_model() -> Path:
@@ -50,9 +57,9 @@ def get_latest_detection_model() -> Path:
         logger.info(f"✅ Using production detection model: {BASE_MODEL_PATH}")
         return BASE_MODEL_PATH
 
-    # Fallback: download yolo11m.pt from ultralytics
-    logger.warning("⚠️  yolo11m.pt not found locally. YOLO will auto-download it.")
-    return Path("yolo11m.pt")
+    # Fallback: download yolo26m.pt from ultralytics
+    logger.warning("⚠️  yolo26m.pt not found locally. YOLO will auto-download it.")
+    return Path("yolo26m.pt")
 
 
 def validate_and_get_dataset_yaml(dataset_path: Path = None) -> str:
@@ -88,7 +95,7 @@ def validate_and_get_dataset_yaml(dataset_path: Path = None) -> str:
 ║                                                                  ║
 ║  Download CrowdHuman (YOLOv11 format) from Roboflow:             ║
 ║    1. Visit: https://universe.roboflow.com/search?q=crowdhuman   ║
-║    2. Select "YOLOv11" format                                    ║
+║    2. Select "YOLO26" format                                    ║
 ║    3. Download and extract to: research/crowdhuman/              ║
 ╚══════════════════════════════════════════════════════════════════╝
         """)
@@ -144,22 +151,23 @@ def validate_and_get_dataset_yaml(dataset_path: Path = None) -> str:
 
 def train_crowd_model(
     data_yaml: str = None,
-    epochs: int = 80,
-    imgsz: int = 640,
+    epochs: int = 100,
+    imgsz: int = 960,
     batch: int = 16,
-    freeze: int = 10,
-    patience: int = 15,
+    freeze: int = 0,
+    patience: int = 50,
     resume: bool = False,
 ):
     """
-    Train person detection model via transfer learning from yolo11m.pt.
+    Train person detection model via transfer learning from yolo26m.pt.
     Optimized for high-density crowd scenarios.
     
-    Strategy for high-crowd areas:
-    - freeze=10: Keep backbone layers frozen to retain pre-trained features
-    - Lower IoU threshold for overlapping detections in dense crowds
-    - Mosaic + mixup augmentation to simulate crowd density
-    - Scale augmentation for varying person sizes (near vs far)
+    Strategy for high-crowd areas (VisionTera Ultra-Accuracy):
+    - imgsz=960: Higher resolution to detect small/distant heads & bodies
+    - freeze=0: Unfreeze all layers to specialize for our 47k merged images
+    - multi_scale=True: Train on various resolutions for scale robustness
+    - copy_paste=0.1: Better handling of heavy occlusion (from reports)
+    - label_smoothing=0.1: Better generalization (prevent overconfidence)
     """
     # Generate version tag
     version_tag = datetime.now().strftime("crowd_v_%Y%m%d_%H%M%S")
@@ -203,13 +211,17 @@ def train_crowd_model(
             mosaic=1.0,                 # Enable mosaic - creates dense crowd simulations
             mixup=0.15,                 # Blend images for better crowd generalization  
             scale=0.5,                  # Random scaling - detect people at various distances
-            degrees=10.0,              # Slight rotation augmentation
+            copy_paste=0.1,             # Occlusion simulation for crowded scenes
+            erasing=0.4,                # Robustness to partial occlusion
+            multi_scale=True,           # Train at ±50% imgsz for distance robustness
+            degrees=10.0,               # Slight rotation augmentation
             translate=0.1,
             fliplr=0.5,
-            flipud=0.0,                # No vertical flip (people don't appear upside down)
+            flipud=0.0,                 # No vertical flip (people don't appear upside down)
             hsv_h=0.015,
             hsv_s=0.7,
             hsv_v=0.4,
+            label_smoothing=0.1,        # Prevents overconfidence, aids generalization
             
             # ── Detection Tuning ──
             iou=0.5,                   # Lower IoU for crowded NMS (people overlap more)
@@ -245,7 +257,7 @@ def train_crowd_model(
         logger.info("")
         logger.info("🔄 NEXT STEPS:")
         logger.info(f"   1. Test: python -c \"from ultralytics import YOLO; m=YOLO('{best_copy}'); m.predict('test_image.jpg')\"")
-        logger.info(f"   2. Deploy: Copy {best_copy} to infrastructure/models/yolo11m.pt")
+        logger.info(f"   2. Deploy: Copy {best_copy} to infrastructure/models/yolo26m.pt")
         logger.info(f"   3. Or update AppConfig.MODEL_PATH to point to the new model")
         
         return results
@@ -279,20 +291,20 @@ def train_crowd_model(
 
 def parse_args():
     parser = argparse.ArgumentParser(
-        description="VisionTera - Crowd Person Detection (Transfer Learning from yolo11m.pt)"
+        description="VisionTera - Crowd Person Detection (Transfer Learning from yolo26m.pt)"
     )
     parser.add_argument('--data', type=str, default=None,
                         help='Path to dataset YAML (auto-detected from research/crowdhuman/ if not provided)')
-    parser.add_argument('--epochs', type=int, default=80,
-                        help='Number of training epochs (default: 80)')
-    parser.add_argument('--imgsz', type=int, default=640,
-                        help='Image size for training. Use 1280 for distant/small people (default: 640)')
+    parser.add_argument('--epochs', type=int, default=100,
+                        help='Number of training epochs (default: 100)')
+    parser.add_argument('--imgsz', type=int, default=960,
+                        help='Image size for training. Use 1280 for ultra accuracy (default: 960)')
     parser.add_argument('--batch', type=int, default=16,
                         help='Batch size. Reduce to 8 or 4 if GPU OOM (default: 16)')
-    parser.add_argument('--freeze', type=int, default=10,
-                        help='Number of backbone layers to freeze for transfer learning (default: 10)')
-    parser.add_argument('--patience', type=int, default=15,
-                        help='Early stopping patience - epochs to wait before stopping (default: 15)')
+    parser.add_argument('--freeze', type=int, default=0,
+                        help='Number of backbone layers to freeze (default: 0 for large datasets)')
+    parser.add_argument('--patience', type=int, default=50,
+                        help='Early stopping patience (default: 50)')
     parser.add_argument('--resume', action='store_true',
                         help='Resume training from last checkpoint')
     return parser.parse_args()
@@ -302,8 +314,8 @@ if __name__ == "__main__":
     args = parse_args()
     
     logger.info("🚀 VisionTera Crowd Person Detection - Transfer Learning")
-    logger.info(f"   Base: yolo11m.pt (production detection model)")
-    logger.info(f"   Dataset: CrowdHuman (Roboflow YOLOv11 format)")
+    logger.info(f"   Base: yolo26m.pt (production detection model)")
+    logger.info(f"   Dataset: CrowdHuman (Roboflow YOLO26 format)")
     logger.info(f"   Target: Person detection optimized for high-crowd areas")
     logger.info(f"   Epochs: {args.epochs} | ImgSize: {args.imgsz} | Batch: {args.batch}")
     logger.info(f"   Freeze: {args.freeze} layers | Patience: {args.patience}")

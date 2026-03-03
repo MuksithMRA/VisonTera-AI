@@ -198,7 +198,8 @@ class DetectionEngine:
 
     def detect_persons(self, frame):
         if self.model is None: return []
-        results = self.model.track(frame, classes=[0], conf=self.confidence, persist=True, verbose=False, tracker="bytetrack.yaml")
+        # Detection across all merged classes: 0=person, 1=head
+        results = self.model.track(frame, classes=[0, 1], conf=self.confidence, persist=True, verbose=False, tracker="bytetrack.yaml")
         detections = []
         if results and results[0].boxes:
             boxes = results[0].boxes
@@ -248,6 +249,7 @@ class DetectionEngine:
                     'y': float(y2),
                     'confidence': conf,
                     'gender': gender_label,
+                    'class_id': int(box.cls[0].cpu().numpy()),
                     'id': track_id,
                     'bbox': {
                         'x1': float(x1), 'y1': float(y1), 'x2': float(x2), 'y2': float(y2)
@@ -263,6 +265,11 @@ class DetectionEngine:
             conf = det['confidence']
             bottom_x, bottom_y = int(det['x']), int(det['y'])
             gender = det.get('gender', 'Person')
+            class_id = det.get('class_id', 0)
+            
+            # Use 'Head' for class 1 if no gender is assigned yet
+            if gender == "Person" and class_id == 1:
+                gender = "Head"
             
             if gender == 'Male':
                 box_color = (255, 150, 50)

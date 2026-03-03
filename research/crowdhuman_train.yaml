@@ -1,7 +1,8 @@
 names:
 - person
-nc: 1
-path: D:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\research\crowdhuman
+- head
+nc: 2
+path: D:\Development\CODA\Bareq\VisionTera Project\VisionTera AI\datasets\merged_visiontera
 test: test/images
 train: train/images
 val: valid/images

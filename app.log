@@ -82037,3 +82037,77 @@ DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error
 2026-02-26 07:06:52,798 [INFO] VisionTera: [Auth] Attempting login to https://visiontera-backend-697124318129.europe-west4.run.app/account/token for user manager
 2026-02-26 07:07:03,018 [ERROR] VisionTera: [Auth] Login error: 
 2026-02-26 07:07:13,588 [INFO] VisionTera: Application shutdown - All cameras stopped
+2026-03-02 12:07:18,691 [INFO] VisionTera: CrossCameraReIDManager initialised: threshold=0.6, gallery_size=10, stale_timeout=300.0s
+2026-03-02 12:07:18,692 [INFO] VisionTera: InferenceEngine initialized: device=cuda, half=True, CUDA available=True
+2026-03-02 12:07:18,855 [INFO] VisionTera: Found latest crowd_v_ model: crowd_v_20260219_102246 -> infrastructure\models\crowd_v_20260219_102246\best_model.pt
+2026-03-02 12:07:18,855 [INFO] VisionTera: Using crowd-optimized detection model: infrastructure\models\crowd_v_20260219_102246\best_model.pt
+2026-03-02 12:07:19,325 [INFO] VisionTera: Detection model loaded on GPU: NVIDIA GeForce RTX 4060 Laptop GPU, half=True
+2026-03-02 12:07:19,326 [INFO] VisionTera: Found latest v_ model: v_20260224_075137 -> infrastructure\models\v_20260224_075137\weights\best.pt
+2026-03-02 12:07:19,413 [INFO] VisionTera: YOLO-cls gender classification model loaded.
+2026-03-02 12:07:19,965 [INFO] VisionTera: Re-ID model initialised with ImageNet pre-trained backbone. For best accuracy, place Re-ID weights in infrastructure/models/reid/
+2026-03-02 12:07:21,438 [INFO] VisionTera: Re-ID extractor ready: device=cuda, half=True, embedding=512-d
+2026-03-02 12:07:21,438 [INFO] VisionTera: Cross-camera Re-ID feature extractor loaded successfully
+2026-03-02 12:07:21,438 [INFO] VisionTera: [API] API client worker started
+2026-03-02 12:07:21,443 [INFO] VisionTera: Application started - Multi-camera detection ready
+2026-03-02 12:07:21,443 [INFO] VisionTera: Training scheduler is disabled.
+2026-03-02 12:07:56,681 [INFO] VisionTera: [Auth] Attempting login to https://visiontera-backend-697124318129.europe-west4.run.app/account/token for user manager
+2026-03-02 12:08:03,009 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/account/token "HTTP/1.1 400 Bad Request"
+2026-03-02 12:08:03,009 [WARNING] VisionTera: [Auth] Login failed: 400 - Failed to connect to /cloudsql/yejeek-399218:us-central1:visionteracloudpg/.s.PGSQL.5432
+2026-03-02 12:08:06,457 [INFO] VisionTera: [Auth] Attempting login to https://visiontera-backend-697124318129.europe-west4.run.app/account/token for user manager
+2026-03-02 12:08:07,306 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/account/token "HTTP/1.1 400 Bad Request"
+2026-03-02 12:08:07,306 [WARNING] VisionTera: [Auth] Login failed: 400 - Failed to connect to /cloudsql/yejeek-399218:us-central1:visionteracloudpg/.s.PGSQL.5432
+2026-03-02 12:45:45,797 [INFO] VisionTera: Application shutdown - All cameras stopped
+2026-03-03 10:56:08,674 [INFO] VisionTera: CrossCameraReIDManager initialised: threshold=0.6, gallery_size=10, stale_timeout=300.0s
+2026-03-03 10:56:08,677 [INFO] VisionTera: InferenceEngine initialized: device=cuda, half=True, CUDA available=True
+2026-03-03 10:56:08,900 [INFO] VisionTera: Found latest crowd_v_ model: crowd_v_20260219_102246 -> infrastructure\models\crowd_v_20260219_102246\best_model.pt
+2026-03-03 10:56:08,901 [INFO] VisionTera: Using crowd-optimized detection model: infrastructure\models\crowd_v_20260219_102246\best_model.pt
+2026-03-03 10:56:09,390 [INFO] VisionTera: Detection model loaded on GPU: NVIDIA GeForce RTX 4060 Laptop GPU, half=True
+2026-03-03 10:56:09,395 [INFO] VisionTera: Found latest v_ model: v_20260224_075137 -> infrastructure\models\v_20260224_075137\weights\best.pt
+2026-03-03 10:56:09,510 [INFO] VisionTera: YOLO-cls gender classification model loaded.
+2026-03-03 10:56:10,155 [INFO] VisionTera: Re-ID model initialised with ImageNet pre-trained backbone. For best accuracy, place Re-ID weights in infrastructure/models/reid/
+2026-03-03 10:56:13,286 [INFO] VisionTera: Re-ID extractor ready: device=cuda, half=True, embedding=512-d
+2026-03-03 10:56:13,291 [INFO] VisionTera: Cross-camera Re-ID feature extractor loaded successfully
+2026-03-03 10:56:13,291 [INFO] VisionTera: [API] API client worker started
+2026-03-03 10:56:13,293 [INFO] VisionTera: Application started - Multi-camera detection ready
+2026-03-03 10:56:13,293 [INFO] VisionTera: Training scheduler is disabled.
+2026-03-03 11:02:02,885 [INFO] VisionTera: [Auth] Attempting login to https://visiontera-backend-697124318129.europe-west4.run.app/account/token for user manager
+2026-03-03 11:02:05,175 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/account/token "HTTP/1.1 200 OK"
+2026-03-03 11:02:05,176 [INFO] VisionTera: [Auth] Login successful
+2026-03-03 11:02:05,176 [INFO] VisionTera: [API] Token updated, client reset
+2026-03-03 11:02:05,188 [INFO] VisionTera: [API] HTTP client initialized with connection pooling
+2026-03-03 11:02:05,964 [INFO] httpx: HTTP Request: GET https://visiontera-backend-697124318129.europe-west4.run.app/api/cameras "HTTP/1.1 200 OK"
+2026-03-03 11:02:05,965 [INFO] VisionTera: [API] Fetched 6 cameras from backend
+2026-03-03 11:02:05,965 [INFO] VisionTera: [API]   - Camera ID: 26, Name: Camera 32581, Site: Schultz-Wolf
+2026-03-03 11:02:05,965 [INFO] VisionTera: [API]   - Camera ID: 27, Name: Camera 31292, Site: Schultz-Wolf
+2026-03-03 11:02:05,966 [INFO] VisionTera: [API]   - Camera ID: 28, Name: Camera 61789, Site: Quigley-Dibbert
+2026-03-03 11:02:05,966 [INFO] VisionTera: [API]   - Camera ID: 29, Name: Camera 38189, Site: Quigley-Dibbert
+2026-03-03 11:02:05,966 [INFO] VisionTera: [API]   - Camera ID: 30, Name: Camera 70231, Site: Quigley-Dibbert
+2026-03-03 11:02:05,966 [INFO] VisionTera: [API]   - Camera ID: 31, Name: Camera 15107, Site: Quigley-Dibbert
+2026-03-03 11:02:06,978 [INFO] httpx: HTTP Request: GET https://visiontera-backend-697124318129.europe-west4.run.app/api/cameras "HTTP/1.1 200 OK"
+2026-03-03 11:02:06,980 [INFO] VisionTera: [API] Fetched 6 cameras from backend
+2026-03-03 11:02:06,980 [INFO] VisionTera: [API]   - Camera ID: 26, Name: Camera 32581, Site: Schultz-Wolf
+2026-03-03 11:02:06,981 [INFO] VisionTera: [API]   - Camera ID: 27, Name: Camera 31292, Site: Schultz-Wolf
+2026-03-03 11:02:06,981 [INFO] VisionTera: [API]   - Camera ID: 28, Name: Camera 61789, Site: Quigley-Dibbert
+2026-03-03 11:02:06,981 [INFO] VisionTera: [API]   - Camera ID: 29, Name: Camera 38189, Site: Quigley-Dibbert
+2026-03-03 11:02:06,981 [INFO] VisionTera: [API]   - Camera ID: 30, Name: Camera 70231, Site: Quigley-Dibbert
+2026-03-03 11:02:06,981 [INFO] VisionTera: [API]   - Camera ID: 31, Name: Camera 15107, Site: Quigley-Dibbert
+2026-03-03 11:02:06,981 [INFO] VisionTera: [CameraManager] Found camera: rtsp://192.168.1.10:8554/screen
+2026-03-03 11:02:06,982 [INFO] VisionTera: [CameraManager] Found camera: rtsp://192.168.1.10:8554/screen
+2026-03-03 11:02:06,982 [INFO] VisionTera: [CameraManager] Found camera: rtsp://192.168.1.10:8554/screen
+2026-03-03 11:02:06,982 [INFO] VisionTera: [CameraManager] Found camera: rtsp://192.168.1.10:8554/screen
+2026-03-03 11:02:06,982 [INFO] VisionTera: [CameraManager] Found camera: rtsp://192.168.1.10:8554/screen
+2026-03-03 11:02:06,982 [INFO] VisionTera: [CameraManager] Found camera: rtsp://192.168.1.10:8554/screen
+2026-03-03 11:03:02,201 [INFO] VisionTera: [API] Registered local camera 'cam_1772515981891_1' -> backend ID 26
+2026-03-03 11:03:02,205 [INFO] VisionTera: DatasetCollector initialized. Output dir: datasets\to_label
+2026-03-03 11:03:02,207 [INFO] VisionTera: Dataset auto-labeling background thread started
+2026-03-03 11:03:02,209 [INFO] VisionTera: Auto-labeling loop running. Interval: 60s
+2026-03-03 11:03:04,237 [INFO] VisionTera: Camera opened: rtsp://192.168.1.10:8554/screen
+2026-03-03 11:03:04,238 [INFO] VisionTera: Camera cam_1772515981891_1 started: 490x1088
+2026-03-03 11:03:04,238 [INFO] VisionTera: Camera cam_1772515981891_1 started successfully
+2026-03-03 11:03:15,824 [INFO] VisionTera: Camera cam_1772515981891_1 capture loop cancelled
+2026-03-03 11:03:15,854 [INFO] VisionTera: Camera released: rtsp://192.168.1.10:8554/screen
+2026-03-03 11:03:15,854 [INFO] VisionTera: Re-ID: cleared camera cam_1772515981891_1, affected 0 persons
+2026-03-03 11:03:15,855 [INFO] VisionTera: Camera cam_1772515981891_1 stopped
+2026-03-03 11:03:15,855 [INFO] VisionTera: Camera cam_1772515981891_1 stopped
+2026-03-03 11:34:06,704 [INFO] VisionTera: [API] HTTP client closed
+2026-03-03 11:34:06,706 [INFO] VisionTera: Application shutdown - All cameras stopped
