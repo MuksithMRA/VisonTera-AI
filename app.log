@@ -82037,3 +82037,16 @@ DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error
 2026-02-26 07:06:52,798 [INFO] VisionTera: [Auth] Attempting login to https://visiontera-backend-697124318129.europe-west4.run.app/account/token for user manager
 2026-02-26 07:07:03,018 [ERROR] VisionTera: [Auth] Login error: 
 2026-02-26 07:07:13,588 [INFO] VisionTera: Application shutdown - All cameras stopped
+2026-03-03 12:10:36,503 [INFO] VisionTera: CrossCameraReIDManager initialised: threshold=0.6, gallery_size=10, stale_timeout=300.0s
+2026-03-03 12:10:36,504 [INFO] VisionTera: InferenceEngine initialized: device=cuda, half=True, CUDA available=True
+2026-03-03 12:10:36,673 [INFO] VisionTera: Found latest crowd_v_ model: crowd_v_20260219_102246 -> infrastructure\models\crowd_v_20260219_102246\best_model.pt
+2026-03-03 12:10:36,673 [INFO] VisionTera: Using crowd-optimized detection model: infrastructure\models\crowd_v_20260219_102246\best_model.pt
+2026-03-03 12:10:37,437 [INFO] VisionTera: Detection model loaded on GPU: NVIDIA GeForce RTX 4060 Laptop GPU, half=True
+2026-03-03 12:10:37,437 [INFO] VisionTera: Found latest v_ model: v_20260224_075137 -> infrastructure\models\v_20260224_075137\weights\best.pt
+2026-03-03 12:10:37,521 [INFO] VisionTera: YOLO-cls gender classification model loaded.
+2026-03-03 12:10:38,020 [INFO] VisionTera: Re-ID model initialised with ImageNet pre-trained backbone. For best accuracy, place Re-ID weights in infrastructure/models/reid/
+2026-03-03 12:10:39,559 [INFO] VisionTera: Re-ID extractor ready: device=cuda, half=True, embedding=512-d
+2026-03-03 12:10:39,559 [INFO] VisionTera: Cross-camera Re-ID feature extractor loaded successfully
+2026-03-03 12:10:39,560 [INFO] VisionTera: [API] API client worker started
+2026-03-03 12:10:39,561 [INFO] VisionTera: Application started - Multi-camera detection ready
+2026-03-03 12:10:39,561 [INFO] VisionTera: Training scheduler is disabled.
