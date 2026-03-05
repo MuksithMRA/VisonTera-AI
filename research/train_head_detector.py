@@ -213,7 +213,7 @@ def train_crowd_model(
             scale=0.5,                  # Random scaling - detect people at various distances
             copy_paste=0.1,             # Occlusion simulation for crowded scenes
             erasing=0.4,                # Robustness to partial occlusion
-            multi_scale=True,           # Train at ±50% imgsz for distance robustness
+            multi_scale=False,          # DISABLED by default (Huge VRAM hog)
             degrees=10.0,               # Slight rotation augmentation
             translate=0.1,
             fliplr=0.5,
@@ -229,7 +229,7 @@ def train_crowd_model(
             
             # ── Performance ──
             amp=True,                  # Mixed precision for faster training
-            workers=4,
+            workers=2,                 # Reduced from 4 to save system memory
             seed=42,
             deterministic=True,
             verbose=True,
