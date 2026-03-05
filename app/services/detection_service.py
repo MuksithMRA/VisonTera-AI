@@ -276,7 +276,8 @@ class DetectionEngine:
             cv2.circle(annotated, (bottom_x, bottom_y), 8, (0, 212, 255), -1)
             cv2.circle(annotated, (bottom_x, bottom_y), 10, (255, 255, 255), 2)
             
-            label = f"{gender} {conf:.0%}"
+            track_id = det.get('id', -1)
+            label = f"ID:{track_id} {gender} {conf:.0%}"
                 
             (label_w, label_h), baseline = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.6, 2)
             cv2.rectangle(annotated, (x1, y1 - label_h - 10), (x1 + label_w + 10, y1), box_color, -1)
