@@ -30,9 +30,9 @@ def process_videos(video_folder, interval_seconds=1.0):
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     
     # Load Model
-    model_path = "infrastructure/models/yolo11m.pt"
+    model_path = "infrastructure/models/yolo26m.pt"
     if not Path(model_path).exists():
-        model_path = "yolo11m.pt"
+        model_path = "yolo26m.pt"
     
     print(f"Loading YOLO model: {model_path}")
     model = YOLO(model_path)

@@ -8,7 +8,7 @@ flowchart TB
         subgraph DET_TRAIN["🎯 Person Detection Model Training"]
             direction TB
             CH["📦 CrowdHuman Dataset v1 19,369 annotated images Dense crowd scenes"]
-            BASE_DET["🧠 YOLOv11m Pre-trained (COCO) General object detection"]
+            BASE_DET["🧠 YOLOv26m Pre-trained (COCO) General object detection"]
             TL1["⚡ Transfer Learning Crowd-optimized augmentation 100 epochs"]
             CROWD_MODEL["✅ crowd_v_20260219_102246 Person Detection Model Optimized for high-density crowds"]
 
@@ -20,7 +20,7 @@ flowchart TB
         subgraph GEN_TRAIN["👤 Gender Classification Model Training"]
             direction TB
             PA["📦 European + KSA Dataset + Custom Web Images 24,382 labeled images"]
-            BASE_CLS["🧠 YOLOv11m-cls Pre-trained (ImageNet) Image Classification"]
+            BASE_CLS["🧠 YOLOv26m-cls Pre-trained (ImageNet) Image Classification"]
             TL2["⚡ Transfer Learning Binary classification: Male / Female 80 epochs"]
             GENDER_MODEL["✅ v_20260219_063644 Gender Classification Model 87.35% accuracy"]
 
@@ -38,7 +38,7 @@ flowchart TB
 
         subgraph MODELS_REPO["🗂️ Model Registry — infrastructure/models/"]
             direction TB
-            M1["yolo11m.pt — Base detection model"]
+            M1["yolo26m.pt — Base detection model"]
             M2["crowd_v_20260219_102246/ — Crowd person detector (latest)"]
             M3["v_20260219_063644/ — Gender classifier v2 (latest — 87.35%)"]
             M4["v_20260209_170745/ — Gender classifier v1 (archived — 83.55%)"]
@@ -70,7 +70,7 @@ flowchart TB
 
         subgraph STAGE1["STAGE 1 — Person Detection (~5ms/frame)"]
             direction TB
-            DET["🎯 YOLOv11m Detection crowd_v_20260219_102246"]
+            DET["🎯 YOLOv26m Detection crowd_v_20260219_102246"]
             BBOX["📍 Bounding Boxes Detect every person in the frame"]
             DET --> BBOX
         end
@@ -78,7 +78,7 @@ flowchart TB
         subgraph STAGE2["STAGE 2 — Per-Person Analysis (~1.2ms/person)"]
             direction TB
             CROP["✂️ Crop Each Person"]
-            GEN["👤 YOLOv11m-cls v_20260219_063644"]
+            GEN["👤 YOLOv26m-cls v_20260219_063644"]
             RESULT["🏷️ Male / Female + Confidence Score"]
             CROP --> GEN --> RESULT
         end

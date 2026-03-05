@@ -1,11 +1,11 @@
 # YOLO Stream Detection Service
 
-A FastAPI-based service that processes video streams in real-time using YOLOv11n to detect persons and extract their bottom-center coordinates.
+A FastAPI-based service that processes video streams in real-time using YOLOv26m to detect persons and extract their bottom-center coordinates.
 
 ## Features
 
 - **Real-time video stream processing** with threading to prevent lag
-- **YOLOv11n model integration** for person detection
+- **YOLOv26m model integration** for person detection
 - **Bottom-center coordinate extraction** for each detected person
 - **Live JSON data storage** with timestamp and detection metadata
 - **RESTful API endpoints** for stream control and data retrieval
@@ -19,7 +19,7 @@ A FastAPI-based service that processes video streams in real-time using YOLOv11n
 pip install -r requirements.txt
 ```
 
-2. Download the YOLOv11n model file (`yolo11n.pt`) and place it in the project directory.
+2. Download the YOLOv26m model file (`yolo26m.pt`) and place it in the project directory.
 
 ## Usage
 
@@ -146,7 +146,7 @@ The service uses threading to ensure smooth video processing:
 
 ### Environment Variables
 
-- `MODEL_PATH`: Path to YOLO model file (default: `yolo11n.pt`)
+- `MODEL_PATH`: Path to YOLO model file (default: `yolo26m.pt`)
 - `LIVE_DATA_FILE`: Path to live data JSON file (default: `live_data.json`)
 
 ### Model Configuration
@@ -159,7 +159,7 @@ The service uses threading to ensure smooth video processing:
 
 ### Common Issues
 
-1. **Model not loaded**: Ensure `yolo11n.pt` file exists in the project directory
+1. **Model not loaded**: Ensure `yolo26m.pt` file exists in the project directory
 2. **Camera not accessible**: Check camera permissions and try different source index
 3. **Stream not starting**: Verify camera is available and not used by another application
 4. **No detections**: Check lighting conditions and camera quality

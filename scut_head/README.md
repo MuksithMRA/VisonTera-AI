@@ -1,6 +1,6 @@
 # 🧠 SCUT-HEAD Fine-tuning Module
 
-Fine-tune **YOLOv11m** for **head detection** using the [SCUT-HEAD Part A dataset](https://universe.roboflow.com/viet-hoang-zbzwq/scut-head-part-a/dataset/1).
+Fine-tune **YOLOv26m** for **head detection** using the [SCUT-HEAD Part A dataset](https://universe.roboflow.com/viet-hoang-zbzwq/scut-head-part-a/dataset/1).
 
 ---
 
@@ -9,10 +9,10 @@ Fine-tune **YOLOv11m** for **head detection** using the [SCUT-HEAD Part A datase
 | Property | Value |
 |----------|-------|
 | Task | **Object Detection** (bounding boxes around heads) |
-| Base Model | `yolo11m.pt` (YOLOv11m detection) |
+| Base Model | `yolo26m.pt` (YOLOv26m detection) |
 | Dataset | SCUT-HEAD Part A (Roboflow, YOLO format) |
 | Classes | 1 — `head` |
-| Output Model | `scut_head/models/yolo11m-head.pt` |
+| Output Model | `scut_head/models/yolo26m-head.pt` |
 
 ---
 
@@ -73,14 +73,14 @@ scut_head/models/
 │   ├── best_model.pt            # Copy of best.pt
 │   ├── results.csv
 │   └── ...
-└── yolo11m-head.pt              # Canonical latest model
+└── yolo26m-head.pt              # Canonical latest model
 ```
 
 ---
 
 ## 🔗 Integration
 
-The trained `yolo11m-head.pt` model can be loaded in the detection engine 
+The trained `yolo26m-head.pt` model can be loaded in the detection engine 
 to add head-detection capabilities alongside the existing person detection 
 and gender classification pipeline.
 

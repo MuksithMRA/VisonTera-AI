@@ -1,5 +1,5 @@
 """
-Dataset Preparation Script for YOLO11m-cls Gender Classification
+Dataset Preparation Script for YOLO26m-cls Gender Classification
 Splits the new_dataset into train/val with YOLO-compatible structure.
 """
 

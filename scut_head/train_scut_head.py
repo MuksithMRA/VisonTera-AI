@@ -1,6 +1,6 @@
 """
-YOLOv11m Head Detection Training Script — SCUT-HEAD Part A Dataset
-Fine-tunes the pretrained YOLOv11m detection model for head detection 
+YOLOv26m Head Detection Training Script — SCUT-HEAD Part A Dataset
+Fine-tunes the pretrained YOLOv26m detection model for head detection 
 in crowded and surveillance scenes.
 
 Usage:
@@ -35,7 +35,7 @@ def train_scut_head(
     patience: int = 10,
     pretrained_model: str = None,
 ):
-    """Fine-tune YOLOv11m for head detection on the SCUT-HEAD Part A dataset.
+    """Fine-tune YOLOv26m for head detection on the SCUT-HEAD Part A dataset.
 
     Args:
         epochs:           Maximum training epochs.
@@ -43,7 +43,7 @@ def train_scut_head(
         imgsz:            Input image size (px, square).
         patience:         Early-stopping patience (epochs without improvement).
         pretrained_model: Path to the pretrained detection model.
-                          Defaults to ``yolo11m.pt`` in the repo root.
+                          Defaults to ``yolo26m.pt`` in the repo root.
     """
     from ultralytics import YOLO
     import torch
@@ -52,7 +52,7 @@ def train_scut_head(
     version_id = f"scut_head_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
 
     logger.info("=" * 60)
-    logger.info("YOLOv11m Head Detection Training — SCUT-HEAD Part A")
+    logger.info("YOLOv26m Head Detection Training — SCUT-HEAD Part A")
     logger.info("=" * 60)
     logger.info(f"Version : {version_id}")
     logger.info(f"Device  : {'CUDA' if torch.cuda.is_available() else 'CPU'}")
@@ -68,8 +68,8 @@ def train_scut_head(
     if pretrained_model is None:
         # Look for pretrained model in scut_head/models or repo root
         candidates = [
-            Path("scut_head/models/yolo11m.pt"),
-            Path("yolo11m.pt"),
+            Path("scut_head/models/yolo26m.pt"),
+            Path("yolo26m.pt"),
         ]
         for c in candidates:
             if c.exists():
@@ -78,8 +78,8 @@ def train_scut_head(
 
     if pretrained_model is None or not Path(pretrained_model).exists():
         logger.error(
-            "Pretrained YOLOv11m model not found. "
-            "Please place yolo11m.pt in the repo root or scut_head/models/ "
+            "Pretrained YOLOv26m model not found. "
+            "Please place yolo26m.pt in the repo root or scut_head/models/ "
             "or specify --model path."
         )
         return None
@@ -112,7 +112,7 @@ def train_scut_head(
         return None
 
     # ── 3. Load model & start training ────────────────────
-    logger.info(f"\nLoading pretrained YOLOv11m from: {pretrained_model}")
+    logger.info(f"\nLoading pretrained YOLOv26m from: {pretrained_model}")
     model = YOLO(pretrained_model)
 
     logger.info("\nStarting training …")
@@ -202,7 +202,7 @@ def train_scut_head(
         logger.info(f"Copied to      : {dest}")
 
         # Also copy to scut_head/models as the canonical head-detection model
-        canonical = Path("scut_head/models/yolo11m-head.pt")
+        canonical = Path("scut_head/models/yolo26m-head.pt")
         shutil.copy(best_pt, canonical)
         logger.info(f"Canonical copy : {canonical}")
 
@@ -214,7 +214,7 @@ def train_scut_head(
 # ──────────────────────────────────────────────────────────
 def main():
     parser = argparse.ArgumentParser(
-        description="Fine-tune YOLOv11m for head detection (SCUT-HEAD Part A)"
+        description="Fine-tune YOLOv26m for head detection (SCUT-HEAD Part A)"
     )
     parser.add_argument(
         "--epochs", type=int, default=50, help="Number of training epochs (default: 50)"
@@ -232,7 +232,7 @@ def main():
         "--model",
         type=str,
         default=None,
-        help="Path to pretrained YOLOv11m model (default: yolo11m.pt in repo root)",
+        help="Path to pretrained YOLOv26m model (default: yolo26m.pt in repo root)",
     )
 
     args = parser.parse_args()
@@ -248,7 +248,7 @@ def main():
     if result:
         print(f"\n Training completed successfully!")
         print(f"   Model saved to: {result}")
-        print(f"   Best weights also copied to: scut_head/models/yolo11m-head.pt")
+        print(f"   Best weights also copied to: scut_head/models/yolo26m-head.pt")
     else:
         print("\n Training failed!")
         sys.exit(1)

@@ -19,8 +19,8 @@ class AppConfig:
     SHOW_GLOW_EFFECT = True
     BASE_DIR = Path(__file__).parent.parent
     LOG_FILE = BASE_DIR / "app.log"
-    MODEL_PATH = "infrastructure/models/yolo11m.pt"
-    GENDER_MODEL_PATH = "infrastructure/models/yolo11m-gender.pt"
+    MODEL_PATH = "infrastructure/models/yolo26m.pt"
+    GENDER_MODEL_PATH = "infrastructure/models/yolo26m-gender.pt"
     GENDER_CHECK_INTERVAL = 30
     GENDER_VOTING_ENABLED = True
     GENDER_VOTE_THRESHOLD = 3

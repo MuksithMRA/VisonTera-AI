@@ -24,8 +24,8 @@
 
 VisionTera AI is a comprehensive real-time video analytics system that processes video streams from NVR (Network Video Recorder) to Cloud infrastructure. The system performs:
 
-- **Person Detection** using YOLOv11n
-- **Gender Classification** using YOLOv11m/ResNet50
+- **Person Detection** using YOLOv26n
+- **Gender Classification** using YOLOv26m/ResNet50
 - **Real-time Analytics** with live data streaming
 - **Cloud Synchronization** for centralized monitoring
 
@@ -44,7 +44,7 @@ flowchart TB
     subgraph Edge["💻 Edge Processing"]
         StreamCapture["🎬 Stream Capture"]
         FrameBuffer["📦 Frame Buffer"]
-        Detection["🔍 YOLOv11n Detection"]
+        Detection["🔍 YOLOv26n Detection"]
         Gender["👤 Gender Classification"]
         LocalAPI["🔌 Local FastAPI"]
     end
@@ -165,12 +165,12 @@ flowchart TB
 | 2.1.3 | Gender Auto-Labeling | Initial auto-labeling using existing model | 🟡 Medium | ✅ Done |
 | 2.1.4 | Manual QC Review | Human verification of labels | 🟡 Medium | ⬜ To Do |
 | 2.1.5 | Dataset Merge | Merge with existing training data | 🟡 Medium | ✅ Done |
-| 2.2.1 | YOLOv11-cls Training | Train gender classification model | 🔴 High | ✅ Done |
+| 2.2.1 | YOLOv26-cls Training | Train gender classification model | 🔴 High | ✅ Done |
 | 2.2.2 | Model Evaluation | Detailed accuracy metrics | 🔴 High | ✅ Done |
 | 2.2.3 | Model Optimization | Optimize for inference speed | 🟡 Medium | ⬜ To Do |
 | 2.3.1 | Automated Scheduler | Periodic retraining pipeline | 🔴 High | ✅ Done |
 | 2.3.2 | Model Hot-Reloading | Reload model without restart | 🔴 High | ✅ Done |
-| 2.4.1 | Head Counting Research | Evaluate CrowdHuman/YOLO for high density | 🟡 Medium | 🔄 In Progress |
+| 2.4.1 | Head Counting Research | Evaluate CrowdHuman/YOLO for high density → Download CrowdHuman from Roboflow (YOLOv26 format) | 🟡 Medium | 🔄 In Progress |
 
 ---
 
@@ -525,7 +525,7 @@ graph TD
 
 ## 📚 References
 
-- [YOLOv11 Documentation](https://docs.ultralytics.com/)
+- [YOLOv26 Documentation](https://docs.ultralytics.com/models/yolo26/)
 - [FastAPI Documentation](https://fastapi.tiangolo.com/)
 - [GCP Cloud Run](https://cloud.google.com/run)
 - [PyTorch Documentation](https://pytorch.org/docs/)

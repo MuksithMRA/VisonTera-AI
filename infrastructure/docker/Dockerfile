@@ -54,12 +54,13 @@ COPY login.html      ./login.html
 
 # ── Model weights ────────────────────────────────────────────────────────────
 # Base YOLO detection models
-COPY infrastructure/models/yolo11m.pt          ./infrastructure/models/yolo11m.pt
-COPY infrastructure/models/yolo11n.pt          ./infrastructure/models/yolo11n.pt
+COPY infrastructure/models/yolo26m.pt          ./infrastructure/models/yolo26m.pt
+COPY infrastructure/models/yolo26n.pt          ./infrastructure/models/yolo26n.pt
 
 # Gender classification models
 COPY infrastructure/models/resnet50-gender.pt  ./infrastructure/models/resnet50-gender.pt
-COPY infrastructure/models/yolo11m-gender.pt   ./infrastructure/models/yolo11m-gender.pt
+COPY infrastructure/models/yolo26m-gender.pt   ./infrastructure/models/yolo26m-gender.pt
+COPY infrastructure/models/yolo26m-cls.pt      ./infrastructure/models/yolo26m-cls.pt
 
 # Latest crowd-optimised detection model (crowd_v_*)
 COPY infrastructure/models/crowd_v_20260219_102246/ ./infrastructure/models/crowd_v_20260219_102246/

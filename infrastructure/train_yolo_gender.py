@@ -1,5 +1,5 @@
 """
-YOLO11m-cls Gender Classification Training Script
+YOLO26m-cls Gender Classification Training Script
 Optimized for high-angle CCTV surveillance footage.
 
 Usage:
@@ -25,7 +25,7 @@ logger = logging.getLogger("VisionTera.YOLO")
 
 def train_yolo_gender(epochs=50, batch_size=64, imgsz=224, patience=10):
     """
-    Train YOLO11m-cls for gender classification.
+    Train YOLO26m-cls for gender classification.
     
     Args:
         epochs: Maximum training epochs
@@ -40,7 +40,7 @@ def train_yolo_gender(epochs=50, batch_size=64, imgsz=224, patience=10):
     version_id = f"v_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
     
     logger.info("="*60)
-    logger.info("YOLO11m-cls Gender Classification Training")
+    logger.info("YOLO26m-cls Gender Classification Training")
     logger.info("="*60)
     logger.info(f"Version: {version_id}")
     logger.info(f"Device: {'CUDA' if torch.cuda.is_available() else 'CPU'}")
@@ -64,9 +64,9 @@ def train_yolo_gender(epochs=50, batch_size=64, imgsz=224, patience=10):
     logger.info(f"Train: {train_female + train_male} (F: {train_female}, M: {train_male})")
     logger.info(f"Val: {val_female + val_male} (F: {val_female}, M: {val_male})")
     
-    # Load pretrained YOLO11m-cls
-    logger.info("\nLoading pretrained YOLO11m-cls...")
-    model = YOLO('yolo11m-cls.pt')
+    # Load pretrained YOLO26m-cls
+    logger.info("\nLoading pretrained YOLO26m-cls...")
+    model = YOLO('yolo26m-cls.pt')
     
     # Training configuration - optimized for surveillance
     logger.info("\nStarting training with surveillance-optimized augmentations...")
@@ -150,7 +150,7 @@ def train_yolo_gender(epochs=50, batch_size=64, imgsz=224, patience=10):
     return str(output_dir)
 
 def main():
-    parser = argparse.ArgumentParser(description="Train YOLO11m-cls for gender classification")
+    parser = argparse.ArgumentParser(description="Train YOLO26m-cls for gender classification")
     parser.add_argument("--epochs", type=int, default=50, help="Number of epochs")
     parser.add_argument("--batch", type=int, default=64, help="Batch size")
     parser.add_argument("--imgsz", type=int, default=224, help="Image size")

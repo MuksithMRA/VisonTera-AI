@@ -123,7 +123,7 @@ class InferenceEngine(IInferenceEngine):
             if not search_dir.exists():
                 continue
 
-            # Top-level .pt files (e.g., yolo11m.pt, yolo11m-head.pt)
+            # Top-level .pt files (e.g., yolo26m.pt, yolo26m-head.pt)
             for pt_file in search_dir.glob("*.pt"):
                 # Skip gender/classification models
                 if any(skip in pt_file.name for skip in ['gender', 'cls', 'peta', 'face']):

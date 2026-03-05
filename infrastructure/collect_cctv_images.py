@@ -40,9 +40,9 @@ def collect_person_crops(camera_index=0, duration_seconds=60, interval_seconds=2
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     
     # Load YOLO model for person detection
-    model_path = "infrastructure/models/yolo11m.pt"
+    model_path = "infrastructure/models/yolo26m.pt"
     if not Path(model_path).exists():
-        model_path = "yolo11m.pt"
+        model_path = "yolo26m.pt"
     
     print(f"Loading YOLO model from: {model_path}")
     model = YOLO(model_path)

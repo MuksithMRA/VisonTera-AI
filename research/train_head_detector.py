@@ -1,7 +1,7 @@
 """
 VisionTera - Person Detection Model Training (Transfer Learning)
 ================================================================
-Fine-tunes our existing yolo11m.pt detection model on the CrowdHuman dataset
+Fine-tunes our existing yolo26m.pt detection model on the CrowdHuman dataset
 for person detection in high-density crowd scenarios (airports, events, etc.)
 
 Dataset: CrowdHuman from Roboflow (YOLOv11 format)
@@ -51,9 +51,9 @@ def get_latest_detection_model() -> Path:
         logger.info(f"✅ Using production detection model: {BASE_MODEL_PATH}")
         return BASE_MODEL_PATH
 
-    # Fallback: download yolo11m.pt from ultralytics
-    logger.warning("⚠️  yolo11m.pt not found locally. YOLO will auto-download it.")
-    return Path("yolo11m.pt")
+    # Fallback: download yolo26m.pt from ultralytics
+    logger.warning("⚠️  yolo26m.pt not found locally. YOLO will auto-download it.")
+    return Path("yolo26m.pt")
 
 
 def validate_and_get_dataset_yaml(dataset_path: Path = None) -> str:
@@ -153,7 +153,7 @@ def train_crowd_model(
     resume: bool = False,
 ):
     """
-    Train person detection model via transfer learning from yolo11m.pt.
+    Train person detection model via transfer learning from yolo26m.pt.
     Optimized for high-density crowd scenarios.
     
     Strategy for high-crowd areas:
@@ -246,7 +246,7 @@ def train_crowd_model(
         logger.info("")
         logger.info("🔄 NEXT STEPS:")
         logger.info(f"   1. Test: python -c \"from ultralytics import YOLO; m=YOLO('{best_copy}'); m.predict('test_image.jpg')\"")
-        logger.info(f"   2. Deploy: Copy {best_copy} to infrastructure/models/yolo11m.pt")
+        logger.info(f"   2. Deploy: Copy {best_copy} to infrastructure/models/yolo26m.pt")
         logger.info(f"   3. Or update AppConfig.MODEL_PATH to point to the new model")
         
         return results
@@ -280,7 +280,7 @@ def train_crowd_model(
 
 def parse_args():
     parser = argparse.ArgumentParser(
-        description="VisionTera - Crowd Person Detection (Transfer Learning from yolo11m.pt)"
+        description="VisionTera - Crowd Person Detection (Transfer Learning from yolo26m.pt)"
     )
     parser.add_argument('--data', type=str, default=None,
                         help='Path to dataset YAML (auto-detected from research/crowdhuman/ if not provided)')
@@ -303,7 +303,7 @@ if __name__ == "__main__":
     args = parse_args()
     
     logger.info("🚀 VisionTera Crowd Person Detection - Transfer Learning")
-    logger.info(f"   Base: yolo11m.pt (production detection model)")
+    logger.info(f"   Base: yolo26m.pt (production detection model)")
     logger.info(f"   Dataset: CrowdHuman (Roboflow YOLOv11 format)")
     logger.info(f"   Target: Person detection optimized for high-crowd areas")
     logger.info(f"   Epochs: {args.epochs} | ImgSize: {args.imgsz} | Batch: {args.batch}")
