@@ -36,6 +36,8 @@ class CameraProcessor(ICameraProcessor):
         self._fps = 0.0
         self._actual_width = config.frame_width
         self._actual_height = config.frame_height
+        self._track_paths = {} # {track_id: last_point}
+        self._cross_count = 0
 
     async def start(self) -> bool:
         if self._state == CameraState.RUNNING:
@@ -167,6 +169,35 @@ class CameraProcessor(ICameraProcessor):
             detections
         )
 
+        # --- Boundary Crossing Detection ---
+        if self._config.counting_line and len(self._config.counting_line) >= 2:
+            L1, L2 = self._config.counting_line[0], self._config.counting_line[1]
+            current_ids = set()
+            for det in detections:
+                track_id = det.track_id
+                if track_id == -1: continue
+                current_ids.add(track_id)
+                
+                # Use the same point as the visualization dot for consistency
+                if det.class_id == 1:
+                    curr_pos = (det.bbox.center_x, det.bbox.center_y)
+                else:
+                    # Estimated head position
+                    curr_pos = (det.bbox.center_x, det.bbox.y1 + (det.bbox.y2 - det.bbox.y1) * 0.15)
+                
+                if track_id in self._track_paths:
+                    prev_pos = self._track_paths[track_id]
+                    if self._check_line_intersection(prev_pos, curr_pos, L1, L2):
+                        self._cross_count += 1
+                        logger.info(f"Boundary crossed! Total: {self._cross_count}")
+                
+                self._track_paths[track_id] = curr_pos
+            
+            # Cleanup old tracks
+            to_remove = [tid for tid in self._track_paths if tid not in current_ids]
+            for tid in to_remove:
+                del self._track_paths[tid]
+
         annotated = self._draw_detections(frame, detections)
 
         if self._config.show_fps:
@@ -189,12 +220,36 @@ class CameraProcessor(ICameraProcessor):
 
     def _draw_detections(self, frame: np.ndarray, detections: List[Detection]) -> np.ndarray:
         annotated = frame.copy()
+        viz_mode = getattr(AppConfig, 'VISUALIZATION_MODE', 'box')
+
+        # --- Draw Boundary Line ---
+        if self._config.counting_line and len(self._config.counting_line) >= 2:
+            L1 = tuple(map(int, self._config.counting_line[0]))
+            L2 = tuple(map(int, self._config.counting_line[1]))
+            cv2.line(annotated, L1, L2, (0, 0, 255), 4) # Thicker Red Line
+            
+            # Position text in the middle of the line with a background
+            mid_x = (L1[0] + L2[0]) // 2
+            mid_y = (L1[1] + L2[1]) // 2
+            label = f"TOTAL COUNT: {self._cross_count}"
+            (w, h), _ = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.7, 2)
+            cv2.rectangle(annotated, (mid_x - 5, mid_y - h - 15), (mid_x + w + 5, mid_y - 5), (0, 0, 255), -1)
+            cv2.putText(annotated, label, (mid_x, mid_y - 12),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
 
         for det in detections:
             bbox = det.bbox
             x1, y1 = int(bbox.x1), int(bbox.y1)
             x2, y2 = int(bbox.x2), int(bbox.y2)
             bottom_x, bottom_y = int(bbox.center_x), int(bbox.y2)
+            
+            # Head position estimation: center top of the box
+            # If the detector is already hitting heads, use the center of the box.
+            if det.class_id == 1:
+                center_x, center_y = int(bbox.center_x), int(bbox.center_y)
+            else:
+                center_x, center_y = int(bbox.center_x), int(y1 + (y2 - y1) * 0.15)
+            
             gender = det.gender or "Person"
 
             if gender == 'Male':
@@ -203,22 +258,43 @@ class CameraProcessor(ICameraProcessor):
                 box_color = (180, 105, 255)
             else:
                 box_color = self._config.box_color
+                
+            track_id = det.global_id if det.global_id != -1 else det.track_id
 
-            cv2.rectangle(annotated, (x1, y1), (x2, y2), box_color, 2)
-            cv2.rectangle(annotated, (x1 - 1, y1 - 1), (x2 + 1, y2 + 1), (0, 100, 50), 1)
-            cv2.circle(annotated, (bottom_x, bottom_y), 8, (0, 212, 255), -1)
-            cv2.circle(annotated, (bottom_x, bottom_y), 10, (255, 255, 255), 2)
+            if viz_mode == 'head-dot':
+                # --- HEAD DOT MODE ---
+                if getattr(AppConfig, 'SHOW_GLOW_EFFECT', True):
+                    overlay = annotated.copy()
+                    cv2.circle(overlay, (center_x, center_y), 15, box_color, -1)
+                    cv2.addWeighted(overlay, 0.3, annotated, 0.7, 0, annotated)
+                
+                # Core Dot
+                cv2.circle(annotated, (center_x, center_y), 6, (255, 255, 255), -1)
+                cv2.circle(annotated, (center_x, center_y), 7, box_color, 2)
+                
+                # Minimalist ID Label
+                label = f"#{track_id}"
+                (label_w, label_h), _ = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.4, 1)
+                cv2.rectangle(annotated, (center_x - 5, center_y - label_h - 15), 
+                              (center_x + label_w + 5, center_y - 10), box_color, -1)
+                cv2.putText(annotated, label, (center_x, center_y - 15), 
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
+            else:
+                # --- TRADITIONAL BOX MODE ---
+                cv2.rectangle(annotated, (x1, y1), (x2, y2), box_color, 2)
+                cv2.rectangle(annotated, (x1 - 1, y1 - 1), (x2 + 1, y2 + 1), (0, 100, 50), 1)
+                cv2.circle(annotated, (bottom_x, bottom_y), 8, (0, 212, 255), -1)
+                cv2.circle(annotated, (bottom_x, bottom_y), 10, (255, 255, 255), 2)
 
-            display_id = det.global_id if det.global_id != -1 else det.track_id
-            label = f"ID:{display_id} {gender} {det.confidence:.0%}"
-            (label_w, label_h), _ = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.6, 2)
-            cv2.rectangle(annotated, (x1, y1 - label_h - 10), (x1 + label_w + 10, y1), box_color, -1)
-            cv2.putText(annotated, label, (x1 + 5, y1 - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 0), 2)
+                label = f"ID:{track_id} {gender} {det.confidence:.0%}"
+                (label_w, label_h), _ = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.6, 2)
+                cv2.rectangle(annotated, (x1, y1 - label_h - 10), (x1 + label_w + 10, y1), box_color, -1)
+                cv2.putText(annotated, label, (x1 + 5, y1 - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 0), 2)
 
-            if self._config.show_coords:
-                coord_text = f"({bottom_x}, {bottom_y})"
-                cv2.putText(annotated, coord_text, (bottom_x + 15, bottom_y + 5),
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 212, 255), 2)
+                if self._config.show_coords:
+                    coord_text = f"({bottom_x}, {bottom_y})"
+                    cv2.putText(annotated, coord_text, (bottom_x + 15, bottom_y + 5),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 212, 255), 2)
 
         return annotated
 
@@ -238,7 +314,8 @@ class CameraProcessor(ICameraProcessor):
             male_count=male_count,
             female_count=female_count,
             detections=[d.to_dict() for d in self._latest_detections],
-            timestamp=datetime.now()
+            timestamp=datetime.now(),
+            cross_count=self._cross_count
         )
         # Attach deduplicated counts to stats for frontend consumption
         self._latest_stats.deduplicated = dedup_counts
@@ -263,7 +340,8 @@ class CameraProcessor(ICameraProcessor):
         
         await api_client.push_detections(
             camera_id=self._config.camera_id,
-            detections=detections_for_api
+            detections=detections_for_api,
+            cross_count=self._cross_count
         )
 
     async def _handle_reconnect(self) -> None:
@@ -316,3 +394,11 @@ class CameraProcessor(ICameraProcessor):
     @property
     def is_running(self) -> bool:
         return self._state == CameraState.RUNNING
+
+    def _check_line_intersection(self, p1, p2, l1, l2):
+        """Standard line segment intersection algorithm."""
+        def ccw(A, B, C):
+            return (C[1]-A[1]) * (B[0]-A[0]) > (B[1]-A[1]) * (C[0]-A[0])
+        
+        # Segment 1 is p1-p2, Segment 2 is l1-l2
+        return ccw(p1,l1,l2) != ccw(p2,l1,l2) and ccw(p1,p2,l1) != ccw(p1,p2,l2)

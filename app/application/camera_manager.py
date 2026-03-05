@@ -58,7 +58,8 @@ class CameraManager:
         confidence: float = 0.5,
         show_coords: bool = True,
         show_fps: bool = True,
-        box_color: tuple = (0, 255, 136)
+        box_color: tuple = (0, 255, 136),
+        counting_line: List[List[float]] = None
     ) -> Dict:
         if camera_id in self._processors:
             processor = self._processors[camera_id]
@@ -66,6 +67,9 @@ class CameraManager:
                 return {"status": "already_running", "camera_id": camera_id}
 
         camera_type = CameraType.RTSP if source.startswith("rtsp://") else CameraType.LOCAL
+
+        # Convert list of lists to list of tuples if provided
+        line_tuples = [tuple(p) for p in counting_line] if counting_line else None
 
         config = CameraConfig(
             camera_id=camera_id,
@@ -78,7 +82,8 @@ class CameraManager:
             confidence_threshold=confidence,
             show_coords=show_coords,
             show_fps=show_fps,
-            box_color=box_color
+            box_color=box_color,
+            counting_line=line_tuples
         )
 
         processor = CameraProcessor(config, self._inference_engine)

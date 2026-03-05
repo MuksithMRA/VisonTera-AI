@@ -81,7 +81,19 @@
                         </div>
                         <div class="stat-content">
                             <span class="stat-value" id="totalPersonCount">0</span>
-                            <span class="stat-label">Total Detections</span>
+                            <span class="stat-label">Total In-Frame</span>
+                        </div>
+                    </div>
+                    <div class="stat-card card">
+                        <div class="stat-icon pink">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-value" id="totalFlow">0</span>
+                            <span class="stat-label">Total Flow</span>
                         </div>
                     </div>
                     <div class="stat-card card">
@@ -204,6 +216,10 @@
                                     class="form-slider">
                                 <span id="confidenceValue" class="slider-value">0.50</span>
                             </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="countingLine">Counting Boundary (x1,y1,x2,y2)</label>
+                            <input type="text" id="countingLine" class="form-input" placeholder="e.g., 0,240,640,240">
                         </div>
                     </div>
                     <div class="form-row">

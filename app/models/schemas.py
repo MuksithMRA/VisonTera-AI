@@ -38,6 +38,7 @@ class CameraStartRequest(BaseModel):
     show_coords: bool = Field(True, description="Show coordinates on detections")
     show_fps: bool = Field(True, description="Show FPS counter")
     box_color: str = Field("00FF88", description="Box color in hex format")
+    counting_line: Optional[List[List[float]]] = Field(None, description="List of [x, y] coordinates for counting boundary [[x1, y1], [x2, y2]]")
 
     model_config = {
         "json_schema_extra": {

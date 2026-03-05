@@ -220,6 +220,7 @@ class APIClient:
         self,
         camera_id: str,
         detections: List[Dict[str, Any]],
+        cross_count: int = 0,
         force: bool = False
     ):
         """
@@ -228,6 +229,7 @@ class APIClient:
         Args:
             camera_id: Identifier for the camera
             detections: List of detection dictionaries
+            cross_count: Cumulative number of boundary crossings
             force: If True, bypass the rate limit check
         """
         if not force and not self.should_push(camera_id):
@@ -270,7 +272,8 @@ class APIClient:
                 "date": now_iso,
                 "counter": len(detections),
                 "male_counter": male_count,
-                "female_counter": female_count
+                "female_counter": female_count,
+                "cross_counter": cross_count
             }
         }
         

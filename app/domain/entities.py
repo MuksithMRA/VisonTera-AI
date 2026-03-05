@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, List
 from enum import Enum
 from datetime import datetime
 
@@ -62,6 +62,7 @@ class Detection:
     global_id: int = -1  # Cross-camera unique ID from Re-ID (-1 = not assigned)
     gender: Optional[str] = None
     gender_confidence: float = 0.0
+    class_id: int = 0      # 0=person, 1=head (for merged models)
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -88,6 +89,7 @@ class CameraConfig:
     show_coords: bool = True
     show_fps: bool = True
     box_color: tuple = (0, 255, 136)
+    counting_line: Optional[List[tuple]] = None # List of (x, y) points [(x1, y1), (x2, y2)]
 
 
 @dataclass
@@ -102,6 +104,7 @@ class ProcessingStats:
     detections: list = field(default_factory=list)
     timestamp: datetime = field(default_factory=datetime.now)
     deduplicated: Optional[Dict[str, Any]] = None  # Cross-camera dedup counts
+    cross_count: int = 0  # Number of boundary crossings
 
     def to_dict(self) -> Dict[str, Any]:
         result = {
@@ -114,7 +117,8 @@ class ProcessingStats:
             "male_count": self.male_count,
             "female_count": self.female_count,
             "detections": self.detections,
-            "timestamp": self.timestamp.isoformat()
+            "timestamp": self.timestamp.isoformat(),
+            "cross_count": self.cross_count
         }
         if self.deduplicated is not None:
             result["deduplicated"] = self.deduplicated

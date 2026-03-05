@@ -130,7 +130,8 @@ async def start_camera(request: CameraStartRequest):
         confidence=request.confidence,
         show_coords=request.show_coords,
         show_fps=request.show_fps,
-        box_color=box_color
+        box_color=box_color,
+        counting_line=request.counting_line
     )
 
     return CameraResponse(**result)

@@ -257,12 +257,17 @@ class DetectionEngine:
 
     def draw_detections(self, frame, detections):
         annotated = frame.copy()
+        viz_mode = getattr(AppConfig, 'VISUALIZATION_MODE', 'box')
+        
         for det in detections:
             bbox = det['bbox']
             x1, y1, x2, y2 = int(bbox['x1']), int(bbox['y1']), int(bbox['x2']), int(bbox['y2'])
             conf = det['confidence']
             bottom_x, bottom_y = int(det['x']), int(det['y'])
             gender = det.get('gender', 'Person')
+            class_id = det.get('class_id', 0)
+            
+            center_x, center_y = int((x1 + x2) / 2), int(y1 + (y2 - y1) * 0.15)
             
             if gender == 'Male':
                 box_color = (255, 150, 50)
@@ -271,21 +276,45 @@ class DetectionEngine:
             else:
                 box_color = self.box_color
             
-            cv2.rectangle(annotated, (x1, y1), (x2, y2), box_color, 2)
-            cv2.rectangle(annotated, (x1-1, y1-1), (x2+1, y2+1), (0, 100, 50), 1)
-            cv2.circle(annotated, (bottom_x, bottom_y), 8, (0, 212, 255), -1)
-            cv2.circle(annotated, (bottom_x, bottom_y), 10, (255, 255, 255), 2)
-            
             track_id = det.get('id', -1)
-            label = f"ID:{track_id} {gender} {conf:.0%}"
+            
+            if viz_mode == 'head-dot':
+                # --- HEAD DOT MODE (Modern & Clean) ---
+                # Draw Glow Effect
+                if getattr(AppConfig, 'SHOW_GLOW_EFFECT', True):
+                    overlay = annotated.copy()
+                    cv2.circle(overlay, (center_x, center_y), 15, box_color, -1)
+                    cv2.addWeighted(overlay, 0.3, annotated, 0.7, 0, annotated)
                 
-            (label_w, label_h), baseline = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.6, 2)
-            cv2.rectangle(annotated, (x1, y1 - label_h - 10), (x1 + label_w + 10, y1), box_color, -1)
-            cv2.putText(annotated, label, (x1 + 5, y1 - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 0), 2)
-            if self.show_coords:
-                coord_text = f"({bottom_x}, {bottom_y})"
-                cv2.putText(annotated, coord_text, (bottom_x + 15, bottom_y + 5),
-                           cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 212, 255), 2)
+                # Core Dot
+                cv2.circle(annotated, (center_x, center_y), 6, (255, 255, 255), -1)
+                cv2.circle(annotated, (center_x, center_y), 7, box_color, 2)
+                
+                # Minimalist Label
+                label = f"#{track_id}"
+                (label_w, label_h), _ = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.4, 1)
+                cv2.rectangle(annotated, (center_x - 5, center_y - label_h - 15), 
+                              (center_x + label_w + 5, center_y - 10), box_color, -1)
+                cv2.putText(annotated, label, (center_x, center_y - 15), 
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
+                
+            else:
+                # --- TRADITIONAL BOX MODE ---
+                cv2.rectangle(annotated, (x1, y1), (x2, y2), box_color, 2)
+                cv2.rectangle(annotated, (x1-1, y1-1), (x2+1, y2+1), (0, 100, 50), 1)
+                cv2.circle(annotated, (bottom_x, bottom_y), 8, (0, 212, 255), -1)
+                cv2.circle(annotated, (bottom_x, bottom_y), 10, (255, 255, 255), 2)
+                
+                label = f"ID:{track_id} {gender} {conf:.0%}"
+                (label_w, label_h), baseline = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.6, 2)
+                cv2.rectangle(annotated, (x1, y1 - label_h - 10), (x1 + label_w + 10, y1), box_color, -1)
+                cv2.putText(annotated, label, (x1 + 5, y1 - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 0), 2)
+                
+                if self.show_coords:
+                    coord_text = f"({bottom_x}, {bottom_y})"
+                    cv2.putText(annotated, coord_text, (bottom_x + 15, bottom_y + 5),
+                               cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 212, 255), 2)
+                               
         return annotated
 
 

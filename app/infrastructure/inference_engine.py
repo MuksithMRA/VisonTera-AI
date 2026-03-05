@@ -393,7 +393,8 @@ class InferenceEngine(IInferenceEngine):
                     bbox=BoundingBox(x1=float(x1), y1=float(y1), x2=float(x2), y2=float(y2)),
                     confidence=conf,
                     global_id=global_id,
-                    gender=gender_label
+                    gender=gender_label,
+                    class_id=int(box.cls[0].cpu().numpy())
                 )
                 detections.append(detection)
 

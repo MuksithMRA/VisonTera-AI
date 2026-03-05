@@ -15,6 +15,8 @@ class AppConfig:
     CONFIDENCE_THRESHOLD = 0.5
     MAX_FAILED_READS = 10
     RETRY_DELAY_SECONDS = 5
+    VISUALIZATION_MODE = "head-dot" # Options: "box", "head-dot", "heatmap"
+    SHOW_GLOW_EFFECT = True
     BASE_DIR = Path(__file__).parent.parent
     LOG_FILE = BASE_DIR / "app.log"
     MODEL_PATH = "infrastructure/models/yolo11m.pt"

@@ -37,8 +37,9 @@ RESEARCH_DIR = PROJECT_ROOT / "research"
 MODELS_DIR = PROJECT_ROOT / "infrastructure" / "models"
 DATASET_DIR = RESEARCH_DIR / "crowdhuman"
 
-# Base detection model - our production yolo11m (NOT nano, NOT classification)
-BASE_MODEL_PATH = MODELS_DIR / "yolo11m.pt"
+
+# Base detection model - our production yolo26m (NOT nano, NOT classification)
+BASE_MODEL_PATH = MODELS_DIR / "yolo26m.pt"
 
 
 def get_latest_detection_model() -> Path:

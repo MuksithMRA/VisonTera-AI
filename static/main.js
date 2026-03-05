@@ -30,6 +30,7 @@ class MultiCameraDashboard {
             totalPersonCount: document.getElementById('totalPersonCount'),
             totalMaleCount: document.getElementById('totalMaleCount'),
             totalFemaleCount: document.getElementById('totalFemaleCount'),
+            totalFlow: document.getElementById('totalFlow'),
             peakCount: document.getElementById('peakCount'),
             
             peopleChart: document.getElementById('peopleChart'),
@@ -49,6 +50,7 @@ class MultiCameraDashboard {
             addCameraBtn: document.getElementById('addCameraBtn'),
             stopAllBtn: document.getElementById('stopAllBtn'),
             logoutBtn: document.getElementById('logoutBtn'),
+            countingLine: document.getElementById('countingLine'),
             
             // Modal Elements
             modal: document.getElementById('customModal'),
@@ -230,7 +232,8 @@ class MultiCameraDashboard {
             show_coords: showCoords,
             show_fps: showFps,
             box_color: boxColor,
-            backend_camera_id: backendId ? parseInt(backendId) : null
+            backend_camera_id: backendId ? parseInt(backendId) : null,
+            counting_line: this.parseCountingLine(this.elements.countingLine.value)
         };
         
         try {
@@ -269,6 +272,19 @@ class MultiCameraDashboard {
         await this.refreshActiveCameras();
     }
 
+    parseCountingLine(value) {
+        if (!value || !value.trim()) return null;
+        try {
+            const parts = value.split(',').map(p => parseFloat(p.trim()));
+            if (parts.length === 4) {
+                return [[parts[0], parts[1]], [parts[2], parts[3]]];
+            }
+        } catch (e) {
+            console.error('Invalid counting line format:', e);
+        }
+        return null;
+    }
+
     addCameraToGrid(cameraId, name, source) {
         this.elements.cameraPlaceholder.style.display = 'none';
         
@@ -283,7 +299,8 @@ class MultiCameraDashboard {
                 </div>
                 <div class="camera-stats">
                     <span class="camera-fps" id="fps-${cameraId}">-- FPS</span>
-                    <span class="camera-count" id="count-${cameraId}">0</span>
+                    <span class="camera-count" id="count-${cameraId}" title="In Frame">0</span>
+                    <span class="camera-cross-count" id="cross-${cameraId}" title="Total Flow">0</span>
                 </div>
                 <button class="camera-close-btn" data-camera-id="${cameraId}" title="Stop Camera">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -384,16 +401,19 @@ class MultiCameraDashboard {
             femaleCount: data.female_count || 0,
             fps: data.fps || 0,
             detections: data.detections || [],
-            deduplicated: data.deduplicated || null
+            deduplicated: data.deduplicated || null,
+            crossCount: data.cross_count || 0
         };
         
         const fpsEl = document.getElementById(`fps-${cameraId}`);
         const countEl = document.getElementById(`count-${cameraId}`);
+        const crossEl = document.getElementById(`cross-${cameraId}`);
         const maleEl = document.getElementById(`male-${cameraId}`);
         const femaleEl = document.getElementById(`female-${cameraId}`);
         
         if (fpsEl) fpsEl.textContent = `${camera.stats.fps.toFixed(1)} FPS`;
         if (countEl) countEl.textContent = camera.stats.personCount;
+        if (crossEl) crossEl.textContent = `Flow: ${camera.stats.crossCount}`;
         if (maleEl) maleEl.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="10" cy="14" r="4"/></svg>${camera.stats.maleCount}`;
         if (femaleEl) femaleEl.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/></svg>${camera.stats.femaleCount}`;
         
@@ -474,6 +494,15 @@ class MultiCameraDashboard {
         this.elements.totalPersonCount.textContent = totalPeople;
         this.elements.totalMaleCount.textContent = totalMale;
         this.elements.totalFemaleCount.textContent = totalFemale;
+
+        // Calculate Total Flow (Crossings)
+        let totalFlow = 0;
+        this.activeCameras.forEach(camera => {
+            totalFlow += (camera.stats.crossCount || 0);
+        });
+        if (this.elements.totalFlow) {
+            this.elements.totalFlow.textContent = totalFlow;
+        }
         
         if (totalPeople > this.peakCount) {
             this.peakCount = totalPeople;
