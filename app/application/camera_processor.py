@@ -209,7 +209,8 @@ class CameraProcessor(ICameraProcessor):
             cv2.circle(annotated, (bottom_x, bottom_y), 8, (0, 212, 255), -1)
             cv2.circle(annotated, (bottom_x, bottom_y), 10, (255, 255, 255), 2)
 
-            label = f"{gender} {det.confidence:.0%}"
+            display_id = det.global_id if det.global_id != -1 else det.track_id
+            label = f"ID:{display_id} {gender} {det.confidence:.0%}"
             (label_w, label_h), _ = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.6, 2)
             cv2.rectangle(annotated, (x1, y1 - label_h - 10), (x1 + label_w + 10, y1), box_color, -1)
             cv2.putText(annotated, label, (x1 + 5, y1 - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 0), 2)

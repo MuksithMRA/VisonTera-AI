@@ -65,6 +65,10 @@ class CrossCameraReIDManager:
 
         # (camera_id, local_track_id) → global_id
         self._track_to_global: Dict[Tuple[str, int], int] = {}
+        
+        # camera_id → set of local_track_ids seen in the CURRENT frame
+        # (Used to determine if a same-camera track is truly "active" or just a memory)
+        self._current_active_tracks: Dict[str, set] = {}
 
         # Configuration
         self._similarity_threshold = similarity_threshold
@@ -133,13 +137,22 @@ class CrossCameraReIDManager:
                 if camera_id in person.camera_tracks:
                     existing_track = person.camera_tracks[camera_id]
                     if existing_track != local_track_id:
-                        existing_key = (camera_id, existing_track)
-                        if existing_key in self._track_to_global:
+                        # Check if this existing track was seen in the CURRENT frame
+                        active_on_cam = self._current_active_tracks.get(camera_id, set())
+                        if existing_track in active_on_cam:
+                            # If it's still visible, we CANNOT merge (it's two different people)
                             logger.debug(
                                 f"Re-ID SKIP: cam={camera_id} track={local_track_id} "
                                 f"vs global={gid} (same-cam active track={existing_track})"
                             )
                             continue
+                        else:
+                            # It's NOT visible in the current frame. 
+                            # We can potentially re-associate this person with the new track ID.
+                            logger.debug(
+                                f"Re-ID RECALL: cam={camera_id} global={gid} "
+                                f"lost track {existing_track}, associating with {local_track_id}"
+                            )
 
                 similarity = self._compute_similarity(
                     feature_embedding, person.feature_gallery
@@ -243,6 +256,14 @@ class CrossCameraReIDManager:
     def get_global_id(self, camera_id: str, local_track_id: int) -> Optional[int]:
         """Look up the global ID for a known track (no embedding required)."""
         return self._track_to_global.get((camera_id, local_track_id))
+
+    def update_active_tracks(self, camera_id: str, local_track_ids: List[int]) -> None:
+        """Inform the manager which tracks are currently visible in the frame.
+        
+        This helps resolve same-camera re-associations when a tracking ID flips.
+        """
+        with self._lock:
+            self._current_active_tracks[camera_id] = set(local_track_ids)
 
     def get_deduplicated_counts(self) -> Dict:
         """Return deduplicated person counts across all cameras.
@@ -463,7 +484,16 @@ class CrossCameraReIDManager:
         return float(np.dot(query, gallery_mean))
 
     def _update_gallery(self, person: GlobalPerson, embedding: np.ndarray) -> None:
-        """Add an embedding to a person's gallery (FIFO eviction)."""
+        """Add an embedding to a person's gallery with pollution protection."""
+        # Minimum similarity to existing gallery to be added
+        # This prevents "pollution" from occluded/noisy crops during overlays
+        if person.feature_gallery:
+            sim = self._compute_similarity(embedding, person.feature_gallery)
+            # If the new embedding is wildly different from the person's history,
+            # ignore it — it's likely an occlusion or a wrong match.
+            if sim < 0.40:  # Fairly loose, but blocks total noise
+                return
+
         person.feature_gallery.append(embedding.copy())
         if len(person.feature_gallery) > self._max_gallery_size:
             person.feature_gallery.pop(0)

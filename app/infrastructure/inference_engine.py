@@ -285,7 +285,14 @@ class InferenceEngine(IInferenceEngine):
         if results and results[0].boxes:
             boxes = results[0].boxes
             ids = boxes.id.cpu().numpy().astype(int) if boxes.id is not None else None
+            
+            # Inform Re-ID manager about currently active tracks on this camera
+            if ids is not None:
+                self._reid_manager.update_active_tracks(camera_id, ids.tolist())
 
+            # Prepare for overlap check (occlusion filtering)
+            all_boxes = boxes.xyxy.cpu().numpy()
+            
             for i, box in enumerate(boxes):
                 x1, y1, x2, y2 = box.xyxy[0].cpu().numpy()
                 conf = float(box.conf[0].cpu().numpy())
@@ -332,16 +339,43 @@ class InferenceEngine(IInferenceEngine):
                 # ── Cross-Camera Re-ID ──
                 global_id = track_id  # Default: use local track_id
                 if track_id != -1 and self._reid_extractor.is_loaded:
+                    # Occlusion & Quality Filtering
+                    # 1. Skip if detection confidence is low (likely occlusion or partial)
+                    # 2. Skip if we have high overlap with another person (metric pollution)
+                    reid_conf_threshold = 0.65  # Higher than detector threshold
+                    
+                    overlap_detected = False
+                    for j in range(len(all_boxes)):
+                        if i == j: continue
+                        # Calculate IoU/Overlap area
+                        b1 = all_boxes[i]
+                        b2 = all_boxes[j]
+                        # Intersection
+                        ix1 = max(b1[0], b2[0])
+                        iy1 = max(b1[1], b2[1])
+                        ix2 = min(b1[2], b2[2])
+                        iy2 = min(b1[3], b2[3])
+                        if ix2 > ix1 and iy2 > iy1:
+                            intersection = (ix2 - ix1) * (iy2 - iy1)
+                            b1_area = (b1[2] - b1[0]) * (b1[3] - b1[1])
+                            # If box is > 30% covered by another box, skip Re-ID
+                            if intersection / b1_area > 0.30:
+                                overlap_detected = True
+                                break
+
                     should_extract_reid = (
-                        hist.get('reid_last_extract', 0) == 0 or
-                        (frame_count - hist.get('reid_last_extract', 0)) > self._reid_refresh_interval
+                        (hist.get('reid_last_extract', 0) == 0 or
+                        (frame_count - hist.get('reid_last_extract', 0)) > self._reid_refresh_interval)
+                        and conf >= reid_conf_threshold
+                        and not overlap_detected
                     )
+                    
                     if should_extract_reid:
                         global_id = self._extract_and_assign_global_id(
                             frame, x1, y1, x2, y2,
                             camera_id, track_id, gender_label
                         )
-                        # Always mark extraction time so we don't re-extract every frame
+                        # Mark extraction time
                         hist['reid_last_extract'] = frame_count
                     else:
                         # Use cached global_id but still update last_seen_time
@@ -349,6 +383,10 @@ class InferenceEngine(IInferenceEngine):
                         if cached_gid is not None:
                             global_id = cached_gid
                             self._reid_manager.touch_person(cached_gid)
+                        elif conf < reid_conf_threshold or overlap_detected:
+                            # If we skipped first extraction due to occlusion, 
+                            # we must try again sooner than the refresh interval
+                            hist['reid_last_extract'] = max(0, frame_count - (self._reid_refresh_interval // 2))
 
                 detection = Detection(
                     track_id=track_id,
