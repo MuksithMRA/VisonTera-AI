@@ -172,6 +172,14 @@ async def stop_camera(camera_id: str):
     return StopResponse(**result)
 
 
+@router.patch("/api/camera/{camera_id}/boundary", tags=["Detection"])
+async def update_camera_boundary(camera_id: str, request: dict):
+    """Update the counting boundary line on a running camera in real-time."""
+    counting_line = request.get("counting_line")  # [[x1,y1],[x2,y2]] or null
+    result = camera_manager.update_counting_line(camera_id, counting_line)
+    return result
+
+
 @router.post("/api/stop", response_model=StopResponse, tags=["Detection"])
 async def stop_all_cameras():
     result = await camera_manager.stop_all_cameras()

@@ -142,6 +142,29 @@ class CameraManager:
     def get_processor(self, camera_id: str) -> Optional[CameraProcessor]:
         return self._processors.get(camera_id)
 
+    def update_counting_line(self, camera_id: str, counting_line: Optional[List[List[float]]]) -> Dict:
+        """Update the counting boundary line on a running camera without restarting it."""
+        processor = self._processors.get(camera_id)
+        if not processor:
+            return {"status": "not_found", "camera_id": camera_id}
+
+        # Convert list-of-lists → list-of-tuples (same format as start_camera)
+        line_tuples = [tuple(p) for p in counting_line] if counting_line else None
+
+        # Clone the current config and swap in the new line
+        old = processor._config
+        from dataclasses import replace as dc_replace
+        new_config = dc_replace(old, counting_line=line_tuples)
+        processor.update_config(new_config)
+
+        # Reset cross-count so the new boundary starts fresh
+        processor._cross_count = 0
+        processor._track_paths = {}
+
+        logger.info(f"Counting line updated for camera {camera_id}: {line_tuples}")
+        return {"status": "updated", "camera_id": camera_id}
+
+
     def get_latest_frame(self, camera_id: str) -> Optional[bytes]:
         processor = self._processors.get(camera_id)
         if processor:

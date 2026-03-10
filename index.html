@@ -218,8 +218,23 @@
                             </div>
                         </div>
                         <div class="control-group">
-                            <label for="countingLine">Counting Boundary (x1,y1,x2,y2)</label>
-                            <input type="text" id="countingLine" class="form-input" placeholder="e.g., 0,240,640,240">
+                            <label for="countingLine">Counting Boundary</label>
+                            <div class="boundary-input-row">
+                                <input type="text" id="countingLine" class="form-input" placeholder="Click 'Draw' to set visually" readonly>
+                                <button type="button" id="drawBoundaryBtn" class="btn btn-accent btn-sm" title="Draw boundary visually">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="5" y1="12" x2="19" y2="12"/>
+                                        <polyline points="12 5 19 12 12 19"/>
+                                    </svg>
+                                    Draw
+                                </button>
+                                <button type="button" id="clearBoundaryBtn" class="btn btn-danger btn-sm" title="Clear boundary">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="18" y1="6" x2="6" y2="18"/>
+                                        <line x1="6" y1="6" x2="18" y2="18"/>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <div class="form-row">
@@ -262,6 +277,39 @@
                 </div>
             </section>
         </footer>
+    </div>
+
+    <!-- Boundary Drawing Modal -->
+    <div id="boundaryModal" class="modal-overlay">
+        <div class="modal-container boundary-modal-container">
+            <div class="modal-header">
+                <div class="modal-icon info" id="boundaryModalIcon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                        <polyline points="12 5 19 12 12 19"/>
+                    </svg>
+                </div>
+                <h3 class="modal-title">Draw Counting Boundary</h3>
+            </div>
+            <div class="modal-body boundary-modal-body">
+                <p class="boundary-instructions">
+                    <span class="step-badge">1</span> Click to place the <strong>start point</strong> &nbsp;&nbsp;
+                    <span class="step-badge">2</span> Click to place the <strong>end point</strong>
+                </p>
+                <div class="boundary-canvas-wrapper">
+                    <canvas id="boundaryCanvas"></canvas>
+                    <div id="boundaryCanvasHint" class="boundary-canvas-hint">Click anywhere to set the start point</div>
+                </div>
+                <div class="boundary-coords-preview">
+                    <span class="coords-label">Coordinates:</span>
+                    <span id="boundaryCoordPreview" class="coords-value">— not set —</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn" id="boundaryResetBtn">Reset</button>
+                <button class="modal-btn modal-btn-primary" id="boundaryConfirmBtn" disabled>Confirm Boundary</button>
+            </div>
+        </div>
     </div>
 
     <!-- Custom Modal -->

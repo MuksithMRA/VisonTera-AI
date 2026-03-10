@@ -806,4 +806,269 @@ class MultiCameraDashboard {
     }
 }
 
+/** ── Visual Boundary Editor ── **/
+class BoundaryEditor {
+    constructor(dashboard) {
+        this.dashboard = dashboard;
+        this.canvas = document.getElementById('boundaryCanvas');
+        this.ctx = this.canvas.getContext('2d');
+        this.modal = document.getElementById('boundaryModal');
+        this.hint = document.getElementById('boundaryCanvasHint');
+        this.preview = document.getElementById('boundaryCoordPreview');
+        this.confirmBtn = document.getElementById('boundaryConfirmBtn');
+        this.resetBtn = document.getElementById('boundaryResetBtn');
+        this.drawBtn = document.getElementById('drawBoundaryBtn');
+        this.clearBtn = document.getElementById('clearBoundaryBtn');
+        this.input = document.getElementById('countingLine');
+
+        // State
+        this.p1 = null;  // {x, y} in canvas pixels
+        this.p2 = null;
+        this.mousePos = null;
+        this.frameWidth = 640;   // actual video resolution; updated on open
+        this.frameHeight = 480;
+
+        this._bindEvents();
+    }
+
+    _bindEvents() {
+        this.drawBtn.addEventListener('click', () => this._open());
+        this.clearBtn.addEventListener('click', () => this._clear());
+        this.confirmBtn.addEventListener('click', () => this._confirm());
+        this.resetBtn.addEventListener('click', () => this._reset());
+
+        // Close on backdrop click
+        this.modal.addEventListener('click', (e) => {
+            if (e.target === this.modal) this._close();
+        });
+
+        // Canvas interaction
+        this.canvas.addEventListener('click', (e) => this._onClick(e));
+        this.canvas.addEventListener('mousemove', (e) => this._onMouseMove(e));
+        this.canvas.addEventListener('mouseleave', () => { this.mousePos = null; this._redraw(); });
+    }
+
+    _getCanvasPos(e) {
+        const rect = this.canvas.getBoundingClientRect();
+        return {
+            x: (e.clientX - rect.left) * (this.canvas.width / rect.width),
+            y: (e.clientY - rect.top) * (this.canvas.height / rect.height)
+        };
+    }
+
+    _onClick(e) {
+        const pos = this._getCanvasPos(e);
+        if (!this.p1) {
+            this.p1 = pos;
+            this.hint.textContent = 'Now click to set the end point';
+        } else if (!this.p2) {
+            this.p2 = pos;
+            this.hint.textContent = 'Boundary set! Click Confirm or Reset to redo.';
+            this._updatePreview();
+            this.confirmBtn.disabled = false;
+        }
+        this._redraw();
+    }
+
+    _onMouseMove(e) {
+        this.mousePos = this._getCanvasPos(e);
+        if (this.p1 && !this.p2) this._redraw();
+    }
+
+    _updatePreview() {
+        if (!this.p1 || !this.p2) return;
+        // Scale canvas coords → actual frame coords
+        const sx = this.frameWidth / this.canvas.width;
+        const sy = this.frameHeight / this.canvas.height;
+        const x1 = Math.round(this.p1.x * sx);
+        const y1 = Math.round(this.p1.y * sy);
+        const x2 = Math.round(this.p2.x * sx);
+        const y2 = Math.round(this.p2.y * sy);
+        this.preview.textContent = `${x1}, ${y1}, ${x2}, ${y2}`;
+        this._pendingValue = `${x1},${y1},${x2},${y2}`;
+    }
+
+    _redraw() {
+        const { width, height } = this.canvas;
+        this.ctx.clearRect(0, 0, width, height);
+
+        // Draw the background frame (or grid if no frame)
+        if (this._bgImage) {
+            this.ctx.drawImage(this._bgImage, 0, 0, width, height);
+        } else {
+            this._drawGrid();
+        }
+
+        // Draw placed start point
+        if (this.p1) {
+            this._drawPoint(this.p1, '#3b82f6', 'Start');
+        }
+
+        // Draw rubber-band line while placing p2
+        if (this.p1 && !this.p2 && this.mousePos) {
+            this._drawLine(this.p1, this.mousePos, 'rgba(251,191,36,0.7)', true);
+            this._drawPoint(this.mousePos, 'rgba(251,191,36,0.5)', '');
+        }
+
+        // Draw confirmed line
+        if (this.p1 && this.p2) {
+            this._drawLine(this.p1, this.p2, '#10b981', false);
+            this._drawPoint(this.p1, '#3b82f6', 'Start');
+            this._drawPoint(this.p2, '#10b981', 'End');
+        }
+    }
+
+    _drawGrid() {
+        const { width, height } = this.canvas;
+        this.ctx.fillStyle = '#0f1419';
+        this.ctx.fillRect(0, 0, width, height);
+        this.ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+        this.ctx.lineWidth = 1;
+        const step = 40;
+        for (let x = 0; x < width; x += step) {
+            this.ctx.beginPath(); this.ctx.moveTo(x, 0); this.ctx.lineTo(x, height); this.ctx.stroke();
+        }
+        for (let y = 0; y < height; y += step) {
+            this.ctx.beginPath(); this.ctx.moveTo(0, y); this.ctx.lineTo(width, y); this.ctx.stroke();
+        }
+        // Center text
+        this.ctx.fillStyle = 'rgba(255,255,255,0.15)';
+        this.ctx.font = '14px sans-serif';
+        this.ctx.textAlign = 'center';
+        this.ctx.fillText('Click below to place boundary points', width / 2, height / 2 - 10);
+        this.ctx.fillStyle = 'rgba(255,255,255,0.08)';
+        this.ctx.font = '11px sans-serif';
+        this.ctx.fillText('(No camera frame preview available)', width / 2, height / 2 + 14);
+    }
+
+    _drawLine(from, to, color, dashed) {
+        this.ctx.save();
+        this.ctx.strokeStyle = color;
+        this.ctx.lineWidth = 2.5;
+        if (dashed) this.ctx.setLineDash([6, 4]);
+        this.ctx.beginPath();
+        this.ctx.moveTo(from.x, from.y);
+        this.ctx.lineTo(to.x, to.y);
+        this.ctx.stroke();
+        this.ctx.restore();
+    }
+
+    _drawPoint(pos, color, label) {
+        this.ctx.save();
+        // Outer glow ring
+        this.ctx.beginPath();
+        this.ctx.arc(pos.x, pos.y, 10, 0, Math.PI * 2);
+        this.ctx.fillStyle = color.replace(')', ',0.25)').replace('rgb', 'rgba').replace('rgba(rgba', 'rgba');
+        this.ctx.fill();
+        // Inner dot
+        this.ctx.beginPath();
+        this.ctx.arc(pos.x, pos.y, 5, 0, Math.PI * 2);
+        this.ctx.fillStyle = color;
+        this.ctx.fill();
+        // Label
+        if (label) {
+            this.ctx.fillStyle = 'white';
+            this.ctx.font = 'bold 11px sans-serif';
+            this.ctx.textAlign = 'center';
+            this.ctx.fillText(label, pos.x, pos.y - 15);
+        }
+        this.ctx.restore();
+    }
+
+    async _open() {
+        this._reset();
+        this.modal.classList.add('active');
+
+        // Try to grab a snapshot from an active camera feed
+        this._bgImage = null;
+        const activeIds = Array.from(this.dashboard.activeCameras.keys());
+        if (activeIds.length > 0) {
+            const cameraId = activeIds[0];
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.src = `/video_feed/${cameraId}?t=${Date.now()}`;
+            try {
+                await new Promise((resolve) => {
+                    img.onload = resolve;
+                    img.onerror = resolve;
+                    setTimeout(resolve, 1500);  // fallback timeout
+                });
+                if (img.complete && img.naturalWidth > 0) {
+                    this._bgImage = img;
+                    this.frameWidth = img.naturalWidth;
+                    this.frameHeight = img.naturalHeight;
+                    this.canvas.width = img.naturalWidth;
+                    this.canvas.height = img.naturalHeight;
+                }
+            } catch (_) {}
+        }
+
+        // Default canvas size if no frame
+        if (!this._bgImage) {
+            this.canvas.width = 640;
+            this.canvas.height = 360;
+            this.frameWidth = 640;
+            this.frameHeight = 360;
+        }
+
+        this._redraw();
+    }
+
+    _close() {
+        this.modal.classList.remove('active');
+    }
+
+    _reset() {
+        this.p1 = null;
+        this.p2 = null;
+        this.mousePos = null;
+        this._pendingValue = null;
+        this.confirmBtn.disabled = true;
+        this.hint.textContent = 'Click anywhere to set the start point';
+        this.preview.textContent = '— not set —';
+        if (this.canvas.width) this._redraw();
+    }
+
+    async _confirm() {
+        if (!this._pendingValue) return;
+        this.input.value = this._pendingValue;
+        this.input.classList.add('is-set');
+        this._close();
+
+        // Push the boundary to ALL currently-running cameras so it shows immediately
+        const parsedLine = this.dashboard.parseCountingLine(this._pendingValue);
+        if (parsedLine) {
+            await this._pushBoundaryToActiveCameras(parsedLine);
+        }
+    }
+
+    async _clear() {
+        this.input.value = '';
+        this.input.classList.remove('is-set');
+
+        // Remove boundary from all running cameras immediately
+        await this._pushBoundaryToActiveCameras(null);
+    }
+
+    async _pushBoundaryToActiveCameras(parsedLine) {
+        const activeIds = Array.from(this.dashboard.activeCameras.keys());
+        if (activeIds.length === 0) return;
+
+        const results = await Promise.allSettled(
+            activeIds.map(cameraId =>
+                fetch(`/api/camera/${cameraId}/boundary`, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ counting_line: parsedLine })
+                })
+            )
+        );
+
+        let updated = 0;
+        results.forEach(r => { if (r.status === 'fulfilled') updated++; });
+        console.log(`Boundary pushed to ${updated}/${activeIds.length} cameras.`);
+    }
+}
+
 const dashboard = new MultiCameraDashboard();
+new BoundaryEditor(dashboard);
