@@ -17,28 +17,6 @@ from app.models.schemas import (
 router = APIRouter()
 
 
-# ── Model Management Endpoints ──
-
-@router.get("/api/models/detection", tags=["Models"])
-async def list_detection_models():
-    """List all available detection models for hot-swapping."""
-    engine = InferenceEngine()
-    models = engine.get_available_detection_models()
-    return {"models": models, "current": engine.current_detection_model_path}
-
-
-@router.post("/api/models/detection/switch", tags=["Models"])
-async def switch_detection_model(request: dict):
-    """Switch the active detection model at runtime."""
-    model_path = request.get("model_path")
-    if not model_path:
-        return {"status": "error", "message": "model_path is required"}
-    
-    engine = InferenceEngine()
-    result = engine.switch_detection_model(model_path)
-    return result
-
-
 # ── Cross-Camera Re-ID Endpoints ──
 
 @router.get("/api/reid/counts", tags=["Re-ID"])
@@ -64,17 +42,6 @@ async def get_reid_stats():
     stats = engine.get_reid_stats()
     return stats
 
-
-@router.get("/api/models/detection/current", tags=["Models"])
-async def get_current_detection_model():
-    """Get the currently active detection model."""
-    engine = InferenceEngine()
-    path = engine.current_detection_model_path
-    return {
-        "path": path,
-        "name": path.split("\\")[-1] if path else None,
-        "device": engine._device
-    }
 
 @router.get("/api/cameras", tags=["Detection"])
 async def get_available_cameras():

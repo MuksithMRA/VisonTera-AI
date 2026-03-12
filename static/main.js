@@ -13,7 +13,6 @@ class MultiCameraDashboard {
         this.initEventListeners();
         this.initChart();
         this.loadCameras();
-        this.loadDetectionModels();
         this.startClock();
         this.startStatsPolling();
     }
@@ -57,12 +56,7 @@ class MultiCameraDashboard {
             modalIcon: document.getElementById('modalIcon'),
             modalTitle: document.getElementById('modalTitle'),
             modalMessage: document.getElementById('modalMessage'),
-            modalCloseBtn: document.getElementById('modalCloseBtn'),
-            
-            // Model Switcher Elements
-            modelSelect: document.getElementById('modelSelect'),
-            switchModelBtn: document.getElementById('switchModelBtn'),
-            currentModelName: document.getElementById('currentModelName')
+            modalCloseBtn: document.getElementById('modalCloseBtn')
         };
     }
 
@@ -101,10 +95,6 @@ class MultiCameraDashboard {
                 this.updateChartRange();
             });
         });
-        
-        if (this.elements.switchModelBtn) {
-            this.elements.switchModelBtn.addEventListener('click', () => this.switchModel());
-        }
     }
 
     initChart() {
@@ -701,108 +691,6 @@ class MultiCameraDashboard {
 
     closeModal() {
         if (this.elements.modal) this.elements.modal.classList.remove('active');
-    }
-
-    async loadDetectionModels() {
-        try {
-            const response = await fetch('/api/models/detection');
-            const data = await response.json();
-            
-            if (data.models && Array.isArray(data.models)) {
-                const select = this.elements.modelSelect;
-                select.innerHTML = '';
-                
-                // Group models
-                const trained = data.models.filter(m => m.type === 'trained');
-                const base = data.models.filter(m => m.type === 'base');
-                
-                if (trained.length > 0) {
-                    const group = document.createElement('optgroup');
-                    group.label = '🎯 Trained Models';
-                    trained.forEach(m => {
-                        const opt = document.createElement('option');
-                        opt.value = m.path;
-                        opt.textContent = m.name + (m.active ? ' ✅' : '');
-                        opt.selected = m.active;
-                        group.appendChild(opt);
-                    });
-                    select.appendChild(group);
-                }
-                
-                if (base.length > 0) {
-                    const group = document.createElement('optgroup');
-                    group.label = '📦 Base Models';
-                    base.forEach(m => {
-                        const opt = document.createElement('option');
-                        opt.value = m.path;
-                        opt.textContent = m.name + (m.active ? ' ✅' : '');
-                        opt.selected = m.active;
-                        group.appendChild(opt);
-                    });
-                    select.appendChild(group);
-                }
-                
-                // Update indicator
-                const active = data.models.find(m => m.active);
-                if (active && this.elements.currentModelName) {
-                    this.elements.currentModelName.textContent = active.name;
-                }
-            }
-        } catch (err) {
-            console.warn('Failed to load detection models:', err);
-            if (this.elements.currentModelName) {
-                this.elements.currentModelName.textContent = 'Error loading';
-            }
-        }
-    }
-
-    async switchModel() {
-        const select = this.elements.modelSelect;
-        const modelPath = select.value;
-        
-        if (!modelPath) {
-            this.showModal('No Model Selected', 'Please select a detection model to switch to.');
-            return;
-        }
-        
-        const btn = this.elements.switchModelBtn;
-        try {
-            btn.disabled = true;
-            btn.innerHTML = `
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="spin">
-                    <polyline points="23 4 23 10 17 10"/>
-                    <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
-                </svg>
-                Switching...
-            `;
-            
-            const response = await fetch('/api/models/detection/switch', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ model_path: modelPath })
-            });
-            
-            const result = await response.json();
-            
-            if (result.status === 'success') {
-                this.showModal('Model Switched', `Now using: ${result.model}\nDevice: ${result.device}`, false);
-                await this.loadDetectionModels();
-            } else {
-                this.showModal('Switch Failed', result.message || 'Unknown error');
-            }
-        } catch (err) {
-            console.error('Failed to switch model:', err);
-            this.showModal('System Error', 'Failed to switch model. Check console.');
-        } finally {
-            btn.disabled = false;
-            btn.innerHTML = `
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="23 4 23 10 17 10"/>
-                    <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
-                </svg>
-                Switch
-            `;
-        }
     }
 }
 

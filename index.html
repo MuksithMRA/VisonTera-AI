@@ -174,28 +174,7 @@
             <section class="add-camera-panel card">
                 <div class="card-header">
                     <h2>Add Camera</h2>
-                    <div class="model-switcher">
-                        <div class="model-indicator">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                                <path d="M2 17l10 5 10-5" />
-                                <path d="M2 12l10 5 10-5" />
-                            </svg>
-                            <span id="currentModelName" class="model-name-text">Loading...</span>
-                        </div>
-                        <select id="modelSelect" class="form-select model-select">
-                            <option value="">Loading models...</option>
-                        </select>
-                        <button id="switchModelBtn" class="btn btn-accent btn-sm" title="Switch Detection Model">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <polyline points="23 4 23 10 17 10" />
-                                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
-                            </svg>
-                            Switch
-                        </button>
-                    </div>
+
                 </div>
                 <div class="add-camera-form">
                     <div class="form-row">
@@ -220,18 +199,23 @@
                         <div class="control-group">
                             <label for="countingLine">Counting Boundary</label>
                             <div class="boundary-input-row">
-                                <input type="text" id="countingLine" class="form-input" placeholder="Click 'Draw' to set visually" readonly>
-                                <button type="button" id="drawBoundaryBtn" class="btn btn-accent btn-sm" title="Draw boundary visually">
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <line x1="5" y1="12" x2="19" y2="12"/>
-                                        <polyline points="12 5 19 12 12 19"/>
+                                <input type="text" id="countingLine" class="form-input"
+                                    placeholder="Click 'Draw' to set visually" readonly>
+                                <button type="button" id="drawBoundaryBtn" class="btn btn-accent btn-sm"
+                                    title="Draw boundary visually">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <line x1="5" y1="12" x2="19" y2="12" />
+                                        <polyline points="12 5 19 12 12 19" />
                                     </svg>
                                     Draw
                                 </button>
-                                <button type="button" id="clearBoundaryBtn" class="btn btn-danger btn-sm" title="Clear boundary">
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <line x1="18" y1="6" x2="6" y2="18"/>
-                                        <line x1="6" y1="6" x2="18" y2="18"/>
+                                <button type="button" id="clearBoundaryBtn" class="btn btn-danger btn-sm"
+                                    title="Clear boundary">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <line x1="18" y1="6" x2="6" y2="18" />
+                                        <line x1="6" y1="6" x2="18" y2="18" />
                                     </svg>
                                 </button>
                             </div>
@@ -285,8 +269,8 @@
             <div class="modal-header">
                 <div class="modal-icon info" id="boundaryModalIcon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="5" y1="12" x2="19" y2="12"/>
-                        <polyline points="12 5 19 12 12 19"/>
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                        <polyline points="12 5 19 12 12 19" />
                     </svg>
                 </div>
                 <h3 class="modal-title">Draw Counting Boundary</h3>
@@ -298,7 +282,8 @@
                 </p>
                 <div class="boundary-canvas-wrapper">
                     <canvas id="boundaryCanvas"></canvas>
-                    <div id="boundaryCanvasHint" class="boundary-canvas-hint">Click anywhere to set the start point</div>
+                    <div id="boundaryCanvasHint" class="boundary-canvas-hint">Click anywhere to set the start point
+                    </div>
                 </div>
                 <div class="boundary-coords-preview">
                     <span class="coords-label">Coordinates:</span>

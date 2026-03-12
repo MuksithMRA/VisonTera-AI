@@ -897,6 +897,29 @@ body {
     .camera-grid {
         grid-template-columns: 1fr;
     }
+
+    /* Boundary modal on small screens */
+    .boundary-modal-container {
+        width: 100vw;
+        max-width: 100vw;
+        max-height: 100vh;
+        border-radius: var(--radius-md) var(--radius-md) 0 0;
+        align-self: flex-end;
+        margin-bottom: 0;
+    }
+
+    .modal-overlay {
+        align-items: flex-end;
+    }
+
+    .boundary-canvas-wrapper,
+    #boundaryCanvas {
+        max-height: calc(100vh - 260px);
+    }
+
+    .boundary-instructions {
+        font-size: 0.8rem;
+    }
 }
 
 /* Modal Styles */
@@ -928,9 +951,13 @@ body {
     border-radius: var(--radius-lg);
     width: 90%;
     max-width: 400px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
     transform: translateY(20px);
     transition: all var(--transition-normal);
     box-shadow: var(--shadow-lg);
+    overflow: hidden;
 }
 
 .modal-overlay.active .modal-container {
@@ -943,6 +970,7 @@ body {
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
+    flex-shrink: 0;
 }
 
 .modal-title {
@@ -970,12 +998,18 @@ body {
     color: var(--color-text-secondary);
     font-size: 0.95rem;
     line-height: 1.5;
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
 }
 
 .modal-footer {
     padding: var(--spacing-md);
     display: flex;
     justify-content: flex-end;
+    gap: var(--spacing-sm);
+    flex-shrink: 0;
+    border-top: 1px solid var(--border-color);
 }
 
 .modal-btn {
@@ -1100,8 +1134,9 @@ body {
 
 /* Boundary Modal */
 .boundary-modal-container {
-    max-width: 680px;
+    max-width: 720px;
     width: 95vw;
+    max-height: 92vh;
 }
 
 .boundary-modal-body {
@@ -1109,6 +1144,9 @@ body {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-md);
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
 }
 
 .boundary-instructions {
@@ -1118,6 +1156,7 @@ body {
     flex-wrap: wrap;
     font-size: 0.875rem;
     color: var(--color-text-secondary);
+    line-height: 1.6;
 }
 
 .step-badge {
@@ -1141,12 +1180,19 @@ body {
     border: 1px solid var(--border-color);
     overflow: hidden;
     cursor: crosshair;
+    /* Prevent canvas from growing taller than remaining viewport space */
+    max-height: calc(92vh - 220px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #boundaryCanvas {
     display: block;
     width: 100%;
     height: auto;
+    max-height: calc(92vh - 220px);
+    object-fit: contain;
 }
 
 .boundary-canvas-hint {
@@ -1154,14 +1200,18 @@ body {
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.75);
     color: var(--color-text-primary);
-    padding: 4px 14px;
+    padding: 5px 16px;
     border-radius: 9999px;
     font-size: 0.75rem;
+    /* Allow wrapping on very small screens instead of overflowing */
     white-space: nowrap;
+    max-width: 90%;
+    text-align: center;
     pointer-events: none;
     transition: opacity var(--transition-normal);
+    backdrop-filter: blur(4px);
 }
 
 .boundary-coords-preview {
