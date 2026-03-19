@@ -59,7 +59,7 @@ class CameraManager:
         show_coords: bool = True,
         show_fps: bool = True,
         box_color: tuple = (0, 255, 136),
-        counting_line: List[List[float]] = None
+        counting_lines: List[List[List[float]]] = None
     ) -> Dict:
         if camera_id in self._processors:
             processor = self._processors[camera_id]
@@ -68,8 +68,8 @@ class CameraManager:
 
         camera_type = CameraType.RTSP if source.startswith("rtsp://") else CameraType.LOCAL
 
-        # Convert list of lists to list of tuples if provided
-        line_tuples = [tuple(p) for p in counting_line] if counting_line else None
+        # Convert list of lines to list of list of tuples if provided
+        lines_tuples = [[tuple(p) for p in line] for line in counting_lines] if counting_lines else None
 
         config = CameraConfig(
             camera_id=camera_id,
@@ -83,7 +83,7 @@ class CameraManager:
             show_coords=show_coords,
             show_fps=show_fps,
             box_color=box_color,
-            counting_line=line_tuples
+            counting_lines=lines_tuples
         )
 
         processor = CameraProcessor(config, self._inference_engine)
@@ -142,26 +142,29 @@ class CameraManager:
     def get_processor(self, camera_id: str) -> Optional[CameraProcessor]:
         return self._processors.get(camera_id)
 
-    def update_counting_line(self, camera_id: str, counting_line: Optional[List[List[float]]]) -> Dict:
-        """Update the counting boundary line on a running camera without restarting it."""
+    def update_counting_lines(self, camera_id: str, counting_lines: Optional[List[List[List[float]]]]) -> Dict:
+        """Update the counting boundary lines on a running camera without restarting it."""
         processor = self._processors.get(camera_id)
         if not processor:
             return {"status": "not_found", "camera_id": camera_id}
 
         # Convert list-of-lists → list-of-tuples (same format as start_camera)
-        line_tuples = [tuple(p) for p in counting_line] if counting_line else None
+        lines_tuples = [[tuple(p) for p in line] for line in counting_lines] if counting_lines else None
 
         # Clone the current config and swap in the new line
         old = processor._config
         from dataclasses import replace as dc_replace
-        new_config = dc_replace(old, counting_line=line_tuples)
+        new_config = dc_replace(old, counting_lines=lines_tuples)
         processor.update_config(new_config)
 
         # Reset cross-count so the new boundary starts fresh
         processor._cross_count = 0
+        processor._line_counts = [0] * len(lines_tuples) if lines_tuples else []
         processor._track_paths = {}
+        if hasattr(processor, '_counted_tracks'):
+            processor._counted_tracks = set()
 
-        logger.info(f"Counting line updated for camera {camera_id}: {line_tuples}")
+        logger.info(f"Counting lines updated for camera {camera_id}: {lines_tuples}")
         return {"status": "updated", "camera_id": camera_id}
 
 

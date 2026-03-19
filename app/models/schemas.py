@@ -38,7 +38,7 @@ class CameraStartRequest(BaseModel):
     show_coords: bool = Field(True, description="Show coordinates on detections")
     show_fps: bool = Field(True, description="Show FPS counter")
     box_color: str = Field("00FF88", description="Box color in hex format")
-    counting_line: Optional[List[List[float]]] = Field(None, description="List of [x, y] coordinates for counting boundary [[x1, y1], [x2, y2]]")
+    counting_lines: Optional[List[List[List[float]]]] = Field(None, description="List of counting boundaries [[x1, y1], [x2, y2]]")
 
     model_config = {
         "json_schema_extra": {
@@ -77,6 +77,8 @@ class ProcessingStatsSchema(BaseModel):
     female_count: int = Field(..., description="Number of females detected")
     detections: List[Dict[str, Any]] = Field(..., description="List of detections")
     timestamp: str = Field(..., description="ISO timestamp")
+    cross_count: Optional[int] = Field(0, description="Number of boundary crossings")
+    line_counts: Optional[List[int]] = Field(None, description="Counts per line")
 
 
 class AllStatsResponse(BaseModel):
@@ -133,3 +135,5 @@ class WebSocketStatsMessage(BaseModel):
     female_count: int = Field(..., description="Number of females detected")
     timestamp: str = Field(..., description="ISO timestamp")
     detections: List[Dict[str, Any]] = Field(..., description="List of detections")
+    cross_count: Optional[int] = Field(0, description="Number of boundary crossings")
+    line_counts: Optional[List[int]] = Field(None, description="Counts per line")

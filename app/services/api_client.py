@@ -35,6 +35,7 @@ class APIClient:
         )
         self._push_interval = 1.0
         self._last_push_times: Dict[str, datetime] = {}
+        self._last_push_counts: Dict[str, Dict[str, Any]] = {}
         self._push_queue: asyncio.Queue = asyncio.Queue(maxsize=1000)
         self._worker_task: Optional[asyncio.Task] = None
         self._is_running = False
@@ -221,6 +222,7 @@ class APIClient:
         camera_id: str,
         detections: List[Dict[str, Any]],
         cross_count: int = 0,
+        line_counts: List[int] = None,
         force: bool = False
     ):
         """
@@ -234,6 +236,19 @@ class APIClient:
         """
         if not force and not self.should_push(camera_id):
             return
+            
+        camera_key = str(camera_id)
+        current_counts = {
+            "counter": len(detections),
+            "cross_counter": cross_count,
+            "line_counters": line_counts.copy() if line_counts else []
+        }
+        
+        last_counts = self._last_push_counts.get(camera_key)
+        if not force and last_counts == current_counts:
+            return
+            
+        self._last_push_counts[camera_key] = current_counts
         
         camera_index = self._extract_camera_index(camera_id)
         now = datetime.now()
@@ -273,7 +288,8 @@ class APIClient:
                 "counter": len(detections),
                 "male_counter": male_count,
                 "female_counter": female_count,
-                "cross_counter": cross_count
+                "cross_counter": cross_count,
+                "line_counters": line_counts or []
             }
         }
         

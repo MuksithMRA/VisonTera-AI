@@ -98,7 +98,7 @@ async def start_camera(request: CameraStartRequest):
         show_coords=request.show_coords,
         show_fps=request.show_fps,
         box_color=box_color,
-        counting_line=request.counting_line
+        counting_lines=request.counting_lines
     )
 
     return CameraResponse(**result)
@@ -141,9 +141,9 @@ async def stop_camera(camera_id: str):
 
 @router.patch("/api/camera/{camera_id}/boundary", tags=["Detection"])
 async def update_camera_boundary(camera_id: str, request: dict):
-    """Update the counting boundary line on a running camera in real-time."""
-    counting_line = request.get("counting_line")  # [[x1,y1],[x2,y2]] or null
-    result = camera_manager.update_counting_line(camera_id, counting_line)
+    """Update the counting boundary lines on a running camera in real-time."""
+    counting_lines = request.get("counting_lines")  # [[[x1,y1],[x2,y2]], ...] or null
+    result = camera_manager.update_counting_lines(camera_id, counting_lines)
     return result
 
 

@@ -29,6 +29,7 @@ class CameraProcessor(ICameraProcessor):
         self._latest_stats: Optional[ProcessingStats] = None
         self._latest_detections: List[Detection] = []
         self._executor = concurrent.futures.ThreadPoolExecutor(max_workers=2)
+        self._intersection_executor = concurrent.futures.ThreadPoolExecutor(max_workers=4, thread_name_prefix='IntersectionExecutor')
         self._capture_task: Optional[asyncio.Task] = None
         self._frame_queue: asyncio.Queue = asyncio.Queue(maxsize=5)
         self._stats_queue: asyncio.Queue = asyncio.Queue(maxsize=1)
@@ -38,6 +39,8 @@ class CameraProcessor(ICameraProcessor):
         self._actual_height = config.frame_height
         self._track_paths = {} # {track_id: last_point}
         self._cross_count = 0
+        self._line_counts = [0] * len(config.counting_lines) if config.counting_lines else []
+        self._counted_tracks = set()
 
     async def start(self) -> bool:
         if self._state == CameraState.RUNNING:
@@ -170,33 +173,59 @@ class CameraProcessor(ICameraProcessor):
         )
 
         # --- Boundary Crossing Detection ---
-        if self._config.counting_line and len(self._config.counting_line) >= 2:
-            L1, L2 = self._config.counting_line[0], self._config.counting_line[1]
+        if self._config.counting_lines and len(self._config.counting_lines) > 0:
             current_ids = set()
+            new_crossings = 0
+            tasks = []
+            
             for det in detections:
                 track_id = det.track_id
                 if track_id == -1: continue
                 current_ids.add(track_id)
                 
-                # Use the same point as the visualization dot for consistency
+                # For floor-drawn lines, checking the feet intersection improves geometrical accuracy drastically.
                 if det.class_id == 1:
+                    # If model only detects heads, use head center
                     curr_pos = (det.bbox.center_x, det.bbox.center_y)
                 else:
-                    # Estimated head position
-                    curr_pos = (det.bbox.center_x, det.bbox.y1 + (det.bbox.y2 - det.bbox.y1) * 0.15)
+                    # Otherwise use feet mapping for floor placement stability
+                    curr_pos = (det.bbox.center_x, det.bbox.y2)
                 
                 if track_id in self._track_paths:
                     prev_pos = self._track_paths[track_id]
-                    if self._check_line_intersection(prev_pos, curr_pos, L1, L2):
-                        self._cross_count += 1
-                        logger.info(f"Boundary crossed! Total: {self._cross_count}")
+                    if self._config.counting_lines:
+                        for idx, line in enumerate(self._config.counting_lines):
+                            if len(line) >= 2:
+                                if (track_id, idx) not in self._counted_tracks:
+                                    L1, L2 = line[0], line[1]
+                                    tasks.append((prev_pos, curr_pos, L1, L2, idx, track_id))
                 
                 self._track_paths[track_id] = curr_pos
             
-            # Cleanup old tracks
+            if tasks:
+                # Optimized threads for intersection logic
+                def check_intersection_wrapper(args):
+                    prev, curr, l1, l2, idx, tid = args
+                    return self._check_line_intersection(prev, curr, l1, l2), idx, tid
+                
+                results = list(self._intersection_executor.map(check_intersection_wrapper, tasks))
+                
+                for is_intersect, idx, tid in results:
+                    if is_intersect:
+                        if idx < len(self._line_counts):
+                            self._line_counts[idx] += 1
+                        self._cross_count += 1
+                        new_crossings += 1
+                        self._counted_tracks.add((tid, idx))
+                
+                if new_crossings > 0:
+                    logger.info(f"Boundary crossed! Total: {self._cross_count}, Lines: {self._line_counts}")
+            
+            # Cleanup old tracks avoiding memory leakage over time
             to_remove = [tid for tid in self._track_paths if tid not in current_ids]
             for tid in to_remove:
                 del self._track_paths[tid]
+                self._counted_tracks = {item for item in self._counted_tracks if item[0] != tid}
 
         annotated = self._draw_detections(frame, detections)
 
@@ -222,20 +251,23 @@ class CameraProcessor(ICameraProcessor):
         annotated = frame.copy()
         viz_mode = getattr(AppConfig, 'VISUALIZATION_MODE', 'box')
 
-        # --- Draw Boundary Line ---
-        if self._config.counting_line and len(self._config.counting_line) >= 2:
-            L1 = tuple(map(int, self._config.counting_line[0]))
-            L2 = tuple(map(int, self._config.counting_line[1]))
-            cv2.line(annotated, L1, L2, (0, 0, 255), 4) # Thicker Red Line
-            
-            # Position text in the middle of the line with a background
-            mid_x = (L1[0] + L2[0]) // 2
-            mid_y = (L1[1] + L2[1]) // 2
-            label = f"TOTAL COUNT: {self._cross_count}"
-            (w, h), _ = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.7, 2)
-            cv2.rectangle(annotated, (mid_x - 5, mid_y - h - 15), (mid_x + w + 5, mid_y - 5), (0, 0, 255), -1)
-            cv2.putText(annotated, label, (mid_x, mid_y - 12),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
+        # --- Draw Boundary Lines ---
+        if self._config.counting_lines:
+            for i, line in enumerate(self._config.counting_lines):
+                if len(line) >= 2:
+                    L1 = tuple(map(int, line[0]))
+                    L2 = tuple(map(int, line[1]))
+                    cv2.line(annotated, L1, L2, (0, 0, 255), 4) # Thicker Red Line
+                    
+                    # Position text in the middle of each line
+                    mid_x = (L1[0] + L2[0]) // 2
+                    mid_y = (L1[1] + L2[1]) // 2
+                    line_count = self._line_counts[i] if i < len(self._line_counts) else 0
+                    label = f"L{i+1}: {line_count}"
+                    (w, h), _ = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.7, 2)
+                    cv2.rectangle(annotated, (mid_x - 5, mid_y - h - 15), (mid_x + w + 5, mid_y - 5), (0, 0, 255), -1)
+                    cv2.putText(annotated, label, (mid_x, mid_y - 12),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
 
         for det in detections:
             bbox = det.bbox
@@ -315,7 +347,8 @@ class CameraProcessor(ICameraProcessor):
             female_count=female_count,
             detections=[d.to_dict() for d in self._latest_detections],
             timestamp=datetime.now(),
-            cross_count=self._cross_count
+            cross_count=self._cross_count,
+            line_counts=self._line_counts.copy()
         )
         # Attach deduplicated counts to stats for frontend consumption
         self._latest_stats.deduplicated = dedup_counts
@@ -341,7 +374,8 @@ class CameraProcessor(ICameraProcessor):
         await api_client.push_detections(
             camera_id=self._config.camera_id,
             detections=detections_for_api,
-            cross_count=self._cross_count
+            cross_count=self._cross_count,
+            line_counts=self._line_counts.copy()
         )
 
     async def _handle_reconnect(self) -> None:

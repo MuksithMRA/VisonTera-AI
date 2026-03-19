@@ -89,7 +89,7 @@ class CameraConfig:
     show_coords: bool = True
     show_fps: bool = True
     box_color: tuple = (0, 255, 136)
-    counting_line: Optional[List[tuple]] = None # List of (x, y) points [(x1, y1), (x2, y2)]
+    counting_lines: Optional[List[List[tuple]]] = None # List of line combinations, each [(x1, y1), (x2, y2)]
 
 
 @dataclass
@@ -105,6 +105,7 @@ class ProcessingStats:
     timestamp: datetime = field(default_factory=datetime.now)
     deduplicated: Optional[Dict[str, Any]] = None  # Cross-camera dedup counts
     cross_count: int = 0  # Number of boundary crossings
+    line_counts: list = field(default_factory=list)  # Number of crossings per line
 
     def to_dict(self) -> Dict[str, Any]:
         result = {
@@ -118,7 +119,8 @@ class ProcessingStats:
             "female_count": self.female_count,
             "detections": self.detections,
             "timestamp": self.timestamp.isoformat(),
-            "cross_count": self.cross_count
+            "cross_count": self.cross_count,
+            "line_counts": self.line_counts
         }
         if self.deduplicated is not None:
             result["deduplicated"] = self.deduplicated

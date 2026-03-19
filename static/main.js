@@ -210,9 +210,9 @@ class MultiCameraDashboard {
         // If we have a backend RTSP/HTTP URL, use that. 
         // Otherwise, fallback to "0" for the local webcam.
         let realSource = "1";
-        if (backendUrl && backendUrl !== "undefined" && backendUrl !== "null" && backendUrl.trim() !== "") {
-            realSource = backendUrl;
-        }
+        // if (backendUrl && backendUrl !== "undefined" && backendUrl !== "null" && backendUrl.trim() !== "") {
+        //     realSource = backendUrl;
+        // }
 
         const payload = {
             camera_id: cameraId,
@@ -223,7 +223,7 @@ class MultiCameraDashboard {
             show_fps: showFps,
             box_color: boxColor,
             backend_camera_id: backendId ? parseInt(backendId) : null,
-            counting_line: this.parseCountingLine(this.elements.countingLine.value)
+            counting_lines: this.parseCountingLine(this.elements.countingLine.value)
         };
         
         try {
@@ -266,8 +266,12 @@ class MultiCameraDashboard {
         if (!value || !value.trim()) return null;
         try {
             const parts = value.split(',').map(p => parseFloat(p.trim()));
-            if (parts.length === 4) {
-                return [[parts[0], parts[1]], [parts[2], parts[3]]];
+            if (parts.length >= 4 && parts.length % 4 === 0) {
+                const lines = [];
+                for (let i = 0; i < parts.length; i += 4) {
+                    lines.push([[parts[i], parts[i+1]], [parts[i+2], parts[i+3]]]);
+                }
+                return lines;
             }
         } catch (e) {
             console.error('Invalid counting line format:', e);
@@ -392,7 +396,8 @@ class MultiCameraDashboard {
             fps: data.fps || 0,
             detections: data.detections || [],
             deduplicated: data.deduplicated || null,
-            crossCount: data.cross_count || 0
+            crossCount: data.cross_count || 0,
+            lineCounts: data.line_counts || []
         };
         
         const fpsEl = document.getElementById(`fps-${cameraId}`);
@@ -403,7 +408,13 @@ class MultiCameraDashboard {
         
         if (fpsEl) fpsEl.textContent = `${camera.stats.fps.toFixed(1)} FPS`;
         if (countEl) countEl.textContent = camera.stats.personCount;
-        if (crossEl) crossEl.textContent = `Flow: ${camera.stats.crossCount}`;
+        if (crossEl) {
+             let text = `Flow: ${camera.stats.crossCount}`;
+             if (camera.stats.lineCounts && camera.stats.lineCounts.length > 0) {
+                 text += ` (${camera.stats.lineCounts.map((c, i) => `L${i+1}:${c}`).join(' ')})`;
+             }
+             crossEl.textContent = text;
+        }
         if (maleEl) maleEl.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="10" cy="14" r="4"/></svg>${camera.stats.maleCount}`;
         if (femaleEl) femaleEl.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/></svg>${camera.stats.femaleCount}`;
         
@@ -710,8 +721,9 @@ class BoundaryEditor {
         this.input = document.getElementById('countingLine');
 
         // State
-        this.p1 = null;  // {x, y} in canvas pixels
-        this.p2 = null;
+        this.lines = []; // Array of line objects {p1, p2}
+        this.currentP1 = null;
+        this.currentP2 = null;
         this.mousePos = null;
         this.frameWidth = 640;   // actual video resolution; updated on open
         this.frameHeight = 480;
@@ -746,12 +758,15 @@ class BoundaryEditor {
 
     _onClick(e) {
         const pos = this._getCanvasPos(e);
-        if (!this.p1) {
-            this.p1 = pos;
-            this.hint.textContent = 'Now click to set the end point';
-        } else if (!this.p2) {
-            this.p2 = pos;
-            this.hint.textContent = 'Boundary set! Click Confirm or Reset to redo.';
+        if (!this.currentP1) {
+            this.currentP1 = pos;
+            this.hint.textContent = `Line ${this.lines.length + 1}: Click to set the end point`;
+        } else if (!this.currentP2) {
+            this.currentP2 = pos;
+            this.lines.push({ p1: this.currentP1, p2: this.currentP2 });
+            this.currentP1 = null;
+            this.currentP2 = null;
+            this.hint.textContent = `Line ${this.lines.length} set! Click to add another line, or Confirm / Reset.`;
             this._updatePreview();
             this.confirmBtn.disabled = false;
         }
@@ -760,20 +775,26 @@ class BoundaryEditor {
 
     _onMouseMove(e) {
         this.mousePos = this._getCanvasPos(e);
-        if (this.p1 && !this.p2) this._redraw();
+        if (this.currentP1 && !this.currentP2) this._redraw();
     }
 
     _updatePreview() {
-        if (!this.p1 || !this.p2) return;
+        if (this.lines.length === 0) return;
         // Scale canvas coords → actual frame coords
         const sx = this.frameWidth / this.canvas.width;
         const sy = this.frameHeight / this.canvas.height;
-        const x1 = Math.round(this.p1.x * sx);
-        const y1 = Math.round(this.p1.y * sy);
-        const x2 = Math.round(this.p2.x * sx);
-        const y2 = Math.round(this.p2.y * sy);
-        this.preview.textContent = `${x1}, ${y1}, ${x2}, ${y2}`;
-        this._pendingValue = `${x1},${y1},${x2},${y2}`;
+        
+        let coordStrings = [];
+        this.lines.forEach(line => {
+             const x1 = Math.round(line.p1.x * sx);
+             const y1 = Math.round(line.p1.y * sy);
+             const x2 = Math.round(line.p2.x * sx);
+             const y2 = Math.round(line.p2.y * sy);
+             coordStrings.push(`${x1},${y1},${x2},${y2}`);
+        });
+        
+        this.preview.textContent = coordStrings.join(' ; ');
+        this._pendingValue = coordStrings.join(',');
     }
 
     _redraw() {
@@ -787,22 +808,22 @@ class BoundaryEditor {
             this._drawGrid();
         }
 
-        // Draw placed start point
-        if (this.p1) {
-            this._drawPoint(this.p1, '#3b82f6', 'Start');
+        // Draw confirmed lines
+        this.lines.forEach((line, index) => {
+             this._drawLine(line.p1, line.p2, '#10b981', false);
+             this._drawPoint(line.p1, '#3b82f6', `L${index+1}-S`);
+             this._drawPoint(line.p2, '#10b981', `L${index+1}-E`);
+        });
+
+        // Draw placed start point for current line
+        if (this.currentP1) {
+            this._drawPoint(this.currentP1, '#3b82f6', `L${this.lines.length+1}-S`);
         }
 
-        // Draw rubber-band line while placing p2
-        if (this.p1 && !this.p2 && this.mousePos) {
-            this._drawLine(this.p1, this.mousePos, 'rgba(251,191,36,0.7)', true);
+        // Draw rubber-band line while placing currentP2
+        if (this.currentP1 && !this.currentP2 && this.mousePos) {
+            this._drawLine(this.currentP1, this.mousePos, 'rgba(251,191,36,0.7)', true);
             this._drawPoint(this.mousePos, 'rgba(251,191,36,0.5)', '');
-        }
-
-        // Draw confirmed line
-        if (this.p1 && this.p2) {
-            this._drawLine(this.p1, this.p2, '#10b981', false);
-            this._drawPoint(this.p1, '#3b82f6', 'Start');
-            this._drawPoint(this.p2, '#10b981', 'End');
         }
     }
 
@@ -907,12 +928,13 @@ class BoundaryEditor {
     }
 
     _reset() {
-        this.p1 = null;
-        this.p2 = null;
+        this.lines = [];
+        this.currentP1 = null;
+        this.currentP2 = null;
         this.mousePos = null;
         this._pendingValue = null;
         this.confirmBtn.disabled = true;
-        this.hint.textContent = 'Click anywhere to set the start point';
+        this.hint.textContent = 'Click anywhere to set the start point of line 1';
         this.preview.textContent = '— not set —';
         if (this.canvas.width) this._redraw();
     }
@@ -947,7 +969,7 @@ class BoundaryEditor {
                 fetch(`/api/camera/${cameraId}/boundary`, {
                     method: 'PATCH',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ counting_line: parsedLine })
+                    body: JSON.stringify({ counting_lines: parsedLine })
                 })
             )
         );
