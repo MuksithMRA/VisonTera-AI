@@ -59,10 +59,10 @@ class Detection:
     track_id: int
     bbox: BoundingBox
     confidence: float
-    global_id: int = -1  # Cross-camera unique ID from Re-ID (-1 = not assigned)
+    global_id: int = -1
     gender: Optional[str] = None
     gender_confidence: float = 0.0
-    class_id: int = 0      # 0=person, 1=head (for merged models)
+    class_id: int = 0
 
     def to_dict(self) -> Dict[str, Any]:
         return {

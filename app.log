@@ -28401,3 +28401,5 @@
 2026-03-19 20:32:30,969 [INFO] VisionTera: [API] API client worker started
 2026-03-19 20:32:30,970 [INFO] VisionTera: Application started - Multi-camera detection ready
 2026-03-19 20:32:30,970 [INFO] VisionTera: Training scheduler is disabled.
+2026-03-22 20:28:43,781 [INFO] VisionTera: CrossCameraReIDManager initialised: threshold=0.72, gallery_size=12, stale_timeout=300.0s
+2026-03-22 20:28:43,781 [INFO] VisionTera: InferenceEngine initialized: device=cuda, half=True, CUDA available=True

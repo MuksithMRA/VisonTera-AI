@@ -56,6 +56,8 @@ class DetectionEngine:
         self.last_detections = []
         self.capture_task = None
         self.stats_task = None
+        _tp = AppConfig.TRACKER_CONFIG_PATH
+        self._tracker_config = str(_tp.resolve()) if _tp.exists() else "botsort.yaml"
 
     def _get_latest_model_path(self):
         """Finds the latest versioned model in infrastructure/models."""
@@ -198,7 +200,7 @@ class DetectionEngine:
 
     def detect_persons(self, frame):
         if self.model is None: return []
-        results = self.model.track(frame, classes=[0], conf=self.confidence, persist=True, verbose=False, tracker="bytetrack.yaml")
+        results = self.model.track(frame, classes=[0], conf=self.confidence, persist=True, verbose=False, tracker=self._tracker_config)
         detections = []
         if results and results[0].boxes:
             boxes = results[0].boxes

@@ -12,6 +12,7 @@ from app.domain.entities import Detection, BoundingBox
 from app.config import AppConfig, logger
 from app.infrastructure.reid_extractor import ReIDFeatureExtractor
 from app.infrastructure.cross_camera_reid import CrossCameraReIDManager
+from app.infrastructure.tracking_quality import TrackingQualityMonitor
 
 
 class ResNet50GenderClassifier(nn.Module):
@@ -52,7 +53,7 @@ class InferenceEngine(IInferenceEngine):
         self._gender_model = None
         self._gender_model_type: Optional[str] = None
         self._device = 'cuda' if torch.cuda.is_available() else 'cpu'
-        self._use_half = self._device == 'cuda'  # FP16 on GPU for ~2x speedup
+        self._use_half = self._device == 'cuda'
         self._inference_lock = threading.Lock()
         self._track_histories: Dict[str, Dict[int, dict]] = {}
         self._gender_classes = ['Female', 'Male']
@@ -60,20 +61,29 @@ class InferenceEngine(IInferenceEngine):
         self._gender_voting_enabled = AppConfig.GENDER_VOTING_ENABLED
         self._gender_vote_threshold = AppConfig.GENDER_VOTE_THRESHOLD
         self._frame_counts: Dict[str, int] = {}
-
-        # ── Cross-Camera Re-ID ──
+        _tp = AppConfig.TRACKER_CONFIG_PATH
+        self._tracker_config = str(_tp.resolve()) if _tp.exists() else "botsort.yaml"
         self._reid_extractor = ReIDFeatureExtractor(
             device=self._device,
             use_half=self._use_half
         )
         self._reid_manager = CrossCameraReIDManager(
-            similarity_threshold=0.60,
-            max_gallery_size=10,
-            stale_timeout=300.0,
+            similarity_threshold=AppConfig.REID_SIMILARITY_THRESHOLD,
+            max_gallery_size=AppConfig.REID_MAX_GALLERY_SIZE,
+            stale_timeout=AppConfig.REID_STALE_TIMEOUT_SEC,
+            gallery_pollution_min_sim=AppConfig.REID_GALLERY_POLLUTION_SIM,
         )
-        self._reid_refresh_interval = 60  # Re-extract embedding every N frames
-        self._reid_min_crop_height = 50   # Minimum crop height to extract features
-        self._reid_min_crop_width = 25    # Minimum crop width to extract features
+        self._reid_refresh_interval = AppConfig.REID_REFRESH_INTERVAL_FRAMES
+        self._reid_min_crop_height = AppConfig.REID_MIN_CROP_HEIGHT
+        self._reid_min_crop_width = AppConfig.REID_MIN_CROP_WIDTH
+        self._reid_conf_threshold = AppConfig.REID_MIN_CONFIDENCE
+        self._reid_merge_every = AppConfig.REID_MERGE_EVERY_FRAMES
+        self._reid_cleanup_every = AppConfig.REID_CLEANUP_EVERY_FRAMES
+        self._tracking_quality = TrackingQualityMonitor(
+            fragmentation_iou=AppConfig.FRAGMENTATION_IOU_THRESHOLD,
+            collision_iou_max=AppConfig.COLLISION_IOU_MAX,
+            ghost_unassigned_frames=AppConfig.GHOST_UNASSIGNED_FRAMES,
+        )
 
         logger.info(f"InferenceEngine initialized: device={self._device}, half={self._use_half}, CUDA available={torch.cuda.is_available()}")
 
@@ -169,9 +179,9 @@ class InferenceEngine(IInferenceEngine):
             with self._inference_lock:
                 self._detection_model = new_model
                 self._detection_model_path = str(path)
-                # Clear ALL track histories since ByteTrack IDs won't carry over
                 self._track_histories.clear()
                 self._frame_counts.clear()
+                self._tracking_quality.reset()
 
             logger.info(f"Detection model switched successfully to: {path.name}")
             return {
@@ -276,7 +286,7 @@ class InferenceEngine(IInferenceEngine):
                 conf=confidence,
                 persist=True,
                 verbose=False,
-                tracker="bytetrack.yaml",
+                tracker=self._tracker_config,
                 device=self._device,
                 half=self._use_half
             )
@@ -337,13 +347,8 @@ class InferenceEngine(IInferenceEngine):
                     gender_label = hist['gender']
 
                 # ── Cross-Camera Re-ID ──
-                global_id = track_id  # Default: use local track_id
+                global_id = -1
                 if track_id != -1 and self._reid_extractor.is_loaded:
-                    # Occlusion & Quality Filtering
-                    # 1. Skip if detection confidence is low (likely occlusion or partial)
-                    # 2. Skip if we have high overlap with another person (metric pollution)
-                    reid_conf_threshold = 0.65  # Higher than detector threshold
-                    
                     overlap_detected = False
                     for j in range(len(all_boxes)):
                         if i == j: continue
@@ -359,33 +364,29 @@ class InferenceEngine(IInferenceEngine):
                             intersection = (ix2 - ix1) * (iy2 - iy1)
                             b1_area = (b1[2] - b1[0]) * (b1[3] - b1[1])
                             # If box is > 30% covered by another box, skip Re-ID
-                            if intersection / b1_area > 0.30:
+                            if intersection / b1_area > AppConfig.FRAGMENTATION_IOU_THRESHOLD:
                                 overlap_detected = True
                                 break
 
                     should_extract_reid = (
                         (hist.get('reid_last_extract', 0) == 0 or
                         (frame_count - hist.get('reid_last_extract', 0)) > self._reid_refresh_interval)
-                        and conf >= reid_conf_threshold
+                        and conf >= self._reid_conf_threshold
                         and not overlap_detected
                     )
-                    
+
                     if should_extract_reid:
                         global_id = self._extract_and_assign_global_id(
                             frame, x1, y1, x2, y2,
                             camera_id, track_id, gender_label
                         )
-                        # Mark extraction time
                         hist['reid_last_extract'] = frame_count
                     else:
-                        # Use cached global_id but still update last_seen_time
                         cached_gid = self._reid_manager.get_global_id(camera_id, track_id)
                         if cached_gid is not None:
                             global_id = cached_gid
                             self._reid_manager.touch_person(cached_gid)
-                        elif conf < reid_conf_threshold or overlap_detected:
-                            # If we skipped first extraction due to occlusion, 
-                            # we must try again sooner than the refresh interval
+                        elif conf < self._reid_conf_threshold or overlap_detected:
                             hist['reid_last_extract'] = max(0, frame_count - (self._reid_refresh_interval // 2))
 
                 detection = Detection(
@@ -398,12 +399,19 @@ class InferenceEngine(IInferenceEngine):
                 )
                 detections.append(detection)
 
-        # Periodic Re-ID maintenance
-        # Merge duplicates frequently (every 30 frames) to fix race conditions
-        if frame_count % 30 == 0:
+        qlist = []
+        for det in detections:
+            bb = det.bbox
+            qlist.append((
+                det.track_id,
+                np.array([bb.x1, bb.y1, bb.x2, bb.y2], dtype=np.float32),
+                det.global_id,
+            ))
+        self._tracking_quality.process_frame(camera_id, qlist)
+
+        if frame_count % self._reid_merge_every == 0:
             self._reid_manager.merge_duplicates()
-        # Cleanup stale entries less frequently (every 500 frames)
-        if frame_count % 500 == 0:
+        if frame_count % self._reid_cleanup_every == 0:
             self._reid_manager.cleanup_stale()
 
         return detections
@@ -513,10 +521,8 @@ class InferenceEngine(IInferenceEngine):
             del self._track_histories[camera_id]
         if camera_id in self._frame_counts:
             del self._frame_counts[camera_id]
-        # Also clear Re-ID state for this camera
         self._reid_manager.clear_camera(camera_id)
-
-    # ── Cross-Camera Re-ID Helpers ──
+        self._tracking_quality.prune_camera(camera_id)
 
     def _extract_and_assign_global_id(
         self,
@@ -526,7 +532,6 @@ class InferenceEngine(IInferenceEngine):
         local_track_id: int,
         gender: str = None,
     ) -> int:
-        """Extract Re-ID embedding from person crop and assign global ID."""
         try:
             h, w = frame.shape[:2]
             cx1, cy1 = max(0, int(x1)), max(0, int(y1))
@@ -535,17 +540,19 @@ class InferenceEngine(IInferenceEngine):
             crop_h = cy2 - cy1
             crop_w = cx2 - cx1
 
-            # Skip tiny crops — not enough visual info for Re-ID
             if crop_h < self._reid_min_crop_height or crop_w < self._reid_min_crop_width:
-                return local_track_id
+                cached = self._reid_manager.get_global_id(camera_id, local_track_id)
+                return cached if cached is not None else -1
 
             person_crop = frame[cy1:cy2, cx1:cx2]
             if person_crop.size == 0:
-                return local_track_id
+                cached = self._reid_manager.get_global_id(camera_id, local_track_id)
+                return cached if cached is not None else -1
 
             embedding = self._reid_extractor.extract(person_crop)
             if embedding is None:
-                return local_track_id
+                cached = self._reid_manager.get_global_id(camera_id, local_track_id)
+                return cached if cached is not None else -1
 
             global_id = self._reid_manager.assign_global_id(
                 camera_id=camera_id,
@@ -557,21 +564,22 @@ class InferenceEngine(IInferenceEngine):
 
         except Exception as e:
             logger.error(f"Re-ID assignment error: {e}")
-            return local_track_id
+            cached = self._reid_manager.get_global_id(camera_id, local_track_id)
+            return cached if cached is not None else -1
 
     def get_deduplicated_counts(self) -> Dict:
-        """Return globally deduplicated person counts across all cameras."""
         return self._reid_manager.get_deduplicated_counts()
 
     def get_currently_visible_persons(self, max_age: float = 5.0) -> Dict:
-        """Return deduplicated counts for persons seen within the last max_age seconds."""
         return self._reid_manager.get_currently_visible(max_age=max_age)
 
     def get_reid_stats(self) -> Dict:
-        """Return Re-ID subsystem statistics."""
-        return self._reid_manager.get_stats()
+        out = dict(self._reid_manager.get_stats())
+        out.update(self._tracking_quality.snapshot())
+        out["tracker_backend"] = "botsort"
+        out["tracker_config"] = self._tracker_config
+        return out
 
     @property
     def reid_manager(self) -> CrossCameraReIDManager:
-        """Access the Re-ID manager directly."""
         return self._reid_manager

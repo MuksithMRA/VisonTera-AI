@@ -98,7 +98,7 @@ def collect_person_crops(camera_index=0, duration_seconds=60, interval_seconds=2
                     conf=CONFIDENCE_THRESHOLD, 
                     persist=True,
                     verbose=False,
-                    tracker="bytetrack.yaml"
+                    tracker="botsort.yaml"
                 )
                 
                 for result in results:

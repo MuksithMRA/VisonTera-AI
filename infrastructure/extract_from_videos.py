@@ -73,7 +73,7 @@ def process_videos(video_folder, interval_seconds=1.0):
                 conf=CONFIDENCE_THRESHOLD, 
                 persist=True, 
                 verbose=False,
-                tracker="bytetrack.yaml"
+                tracker="botsort.yaml"
             )
             
             for result in results:
