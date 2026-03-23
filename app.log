@@ -28403,3 +28403,182 @@
 2026-03-19 20:32:30,970 [INFO] VisionTera: Training scheduler is disabled.
 2026-03-22 20:28:43,781 [INFO] VisionTera: CrossCameraReIDManager initialised: threshold=0.72, gallery_size=12, stale_timeout=300.0s
 2026-03-22 20:28:43,781 [INFO] VisionTera: InferenceEngine initialized: device=cuda, half=True, CUDA available=True
+2026-03-22 20:31:23,331 [INFO] VisionTera: CrossCameraReIDManager initialised: threshold=0.72, gallery_size=12, stale_timeout=300.0s
+2026-03-22 20:31:23,331 [INFO] VisionTera: InferenceEngine initialized: device=cuda, half=True, CUDA available=True
+2026-03-22 20:31:23,383 [INFO] VisionTera: Found latest crowd_v_ model: crowd_v_20260309_050112 -> infrastructure\models\crowd_v_20260309_050112\best_model.pt
+2026-03-22 20:31:23,383 [INFO] VisionTera: Using crowd-optimized detection model: infrastructure\models\crowd_v_20260309_050112\best_model.pt
+2026-03-22 20:31:23,747 [INFO] VisionTera: Detection model loaded on GPU: NVIDIA GeForce RTX 4060 Laptop GPU, half=True
+2026-03-22 20:31:23,747 [INFO] VisionTera: Found latest v_ model: v_20260306_060340 -> infrastructure\models\v_20260306_060340\weights\best.pt
+2026-03-22 20:31:23,815 [INFO] VisionTera: YOLO-cls gender classification model loaded.
+2026-03-22 20:31:24,161 [INFO] VisionTera: Re-ID model initialised with ImageNet pre-trained backbone. For best accuracy, place Re-ID weights in infrastructure/models/reid/
+2026-03-22 20:31:24,882 [INFO] VisionTera: Re-ID extractor ready: device=cuda, half=True, embedding=512-d
+2026-03-22 20:31:24,882 [INFO] VisionTera: Cross-camera Re-ID feature extractor loaded successfully
+2026-03-22 20:31:24,882 [INFO] VisionTera: [API] API client worker started
+2026-03-22 20:31:24,886 [INFO] VisionTera: Application started - Multi-camera detection ready
+2026-03-22 20:31:24,886 [INFO] VisionTera: Training scheduler is disabled.
+2026-03-22 20:32:22,476 [INFO] VisionTera: [Auth] Attempting login to https://visiontera-backend-697124318129.europe-west4.run.app/account/token for user manager
+2026-03-22 20:32:24,184 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/account/token "HTTP/1.1 200 OK"
+2026-03-22 20:32:24,186 [INFO] VisionTera: [Auth] Login successful
+2026-03-22 20:32:24,186 [INFO] VisionTera: [API] Token updated, client reset
+2026-03-22 20:32:24,197 [INFO] VisionTera: [API] HTTP client initialized with connection pooling
+2026-03-22 20:32:25,465 [INFO] httpx: HTTP Request: GET https://visiontera-backend-697124318129.europe-west4.run.app/api/cameras "HTTP/1.1 200 OK"
+2026-03-22 20:32:25,466 [INFO] VisionTera: [API] Fetched 6 cameras from backend
+2026-03-22 20:32:25,466 [INFO] VisionTera: [API]   - Camera ID: 26, Name: Camera 32581, Site: Schultz-Wolf
+2026-03-22 20:32:25,468 [INFO] VisionTera: [API]   - Camera ID: 27, Name: Camera 31292, Site: Schultz-Wolf
+2026-03-22 20:32:25,468 [INFO] VisionTera: [API]   - Camera ID: 28, Name: Camera 61789, Site: Quigley-Dibbert
+2026-03-22 20:32:25,468 [INFO] VisionTera: [API]   - Camera ID: 29, Name: Camera 38189, Site: Quigley-Dibbert
+2026-03-22 20:32:25,468 [INFO] VisionTera: [API]   - Camera ID: 30, Name: Camera 70231, Site: Quigley-Dibbert
+2026-03-22 20:32:25,468 [INFO] VisionTera: [API]   - Camera ID: 31, Name: Camera 15107, Site: Quigley-Dibbert
+2026-03-22 20:32:25,510 [INFO] httpx: HTTP Request: GET https://visiontera-backend-697124318129.europe-west4.run.app/api/cameras "HTTP/1.1 200 OK"
+2026-03-22 20:32:25,511 [INFO] VisionTera: [API] Fetched 6 cameras from backend
+2026-03-22 20:32:25,511 [INFO] VisionTera: [API]   - Camera ID: 26, Name: Camera 32581, Site: Schultz-Wolf
+2026-03-22 20:32:25,511 [INFO] VisionTera: [API]   - Camera ID: 27, Name: Camera 31292, Site: Schultz-Wolf
+2026-03-22 20:32:25,511 [INFO] VisionTera: [API]   - Camera ID: 28, Name: Camera 61789, Site: Quigley-Dibbert
+2026-03-22 20:32:25,511 [INFO] VisionTera: [API]   - Camera ID: 29, Name: Camera 38189, Site: Quigley-Dibbert
+2026-03-22 20:32:25,512 [INFO] VisionTera: [API]   - Camera ID: 30, Name: Camera 70231, Site: Quigley-Dibbert
+2026-03-22 20:32:25,512 [INFO] VisionTera: [API]   - Camera ID: 31, Name: Camera 15107, Site: Quigley-Dibbert
+2026-03-22 20:32:25,512 [INFO] VisionTera: [CameraManager] Found camera: rtsp://192.168.1.10:8554/screen
+2026-03-22 20:32:25,512 [INFO] VisionTera: [CameraManager] Found camera: rtsp://192.168.1.10:8554/screen
+2026-03-22 20:32:25,512 [INFO] VisionTera: [CameraManager] Found camera: rtsp://192.168.1.10:8554/screen
+2026-03-22 20:32:25,513 [INFO] VisionTera: [CameraManager] Found camera: rtsp://192.168.1.10:8554/screen
+2026-03-22 20:32:25,513 [INFO] VisionTera: [CameraManager] Found camera: rtsp://192.168.1.10:8554/screen
+2026-03-22 20:32:29,191 [INFO] VisionTera: [API] Registered local camera 'cam_1774191749188_1' -> backend ID 26
+2026-03-22 20:32:29,192 [INFO] VisionTera: DatasetCollector initialized. Output dir: datasets\to_label
+2026-03-22 20:32:29,193 [INFO] VisionTera: Dataset auto-labeling background thread started
+2026-03-22 20:32:29,194 [INFO] VisionTera: Auto-labeling loop running. Interval: 60s
+2026-03-22 20:32:31,222 [INFO] VisionTera: Camera opened: 1
+2026-03-22 20:32:31,223 [INFO] VisionTera: Camera cam_1774191749188_1 started: 640x480
+2026-03-22 20:32:31,223 [INFO] VisionTera: Camera cam_1774191749188_1 started successfully
+2026-03-22 20:32:36,027 [INFO] VisionTera: Re-ID NEW: cam=cam_1774191749188_1 track=2 -> global=1
+2026-03-22 20:32:36,085 [INFO] VisionTera: Re-ID NEW: cam=cam_1774191749188_1 track=4 -> global=2
+2026-03-22 20:32:36,123 [INFO] VisionTera: [API] Queued push for camera cam_1774191749188_1 (5 detections, 0M/0F)
+2026-03-22 20:32:36,245 [INFO] VisionTera: Re-ID NEW: cam=cam_1774191749188_1 track=1 -> global=3
+2026-03-22 20:32:36,723 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:32:36,725 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 5
+2026-03-22 20:32:42,338 [INFO] VisionTera: [API] Queued push for camera cam_1774191749188_1 (6 detections, 3M/2F)
+2026-03-22 20:32:43,343 [INFO] VisionTera: [API] Queued push for camera cam_1774191749188_1 (5 detections, 3M/2F)
+2026-03-22 20:32:43,523 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:32:43,524 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 6
+2026-03-22 20:32:44,660 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:32:44,661 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 5
+2026-03-22 20:32:49,602 [INFO] VisionTera: [API] Queued push for camera cam_1774191749188_1 (6 detections, 3M/2F)
+2026-03-22 20:32:50,604 [INFO] VisionTera: [API] Queued push for camera cam_1774191749188_1 (5 detections, 3M/2F)
+2026-03-22 20:32:50,723 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:32:50,725 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 6
+2026-03-22 20:32:51,832 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:32:51,835 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 5
+2026-03-22 20:33:12,045 [INFO] VisionTera: [API] Queued push for camera cam_1774191749188_1 (1 detections, 1M/0F)
+2026-03-22 20:33:12,738 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:33:12,739 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 1
+2026-03-22 20:33:25,404 [INFO] VisionTera: Re-ID NEW: cam=cam_1774191749188_1 track=15 -> global=4
+2026-03-22 20:33:25,407 [INFO] VisionTera: [API] Queued push for camera cam_1774191749188_1 (2 detections, 1M/0F)
+2026-03-22 20:33:26,091 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:33:26,092 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 2
+2026-03-22 20:33:27,742 [INFO] VisionTera: Re-ID NEW: cam=cam_1774191749188_1 track=19 -> global=5
+2026-03-22 20:33:32,627 [INFO] VisionTera: [API] Queued push for camera cam_1774191749188_1 (3 detections, 2M/0F)
+2026-03-22 20:33:33,400 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:33:33,401 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 3
+2026-03-22 20:33:33,634 [INFO] VisionTera: [API] Queued push for camera cam_1774191749188_1 (2 detections, 2M/0F)
+2026-03-22 20:33:34,378 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:33:34,380 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 2
+2026-03-22 20:33:36,685 [INFO] VisionTera: [API] Queued push for camera cam_1774191749188_1 (3 detections, 2M/1F)
+2026-03-22 20:33:36,951 [INFO] VisionTera: Re-ID NEW: cam=cam_1774191749188_1 track=22 -> global=6
+2026-03-22 20:33:37,572 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:33:37,573 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 3
+2026-03-22 20:33:40,770 [INFO] VisionTera: [API] Queued push for camera cam_1774191749188_1 (2 detections, 1M/1F)
+2026-03-22 20:33:42,148 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:33:42,149 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 2
+2026-03-22 20:33:50,964 [INFO] VisionTera: [API] Queued push for camera cam_1774191749188_1 (1 detections, 0M/1F)
+2026-03-22 20:33:51,638 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:33:51,638 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 1
+2026-03-22 20:34:00,226 [INFO] VisionTera: [API] Queued push for camera cam_1774191749188_1 (2 detections, 2M/0F)
+2026-03-22 20:34:00,626 [INFO] VisionTera: Re-ID NEW: cam=cam_1774191749188_1 track=25 -> global=7
+2026-03-22 20:34:00,999 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:34:01,000 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 2
+2026-03-22 20:34:01,232 [INFO] VisionTera: [API] Queued push for camera cam_1774191749188_1 (1 detections, 1M/0F)
+2026-03-22 20:34:01,892 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:34:01,894 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 1
+2026-03-22 20:34:02,268 [INFO] VisionTera: [API] Queued push for camera cam_1774191749188_1 (2 detections, 2M/0F)
+2026-03-22 20:34:03,078 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:34:03,079 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 2
+2026-03-22 20:34:32,916 [INFO] VisionTera: [API] Queued push for camera cam_1774191749188_1 (3 detections, 2M/0F)
+2026-03-22 20:34:33,730 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:34:33,731 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 3
+2026-03-22 20:34:33,923 [INFO] VisionTera: [API] Queued push for camera cam_1774191749188_1 (2 detections, 2M/0F)
+2026-03-22 20:34:34,685 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:34:34,686 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 2
+2026-03-22 20:34:52,178 [INFO] VisionTera: [API] Queued push for camera cam_1774191749188_1 (1 detections, 1M/0F)
+2026-03-22 20:34:53,223 [INFO] VisionTera: [API] Queued push for camera cam_1774191749188_1 (2 detections, 2M/0F)
+2026-03-22 20:34:53,446 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:34:53,448 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 1
+2026-03-22 20:34:54,236 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:34:54,237 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 2
+2026-03-22 20:34:54,265 [INFO] VisionTera: [API] Queued push for camera cam_1774191749188_1 (1 detections, 1M/0F)
+2026-03-22 20:34:54,936 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:34:54,936 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 1
+2026-03-22 20:34:55,044 [INFO] VisionTera: [API] Registered local camera 'cam_1774191894733_2' -> backend ID 26
+2026-03-22 20:34:55,892 [INFO] VisionTera: Camera opened: 1
+2026-03-22 20:34:55,892 [INFO] VisionTera: Camera cam_1774191894733_2 started: 640x480
+2026-03-22 20:34:55,892 [INFO] VisionTera: Camera cam_1774191894733_2 started successfully
+2026-03-22 20:34:56,186 [INFO] VisionTera: [API] Queued push for camera cam_1774191749188_1 (2 detections, 2M/0F)
+2026-03-22 20:34:56,236 [INFO] VisionTera: Re-ID MATCH: cam=cam_1774191894733_2 track=25 -> global=7 (sim=0.911)
+2026-03-22 20:34:56,277 [INFO] VisionTera: Re-ID MATCH: cam=cam_1774191894733_2 track=1 -> global=3 (sim=0.857)
+2026-03-22 20:34:56,280 [INFO] VisionTera: [API] Queued push for camera cam_1774191894733_2 (2 detections, 0M/0F)
+2026-03-22 20:34:56,951 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:34:56,952 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 2
+2026-03-22 20:34:57,536 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:34:57,537 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 2
+2026-03-22 20:34:59,242 [INFO] VisionTera: Re-ID NEW: cam=cam_1774191749188_1 track=46 -> global=8
+2026-03-22 20:34:59,247 [INFO] VisionTera: [API] Queued push for camera cam_1774191749188_1 (3 detections, 2M/0F)
+2026-03-22 20:34:59,261 [INFO] VisionTera: Re-ID MATCH: cam=cam_1774191894733_2 track=46 -> global=8 (sim=0.928)
+2026-03-22 20:34:59,364 [INFO] VisionTera: [API] Queued push for camera cam_1774191894733_2 (3 detections, 1M/1F)
+2026-03-22 20:35:00,042 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:35:00,043 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 3
+2026-03-22 20:35:00,791 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:35:00,792 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 3
+2026-03-22 20:35:05,587 [INFO] VisionTera: [API] Queued push for camera cam_1774191894733_2 (4 detections, 2M/1F)
+2026-03-22 20:35:06,474 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:35:06,475 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 4
+2026-03-22 20:35:06,691 [INFO] VisionTera: [API] Queued push for camera cam_1774191894733_2 (3 detections, 2M/1F)
+2026-03-22 20:35:07,609 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:35:07,610 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 3
+2026-03-22 20:35:09,574 [INFO] VisionTera: [API] Queued push for camera cam_1774191749188_1 (2 detections, 2M/0F)
+2026-03-22 20:35:09,880 [INFO] VisionTera: [API] Queued push for camera cam_1774191894733_2 (2 detections, 1M/1F)
+2026-03-22 20:35:10,374 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:35:10,375 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 2
+2026-03-22 20:35:11,178 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:35:11,179 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 2
+2026-03-22 20:35:17,172 [INFO] VisionTera: [API] Queued push for camera cam_1774191894733_2 (3 detections, 1M/2F)
+2026-03-22 20:35:18,074 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:35:18,076 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 3
+2026-03-22 20:35:18,213 [INFO] VisionTera: [API] Queued push for camera cam_1774191894733_2 (2 detections, 1M/1F)
+2026-03-22 20:35:19,018 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:35:19,019 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 2
+2026-03-22 20:35:20,363 [INFO] VisionTera: [API] Queued push for camera cam_1774191894733_2 (3 detections, 1M/2F)
+2026-03-22 20:35:21,257 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:35:21,259 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 3
+2026-03-22 20:35:21,410 [INFO] VisionTera: [API] Queued push for camera cam_1774191894733_2 (2 detections, 1M/1F)
+2026-03-22 20:35:22,174 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:35:22,175 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 2
+2026-03-22 20:35:26,614 [INFO] VisionTera: [API] Queued push for camera cam_1774191894733_2 (3 detections, 1M/2F)
+2026-03-22 20:35:27,506 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:35:27,507 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 3
+2026-03-22 20:35:27,653 [INFO] VisionTera: [API] Queued push for camera cam_1774191894733_2 (2 detections, 2M/0F)
+2026-03-22 20:35:28,447 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:35:28,448 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 2
+2026-03-22 20:35:28,714 [INFO] VisionTera: [API] Queued push for camera cam_1774191894733_2 (3 detections, 2M/1F)
+2026-03-22 20:35:29,624 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:35:29,625 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 3
+2026-03-22 20:35:30,784 [INFO] VisionTera: [API] Queued push for camera cam_1774191894733_2 (2 detections, 2M/0F)
+2026-03-22 20:35:31,553 [INFO] httpx: HTTP Request: POST https://visiontera-backend-697124318129.europe-west4.run.app/agent/stats "HTTP/1.1 201 Created"
+2026-03-22 20:35:31,555 [INFO] VisionTera: [API] Push successful - Camera: 26, Detections: 2
+2026-03-22 20:35:43,221 [INFO] VisionTera: Camera cam_1774191749188_1 capture loop cancelled
+2026-03-22 20:35:43,222 [INFO] VisionTera: Camera cam_1774191894733_2 capture loop cancelled
+2026-03-22 20:35:43,232 [INFO] VisionTera: Camera released: 1
+2026-03-22 20:35:43,235 [INFO] VisionTera: Re-ID: cleared camera cam_1774191749188_1, affected 8 persons
+2026-03-22 20:35:43,236 [INFO] VisionTera: Camera cam_1774191749188_1 stopped
+2026-03-22 20:35:43,236 [INFO] VisionTera: Camera cam_1774191749188_1 stopped
+2026-03-22 20:35:43,237 [INFO] VisionTera: Camera released: 1
+2026-03-22 20:35:43,238 [INFO] VisionTera: Re-ID: cleared camera cam_1774191894733_2, affected 3 persons
+2026-03-22 20:35:43,239 [INFO] VisionTera: Camera cam_1774191894733_2 stopped
+2026-03-22 20:35:43,239 [INFO] VisionTera: Camera cam_1774191894733_2 stopped

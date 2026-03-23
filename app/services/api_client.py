@@ -5,6 +5,20 @@ from typing import Optional, List, Dict, Any
 from app.config import AppConfig, logger
 
 
+def _counter_id_for_detection(d: Dict[str, Any]) -> int:
+    """
+    Stable per-person id for backend deduplication: Re-ID global_id when assigned,
+    otherwise tracker id (matches camera_processor / detection_service dict shapes).
+    """
+    gid = d.get("global_id")
+    if gid is not None and int(gid) >= 0:
+        return int(gid)
+    tid = d.get("id")
+    if tid is not None:
+        return int(tid)
+    return -1
+
+
 class APIClient:
     """
     Singleton API client that manages a shared httpx.AsyncClient for efficient
@@ -227,10 +241,13 @@ class APIClient:
     ):
         """
         Queue detection data to be pushed to the API.
-        
+
+        Each payload includes counts.counter_ids (and per-box counter_id), aligned with
+        boxes[]: Re-ID global_id when set, else tracker id, for backend deduplication.
+
         Args:
             camera_id: Identifier for the camera
-            detections: List of detection dictionaries
+            detections: List of detection dictionaries (may include global_id from Re-ID)
             cross_count: Cumulative number of boundary crossings
             force: If True, bypass the rate limit check
         """
@@ -255,6 +272,7 @@ class APIClient:
         now_iso = now.isoformat()
         
         boxes = []
+        counter_ids: List[int] = []
         male_count = 0
         female_count = 0
         
@@ -269,10 +287,13 @@ class APIClient:
             else:
                 continue
             
+            cid = _counter_id_for_detection(d)
+            counter_ids.append(cid)
             boxes.append({
                 "camera_id": camera_index,
                 "date": now_iso,
                 "bbox_id": d.get('id', -1),
+                "counter_id": cid,
                 "bbox_left": int(d['bbox']['x1']),
                 "bbox_top": int(d['bbox']['y1']),
                 "bbox_w": int(d['bbox']['x2'] - d['bbox']['x1']),
@@ -289,7 +310,8 @@ class APIClient:
                 "male_counter": male_count,
                 "female_counter": female_count,
                 "cross_counter": cross_count,
-                "line_counters": line_counts or []
+                "line_counters": line_counts or [],
+                "counter_ids": counter_ids,
             }
         }
         
@@ -317,6 +339,7 @@ class APIClient:
         now_iso = now.isoformat()
         
         boxes = []
+        counter_ids: List[int] = []
         male_count = 0
         female_count = 0
         
@@ -331,10 +354,13 @@ class APIClient:
             else:
                 continue
             
+            cid = _counter_id_for_detection(d)
+            counter_ids.append(cid)
             boxes.append({
                 "camera_id": camera_id,
                 "date": now_iso,
                 "bbox_id": d.get('id', -1),
+                "counter_id": cid,
                 "bbox_left": int(d['bbox']['x1']),
                 "bbox_top": int(d['bbox']['y1']),
                 "bbox_w": int(d['bbox']['x2'] - d['bbox']['x1']),
@@ -349,7 +375,8 @@ class APIClient:
                 "date": now_iso,
                 "counter": len(detections),
                 "male_counter": male_count,
-                "female_counter": female_count
+                "female_counter": female_count,
+                "counter_ids": counter_ids,
             }
         }
         
