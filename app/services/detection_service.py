@@ -34,6 +34,7 @@ class DetectionEngine:
     def __init__(self):
         self.model = None
         self.gender_net = None
+        self.uniform_net = None  # Uniform classifier model
         self.gender_classes = ['Female', 'Male']
         self.track_history = {}
         self.is_running = False
@@ -42,6 +43,11 @@ class DetectionEngine:
         self.gender_check_interval = AppConfig.GENDER_CHECK_INTERVAL
         self.gender_voting_enabled = AppConfig.GENDER_VOTING_ENABLED
         self.gender_vote_threshold = AppConfig.GENDER_VOTE_THRESHOLD
+        self.uniform_filter_enabled = AppConfig.UNIFORM_FILTER_ENABLED
+        self.uniform_check_interval = AppConfig.UNIFORM_CHECK_INTERVAL
+        self.uniform_voting_enabled = AppConfig.UNIFORM_VOTING_ENABLED
+        self.uniform_vote_threshold = AppConfig.UNIFORM_VOTE_THRESHOLD
+        self.uniform_confidence_threshold = AppConfig.UNIFORM_CONFIDENCE_THRESHOLD
         self.confidence = AppConfig.CONFIDENCE_THRESHOLD
         self.show_coords = True
         self.show_fps = True
@@ -133,6 +139,9 @@ class DetectionEngine:
                 logger.warning(f"Gender model not found. Gender detection disabled.")
                 self.gender_net = None
 
+            # ── Load Uniform Classifier (Employee Exclusion) ──
+            self._load_uniform_model()
+
             device = 'cuda' if torch.cuda.is_available() else 'cpu'
             self.model.to(device)
             if self.gender_net and hasattr(self, 'gender_net_type') and self.gender_net_type == 'resnet50':
@@ -198,6 +207,85 @@ class DetectionEngine:
                 logger.error(f"Gender prediction error: {e}")
         return None, 0.0
 
+    def _load_uniform_model(self):
+        """Load the uniform detector model for employee detection."""
+        if not self.uniform_filter_enabled:
+            logger.info("Uniform filter is disabled in config.")
+            return
+
+        uniform_model_path = AppConfig.UNIFORM_MODEL_PATH
+        
+        # Also check versioned models (uniform_v_*)
+        models_dir = Path("infrastructure/models")
+        if models_dir.exists():
+            uniform_dirs = sorted(
+                [d for d in models_dir.iterdir() if d.is_dir() and d.name.startswith("uniform_v_")],
+                key=lambda x: x.name, reverse=True
+            )
+            for u_dir in uniform_dirs:
+                candidate = u_dir / "best_model.pt"
+                if candidate.exists():
+                    uniform_model_path = str(candidate)
+                    logger.info(f"Found latest uniform model version: {u_dir.name}")
+                    break
+
+        if Path(uniform_model_path).exists():
+            try:
+                self.uniform_net = YOLO(uniform_model_path)
+                logger.info(f"✅ Uniform detector loaded: {uniform_model_path}")
+                logger.info("   Employee filtering is ACTIVE - employees will be excluded from count")
+            except Exception as e:
+                logger.error(f"Failed to load uniform classifier: {e}")
+                self.uniform_net = None
+        else:
+            logger.warning(f"Uniform detector not found at {uniform_model_path}. Employee filtering disabled.")
+            logger.warning("   Train with: python research/train_uniform_classifier.py")
+            self.uniform_net = None
+
+    def _predict_uniform(self, frame, person_box):
+        """
+        Detect if a person is wearing a uniform (employee) by running
+        the uniform detection model on their crop.
+        
+        Logic: If uniform bounding box(es) detected on person crop → employee
+               If no uniform detected → visitor
+        
+        Returns: (label, confidence) where label is 'employee' or 'visitor'
+        """
+        x1, y1, x2, y2 = [int(v) for v in person_box]
+        h, w = frame.shape[:2]
+        x1, y1 = max(0, x1), max(0, y1)
+        x2, y2 = min(w, x2), min(h, y2)
+        if x2 <= x1 or y2 <= y1:
+            return None, 0.0
+
+        person_img = frame[y1:y2, x1:x2]
+
+        if self.uniform_net:
+            try:
+                # Run uniform DETECTION on the person crop
+                results = self.uniform_net.predict(
+                    person_img, 
+                    verbose=False, 
+                    imgsz=640,
+                    conf=self.uniform_confidence_threshold
+                )
+                
+                if results and len(results) > 0 and results[0].boxes is not None:
+                    boxes = results[0].boxes
+                    if len(boxes) > 0:
+                        # Uniform detected on this person → employee
+                        # Use the highest confidence detection
+                        max_conf = float(boxes.conf.max())
+                        return 'employee', max_conf
+                
+                # No uniform detected → visitor
+                return 'visitor', 0.0
+                
+            except Exception as e:
+                logger.error(f"Uniform prediction error: {e}")
+        return None, 0.0
+
     def detect_persons(self, frame):
         if self.model is None: return []
         results = self.model.track(frame, classes=[0], conf=self.confidence, persist=True, verbose=False, tracker=self._tracker_config)
@@ -216,10 +304,18 @@ class DetectionEngine:
                             'gender_confidence': 0.0,
                             'male_votes': 0, 
                             'female_votes': 0, 
-                            'last_check': 0
+                            'last_check': 0,
+                            # Uniform (employee) tracking
+                            'uniform_label': None,
+                            'uniform_confidence': 0.0,
+                            'employee_votes': 0,
+                            'visitor_votes': 0,
+                            'uniform_last_check': 0,
+                            'is_employee': False,
                         }
                     hist = self.track_history[track_id]
                     
+                    # ── Gender Classification ──
                     should_check = (self.frame_count - hist.get('last_check', 0)) > self.gender_check_interval
                     if hist['gender'] is None: should_check = True
                     
@@ -241,9 +337,38 @@ class DetectionEngine:
                                 hist['gender'] = gender
                                 hist['gender_confidence'] = gender_conf
 
+                    # ── Uniform Classification (Employee Exclusion) ──
+                    if self.uniform_filter_enabled and self.uniform_net:
+                        uniform_should_check = (self.frame_count - hist.get('uniform_last_check', 0)) > self.uniform_check_interval
+                        if hist['uniform_label'] is None:
+                            uniform_should_check = True
+
+                        if uniform_should_check:
+                            uniform_label, uniform_conf = self._predict_uniform(frame, (x1, y1, x2, y2))
+                            hist['uniform_last_check'] = self.frame_count
+
+                            if uniform_label:
+                                if self.uniform_voting_enabled:
+                                    if uniform_label == 'employee':
+                                        hist['employee_votes'] += 1
+                                    else:
+                                        hist['visitor_votes'] += 1
+
+                                    if (hist['employee_votes'] >= self.uniform_vote_threshold or
+                                            hist['visitor_votes'] >= self.uniform_vote_threshold):
+                                        hist['uniform_label'] = 'employee' if hist['employee_votes'] > hist['visitor_votes'] else 'visitor'
+                                        hist['uniform_confidence'] = uniform_conf
+                                        hist['is_employee'] = (hist['uniform_label'] == 'employee')
+                                else:
+                                    hist['uniform_label'] = uniform_label
+                                    hist['uniform_confidence'] = uniform_conf
+                                    hist['is_employee'] = (uniform_label == 'employee')
+
                     gender_label = hist['gender'] if hist['gender'] else "Person"
+                    is_employee = hist.get('is_employee', False)
                 else:
                     gender_label = "Person"
+                    is_employee = False
                 
                 detections.append({
                     'x': float((x1 + x2) / 2),
@@ -251,6 +376,7 @@ class DetectionEngine:
                     'confidence': conf,
                     'gender': gender_label,
                     'id': track_id,
+                    'is_employee': is_employee,
                     'bbox': {
                         'x1': float(x1), 'y1': float(y1), 'x2': float(x2), 'y2': float(y2)
                     }
@@ -271,7 +397,12 @@ class DetectionEngine:
             
             center_x, center_y = int((x1 + x2) / 2), int(y1 + (y2 - y1) * 0.15)
             
-            if gender == 'Male':
+            is_employee = det.get('is_employee', False)
+            
+            if is_employee:
+                # Employee: gray/dimmed appearance to show they're excluded
+                box_color = (128, 128, 128)
+            elif gender == 'Male':
                 box_color = (255, 150, 50)
             elif gender == 'Female':
                 box_color = (180, 105, 255)
@@ -293,7 +424,8 @@ class DetectionEngine:
                 cv2.circle(annotated, (center_x, center_y), 7, box_color, 2)
                 
                 # Minimalist Label
-                label = f"#{track_id}"
+                emp_tag = " EMP" if is_employee else ""
+                label = f"#{track_id}{emp_tag}"
                 (label_w, label_h), _ = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.4, 1)
                 cv2.rectangle(annotated, (center_x - 5, center_y - label_h - 15), 
                               (center_x + label_w + 5, center_y - 10), box_color, -1)
@@ -307,7 +439,8 @@ class DetectionEngine:
                 cv2.circle(annotated, (bottom_x, bottom_y), 8, (0, 212, 255), -1)
                 cv2.circle(annotated, (bottom_x, bottom_y), 10, (255, 255, 255), 2)
                 
-                label = f"ID:{track_id} {gender} {conf:.0%}"
+                emp_tag = " [EMP]" if is_employee else ""
+                label = f"ID:{track_id} {gender}{emp_tag} {conf:.0%}"
                 (label_w, label_h), baseline = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.6, 2)
                 cv2.rectangle(annotated, (x1, y1 - label_h - 10), (x1 + label_w + 10, y1), box_color, -1)
                 cv2.putText(annotated, label, (x1 + 5, y1 - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 0), 2)
@@ -484,16 +617,23 @@ class DetectionEngine:
         try:
             while self.is_running:
                 if self.last_detections is not None:
+                    # Filter out employees - only count visitors for the API
+                    visitor_detections = [
+                        d for d in self.last_detections 
+                        if not d.get('is_employee', False)
+                    ]
                     stats = {
                         'type': 'stats',
                         'fps': 30.0,
                         'width': self.frame_width,
                         'height': self.frame_height,
-                        'detections': self.last_detections
+                        'detections': visitor_detections,
+                        'total_detected': len(self.last_detections),
+                        'employees_excluded': len(self.last_detections) - len(visitor_detections),
                     }
                     await api_client.push_detections(
                         camera_id=str(self.camera_index),
-                        detections=self.last_detections
+                        detections=visitor_detections
                     )
                     try:
                         self.stats_queue.put_nowait(stats)
