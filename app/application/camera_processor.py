@@ -179,6 +179,8 @@ class CameraProcessor(ICameraProcessor):
             tasks = []
             
             for det in detections:
+                if getattr(det, 'is_employee', False):
+                    continue
                 track_id = det.track_id
                 if track_id == -1: continue
                 current_ids.add(track_id)
@@ -283,8 +285,11 @@ class CameraProcessor(ICameraProcessor):
                 center_x, center_y = int(bbox.center_x), int(y1 + (y2 - y1) * 0.15)
             
             gender = det.gender or "Person"
+            is_employee = getattr(det, 'is_employee', False)
 
-            if gender == 'Male':
+            if is_employee:
+                box_color = (128, 128, 128)
+            elif gender == 'Male':
                 box_color = (255, 150, 50)
             elif gender == 'Female':
                 box_color = (180, 105, 255)
@@ -305,7 +310,8 @@ class CameraProcessor(ICameraProcessor):
                 cv2.circle(annotated, (center_x, center_y), 7, box_color, 2)
                 
                 # Minimalist ID Label
-                label = f"#{track_id}"
+                emp_tag = " EMP" if is_employee else ""
+                label = f"#{track_id}{emp_tag}"
                 (label_w, label_h), _ = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.4, 1)
                 cv2.rectangle(annotated, (center_x - 5, center_y - label_h - 15), 
                               (center_x + label_w + 5, center_y - 10), box_color, -1)
@@ -318,7 +324,8 @@ class CameraProcessor(ICameraProcessor):
                 cv2.circle(annotated, (bottom_x, bottom_y), 8, (0, 212, 255), -1)
                 cv2.circle(annotated, (bottom_x, bottom_y), 10, (255, 255, 255), 2)
 
-                label = f"ID:{track_id} {gender} {det.confidence:.0%}"
+                emp_tag = " [EMP]" if is_employee else ""
+                label = f"ID:{track_id} {gender}{emp_tag} {det.confidence:.0%}"
                 (label_w, label_h), _ = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.6, 2)
                 cv2.rectangle(annotated, (x1, y1 - label_h - 10), (x1 + label_w + 10, y1), box_color, -1)
                 cv2.putText(annotated, label, (x1 + 5, y1 - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 0), 2)
@@ -331,8 +338,9 @@ class CameraProcessor(ICameraProcessor):
         return annotated
 
     def _update_stats(self) -> None:
-        male_count = sum(1 for d in self._latest_detections if d.gender == 'Male')
-        female_count = sum(1 for d in self._latest_detections if d.gender == 'Female')
+        visitor_detections = [d for d in self._latest_detections if not getattr(d, 'is_employee', False)]
+        male_count = sum(1 for d in visitor_detections if d.gender == 'Male')
+        female_count = sum(1 for d in visitor_detections if d.gender == 'Female')
 
         # Get deduplicated counts from the Re-ID manager
         dedup_counts = self._inference_engine.get_currently_visible_persons(max_age=5.0)
@@ -342,7 +350,9 @@ class CameraProcessor(ICameraProcessor):
             fps=self._fps,
             frame_width=self._actual_width,
             frame_height=self._actual_height,
-            person_count=len(self._latest_detections),
+            person_count=len(visitor_detections),
+            total_detected=len(self._latest_detections),
+            employees_excluded=len(self._latest_detections) - len(visitor_detections),
             male_count=male_count,
             female_count=female_count,
             detections=[d.to_dict() for d in self._latest_detections],
@@ -357,8 +367,9 @@ class CameraProcessor(ICameraProcessor):
         if not self._latest_detections:
             return
         
+        visitor_detections = [d for d in self._latest_detections if not getattr(d, 'is_employee', False)]
         detections_for_api = []
-        for det in self._latest_detections:
+        for det in visitor_detections:
             detections_for_api.append({
                 'id': det.track_id,
                 'global_id': det.global_id,
