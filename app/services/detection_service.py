@@ -628,6 +628,7 @@ class DetectionEngine:
                         'width': self.frame_width,
                         'height': self.frame_height,
                         'detections': visitor_detections,
+                        'person_count': len(visitor_detections),
                         'total_detected': len(self.last_detections),
                         'employees_excluded': len(self.last_detections) - len(visitor_detections),
                     }

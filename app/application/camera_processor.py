@@ -355,7 +355,7 @@ class CameraProcessor(ICameraProcessor):
             employees_excluded=len(self._latest_detections) - len(visitor_detections),
             male_count=male_count,
             female_count=female_count,
-            detections=[d.to_dict() for d in self._latest_detections],
+            detections=[d.to_dict() for d in visitor_detections],
             timestamp=datetime.now(),
             cross_count=self._cross_count,
             line_counts=self._line_counts.copy()

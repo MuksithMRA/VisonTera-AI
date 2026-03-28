@@ -488,7 +488,7 @@ class InferenceEngine(IInferenceEngine):
                     if should_extract_reid:
                         global_id = self._extract_and_assign_global_id(
                             frame, x1, y1, x2, y2,
-                            camera_id, track_id, gender_label
+                            camera_id, track_id, gender_label, is_employee_val
                         )
                         hist['reid_last_extract'] = frame_count
                     else:
@@ -642,6 +642,7 @@ class InferenceEngine(IInferenceEngine):
         camera_id: str,
         local_track_id: int,
         gender: str = None,
+        is_employee: bool = False,
     ) -> int:
         try:
             h, w = frame.shape[:2]
@@ -670,6 +671,7 @@ class InferenceEngine(IInferenceEngine):
                 local_track_id=local_track_id,
                 feature_embedding=embedding,
                 gender=gender,
+                is_employee=is_employee,
             )
             return global_id
 

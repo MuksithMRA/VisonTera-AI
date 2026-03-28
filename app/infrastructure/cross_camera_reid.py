@@ -12,6 +12,7 @@ class GlobalPerson:
     feature_gallery: List[np.ndarray] = field(default_factory=list)
     camera_tracks: Dict[str, int] = field(default_factory=dict)
     gender: Optional[str] = None
+    is_employee: bool = False
     last_seen_time: float = 0.0
     last_seen_camera: Optional[str] = None
     appearance_count: int = 0
@@ -48,6 +49,7 @@ class CrossCameraReIDManager:
         local_track_id: int,
         feature_embedding: np.ndarray,
         gender: Optional[str] = None,
+        is_employee: bool = False,
     ) -> int:
         with self._lock:
             key = (camera_id, local_track_id)
@@ -63,6 +65,7 @@ class CrossCameraReIDManager:
                     person.appearance_count += 1
                     if gender:
                         person.gender = gender
+                    person.is_employee = person.is_employee or is_employee
                     return gid
                 del self._track_to_global[key]
 
@@ -154,6 +157,7 @@ class CrossCameraReIDManager:
                     feature_gallery=[feature_embedding.copy()],
                     camera_tracks={camera_id: local_track_id},
                     gender=gender,
+                    is_employee=is_employee,
                     last_seen_time=now,
                     last_seen_camera=camera_id,
                     appearance_count=1,
@@ -181,7 +185,7 @@ class CrossCameraReIDManager:
 
     def get_deduplicated_counts(self) -> Dict:
         with self._lock:
-            persons = list(self._global_persons.values())
+            persons = [p for p in self._global_persons.values() if not p.is_employee]
             return {
                 "total": len(persons),
                 "male": sum(1 for p in persons if p.gender == "Male"),
@@ -197,7 +201,7 @@ class CrossCameraReIDManager:
             now = time.time()
             visible = [
                 p for p in self._global_persons.values()
-                if (now - p.last_seen_time) < max_age
+                if (now - p.last_seen_time) < max_age and not p.is_employee
             ]
             return {
                 "total": len(visible),
@@ -265,6 +269,7 @@ class CrossCameraReIDManager:
                         for cam, track in person_b.camera_tracks.items():
                             person_a.camera_tracks[cam] = track
                             self._track_to_global[(cam, track)] = gid_a
+                        person_a.is_employee = person_a.is_employee or person_b.is_employee
 
                         for emb in person_b.feature_gallery:
                             self._update_gallery(person_a, emb)
