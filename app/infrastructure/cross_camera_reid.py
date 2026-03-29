@@ -120,6 +120,7 @@ class CrossCameraReIDManager:
                 person.appearance_count += 1
                 if gender:
                     person.gender = gender
+                person.is_employee = person.is_employee or is_employee
                 self._track_to_global[key] = best_match_id
                 self._total_matches += 1
                 logger.info(
