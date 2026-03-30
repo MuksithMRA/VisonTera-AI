@@ -210,9 +210,9 @@ class MultiCameraDashboard {
         // If we have a backend RTSP/HTTP URL, use that. 
         // Otherwise, fallback to "0" for the local webcam.
         let realSource = "1";
-        // if (backendUrl && backendUrl !== "undefined" && backendUrl !== "null" && backendUrl.trim() !== "") {
-        //     realSource = backendUrl;
-        // }
+        if (backendUrl && backendUrl !== "undefined" && backendUrl !== "null" && backendUrl.trim() !== "") {
+            realSource = backendUrl;
+        }
 
         const payload = {
             camera_id: cameraId,
