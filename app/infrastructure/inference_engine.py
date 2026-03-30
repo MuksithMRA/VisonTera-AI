@@ -60,6 +60,14 @@ class InferenceEngine(IInferenceEngine):
         self._gender_check_interval = AppConfig.GENDER_CHECK_INTERVAL
         self._gender_voting_enabled = AppConfig.GENDER_VOTING_ENABLED
         self._gender_vote_threshold = AppConfig.GENDER_VOTE_THRESHOLD
+        
+        self._uniform_model = None
+        self._uniform_filter_enabled = AppConfig.UNIFORM_FILTER_ENABLED
+        self._uniform_check_interval = AppConfig.UNIFORM_CHECK_INTERVAL
+        self._uniform_voting_enabled = AppConfig.UNIFORM_VOTING_ENABLED
+        self._uniform_vote_threshold = AppConfig.UNIFORM_VOTE_THRESHOLD
+        self._uniform_confidence_threshold = AppConfig.UNIFORM_CONFIDENCE_THRESHOLD
+        
         self._frame_counts: Dict[str, int] = {}
         _tp = AppConfig.TRACKER_CONFIG_PATH
         self._tracker_config = str(_tp.resolve()) if _tp.exists() else "botsort.yaml"
@@ -232,6 +240,10 @@ class InferenceEngine(IInferenceEngine):
             else:
                 logger.warning("Gender model not found. Gender detection disabled.")
 
+            # ── Uniform Model (Employee Exclusion) ──
+            if self._uniform_filter_enabled:
+                self._load_uniform_model()
+
             # ── Re-ID Model: FastReID SBS for cross-camera deduplication ──
             reid_loaded = self._reid_extractor.load()
             if reid_loaded:
@@ -265,6 +277,69 @@ class InferenceEngine(IInferenceEngine):
         except Exception as e:
             logger.error(f"Error loading gender model: {e}")
             self._gender_model = None
+
+    def _load_uniform_model(self) -> None:
+        uniform_model_path = AppConfig.UNIFORM_MODEL_PATH
+        models_dir = Path("infrastructure/models")
+        if models_dir.exists():
+            uniform_dirs = sorted(
+                [d for d in models_dir.iterdir() if d.is_dir() and d.name.startswith("uniform_v_")],
+                key=lambda x: x.name, reverse=True
+            )
+            for u_dir in uniform_dirs:
+                candidate = u_dir / "best_model.pt"
+                if candidate.exists():
+                    uniform_model_path = str(candidate)
+                    logger.info(f"Found latest uniform model version: {u_dir.name}")
+                    break
+
+        if Path(uniform_model_path).exists():
+            try:
+                self._uniform_model = YOLO(uniform_model_path)
+                if self._device == 'cuda':
+                    self._uniform_model.to(self._device)
+                logger.info(f"Uniform detector loaded: {uniform_model_path}")
+            except Exception as e:
+                logger.error(f"Failed to load uniform classifier: {e}")
+                self._uniform_model = None
+        else:
+            logger.warning(f"Uniform detector not found at {uniform_model_path}. Employee filtering disabled.")
+            self._uniform_model = None
+
+    def _predict_uniform(self, frame: np.ndarray, bbox: Tuple[float, float, float, float]) -> Tuple[Optional[str], float]:
+        if self._uniform_model is None:
+            return None, 0.0
+
+        x1, y1, x2, y2 = [int(v) for v in bbox]
+        h, w = frame.shape[:2]
+        x1, y1 = max(0, x1), max(0, y1)
+        x2, y2 = min(w, x2), min(h, y2)
+        if x2 <= x1 or y2 <= y1:
+            return None, 0.0
+
+        person_img = frame[y1:y2, x1:x2]
+
+        try:
+            with self._inference_lock:
+                results = self._uniform_model.predict(
+                    person_img, 
+                    verbose=False, 
+                    imgsz=640,
+                    conf=self._uniform_confidence_threshold,
+                    device=self._device,
+                    half=self._use_half
+                )
+            
+            if results and len(results) > 0 and results[0].boxes is not None:
+                boxes = results[0].boxes
+                if len(boxes) > 0:
+                    max_conf = float(boxes.conf.max())
+                    return 'employee', max_conf
+            
+            return 'visitor', 0.0
+        except Exception as e:
+            logger.error(f"Uniform prediction error: {e}")
+        return None, 0.0
 
     def detect_persons(self, frame: np.ndarray, confidence: float, camera_id: str) -> List[Detection]:
         if self._detection_model is None:
@@ -317,6 +392,12 @@ class InferenceEngine(IInferenceEngine):
                             'male_votes': 0,
                             'female_votes': 0,
                             'last_check': 0,
+                            'uniform_label': None,
+                            'uniform_confidence': 0.0,
+                            'employee_votes': 0,
+                            'visitor_votes': 0,
+                            'uniform_last_check': 0,
+                            'is_employee': False,
                             'reid_last_extract': 0,
                         }
 
@@ -345,6 +426,35 @@ class InferenceEngine(IInferenceEngine):
                                 hist['gender_confidence'] = gender_conf
 
                     gender_label = hist['gender']
+
+                    # ── Uniform Classification (Employee Exclusion) ──
+                    if self._uniform_filter_enabled and self._uniform_model is not None:
+                        uniform_should_check = (frame_count - hist.get('uniform_last_check', 0)) > self._uniform_check_interval
+                        if hist['uniform_label'] is None:
+                            uniform_should_check = True
+
+                        if uniform_should_check:
+                            uniform_label, uniform_conf = self._predict_uniform(frame, (x1, y1, x2, y2))
+                            hist['uniform_last_check'] = frame_count
+
+                            if uniform_label:
+                                if self._uniform_voting_enabled:
+                                    if uniform_label == 'employee':
+                                        hist['employee_votes'] += 1
+                                    else:
+                                        hist['visitor_votes'] += 1
+
+                                    if (hist['employee_votes'] >= self._uniform_vote_threshold or
+                                            hist['visitor_votes'] >= self._uniform_vote_threshold):
+                                        hist['uniform_label'] = 'employee' if hist['employee_votes'] > hist['visitor_votes'] else 'visitor'
+                                        hist['uniform_confidence'] = uniform_conf
+                                        hist['is_employee'] = (hist['uniform_label'] == 'employee')
+                                else:
+                                    hist['uniform_label'] = uniform_label
+                                    hist['uniform_confidence'] = uniform_conf
+                                    hist['is_employee'] = (uniform_label == 'employee')
+
+                    is_employee_val = hist.get('is_employee', False)
 
                 # ── Cross-Camera Re-ID ──
                 global_id = -1
@@ -378,7 +488,7 @@ class InferenceEngine(IInferenceEngine):
                     if should_extract_reid:
                         global_id = self._extract_and_assign_global_id(
                             frame, x1, y1, x2, y2,
-                            camera_id, track_id, gender_label
+                            camera_id, track_id, gender_label, is_employee_val
                         )
                         hist['reid_last_extract'] = frame_count
                     else:
@@ -395,7 +505,8 @@ class InferenceEngine(IInferenceEngine):
                     confidence=conf,
                     global_id=global_id,
                     gender=gender_label,
-                    class_id=int(box.cls[0].cpu().numpy())
+                    class_id=int(box.cls[0].cpu().numpy()),
+                    is_employee=is_employee_val if track_id != -1 else False
                 )
                 detections.append(detection)
 
@@ -531,6 +642,7 @@ class InferenceEngine(IInferenceEngine):
         camera_id: str,
         local_track_id: int,
         gender: str = None,
+        is_employee: bool = False,
     ) -> int:
         try:
             h, w = frame.shape[:2]
@@ -559,6 +671,7 @@ class InferenceEngine(IInferenceEngine):
                 local_track_id=local_track_id,
                 feature_embedding=embedding,
                 gender=gender,
+                is_employee=is_employee,
             )
             return global_id
 

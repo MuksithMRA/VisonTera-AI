@@ -45,6 +45,14 @@ class AppConfig:
     TRAINING_SCHEDULER_ENABLED = False
     TRAINING_SCHEDULER_INTERVAL = 86400
 
+    # Uniform Classifier - Employee Exclusion
+    UNIFORM_FILTER_ENABLED = True                   # Enable/disable employee filtering
+    UNIFORM_MODEL_PATH = "infrastructure/models/uniform_classifier.pt"  # Trained model
+    UNIFORM_CONFIDENCE_THRESHOLD = 0.65             # Min confidence to classify as employee
+    UNIFORM_CHECK_INTERVAL = 30                     # Frames between re-checks (same as gender)
+    UNIFORM_VOTING_ENABLED = True                   # Use voting across frames for stability
+    UNIFORM_VOTE_THRESHOLD = 3                      # Votes needed to finalize classification
+
     TRACKER_CONFIG_PATH = BASE_DIR / "app" / "infrastructure" / "trackers" / "botsort.yaml"
 
     REID_SIMILARITY_THRESHOLD = 0.72

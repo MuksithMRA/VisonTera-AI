@@ -63,6 +63,7 @@ class Detection:
     gender: Optional[str] = None
     gender_confidence: float = 0.0
     class_id: int = 0
+    is_employee: bool = False
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -72,7 +73,8 @@ class Detection:
             "y": self.bbox.y2,
             "confidence": self.confidence,
             "gender": self.gender or "Person",
-            "bbox": self.bbox.to_dict()
+            "bbox": self.bbox.to_dict(),
+            "is_employee": self.is_employee
         }
 
 
@@ -101,6 +103,8 @@ class ProcessingStats:
     person_count: int = 0
     male_count: int = 0
     female_count: int = 0
+    total_detected: int = 0
+    employees_excluded: int = 0
     detections: list = field(default_factory=list)
     timestamp: datetime = field(default_factory=datetime.now)
     deduplicated: Optional[Dict[str, Any]] = None  # Cross-camera dedup counts
@@ -115,6 +119,8 @@ class ProcessingStats:
             "width": self.frame_width,
             "height": self.frame_height,
             "person_count": self.person_count,
+            "total_detected": self.total_detected,
+            "employees_excluded": self.employees_excluded,
             "male_count": self.male_count,
             "female_count": self.female_count,
             "detections": self.detections,
