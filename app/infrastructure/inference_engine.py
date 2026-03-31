@@ -3,7 +3,7 @@ import torch.nn as nn
 import cv2
 import numpy as np
 import threading
-from typing import List, Optional, Tuple, Dict
+from typing import Any, List, Optional, Tuple, Dict
 from pathlib import Path
 from ultralytics import YOLO
 from torchvision import models
@@ -92,8 +92,50 @@ class InferenceEngine(IInferenceEngine):
             collision_iou_max=AppConfig.COLLISION_IOU_MAX,
             ghost_unassigned_frames=AppConfig.GHOST_UNASSIGNED_FRAMES,
         )
+        # Ultralytics keeps one predictor.trackers[0] for numpy/frame calls. Interleaving two cameras
+        # reuses the same BoT-SORT as if frames were one stream — corrupting IDs and Re-ID keys.
+        self._per_camera_ultralytics_trackers: Dict[str, Any] = {}
+        self._tracker_active_slot: Optional[str] = None
 
         logger.info(f"InferenceEngine initialized: device={self._device}, half={self._use_half}, CUDA available={torch.cuda.is_available()}")
+
+    def _make_new_botsort_tracker(self) -> Any:
+        """Construct a BoT-SORT / ByteTrack instance matching TRACKER_CONFIG_PATH (same as Ultralytics on_predict_start)."""
+        from ultralytics.trackers.track import TRACKER_MAP, check_yaml
+        from ultralytics.utils import YAML, IterableSimpleNamespace
+
+        tracker_path = check_yaml(self._tracker_config)
+        cfg = IterableSimpleNamespace(**YAML.load(tracker_path))
+        if cfg.tracker_type not in TRACKER_MAP:
+            raise AssertionError(f"Unsupported tracker type: {cfg.tracker_type}")
+        return TRACKER_MAP[cfg.tracker_type](args=cfg, frame_rate=30)
+
+    def _swap_ultralytics_tracker_for_camera(self, camera_id: str) -> None:
+        """Before model.track(), install this camera's BoT-SORT so streams do not share one tracker state."""
+        if self._detection_model is None:
+            return
+        pred = getattr(self._detection_model, "predictor", None)
+        if pred is None or not getattr(pred, "trackers", None):
+            return
+
+        if self._tracker_active_slot is not None:
+            self._per_camera_ultralytics_trackers[self._tracker_active_slot] = pred.trackers[0]
+
+        if camera_id not in self._per_camera_ultralytics_trackers:
+            self._per_camera_ultralytics_trackers[camera_id] = self._make_new_botsort_tracker()
+
+        pred.trackers[0] = self._per_camera_ultralytics_trackers[camera_id]
+        self._tracker_active_slot = camera_id
+
+    def _sync_ultralytics_tracker_cache(self, camera_id: str) -> None:
+        """After model.track(), remember which BoT-SORT instance is live (updated in place)."""
+        if self._detection_model is None:
+            return
+        pred = getattr(self._detection_model, "predictor", None)
+        if pred is None or not getattr(pred, "trackers", None):
+            return
+        self._per_camera_ultralytics_trackers[camera_id] = pred.trackers[0]
+        self._tracker_active_slot = camera_id
 
     def _get_latest_versioned_model(self, prefix: str) -> Optional[str]:
         """Find the latest versioned model directory matching the given prefix.
@@ -190,6 +232,8 @@ class InferenceEngine(IInferenceEngine):
                 self._track_histories.clear()
                 self._frame_counts.clear()
                 self._tracking_quality.reset()
+                self._per_camera_ultralytics_trackers.clear()
+                self._tracker_active_slot = None
 
             logger.info(f"Detection model switched successfully to: {path.name}")
             return {
@@ -355,6 +399,7 @@ class InferenceEngine(IInferenceEngine):
         frame_count = self._frame_counts[camera_id]
 
         with self._inference_lock:
+            self._swap_ultralytics_tracker_for_camera(camera_id)
             results = self._detection_model.track(
                 frame,
                 classes=[0],
@@ -365,6 +410,7 @@ class InferenceEngine(IInferenceEngine):
                 device=self._device,
                 half=self._use_half
             )
+            self._sync_ultralytics_tracker_cache(camera_id)
 
         detections = []
         if results and results[0].boxes:
@@ -490,7 +536,11 @@ class InferenceEngine(IInferenceEngine):
                             frame, x1, y1, x2, y2,
                             camera_id, track_id, gender_label, is_employee_val
                         )
-                        hist['reid_last_extract'] = frame_count
+                        # Only advance the refresh interval after a successful assignment.
+                        # If extraction failed (crop too small, embedding error), retry next frame
+                        # instead of waiting REID_REFRESH_INTERVAL_FRAMES with global_id stuck at -1.
+                        if global_id >= 0:
+                            hist['reid_last_extract'] = frame_count
                     else:
                         cached_gid = self._reid_manager.get_global_id(camera_id, track_id)
                         if cached_gid is not None:
@@ -632,6 +682,9 @@ class InferenceEngine(IInferenceEngine):
             del self._track_histories[camera_id]
         if camera_id in self._frame_counts:
             del self._frame_counts[camera_id]
+        self._per_camera_ultralytics_trackers.pop(camera_id, None)
+        if self._tracker_active_slot == camera_id:
+            self._tracker_active_slot = None
         self._reid_manager.clear_camera(camera_id)
         self._tracking_quality.prune_camera(camera_id)
 

@@ -296,8 +296,6 @@ class CameraProcessor(ICameraProcessor):
             else:
                 box_color = self._config.box_color
                 
-            track_id = det.global_id if det.global_id != -1 else det.track_id
-
             if viz_mode == 'head-dot':
                 # --- HEAD DOT MODE ---
                 if getattr(AppConfig, 'SHOW_GLOW_EFFECT', True):
@@ -309,9 +307,12 @@ class CameraProcessor(ICameraProcessor):
                 cv2.circle(annotated, (center_x, center_y), 6, (255, 255, 255), -1)
                 cv2.circle(annotated, (center_x, center_y), 7, box_color, 2)
                 
-                # Minimalist ID Label
+                # Minimalist ID: G{n} = Re-ID global id; T{n} = tracker-only (Re-ID pending / skipped)
                 emp_tag = " EMP" if is_employee else ""
-                label = f"#{track_id}{emp_tag}"
+                if det.global_id >= 0:
+                    label = f"G{det.global_id}{emp_tag}"
+                else:
+                    label = f"T{det.track_id}{emp_tag}"
                 (label_w, label_h), _ = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.4, 1)
                 cv2.rectangle(annotated, (center_x - 5, center_y - label_h - 15), 
                               (center_x + label_w + 5, center_y - 10), box_color, -1)
@@ -325,7 +326,8 @@ class CameraProcessor(ICameraProcessor):
                 cv2.circle(annotated, (bottom_x, bottom_y), 10, (255, 255, 255), 2)
 
                 emp_tag = " [EMP]" if is_employee else ""
-                label = f"ID:{track_id} {gender}{emp_tag} {det.confidence:.0%}"
+                id_part = f"G{det.global_id}" if det.global_id >= 0 else f"T{det.track_id}"
+                label = f"ID:{id_part} {gender}{emp_tag} {det.confidence:.0%}"
                 (label_w, label_h), _ = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.6, 2)
                 cv2.rectangle(annotated, (x1, y1 - label_h - 10), (x1 + label_w + 10, y1), box_color, -1)
                 cv2.putText(annotated, label, (x1 + 5, y1 - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 0), 2)
