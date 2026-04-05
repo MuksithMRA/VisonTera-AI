@@ -1,4 +1,5 @@
 import asyncio
+import concurrent.futures
 from typing import Dict, List, Optional
 from app.domain.entities import CameraConfig, CameraStatus, CameraType, CameraState
 from app.application.camera_processor import CameraProcessor
@@ -22,6 +23,11 @@ class CameraManager:
         self._processors: Dict[str, CameraProcessor] = {}
         self._inference_engine = InferenceEngine()
         self._models_loaded = False
+        self._batch_queue: asyncio.Queue = asyncio.Queue(maxsize=50)
+        self._batch_loop_task: Optional[asyncio.Task] = None
+        self._batch_executor = concurrent.futures.ThreadPoolExecutor(
+            max_workers=1, thread_name_prefix="BatchInference"
+        )
 
     def load_models(self, detection_path: str = None, gender_path: str = None) -> None:
         if self._models_loaded:
@@ -87,11 +93,16 @@ class CameraManager:
         )
 
         processor = CameraProcessor(config, self._inference_engine)
+        processor.set_batch_queue(self._batch_queue)
         self._processors[camera_id] = processor
 
         success = await processor.start()
 
         if success:
+            if self._batch_loop_task is None or self._batch_loop_task.done():
+                self._batch_loop_task = asyncio.create_task(
+                    self._batch_inference_loop()
+                )
             logger.info(f"Camera {camera_id} started successfully")
             return {"status": "started", "camera_id": camera_id}
         else:
@@ -119,7 +130,90 @@ class CameraManager:
         if tasks:
             await asyncio.gather(*tasks)
 
+        if self._batch_loop_task and not self._batch_loop_task.done():
+            self._batch_loop_task.cancel()
+            try:
+                await self._batch_loop_task
+            except asyncio.CancelledError:
+                pass
+
         return {"status": "all_stopped", "count": len(camera_ids)}
+
+    # ── Batched multi-camera inference loop ──────────────────────
+
+    async def _batch_inference_loop(self) -> None:
+        """Central loop that collects frames from all cameras and runs them
+        through InferenceEngine.detect_persons_batch() for GPU-efficient
+        batched inference."""
+        loop = asyncio.get_running_loop()
+        logger.info("Batch inference loop started")
+
+        while True:
+            batch = []
+            try:
+                # Wait for at least one camera to submit a frame
+                try:
+                    item = await asyncio.wait_for(
+                        self._batch_queue.get(), timeout=0.1
+                    )
+                    batch.append(item)
+                except asyncio.TimeoutError:
+                    continue
+
+                # Short collection window to let other cameras submit too
+                active = max(self.active_camera_count, 1)
+                deadline = loop.time() + 0.005  # 5 ms
+                while len(batch) < active:
+                    remaining = deadline - loop.time()
+                    if remaining <= 0:
+                        break
+                    try:
+                        item = await asyncio.wait_for(
+                            self._batch_queue.get(),
+                            timeout=max(remaining, 0.001),
+                        )
+                        batch.append(item)
+                    except asyncio.TimeoutError:
+                        break
+
+                # Deduplicate: keep the latest frame per camera
+                camera_frames = {}
+                batch_futures: Dict[str, asyncio.Future] = {}
+                for cam_id, frame, conf, future in batch:
+                    if cam_id in batch_futures and not batch_futures[cam_id].done():
+                        batch_futures[cam_id].set_result([])
+                    camera_frames[cam_id] = (frame, conf)
+                    batch_futures[cam_id] = future
+
+                # Run batched inference in a dedicated thread
+                try:
+                    results = await loop.run_in_executor(
+                        self._batch_executor,
+                        self._inference_engine.detect_persons_batch,
+                        camera_frames,
+                    )
+                except Exception as e:
+                    logger.error(f"Batch inference failed: {e}", exc_info=True)
+                    results = {}
+
+                # Deliver results back to the waiting camera loops
+                for cam_id, future in batch_futures.items():
+                    if not future.done():
+                        future.set_result(results.get(cam_id, []))
+
+            except asyncio.CancelledError:
+                for item in batch:
+                    _, _, _, future = item
+                    if not future.done():
+                        future.set_result([])
+                logger.info("Batch inference loop stopped")
+                break
+            except Exception as e:
+                logger.error(f"Batch loop error: {e}", exc_info=True)
+                for item in batch:
+                    _, _, _, future = item
+                    if not future.done():
+                        future.set_result([])
 
     def get_camera_status(self, camera_id: str) -> Optional[CameraStatus]:
         if camera_id not in self._processors:

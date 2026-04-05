@@ -41,6 +41,11 @@ class CameraProcessor(ICameraProcessor):
         self._cross_count = 0
         self._line_counts = [0] * len(config.counting_lines) if config.counting_lines else []
         self._counted_tracks = set()
+        self._batch_queue: Optional[asyncio.Queue] = None
+
+    def set_batch_queue(self, queue: asyncio.Queue) -> None:
+        """Attach the shared batch-inference queue managed by CameraManager."""
+        self._batch_queue = queue
 
     async def start(self) -> bool:
         if self._state == CameraState.RUNNING:
@@ -112,9 +117,12 @@ class CameraProcessor(ICameraProcessor):
                 loop_start = datetime.now()
                 loop = asyncio.get_running_loop()
 
-                result = await loop.run_in_executor(self._executor, self._process_frame)
+                # 1. Capture frame (blocking I/O in thread)
+                frame = await loop.run_in_executor(
+                    self._executor, self._capture_frame
+                )
 
-                if result is None:
+                if frame is None:
                     failed_reads += 1
                     if failed_reads >= max_failed_reads:
                         await self._handle_reconnect()
@@ -123,6 +131,33 @@ class CameraProcessor(ICameraProcessor):
                     continue
 
                 failed_reads = 0
+
+                # 2. Inference: batch queue (preferred) or direct fallback
+                if self._batch_queue is not None:
+                    result_future = loop.create_future()
+                    await self._batch_queue.put((
+                        self._config.camera_id,
+                        frame,
+                        self._config.confidence_threshold,
+                        result_future,
+                    ))
+                    detections = await result_future
+                else:
+                    detections = await loop.run_in_executor(
+                        self._executor, self._detect_direct, frame
+                    )
+
+                # 3. Post-process in thread (drawing, crossing, encoding)
+                result = await loop.run_in_executor(
+                    self._executor,
+                    self._post_process_frame,
+                    frame,
+                    detections,
+                )
+
+                if result is None:
+                    continue
+
                 self._frames_processed += 1
                 self._last_frame_time = datetime.now()
 
@@ -155,21 +190,27 @@ class CameraProcessor(ICameraProcessor):
             self._error_message = str(e)
             logger.error(f"Error in camera {self._config.camera_id} capture loop: {e}")
 
-    def _process_frame(self) -> Optional[dict]:
+    # ── Frame pipeline helpers ───────────────────────────────────
+
+    def _capture_frame(self) -> Optional[np.ndarray]:
+        """Blocking read from the camera. Runs inside a thread executor."""
         ret, frame = self._capture.read()
         if not ret or frame is None:
             return None
+        return frame
 
-        detections = self._inference_engine.detect_persons(
-            frame,
-            self._config.confidence_threshold,
-            self._config.camera_id
+    def _detect_direct(self, frame: np.ndarray) -> List[Detection]:
+        """Fallback: per-camera inference when no batch queue is attached."""
+        return self._inference_engine.detect_persons(
+            frame, self._config.confidence_threshold, self._config.camera_id
         )
 
+    def _post_process_frame(
+        self, frame: np.ndarray, detections: List[Detection]
+    ) -> Optional[dict]:
+        """Dataset collection, boundary crossing, annotation, and JPEG encoding."""
         self._dataset_collector.process_frame(
-            self._config.camera_id,
-            frame,
-            detections
+            self._config.camera_id, frame, detections
         )
 
         # --- Boundary Crossing Detection ---
@@ -185,12 +226,9 @@ class CameraProcessor(ICameraProcessor):
                 if track_id == -1: continue
                 current_ids.add(track_id)
                 
-                # For floor-drawn lines, checking the feet intersection improves geometrical accuracy drastically.
                 if det.class_id == 1:
-                    # If model only detects heads, use head center
                     curr_pos = (det.bbox.center_x, det.bbox.center_y)
                 else:
-                    # Otherwise use feet mapping for floor placement stability
                     curr_pos = (det.bbox.center_x, det.bbox.y2)
                 
                 if track_id in self._track_paths:
@@ -205,7 +243,6 @@ class CameraProcessor(ICameraProcessor):
                 self._track_paths[track_id] = curr_pos
             
             if tasks:
-                # Optimized threads for intersection logic
                 def check_intersection_wrapper(args):
                     prev, curr, l1, l2, idx, tid = args
                     return self._check_line_intersection(prev, curr, l1, l2), idx, tid
@@ -223,7 +260,6 @@ class CameraProcessor(ICameraProcessor):
                 if new_crossings > 0:
                     logger.info(f"Boundary crossed! Total: {self._cross_count}, Lines: {self._line_counts}")
             
-            # Cleanup old tracks avoiding memory leakage over time
             to_remove = [tid for tid in self._track_paths if tid not in current_ids]
             for tid in to_remove:
                 del self._track_paths[tid]

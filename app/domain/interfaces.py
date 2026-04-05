@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple
 import numpy as np
 from app.domain.entities import Detection, CameraConfig, CameraStatus, ProcessingStats
 
@@ -11,6 +11,10 @@ class IInferenceEngine(ABC):
 
     @abstractmethod
     def detect_persons(self, frame: np.ndarray, confidence: float, camera_id: str) -> List[Detection]:
+        pass
+
+    @abstractmethod
+    def detect_persons_batch(self, camera_frames: Dict[str, Tuple[np.ndarray, float]]) -> Dict[str, List[Detection]]:
         pass
 
     @abstractmethod
